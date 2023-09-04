@@ -12,6 +12,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import ClientCard from "../../components/ClientCard/ClientCard";
 
 import "./clientView.css";
+import ClientViewNav from "../../components/ClientViewNav/ClientViewNav";
 
 const rootClass = "client-view";
 
@@ -53,19 +54,20 @@ const ClientView = () => {
     <div>
       {!clientLoading && !clientError && (
         <div className={`${rootClass}-container`}>
-          <div className={`${rootClass}-info-container`}>
-            <div className={`${rootClass}-btn-container`}>
-              {/* <Link to="/addProject">
+          <div className={`${rootClass}-info-container flex flex-row`}>
+            <ClientViewNav clientData={clientData} />
+            {/* <div className={`${rootClass}-btn-container`}>
+              <Link to="/addProject">
                 <button
                   className={`${rootClass}-add-project-btn`}
                 >
                   Add Project
                 </button>
-              </Link> */}
+              </Link>
               <Link to={`/clients/${client.id}/edit`}>
                 <button className={`${rootClass}-edit-btn`}>Edit Client</button>
               </Link>
-            </div>
+            </div> */}
             {!clientLoading && !clientError && (
               <ClientCard clientData={clientData} />
             )}

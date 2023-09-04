@@ -27,7 +27,7 @@ const ClientCard = ({ clientData }) => {
   } = clientData.client;
 
   return (
-    <div className={`${rootClass}-info-container`}>
+    <div className={`${rootClass}-info-container mt-5`}>
       <div className={`${rootClass}-inner-name h-screen`}>
         <h1 className="text-slate-700 text-2xl font-bold text-left ml-5 mb-5">
           {companyName}
