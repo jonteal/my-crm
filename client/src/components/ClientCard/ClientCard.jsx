@@ -17,17 +17,61 @@ const ClientCard = ({ clientData }) => {
     return null;
   };
 
+  const {
+    companyName,
+    firstName,
+    lastName,
+    phoneNumber,
+    emailAddress,
+    status,
+  } = clientData.client;
+
   return (
     <div className={`${rootClass}-info-container`}>
-      <div className={`${rootClass}-inner-name`}>
-        <div className={`${rootClass}-item-container`}>
-          <h2 className={`${rootClass}-client-header`}>Client Information</h2>
+      <div className={`${rootClass}-inner-name h-screen`}>
+        <h1 className="text-slate-700 text-2xl font-bold text-left ml-5 mb-5">
+          {companyName}
+        </h1>
+        <div className="flex flex-col ml-5 my-3">
+          <p className="text-slate-600 font-light text-left text-sm">Contact</p>
+          <p className="text-slate-800 font-normal text-left text-base">{`${firstName} ${lastName}`}</p>
+        </div>
+
+        <div className="flex flex-col ml-5 my-3">
+          <p className="text-slate-600 font-light text-left text-sm">
+            Primary Phone Number
+          </p>
+          <p className="text-slate-800 font-normal text-left text-base">
+            {formatPhoneNumber(phoneNumber)}
+          </p>
+        </div>
+
+        <div className="flex flex-col ml-5 my-3">
+          <p className="text-slate-600 font-light text-left text-sm">
+            Primary Email Address
+          </p>
+          <p className="text-slate-800 font-normal text-left text-base">
+            {emailAddress}
+          </p>
+        </div>
+
+        <div className="flex flex-col ml-5 my-3">
+          <p className="text-slate-600 font-light text-left text-sm">
+            Client Status
+          </p>
+          <p className="text-slate-800 font-normal text-left text-base">
+            {status}
+          </p>
         </div>
 
         {/* <ClientCardItem
           header="First Name"
           value={clientData.client.firstName}
         />
+
+        
+
+
 
         <ClientCardItem header="Last Name" value={clientData.client.lastName} />
 

@@ -4,7 +4,7 @@ import AddButton from "../../components/buttons/AddButton/AddButton";
 
 const Home = () => {
   return (
-    <div>
+    <div className="mx-20">
       <div className="mt-3">
         <Link to="/addClient">
           <AddButton>Add Client</AddButton>
