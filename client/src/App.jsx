@@ -10,6 +10,7 @@ import ClientView from "./pages/ClientView/ClientView";
 // import ProjectView from "./pages/ProjectView/ProjectView";
 // import NotFound from "./pages/NotFound/NotFound";
 import AddClient from "./pages/AddClient/AddClient";
+import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
 // import AddProject from "./pages/AddProject/AddProject";
 // import EditProject from "./pages/EditProject/EditProject";
 // import EditClient from "./pages/EditClient/EditClient";
@@ -25,6 +26,8 @@ import AddClient from "./pages/AddClient/AddClient";
 
 import "./App.css";
 import Navigation from "./components/Navigation/Navigation";
+import ClientTables from "./pages/ClientTables/ClientTables";
+import ClientBilling from "./pages/ClientBilling/ClientBilling";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -60,7 +63,17 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/addClient" element={<AddClient />} />
-              <Route path="/clients/:id" element={<ClientView />} />
+              <Route path="/clients/:id" element={<ClientView />}>
+                <Route
+                  path="/clients/:id/dashboard"
+                  element={<ClientDashboard />}
+                />
+                <Route path="/clients/:id/tables" element={<ClientTables />} />
+                <Route
+                  path="/clients/:id/billing"
+                  element={<ClientBilling />}
+                />
+              </Route>
               {/* <Route path="/clients" element={<ClientsPage />} /> */}
               {/* <Route path="/addProject" element={<AddProject />} /> */}
               {/* <Route path="/projects/:id" element={<ProjectView />} />

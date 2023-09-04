@@ -1,5 +1,5 @@
 // LIBRARIES
-import { Link, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 // GRAPHQL
@@ -68,9 +68,7 @@ const ClientView = () => {
                 <button className={`${rootClass}-edit-btn`}>Edit Client</button>
               </Link>
             </div> */}
-            {!clientLoading && !clientError && (
-              <ClientCard clientData={clientData} />
-            )}
+            <Outlet />
           </div>
 
           {/* <div className={`${rootClass}-projects-container`}>
