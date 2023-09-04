@@ -24,6 +24,7 @@ import AddClient from "./pages/AddClient/AddClient";
 // import EditKanban from "./pages/EditKanban/EditKanban";
 
 import "./App.css";
+import Navigation from "./components/Navigation/Navigation";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -54,7 +55,7 @@ function App() {
     <div className="App">
       <ApolloProvider client={client}>
         <Router>
-          {/* <Header /> */}
+          <Navigation />
           <div>
             <Routes>
               <Route path="/" element={<Home />} />

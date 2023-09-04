@@ -5,9 +5,11 @@ import AddButton from "../../components/buttons/AddButton/AddButton";
 const Home = () => {
   return (
     <div>
-      <Link to="/addClient">
-        <AddButton>Add Client</AddButton>
-      </Link>
+      <div className="mt-3">
+        <Link to="/addClient">
+          <AddButton>Add Client</AddButton>
+        </Link>
+      </div>
       <ClientList />
     </div>
   );

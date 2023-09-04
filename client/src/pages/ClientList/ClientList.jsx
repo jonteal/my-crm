@@ -40,9 +40,9 @@ const ClientList = () => {
 
   return (
     <div className={`${rootClass}-parent-container`}>
-      <div className={`${rootClass}-header-container`}>
-        <FaUserAlt className={`${rootClass}-header-icon`} />
-        <h5 className={`${rootClass}-header-label`}>
+      <div className={`${rootClass}-header-container flex flex-row`}>
+        <FaUserAlt className={`${rootClass}-header-icon mr-5`} />
+        <h5 className={`${rootClass}-header-label mb-3`}>
           Clients ({clientData?.clients.length})
         </h5>
       </div>

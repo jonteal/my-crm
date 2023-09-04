@@ -1,0 +1,45 @@
+.nav-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(36, 4, 71);
+  }
+  
+  /* .navigation__main-container {
+    background-color:rgb(28, 6, 43)
+  } */
+  
+  .nav-link:hover {
+    text-decoration: underline;
+    color: aliceblue;
+  }
+  
+  .nav-book-button {
+    border: none;
+    padding: 8px 20px;
+    background-color: #2d3142;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    font-weight: lighter;
+    transition: 0.2s;
+  }
+  
+  .nav-book-button:hover {
+    background-color: #555d80;
+  }
+  
+  .navigation__company-name {
+    /* background-color:rgb(77, 31, 107); */
+    width: 180px;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .nav-link {
+      padding: 10px 10px;
+      cursor: pointer;
+      text-decoration: none;
+      color: rgb(31, 31, 31);
+      font-size: 0.9rem;
+    }
+  }
+  
