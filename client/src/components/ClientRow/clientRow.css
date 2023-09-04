@@ -1,0 +1,43 @@
+.client-row-container {
+    display: grid;
+    grid-template-columns: 15% 15% 20% 25% 20% 5%;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  /* .client-row-first-name,
+  .client-row-last-name,
+  .client-row-phone-number,
+  .client-row-email-address,
+  .client-row-company-name,
+  .client-row-row-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: .5px solid gray;
+    padding: 5px;
+    margin-right: 3px;
+    margin-left: 3px;
+    border-radius: 5px;
+  } */
+  
+  .client-row-link {
+    color: black;
+  }
+  
+  .client-row-dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: .5px solid gray;
+    padding: 5px;
+    margin-right: 3px;
+    margin-left: 3px;
+    border-radius: 5px;
+  }
+  
+  .client-row-dropdown {
+    border: none;
+    background-color: #f7f7ff;
+  }

@@ -6,7 +6,7 @@ import Home from "./pages/Home/Home";
 // import Header from "./components/Header/Header";
 
 // Components
-// import ClientView from "./pages/ClientView/ClientView";
+import ClientView from "./pages/ClientView/ClientView";
 // import ProjectView from "./pages/ProjectView/ProjectView";
 // import NotFound from "./pages/NotFound/NotFound";
 import AddClient from "./pages/AddClient/AddClient";
@@ -59,11 +59,11 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/addClient" element={<AddClient />} />
+              <Route path="/clients/:id" element={<ClientView />} />
+              {/* <Route path="/clients" element={<ClientsPage />} /> */}
               {/* <Route path="/addProject" element={<AddProject />} /> */}
-              {/* <Route path="/clients/:id" element={<ClientView />} /> */}
               {/* <Route path="/projects/:id" element={<ProjectView />} />
               <Route path="/projects" element={<ProjectsPage />} /> */}
-              {/* <Route path="/clients" element={<ClientsPage />} /> */}
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               {/* <Route path="/projects/:id/edit" element={<EditProject />} />
               <Route path="/clients/:id/edit" element={<EditClient />} /> */}

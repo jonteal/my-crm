@@ -1,0 +1,10 @@
+.client-row-item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 0.5px solid gray; */
+    padding: 5px;
+    margin-right: 3px;
+    margin-left: 3px;
+    border-radius: 5px;
+  }
