@@ -2,16 +2,16 @@ import { FaTable, FaWindowMaximize, FaCreditCard } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const ClientViewNav = ({ clientData }) => {
-  const { companyName } = clientData.client;
+  // const { companyName } = clientData.client;
   return (
     <div
       id="Main"
-      className="xl:rounded-r transform  xl:translate-x-0  ease-in-out transition duration-500 flex justify-start items-start h-screen rounded-3xl border w-full sm:w-64 bg-slate-100 flex-col"
+      className="xl:rounded-r transform  xl:translate-x-0  ease-in-out transition duration-500 flex justify-start items-start h-screen rounded-3xl border w-full sm:w-64 bg-slate-50 flex-col ml-10"
     >
       <div className="hidden xl:flex justify-start p-6 items-center space-x-3">
-        <p className="text-2xl leading-6 text-slate-700">
+        {/* <p className="text-2xl leading-6 text-slate-700">
           {companyName} Dashboard
-        </p>
+        </p> */}
       </div>
       <div className="flex flex-col justify-start items-center px-6 w-full  ">
         <div

@@ -1,13 +1,13 @@
 .client-view-container {
     display: flex;
     flex-direction: column;
-    width: 90%;
-    margin-right: auto;
-    margin-left: auto;
+    /* width: 90%; */
+    /* margin-right: auto;
+    margin-left: auto; */
   }
   
   .client-view-info-container {
-    border: lightseagreen .5px solid;
+    /* border: lightseagreen .5px solid; */
     height: auto;
     min-height: 50px;
     margin-top: 15px;
@@ -52,7 +52,7 @@
   }
   
   .client-view-projects-container {
-    border: lightseagreen .5px solid;
+    /* border: lightseagreen .5px solid; */
     margin-top: 15px;
     padding: 15px;
     border-radius: 5px;

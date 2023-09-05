@@ -6,8 +6,11 @@ const Home = () => {
   return (
     <div className="mx-20">
       <div className="mt-3">
-        <Link to="/addClient">
+        <Link to="/addClient" className="mx-2">
           <AddButton>Add Client</AddButton>
+        </Link>
+        <Link to="/addProject" className="mx-2">
+          <AddButton>Add Project</AddButton>
         </Link>
       </div>
       <ClientList />

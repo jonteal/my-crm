@@ -1,6 +1,6 @@
 const AddButton = ({ children }) => {
   return (
-    <a
+    <button
       href="#_"
       className="relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-red-500 rounded-xl group"
     >
@@ -11,7 +11,7 @@ const AddButton = ({ children }) => {
       <span className="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white">
         {children}
       </span>
-    </a>
+    </button>
   );
 };
 
