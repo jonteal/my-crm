@@ -79,7 +79,7 @@ const ClientTable = ({ clients, clientContainer }) => {
                 className="text-slate-700 font-light text-left border pl-2"
                 key={client.status}
               >
-                <Link to={`/clients/${client.id}`}>
+                <Link to={`/clients/${client.id}/dashboard`}>
                   <FaRegEye className="text-sky-600" />
                 </Link>
               </td>
