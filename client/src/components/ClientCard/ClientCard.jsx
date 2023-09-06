@@ -1,9 +1,6 @@
-// COMPONENTS
-// import ClientCardItem from "../ClientCardItem/ClientCardItem";
-
 import { Link } from "react-router-dom";
-import "./clientCard.css";
 import EditButton from "../buttons/EditButton/EditButton";
+import "./clientCard.css";
 
 const rootClass = "client-card";
 
@@ -73,32 +70,6 @@ const ClientCard = ({ clientData }) => {
             {status}
           </p>
         </div>
-
-        {/* <ClientCardItem
-          header="First Name"
-          value={clientData.client.firstName}
-        />
-
-        
-
-
-
-        <ClientCardItem header="Last Name" value={clientData.client.lastName} />
-
-        <ClientCardItem
-          header="Company Name"
-          value={clientData.client.companyName}
-        />
-
-        <ClientCardItem
-          header="Email Address"
-          value={clientData.client.emailAddress}
-        />
-
-        <ClientCardItem
-          header="Phone Number"
-          value={formatPhoneNumber(clientData.client.phoneNumber)}
-        /> */}
       </div>
     </div>
   );

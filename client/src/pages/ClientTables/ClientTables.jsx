@@ -24,11 +24,10 @@ const ClientTables = () => {
     data: projectsData,
   } = useQuery(GET_PROJECTS);
 
-  console.log("projectsData: ", projectsData);
-
   if (projectsLoading) return <Spinner />;
   if (projectsError)
     return <p>There was a problem loading the client projects...</p>;
+
   const projectsArray = projectsData.projects;
 
   const client = clientData.client;
@@ -37,8 +36,6 @@ const ClientTables = () => {
   const matchingProjects = projectsArray.filter(
     (project) => project.client.id === clientId
   );
-
-  console.log("matchingProjects: ", matchingProjects);
 
   return (
     <div className="w-full mr-5">

@@ -1,16 +1,28 @@
 import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { GET_CLIENT } from "../../graphql/queries/clientQueries";
 import { FaRegEye, FaRegTrashAlt } from "react-icons/fa";
+
 import AddButton from "../buttons/AddButton/AddButton";
+// GRAPHQL
 
 const ProjectsTable = ({ client, matchingProjects }) => {
+  const { id } = useParams();
+  const {
+    loading: clientLoading,
+    error: clientError,
+    data: clientData,
+  } = useQuery(GET_CLIENT, {
+    variables: { id },
+  });
   return (
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 px-3 w-full">
       <div className="flex flex-row justify-between items-center py-3">
         <h2 className="text-left text-slate-700 text-lg mx-3">
           Projects Table
         </h2>
-        <Link to="/addProject">
+        <Link to={`/clients/${id}/addProject`}>
           <AddButton>Add Project</AddButton>
         </Link>
       </div>

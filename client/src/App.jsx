@@ -12,6 +12,7 @@ import ProjectView from "./pages/ProjectView/ProjectView";
 import AddClient from "./pages/AddClient/AddClient";
 import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
 import AddProject from "./pages/AddProject/AddProject";
+import AddClientProject from "./pages/AddClientProject/AddClientProject";
 import EditClient from "./pages/EditClient/EditClient";
 // import EditProject from "./pages/EditProject/EditProject";
 // import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
@@ -71,6 +72,10 @@ function App() {
                 <Route
                   path="/clients/:id/projects/:id"
                   element={<ProjectView />}
+                />
+                <Route
+                  path="/clients/:id/addProject"
+                  element={<AddClientProject />}
                 />
               </Route>
               <Route path="/addProject" element={<AddProject />} />
