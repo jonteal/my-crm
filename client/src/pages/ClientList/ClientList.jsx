@@ -25,6 +25,10 @@ const ClientList = () => {
 
   const clientContainers = [
     {
+      id: "lead",
+      state: "Lead",
+    },
+    {
       id: "prospect",
       state: "Prospect",
     },
@@ -35,6 +39,10 @@ const ClientList = () => {
     {
       id: "former",
       state: "Former",
+    },
+    {
+      id: "cold",
+      state: "Cold",
     },
   ];
 

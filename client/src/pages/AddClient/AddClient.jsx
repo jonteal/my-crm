@@ -253,6 +253,9 @@ const AddClient = () => {
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
               >
+                <option aria-label="Lead" value="lead">
+                  Lead
+                </option>
                 <option aria-label="Prospect" value="prospect">
                   Prospect
                 </option>
@@ -261,6 +264,9 @@ const AddClient = () => {
                 </option>
                 <option aria-label="Former Client" value="former">
                   Former
+                </option>
+                <option aria-label="Cold Lead" value="cold">
+                  Cold
                 </option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

@@ -18,7 +18,7 @@ const ClientSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["Prospect", "Current", "Former"],
+    enum: ["Lead", "Prospect", "Current", "Former", "Cold"],
   },
 });
 

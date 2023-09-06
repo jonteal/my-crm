@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import ClientRow from "../ClientRow/ClientRow";
 
 import "./clientsContainer.css";
 import ClientTable from "../ClientTable/ClientTable";

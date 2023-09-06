@@ -128,9 +128,11 @@ const mutation = new GraphQLObjectType({
           type: new GraphQLEnumType({
             name: "ClientStatus",
             values: {
+              lead: { value: "Lead" },
               prospect: { value: "Prospect" },
               current: { value: "Current" },
               former: { value: "Former" },
+              cold: { value: "Cold" },
             },
           }),
           defaultValue: "Prospect",
@@ -181,9 +183,11 @@ const mutation = new GraphQLObjectType({
           type: new GraphQLEnumType({
             name: "ClientStatusUpdate",
             values: {
+              lead: { value: "Lead" },
               prospect: { value: "Prospect" },
               current: { value: "Current" },
               former: { value: "Former" },
+              cold: { value: "Cold" },
             },
           }),
         },
