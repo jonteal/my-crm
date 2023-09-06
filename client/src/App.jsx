@@ -12,8 +12,8 @@ import ProjectView from "./pages/ProjectView/ProjectView";
 import AddClient from "./pages/AddClient/AddClient";
 import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
 import AddProject from "./pages/AddProject/AddProject";
+import EditClient from "./pages/EditClient/EditClient";
 // import EditProject from "./pages/EditProject/EditProject";
-// import EditClient from "./pages/EditClient/EditClient";
 // import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 // import ClientsPage from "./pages/ClientsPage/ClientsPage";
 // import AddTicket from './pages/AddTicket/AddTicket';
@@ -74,11 +74,11 @@ function App() {
                 />
               </Route>
               <Route path="/addProject" element={<AddProject />} />
+              <Route path="/clients/:id/edit" element={<EditClient />} />
               {/* <Route path="/clients" element={<ClientsPage />} /> */}
               {/* <Route path="/projects" element={<ProjectsPage />} /> */}
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-              {/* <Route path="/projects/:id/edit" element={<EditProject />} />
-              <Route path="/clients/:id/edit" element={<EditClient />} /> */}
+              {/* <Route path="/projects/:id/edit" element={<EditProject />} /> */}
               {/* <Route path="*" element={<NotFound />} /> */}
             </Routes>
           </div>

@@ -1,5 +1,5 @@
 // LIBRARIES
-import { Link, Outlet, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import ClientCard from "../../components/ClientCard/ClientCard";
@@ -17,8 +17,9 @@ const ClientDashboard = () => {
   } = useQuery(GET_CLIENT, {
     variables: { id },
   });
+
   return (
-    <div>
+    <div className="w-full mx-2 rounded-xl">
       {!clientLoading && !clientError && <ClientCard clientData={clientData} />}
     </div>
   );

@@ -6,7 +6,7 @@ const ClientViewNav = ({ clientData }) => {
   return (
     <div
       id="Main"
-      className="xl:rounded-r transform  xl:translate-x-0  ease-in-out transition duration-500 flex justify-start items-start h-screen rounded-3xl border w-full sm:w-64 bg-slate-50 flex-col ml-10"
+      className="transform  xl:translate-x-0  ease-in-out transition duration-500 flex justify-start items-start h-screen border w-full sm:w-64 bg-slate-50 flex-col ml-10 rounded-xl"
     >
       <div className="hidden xl:flex justify-start p-6 items-center space-x-3">
         {/* <p className="text-2xl leading-6 text-slate-700">

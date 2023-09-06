@@ -127,7 +127,7 @@ const AddProject = () => {
               </option>
             ))}
           </select>
-          <form className={`${rootClass}-form`} onSubmit={onSubmit}>
+          <form className={`${rootClass}-form mb-10`} onSubmit={onSubmit}>
             <div className="mb-3">
               <div className="mb-3">
                 <label className="form-label">Title</label>
@@ -213,7 +213,7 @@ const AddProject = () => {
               />
             </div>
 
-            <SubmitButton className="mb-5" type="submit">
+            <SubmitButton className="mb-10" type="submit">
               Submit
             </SubmitButton>
           </form>

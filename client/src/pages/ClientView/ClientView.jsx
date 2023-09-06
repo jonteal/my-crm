@@ -35,11 +35,6 @@ const ClientView = () => {
         <div className={`${rootClass}-container bg-slate-200`}>
           <div className={`${rootClass}-info-container flex flex-row`}>
             <ClientViewNav clientData={clientData} />
-            {/* <div className={`${rootClass}-btn-container`}>
-              <Link to={`/clients/${client.id}/edit`}>
-                <button className={`${rootClass}-edit-btn`}>Edit Client</button>
-              </Link>
-            </div> */}
             <Outlet />
           </div>
         </div>

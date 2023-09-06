@@ -1,7 +1,9 @@
 // COMPONENTS
 // import ClientCardItem from "../ClientCardItem/ClientCardItem";
 
+import { Link } from "react-router-dom";
 import "./clientCard.css";
+import EditButton from "../buttons/EditButton/EditButton";
 
 const rootClass = "client-card";
 
@@ -18,6 +20,7 @@ const ClientCard = ({ clientData }) => {
   };
 
   const {
+    id,
     companyName,
     firstName,
     lastName,
@@ -27,7 +30,14 @@ const ClientCard = ({ clientData }) => {
   } = clientData.client;
 
   return (
-    <div className={`${rootClass}-info-container mt-5`}>
+    <div
+      className={`${rootClass}-info-container mt-5 bg-slate-50 w-full rounded-xl`}
+    >
+      <div className="flex flex-row justify-end">
+        <Link to={`/clients/${id}/edit`}>
+          <EditButton>Edit</EditButton>
+        </Link>
+      </div>
       <div className={`${rootClass}-inner-name h-screen`}>
         <h1 className="text-slate-700 text-2xl font-bold text-left ml-5 mb-5">
           {companyName}
