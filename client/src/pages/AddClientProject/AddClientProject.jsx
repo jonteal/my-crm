@@ -172,99 +172,6 @@ const AddClientProject = () => {
             </div>
           </div>
 
-          {/* <form className={`${rootClass}-form mb-10`} onSubmit={onSubmit}>
-            <div className="mb-3">
-              <div className="mb-3">
-                <label className="form-label">Title</label>
-                <input
-                  type="title"
-                  className="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Name of your project..."
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </div>
-
-              <div className="mb-3">
-                <label className="form-label">Description</label>
-                <textarea
-                  className="form-control"
-                  id="description"
-                  rows="3"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
-              </div>
-
-              <label className="form-label">Status</label>
-              <select
-                id="status"
-                className="form-select"
-                value={status}
-                onChange={(e) => setStatus(e.target.value)}
-              >
-                <option value="new">Not Started</option>
-                <option value="progress">In Progress</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-
-            <div className={`mb-3 ${rootClass}-form-item`}>
-              <label className="form-label">Start Date</label>
-              <DatePicker
-                selected={startDate}
-                onChange={handleStartDateChange}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Deadline</label>
-              <DatePicker selected={deadline} onChange={handleDeadlineChange} />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Notes</label>
-              <textarea
-                className="form-control"
-                id="notes"
-                rows="3"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-              ></textarea>
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Budget</label>
-              <input
-                type="clientBudget"
-                className="form-control"
-                id="exampleFormControlInput1"
-                placeholder="What is the budget for this project?"
-                value={clientBudget}
-                onChange={(e) => setClientBudget(e.target.value)}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Project Estimate</label>
-              <input
-                type="projectEstimate"
-                className="form-control"
-                id="exampleFormControlInput1"
-                placeholder="What is the estimate for this project?"
-                value={projectEstimate}
-                onChange={(e) => setProjectEstimate(e.target.value)}
-              />
-            </div>
-
-            <SubmitButton className="mb-10" type="submit">
-              Submit
-            </SubmitButton>
-          </form> */}
-
-          {/* TAILWIND FORM */}
-
           <form class="w-full mt-3" onSubmit={onSubmit}>
             <div class="flex flex-col mb-6">
               <div class="w-full mb-6 md:mb-0">
@@ -339,7 +246,6 @@ const AddClientProject = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-project-notes"
                 aria-label="Project notes"
-                //   type="text"
                 rows="3"
                 placeholder="Feel free to write anything here you want"
                 value={notes}
@@ -375,9 +281,9 @@ const AddClientProject = () => {
                   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-project-estimate"
                   type="text"
-                  placeholder="jane@gmail.com"
+                  placeholder="ex. $400"
                   aria-label="Project estimate input"
-                  value={setProjectEstimate}
+                  value={projectEstimate}
                   onChange={(e) => setProjectEstimate(e.target.value)}
                 />
               </div>
