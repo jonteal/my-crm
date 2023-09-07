@@ -8,22 +8,22 @@ import Home from "./pages/Home/Home";
 // Components
 import ClientView from "./pages/ClientView/ClientView";
 import ProjectView from "./pages/ProjectView/ProjectView";
-// import NotFound from "./pages/NotFound/NotFound";
+import NotFound from "./pages/NotFound/NotFound";
 import AddClient from "./pages/AddClient/AddClient";
 import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
 import AddProject from "./pages/AddProject/AddProject";
 import AddClientProject from "./pages/AddClientProject/AddClientProject";
 import EditClient from "./pages/EditClient/EditClient";
-// import EditProject from "./pages/EditProject/EditProject";
-// import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
-// import ClientsPage from "./pages/ClientsPage/ClientsPage";
-// import AddTicket from './pages/AddTicket/AddTicket';
-// import TicketView from "./pages/TicketView/TicketView";
-
-import "./App.css";
+import ClientInvoices from "./pages/ClientInvoices/ClientInvoices";
+import AddInvoice from "./pages/AddInvoice/AddInvoice";
 import Navigation from "./components/Navigation/Navigation";
 import ClientTables from "./pages/ClientTables/ClientTables";
 import ClientBilling from "./pages/ClientBilling/ClientBilling";
+// import EditProject from "./pages/EditProject/EditProject";
+// import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
+// import ClientsPage from "./pages/ClientsPage/ClientsPage";
+
+import "./App.css";
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -77,14 +77,21 @@ function App() {
                   path="/clients/:id/addProject"
                   element={<AddClientProject />}
                 />
+                <Route path="/clients/:id/edit" element={<EditClient />} />
+                <Route
+                  path="/clients/:id/billing/invoices"
+                  element={<ClientInvoices />}
+                />
+                <Route
+                  path="/clients/:id/billing/addInvoice"
+                  element={<AddInvoice />}
+                />
               </Route>
               <Route path="/addProject" element={<AddProject />} />
-              <Route path="/clients/:id/edit" element={<EditClient />} />
               {/* <Route path="/clients" element={<ClientsPage />} /> */}
               {/* <Route path="/projects" element={<ProjectsPage />} /> */}
-              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               {/* <Route path="/projects/:id/edit" element={<EditProject />} /> */}
-              {/* <Route path="*" element={<NotFound />} /> */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </Router>

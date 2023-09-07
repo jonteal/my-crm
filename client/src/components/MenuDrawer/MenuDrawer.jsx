@@ -45,10 +45,16 @@ const MenuDrawer = ({ name, ...props }) => {
                 Clients
               </Link>
               <Link
-                className="nav-link mx-3  text-zinc-100 font-normal text-2xl my-2"
+                className="nav-link mx-3 text-zinc-100 font-normal text-2xl my-2"
                 to="projects"
               >
                 Projects
+              </Link>
+              <Link
+                className="nav-link mx-3 text-zinc-100 font-normal text-2xl my-2"
+                to="projects"
+              >
+                Settings
               </Link>
             </div>
           </Fragment>
