@@ -7,8 +7,10 @@ import { useMutation } from "@apollo/client";
 import { ADD_CLIENT } from "../../graphql/mutations/clientMutations";
 import { GET_CLIENTS } from "../../graphql/queries/clientQueries";
 
-import "./addClient.css";
+// COMPONENTS
 import SubmitButton from "../../components/buttons/submitButton/SubmitButton";
+
+import "./addClient.css";
 
 const rootClass = "add-client";
 

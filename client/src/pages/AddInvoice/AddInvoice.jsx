@@ -1,16 +1,24 @@
 import { useState } from "react";
 
 // LIBRARIES
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 
 // GRAPHQL
-import { ADD_INVOICE } from "../../graphql/mutations/clientMutations";
-import { GET_INVOICES } from "../../graphql/queries/clientQueries";
+import { ADD_INVOICE } from "../../graphql/mutations/invoiceMutations";
+import { GET_INVOICES } from "../../graphql/queries/invoiceQueries";
+import { GET_CLIENTS } from "../../graphql/queries/clientQueries";
 
 // COMPONENTS
 import SubmitButton from "../../components/buttons/submitButton/SubmitButton";
 
-import "./addClient.css";
+// DATE PICKING
+import DatePicker from "react-datepicker";
+
+// CSS
+import "react-datepicker/dist/react-datepicker.css";
+import Spinner from "../../components/Spinner/Spinner";
+
+// import "./addClient.css";
 
 const rootClass = "add-invoice";
 
@@ -18,22 +26,25 @@ const AddInvoice = () => {
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
+  const [clientId, setClientId] = useState("");
 
   const [addInvoice] = useMutation(ADD_INVOICE, {
     variables: {
       date,
       amount,
       invoiceNumber,
+      clientId,
     },
     update(cache, { data: { addInvoice } }) {
       const { invoices } = cache.readQuery({ query: GET_INVOICES });
-
       cache.writeQuery({
         query: GET_INVOICES,
-        data: { clients: [...invoices, addInvoice] },
+        data: { invoices: [...invoices, addInvoice] },
       });
     },
   });
+
+  const { loading, error, data } = useQuery(GET_CLIENTS);
 
   const handleDateChange = (date) => {
     setDate(date);
@@ -46,20 +57,40 @@ const AddInvoice = () => {
       alert("Please fill in all fields");
     }
 
-    addInvoice(date, amount, invoiceNumber);
+    addInvoice(date, amount, invoiceNumber, clientId);
 
-    setDate("");
+    setDate(new Date());
     setAmount("");
     setInvoiceNumber("");
+    setClientId("");
   };
+
+  if (loading) return <Spinner />;
+  if (error) return <p>There was an error loading the content</p>;
 
   return (
     <div className={`${rootClass}-container`}>
       <h3 className={`${rootClass}-title`}>Add Client</h3>
 
-      <form class="w-full max-w-lg" onSubmit={onSubmit}>
-        <div class="flex flex-wrap -mx-3 mb-6">
-          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <label className="form-label client-select">Client Name</label>
+      <select
+        className="form-select"
+        aria-label="Default select example"
+        id="clientId"
+        value={clientId}
+        onChange={(e) => setClientId(e.target.value)}
+      >
+        <option value="">Select Client</option>
+        {data.clients.map((client) => (
+          <option key={client.id} value={client.id}>
+            {client.firstName + " " + client.lastName}
+          </option>
+        ))}
+      </select>
+
+      <form className="w-full max-w-lg" onSubmit={onSubmit}>
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <div className="mb-3">
               <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 Date
@@ -71,15 +102,15 @@ const AddInvoice = () => {
               />
             </div>
           </div>
-          <div class="w-full md:w-1/2 px-3">
+          <div className="w-full md:w-1/2 px-3">
             <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-invoice-number"
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-invoice-number"
             >
               Invoice Number
             </label>
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-invoice-number"
               aria-label="Invoice Number input"
               type="text"
@@ -89,16 +120,16 @@ const AddInvoice = () => {
             />
           </div>
         </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
-          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
-              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-invoice-amount"
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-invoice-amount"
             >
               Amount
             </label>
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="grid-invoice-amount"
               type="text"
               placeholder="ex. $500"

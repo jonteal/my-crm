@@ -354,7 +354,7 @@ const mutation = new GraphQLObjectType({
     addInvoice: {
       type: InvoiceType,
       args: {
-        date: { type: new GraphQLNonNull(GraphQLID) },
+        date: { type: new GraphQLNonNull(GraphQLString) },
         amount: { type: new GraphQLNonNull(GraphQLString) },
         invoiceNumber: { type: new GraphQLNonNull(GraphQLString) },
         clientId: { type: new GraphQLNonNull(GraphQLID) },
