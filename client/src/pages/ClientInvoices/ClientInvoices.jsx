@@ -1,5 +1,9 @@
+import InvoiceTable from "../../components/InvoiceTable/InvoiceTable";
+
+import { fakeInvoices } from "../ClientBilling/ClientBilling";
+
 const ClientInvoices = () => {
-  return <div>ClientInvoices</div>;
+  return <InvoiceTable invoices={fakeInvoices} />;
 };
 
 export default ClientInvoices;

@@ -1,6 +1,7 @@
 const Client = require("../models/Client");
 const Project = require("../models/Project");
 const ActivityComment = require("../models/ActivityComment");
+const Invoice = require("../models/Invoice");
 
 const {
   GraphQLObjectType,
@@ -49,6 +50,18 @@ const ClientType = new GraphQLObjectType({
   }),
 });
 
+// Invoice Type
+const InvoiceType = new GraphQLObjectType({
+  name: "Invoice",
+  fields: () => ({
+    id: { type: GraphQLID },
+    amount: { type: GraphQLString },
+    invoiceNumber: { type: GraphQLString },
+    date: { type: GraphQLString },
+    createdAt: { type: GraphQLString },
+  }),
+});
+
 // ActivityComment Type
 const ActivityCommentType = new GraphQLObjectType({
   name: "ActivityComment",
@@ -80,6 +93,19 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return Project.findById(args.id);
+      },
+    },
+    invoices: {
+      type: new GraphQLList(InvoiceType),
+      resolve(parent, args) {
+        return Invoice.find();
+      },
+    },
+    invoice: {
+      type: InvoiceType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Invoice.findById(args.id);
       },
     },
     clients: {
@@ -311,6 +337,60 @@ const mutation = new GraphQLObjectType({
               deadline: args.deadline,
               clientBudget: args.clientBudget,
               projectEstimate: args.projectEstimate,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
+
+    // Add an Invoice
+    addInvoice: {
+      type: InvoiceType,
+      args: {
+        date: { type: new GraphQLNonNull(GraphQLID) },
+        amount: { type: new GraphQLNonNull(GraphQLString) },
+        invoiceNumber: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve(parent, args) {
+        const invoice = new Invoice({
+          date: args.date,
+          amount: args.amount,
+          invoiceNumber: args.invoiceNumber,
+        });
+
+        return invoice.save();
+      },
+    },
+
+    // Delete an Invoice
+    deleteInvoice: {
+      type: InvoiceType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Invoice.findByIdAndRemove(args.id);
+      },
+    },
+
+    // Update an Invoice
+    updateInvoice: {
+      type: InvoiceType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        date: { type: GraphQLString },
+        amount: { type: GraphQLString },
+        invoiceNumber: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return Invoice.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              date: args.date,
+              amount: args.amount,
+              invoiceNumber: args.invoiceNumber,
             },
           },
           { new: true }

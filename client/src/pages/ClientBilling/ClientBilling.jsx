@@ -1,8 +1,6 @@
-import { Link, useParams } from "react-router-dom";
-import InvoiceTableItem from "../../components/InvoiceTableItem/InvoiceTableItem";
-import EditButton from "../../components/buttons/EditButton/EditButton";
+import InvoiceTable from "../../components/InvoiceTable/InvoiceTable";
 
-const fakeInvoices = [
+export const fakeInvoices = [
   {
     id: 1,
     date: "March, 01, 2020",
@@ -30,21 +28,9 @@ const fakeInvoices = [
 ];
 
 const ClientBilling = () => {
-  const { id } = useParams();
-
   return (
     <div className="w-full">
-      <div className="bg-slate-50 w-1/2 rounded-xl mx-2 py-2">
-        <div className="flex flex-row justify-between py-2 px-2">
-          <h2 className="text-left text-slate-700 text-lg mx-2">Invoices</h2>
-          <Link to={`invoices`}>
-            <EditButton className="mx-2">View All</EditButton>
-          </Link>
-        </div>
-        {fakeInvoices.map((invoice) => (
-          <InvoiceTableItem key={invoice.id} invoice={invoice} />
-        ))}
-      </div>
+      <InvoiceTable invoices={fakeInvoices} />
     </div>
   );
 };
