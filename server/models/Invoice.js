@@ -17,6 +17,10 @@ const InvoiceSchema = new mongoose.Schema({
   invoiceNumber: {
     type: String,
   },
+  clientId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Client",
+  },
   // Add capability to add PDF file
 });
 

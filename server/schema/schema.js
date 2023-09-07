@@ -58,6 +58,12 @@ const InvoiceType = new GraphQLObjectType({
     amount: { type: GraphQLString },
     invoiceNumber: { type: GraphQLString },
     date: { type: GraphQLString },
+    client: {
+      type: ClientType,
+      resolve(parent, args) {
+        return Client.findById(parent.clientId);
+      },
+    },
     createdAt: { type: GraphQLString },
   }),
 });
@@ -351,12 +357,14 @@ const mutation = new GraphQLObjectType({
         date: { type: new GraphQLNonNull(GraphQLID) },
         amount: { type: new GraphQLNonNull(GraphQLString) },
         invoiceNumber: { type: new GraphQLNonNull(GraphQLString) },
+        clientId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
         const invoice = new Invoice({
           date: args.date,
           amount: args.amount,
           invoiceNumber: args.invoiceNumber,
+          clientId: args.clientId,
         });
 
         return invoice.save();
@@ -391,6 +399,7 @@ const mutation = new GraphQLObjectType({
               date: args.date,
               amount: args.amount,
               invoiceNumber: args.invoiceNumber,
+              clientId: args.clientId,
             },
           },
           { new: true }
