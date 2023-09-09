@@ -6,8 +6,9 @@ import Spinner from "../../components/Spinner/Spinner";
 
 import { GET_INVOICES } from "../../graphql/queries/invoiceQueries";
 import { GET_CLIENT } from "../../graphql/queries/clientQueries";
+import ClientTransactions from "../../components/ClientTransactions/ClientTransactions";
 
-export const fakeInvoices = [
+export const fakeTransactions = [
   {
     id: 1,
     date: "March, 01, 2020",
@@ -65,8 +66,9 @@ const ClientBilling = () => {
   );
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-row">
       <InvoiceTable invoices={matchingInvoices} />
+      <ClientTransactions />
     </div>
   );
 };

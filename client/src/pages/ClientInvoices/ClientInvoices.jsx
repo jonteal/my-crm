@@ -1,9 +1,9 @@
 import InvoiceTable from "../../components/InvoiceTable/InvoiceTable";
 
-import { fakeInvoices } from "../ClientBilling/ClientBilling";
+import { fakeTransactions } from "../ClientBilling/ClientBilling";
 
 const ClientInvoices = () => {
-  return <InvoiceTable invoices={fakeInvoices} />;
+  return <InvoiceTable invoices={fakeTransactions} />;
 };
 
 export default ClientInvoices;

@@ -35,7 +35,7 @@ const ClientTable = ({ clients, clientContainer }) => {
         {clients
           .filter((client) => client.status === clientContainer.state)
           .map((client, index) => (
-            <tr>
+            <tr key={client.id}>
               <td className="text-slate-700 font-light text-left border pl-2 pr-2">
                 {index + 1}
               </td>

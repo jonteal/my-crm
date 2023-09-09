@@ -22,6 +22,7 @@ const ADD_INVOICE = gql`
         firstName
         lastName
       }
+      createdAt
     }
   }
 `;

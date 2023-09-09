@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 
 // Pages
 import Home from "./pages/Home/Home";
@@ -19,11 +20,18 @@ import AddInvoice from "./pages/AddInvoice/AddInvoice";
 import Navigation from "./components/Navigation/Navigation";
 import ClientTables from "./pages/ClientTables/ClientTables";
 import ClientBilling from "./pages/ClientBilling/ClientBilling";
+import ClientTransactionsView from "./pages/ClientTransactionsView/ClientTransactionsView";
 // import EditProject from "./pages/EditProject/EditProject";
 // import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 // import ClientsPage from "./pages/ClientsPage/ClientsPage";
 
 import "./App.css";
+
+if (process.env.NODE_ENV === "development") {
+  // Adds messages only in a dev environment
+  loadDevMessages();
+  loadErrorMessages();
+}
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -35,6 +43,11 @@ const cache = new InMemoryCache({
           },
         },
         projects: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
+        invoices: {
           merge(existing, incoming) {
             return incoming;
           },
@@ -85,6 +98,10 @@ function App() {
                 <Route
                   path="/clients/:id/billing/addInvoice"
                   element={<AddInvoice />}
+                />
+                <Route
+                  path="/clients/:id/billing/transactions"
+                  element={<ClientTransactionsView />}
                 />
               </Route>
               <Route path="/addProject" element={<AddProject />} />

@@ -2,6 +2,7 @@ const Client = require("../models/Client");
 const Project = require("../models/Project");
 const ActivityComment = require("../models/ActivityComment");
 const Invoice = require("../models/Invoice");
+const Transaction = require("../models/Transaction");
 
 const {
   GraphQLObjectType,
@@ -68,6 +69,25 @@ const InvoiceType = new GraphQLObjectType({
   }),
 });
 
+// Transaction Type
+const TransactionType = new GraphQLObjectType({
+  name: "Transaction",
+  fields: () => ({
+    id: { type: GraphQLID },
+    paymentParty: { type: GraphQLString },
+    amount: { type: GraphQLString },
+    paymentDate: { type: GraphQLString },
+    incomingOutgoing: { type: GraphQLString },
+    client: {
+      type: ClientType,
+      resolve(parent, args) {
+        return Client.findById(parent.clientId);
+      },
+    },
+    createdAt: { type: GraphQLString },
+  }),
+});
+
 // ActivityComment Type
 const ActivityCommentType = new GraphQLObjectType({
   name: "ActivityComment",
@@ -112,6 +132,19 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return Invoice.findById(args.id);
+      },
+    },
+    transactions: {
+      type: new GraphQLList(TransactionType),
+      resolve(parent, args) {
+        return Transaction.find();
+      },
+    },
+    transaction: {
+      type: TransactionType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Transaction.findById(args.id);
       },
     },
     clients: {
@@ -400,6 +433,85 @@ const mutation = new GraphQLObjectType({
               amount: args.amount,
               invoiceNumber: args.invoiceNumber,
               clientId: args.clientId,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
+
+    // Add a Transaction
+    addTransaction: {
+      type: TransactionType,
+      args: {
+        paymentDate: { type: new GraphQLNonNull(GraphQLString) },
+        amount: { type: new GraphQLNonNull(GraphQLString) },
+        paymentParty: { type: new GraphQLNonNull(GraphQLString) },
+        clientId: { type: new GraphQLNonNull(GraphQLID) },
+        incomingOutgoing: {
+          type: new GraphQLEnumType({
+            name: "IncomingOutgoing",
+            values: {
+              incoming: { value: "Incoming" },
+              outgoing: { value: "Outgoing" },
+            },
+          }),
+          defaultValue: "Outgoing",
+        },
+      },
+      resolve(parent, args) {
+        const transaction = new Transaction({
+          paymentDate: args.paymentDate,
+          amount: args.amount,
+          paymentParty: args.paymentParty,
+          clientId: args.clientId,
+          incomingOutgoing: args.incomingOutgoing,
+        });
+
+        return transaction.save();
+      },
+    },
+
+    // Delete a Transaction
+    deleteTransaction: {
+      type: TransactionType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Transaction.findByIdAndRemove(args.id);
+      },
+    },
+
+    // Update a Transaction
+    updateTransaction: {
+      type: TransactionType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        paymentDate: { type: GraphQLString },
+        amount: { type: GraphQLString },
+        paymentParty: { type: GraphQLString },
+        incomingOutgoing: {
+          type: new GraphQLEnumType({
+            name: "IncomingOutgoing",
+            values: {
+              incoming: { value: "Incoming" },
+              outgoing: { value: "Outgoing" },
+            },
+          }),
+          defaultValue: "Outgoing",
+        },
+      },
+      resolve(parent, args) {
+        return Transaction.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              paymentDate: args.paymentDate,
+              amount: args.amount,
+              paymentParty: args.paymentParty,
+              clientId: args.clientId,
+              incomingOutgoing: args.incomingOutgoing,
             },
           },
           { new: true }
