@@ -26,6 +26,7 @@ import ClientTransactionsView from "./pages/ClientTransactionsView/ClientTransac
 // import ClientsPage from "./pages/ClientsPage/ClientsPage";
 
 import "./App.css";
+import AddTransaction from "./pages/AddTransaction/AddTransaction";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -48,6 +49,11 @@ const cache = new InMemoryCache({
           },
         },
         invoices: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
+        transactions: {
           merge(existing, incoming) {
             return incoming;
           },
@@ -98,6 +104,10 @@ function App() {
                 <Route
                   path="/clients/:id/billing/addInvoice"
                   element={<AddInvoice />}
+                />
+                <Route
+                  path="/clients/:id/billing/addTransaction"
+                  element={<AddTransaction />}
                 />
                 <Route
                   path="/clients/:id/billing/transactions"

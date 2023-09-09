@@ -493,7 +493,7 @@ const mutation = new GraphQLObjectType({
         paymentParty: { type: GraphQLString },
         incomingOutgoing: {
           type: new GraphQLEnumType({
-            name: "IncomingOutgoing",
+            name: "IncomingOutgoingUpdate",
             values: {
               incoming: { value: "Incoming" },
               outgoing: { value: "Outgoing" },
