@@ -69,12 +69,16 @@ const AddInvoice = () => {
   if (error) return <p>There was an error loading the content</p>;
 
   return (
-    <div className={`${rootClass}-container`}>
-      <h3 className={`${rootClass}-title`}>Add Client</h3>
+    <div
+      className={`${rootClass}-container bg-slate-50 flex flex-col items-center rounded-xl mx-auto`}
+    >
+      <h3 className={`${rootClass}-title font-semibold text-lg mt-2`}>
+        Add Invoice
+      </h3>
 
       <label className="form-label client-select">Client Name</label>
       <select
-        className="form-select"
+        className="form-select w-2/3 mb-4 mx-auto"
         aria-label="Default select example"
         id="clientId"
         value={clientId}
@@ -110,7 +114,7 @@ const AddInvoice = () => {
               Invoice Number
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-invoice-number"
               aria-label="Invoice Number input"
               type="text"
@@ -128,15 +132,20 @@ const AddInvoice = () => {
             >
               Amount
             </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-invoice-amount"
-              type="text"
-              placeholder="ex. $500"
-              aria-label="Invoice Amount input"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
+            <div className="flex flex-row items-center">
+              <span className="mx-2 text-lg">$</span>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                id="grid-invoice-amount"
+                min="0.01"
+                step="0.01"
+                type="number"
+                placeholder="ex. 500"
+                aria-label="Invoice Amount input"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
+            </div>
           </div>
         </div>
 

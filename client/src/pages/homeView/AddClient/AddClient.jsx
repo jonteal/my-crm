@@ -66,8 +66,12 @@ const AddClient = () => {
   };
 
   return (
-    <div className={`${rootClass}-container`}>
-      <h3 className={`${rootClass}-title`}>Add Client</h3>
+    <div className={`${rootClass}-container flex flex-col items-center`}>
+      <h3
+        className={`${rootClass}-title font-semibold text-slate-800 text-lg my-3`}
+      >
+        Add Client
+      </h3>
 
       <form class="w-full max-w-lg" onSubmit={onSubmit}>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -166,7 +170,7 @@ const AddClient = () => {
           </div>
         </div>
 
-        <div class="flex flex-wrap -mx-3 mb-2">
+        <div class="flex flex-wrap -mx-3 mb-3">
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -210,8 +214,8 @@ const AddClient = () => {
             </div>
           </div>
         </div>
-        <SubmitButton className="mb-3" type="submit">
-          Submit
+        <SubmitButton className="my-3" type="submit">
+          Save
         </SubmitButton>
       </form>
     </div>

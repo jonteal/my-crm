@@ -78,12 +78,14 @@ const AddTransaction = () => {
   if (error) return <p>There was an error loading the content</p>;
 
   return (
-    <div className={`${rootClass}-container`}>
+    <div className={`${rootClass}-container bg-slate-50 rounded-xl mx-2`}>
       <h3 className={`${rootClass}-title`}>Add Transaction</h3>
 
-      <label className="form-label client-select">Client Name</label>
+      <label className="form-label client-select block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+        Client Name
+      </label>
       <select
-        className="form-select"
+        className="form-select w-2/3 mx-auto mb-4"
         aria-label="Client select"
         id="clientId"
         value={clientId}
@@ -98,20 +100,20 @@ const AddTransaction = () => {
       </select>
 
       <form className="w-full max-w-lg" onSubmit={onSubmit}>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div className="flex flex-wrap -mx-3 mb-3">
+          <div className="w-full md:w-1/2 px-2 mb-6 md:mb-0">
             <div className="mb-3">
               <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 Date
               </label>
               <DatePicker
-                className="border py-2 px-2 rounded"
+                className="border py-2 px-2 rounded w-full"
                 selected={paymentDate}
                 onChange={handleDateChange}
               />
             </div>
           </div>
-          <div className="w-full md:w-1/2 px-3">
+          <div className="w-5/12 px-2 mx-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-payment-party"
@@ -119,7 +121,7 @@ const AddTransaction = () => {
               Payment Party
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-payment-party"
               aria-label="Payment party input"
               type="text"
@@ -129,8 +131,8 @@ const AddTransaction = () => {
             />
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div className="w-full px-2 mb-6 flex flex-row">
+          <div className="flex flex-col w-1/2">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-transaction-amount"
@@ -138,40 +140,48 @@ const AddTransaction = () => {
               Amount
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="grid-transaction-amount"
-              type="text"
-              placeholder="ex. $500"
+              type="number"
+              min="0.01"
+              step="0.01"
+              placeholder="ex. 500"
               aria-label="Transaction Amount input"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />
           </div>
-        </div>
 
-        <div className="relative">
-          <select
-            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-state"
-            aria-label="Transaction type select"
-            value={incomingOutgoing}
-            onChange={(e) => setIncomingOutgoing(e.target.value)}
-          >
-            <option aria-label="Incoming" value="incoming">
-              Incoming
-            </option>
-            <option aria-label="Outgoing" value="outgoing">
-              Outgoing
-            </option>
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <svg
-              className="fill-current h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
+          <div className="flex flex-col w-1/2 mx-2">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-transaction-type"
             >
-              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-            </svg>
+              Type
+            </label>
+            <select
+              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 mx-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-transaction-type"
+              aria-label="Transaction type select"
+              value={incomingOutgoing}
+              onChange={(e) => setIncomingOutgoing(e.target.value)}
+            >
+              <option aria-label="Incoming" value="incoming">
+                Incoming
+              </option>
+              <option aria-label="Outgoing" value="outgoing">
+                Outgoing
+              </option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg
+                className="fill-current h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+              </svg>
+            </div>
           </div>
         </div>
 
