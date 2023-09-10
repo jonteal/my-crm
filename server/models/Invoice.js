@@ -6,7 +6,7 @@ const InvoiceSchema = new mongoose.Schema({
     type: String,
   },
   amount: {
-    type: String,
+    type: Number,
   },
   date: {
     type: String,

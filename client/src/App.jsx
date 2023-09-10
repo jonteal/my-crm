@@ -3,30 +3,30 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 
 // Pages
-import Home from "./pages/Home/Home";
+import Home from "./pages/homeView/Home/Home";
 // import Header from "./components/Header/Header";
 
 // Components
-import ClientView from "./pages/ClientView/ClientView";
-import ProjectView from "./pages/ProjectView/ProjectView";
+import ClientView from "./pages/dashboard/ClientView/ClientView";
+import ProjectView from "./pages/dashboard/tables/ProjectView/ProjectView";
 import NotFound from "./pages/NotFound/NotFound";
-import AddClient from "./pages/AddClient/AddClient";
-import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
-import AddProject from "./pages/AddProject/AddProject";
-import AddClientProject from "./pages/AddClientProject/AddClientProject";
-import EditClient from "./pages/EditClient/EditClient";
-import ClientInvoices from "./pages/ClientInvoices/ClientInvoices";
-import AddInvoice from "./pages/AddInvoice/AddInvoice";
+import AddClient from "./pages/homeView/AddClient/AddClient";
+import ClientDashboard from "./pages/dashboard/profile/ClientDashboard/ClientDashboard";
+import AddProject from "./pages/dashboard/tables/AddProject/AddProject";
+import AddClientProject from "./pages/dashboard/tables/AddClientProject/AddClientProject";
+import EditClient from "./pages/homeView/EditClient/EditClient";
+import ClientInvoices from "./pages/dashboard/billing/ClientInvoices/ClientInvoices";
+import AddInvoice from "./pages/dashboard/billing/AddInvoice/AddInvoice";
 import Navigation from "./components/Navigation/Navigation";
-import ClientTables from "./pages/ClientTables/ClientTables";
-import ClientBilling from "./pages/ClientBilling/ClientBilling";
-import ClientTransactionsView from "./pages/ClientTransactionsView/ClientTransactionsView";
+import ClientTables from "./pages/dashboard/tables/ClientTables/ClientTables";
+import ClientBilling from "./pages/dashboard/billing/ClientBilling/ClientBilling";
+import ClientTransactionsView from "./pages/dashboard/billing/ClientTransactionsView/ClientTransactionsView";
+import AddTransaction from "./pages/dashboard/billing/AddTransaction/AddTransaction";
 // import EditProject from "./pages/EditProject/EditProject";
 // import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 // import ClientsPage from "./pages/ClientsPage/ClientsPage";
 
 import "./App.css";
-import AddTransaction from "./pages/AddTransaction/AddTransaction";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment

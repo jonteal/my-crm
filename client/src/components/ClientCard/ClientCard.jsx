@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import EditButton from "../buttons/EditButton/EditButton";
+import EditButton from "../reusable/buttons/EditButton/EditButton";
 import "./clientCard.css";
 
 const rootClass = "client-card";
