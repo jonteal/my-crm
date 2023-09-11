@@ -22,6 +22,7 @@ import ClientTables from "./pages/dashboard/tables/ClientTables/ClientTables";
 import ClientBilling from "./pages/dashboard/billing/ClientBilling/ClientBilling";
 import ClientTransactionsView from "./pages/dashboard/billing/ClientTransactionsView/ClientTransactionsView";
 import AddTransaction from "./pages/dashboard/billing/AddTransaction/AddTransaction";
+import MainDashboard from "./pages/homeView/MainDashboard/MainDashboard";
 // import EditProject from "./pages/EditProject/EditProject";
 // import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 // import ClientsPage from "./pages/ClientsPage/ClientsPage";
@@ -77,6 +78,7 @@ function App() {
           <div>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<MainDashboard />} />
               <Route path="/addClient" element={<AddClient />} />
               <Route path="/clients/:id" element={<ClientView />}>
                 <Route
