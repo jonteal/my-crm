@@ -23,6 +23,7 @@ import ClientBilling from "./pages/dashboard/billing/ClientBilling/ClientBilling
 import ClientTransactionsView from "./pages/dashboard/billing/ClientTransactionsView/ClientTransactionsView";
 import AddTransaction from "./pages/dashboard/billing/AddTransaction/AddTransaction";
 import MainDashboard from "./pages/homeView/MainDashboard/MainDashboard";
+import AddClientService from "./pages/dashboard/tables/AddClientService/AddClientService";
 // import EditProject from "./pages/EditProject/EditProject";
 // import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 // import ClientsPage from "./pages/ClientsPage/ClientsPage";
@@ -55,6 +56,11 @@ const cache = new InMemoryCache({
           },
         },
         transactions: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
+        services: {
           merge(existing, incoming) {
             return incoming;
           },
@@ -97,6 +103,10 @@ function App() {
                 <Route
                   path="/clients/:id/addProject"
                   element={<AddClientProject />}
+                />
+                <Route
+                  path="/clients/:id/addService"
+                  element={<AddClientService />}
                 />
                 <Route path="/clients/:id/edit" element={<EditClient />} />
                 <Route

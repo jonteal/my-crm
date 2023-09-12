@@ -3,6 +3,7 @@ const Project = require("../models/Project");
 const ActivityComment = require("../models/ActivityComment");
 const Invoice = require("../models/Invoice");
 const Transaction = require("../models/Transaction");
+const Service = require("../models/Service");
 
 const {
   GraphQLObjectType,
@@ -34,6 +35,26 @@ const ProjectType = new GraphQLObjectType({
     deadline: { type: GraphQLString },
     clientBudget: { type: GraphQLString },
     projectEstimate: { type: GraphQLString },
+  }),
+});
+
+// Service Type
+const ServiceType = new GraphQLObjectType({
+  name: "Service",
+  fields: () => ({
+    id: { type: GraphQLID },
+    service: { type: GraphQLString },
+    cost: { type: GraphQLString },
+    client: {
+      type: ClientType,
+      resolve(parent, args) {
+        return Client.findById(parent.clientId);
+      },
+    },
+    status: { type: GraphQLString },
+    startDate: { type: GraphQLString },
+    endDate: { type: GraphQLString },
+    createdAt: { type: GraphQLString },
   }),
 });
 
@@ -119,6 +140,19 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return Project.findById(args.id);
+      },
+    },
+    services: {
+      type: new GraphQLList(ServiceType),
+      resolve(parent, args) {
+        return Service.find();
+      },
+    },
+    service: {
+      type: ServiceType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Service.findById(args.id);
       },
     },
     invoices: {
@@ -376,6 +410,92 @@ const mutation = new GraphQLObjectType({
               deadline: args.deadline,
               clientBudget: args.clientBudget,
               projectEstimate: args.projectEstimate,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
+
+    // Add a Service
+    addService: {
+      type: ServiceType,
+      args: {
+        service: { type: new GraphQLNonNull(GraphQLString) },
+        cost: { type: new GraphQLNonNull(GraphQLString) },
+        status: {
+          type: new GraphQLEnumType({
+            name: "ServiceStatus",
+            values: {
+              off: { value: "Off" },
+              on: { value: "On" },
+            },
+          }),
+          defaultValue: "Off",
+        },
+        clientId: { type: new GraphQLNonNull(GraphQLID) },
+        startDate: { type: GraphQLString },
+        endDate: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        const service = new Service({
+          service: args.service,
+          cost: args.cost,
+          status: args.status,
+          notes: args.notes,
+          clientId: args.clientId,
+          startDate: args.startDate,
+          endDate: args.endDate,
+        });
+
+        return service.save();
+      },
+    },
+
+    // Delete a Service
+    deleteService: {
+      type: ServiceType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Service.findByIdAndRemove(args.id);
+      },
+    },
+
+    // Update a Service
+    updateService: {
+      type: ServiceType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        service: { type: new GraphQLNonNull(GraphQLString) },
+        cost: { type: new GraphQLNonNull(GraphQLString) },
+        status: {
+          type: new GraphQLEnumType({
+            name: "ServiceStatusUpdate",
+            values: {
+              off: { value: "Off" },
+              on: { value: "On" },
+            },
+          }),
+          defaultValue: "Off",
+        },
+        clientId: { type: new GraphQLNonNull(GraphQLID) },
+        startDate: { type: GraphQLString },
+        endDate: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return Service.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              service: args.service,
+              cost: args.cost,
+              status: args.status,
+              notes: args.notes,
+              clientId: args.clientId,
+              startDate: args.startDate,
+              endDate: args.endDate,
             },
           },
           { new: true }
