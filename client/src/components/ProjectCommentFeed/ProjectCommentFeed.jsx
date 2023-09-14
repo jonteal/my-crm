@@ -11,12 +11,9 @@ import { GET_PROJECTS } from "../../graphql/queries/projectQueries";
 // COMPONENTS
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
 import Spinner from "../reusable/Spinner/Spinner";
+import Comment from "../Comment/Comment";
 
 const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
-  // console.log(
-  //   "matchingProjectActivityComments: ",
-  //   matchingProjectActivityComments
-  // );
   const [commentText, setCommentText] = useState("");
 
   const [addProjectActivityComment] = useMutation(
@@ -62,7 +59,7 @@ const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
 
   return (
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 px-3 w-full">
-      <form onSubmit={onSubmit}>
+      <form className="flex flex-col" onSubmit={onSubmit}>
         <label
           className="block uppercase tracking-wide text-gray-700 text-xs font-bold my-3"
           htmlFor="grid-project-comment"
@@ -79,22 +76,14 @@ const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
         />
-        <SubmitButton type="submit">Save</SubmitButton>
+        <div className="w-1/2 text-left mt-2">
+          <SubmitButton type="submit">Save</SubmitButton>
+        </div>
       </form>
 
       <div className="mt-5">
         {matchingProjectActivityComments.map((comment) => (
-          <div className="my-4">
-            <div
-              className="border px-2 py-2  bg-slate-100 rounded-xl"
-              key={comment.id}
-            >
-              <p className="text-start">{comment.commentText}</p>
-            </div>
-            <p className="text-slate-600 text-start text-sm">
-              {comment.createdAt}
-            </p>
-          </div>
+          <Comment key={comment.id} comment={comment} />
         ))}
       </div>
     </div>

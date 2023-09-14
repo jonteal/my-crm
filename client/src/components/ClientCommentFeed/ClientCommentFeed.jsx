@@ -11,6 +11,7 @@ import { GET_CLIENTS } from "../../graphql/queries/clientQueries";
 // COMPONENTS
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
 import Spinner from "../reusable/Spinner/Spinner";
+import Comment from "../Comment/Comment";
 
 const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
   const [commentText, setCommentText] = useState("");
@@ -50,14 +51,18 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
     setCommentText("");
   };
 
+  // matchingClientActivityComments.sort(function (a, b) {
+  //   return new Date(b.date) - new Date(a.date);
+  // });
+
   if (loading) return <Spinner />;
   if (error) return <p>There was an error loading the comment feed</p>;
 
   return (
-    <div className="rounded-xl bg-slate-50 mx-2 mt-3 px-3 w-full">
+    <div className="rounded-xl bg-slate-50 mx-2 px-3 mt-1 w-full">
       <form onSubmit={onSubmit}>
         <label
-          className="block uppercase tracking-wide text-gray-700 text-xs font-bold my-3"
+          className="block uppercase tracking-wide text-gray-700 text-xs font-bold py-3"
           htmlFor="grid-client-comment"
         >
           Client Activity Feed
@@ -72,23 +77,19 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
         />
-        <SubmitButton type="submit">Save</SubmitButton>
+        <div className="w-1/2 text-left mt-2">
+          <SubmitButton type="submit">Save</SubmitButton>
+        </div>
       </form>
 
-      <div className="mt-5">
-        {matchingClientActivityComments.map((comment) => (
-          <div className="my-4">
-            <div
-              className="border px-2 py-2  bg-slate-100 rounded-xl"
-              key={comment.id}
-            >
-              <p className="text-start">{comment.commentText}</p>
-            </div>
-            <p className="text-slate-600 text-start text-sm">
-              {comment.createdAt}
-            </p>
-          </div>
-        ))}
+      <div className="mt-5 pb-2">
+        {matchingClientActivityComments
+          .sort(function (a, b) {
+            return new Date(b.date) - new Date(a.date);
+          })
+          .map((comment) => (
+            <Comment key={comment.id} comment={comment} />
+          ))}
       </div>
     </div>
   );

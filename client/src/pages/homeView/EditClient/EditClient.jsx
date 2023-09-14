@@ -36,7 +36,6 @@ const EditClient = () => {
   //     navigate(clientEditLocation);
   //   }, [clientEditLocation, navigate]);
 
-  console.log("clientData: ", clientData);
   //   const clientLocation = `/clients/${clientData.client.id}`;
 
   const client = clientData?.client;

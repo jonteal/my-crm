@@ -51,7 +51,7 @@ const ClientList = () => {
       <div className={`${rootClass}-header-container flex flex-row`}>
         <FaUserAlt className={`${rootClass}-header-icon mr-5`} />
         <h5 className={`${rootClass}-header-label mb-3`}>
-          Clients ({clientData?.clients.length})
+          Total Records ({clientData?.clients.length})
         </h5>
       </div>
       <ul>

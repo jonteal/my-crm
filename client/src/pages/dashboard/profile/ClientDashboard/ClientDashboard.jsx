@@ -36,8 +36,6 @@ const ClientDashboard = () => {
         clientActivityComment.client.id === clientData.client.id
     );
 
-  console.log("clientData: ", clientData.client.id);
-
   return (
     <div className="w-full flex flex-row">
       <div className="w-full mx-2 rounded-xl">

@@ -20,8 +20,6 @@ const MainDashboard = () => {
     data: invoicesData,
   } = useQuery(GET_INVOICES);
 
-  console.log("invoicesData: ", invoicesData);
-
   //   if (clientLoading) return <Spinner />;
   if (clientError) return <p>There was an error loading the content</p>;
 
