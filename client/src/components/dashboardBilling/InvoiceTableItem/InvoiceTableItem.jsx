@@ -11,7 +11,7 @@ const InvoiceTableItem = ({ invoice }) => {
         <p className="text-left text-slate-500 text-sm mx-3">{invoiceNumber}</p>
       </div>
       <div className="flex flex-row items-center">
-        <p className="text-left text-slate-500 text-base mx-4">{amount}</p>
+        <p className="text-left text-slate-500 text-base mx-4">$ {amount}</p>
         <p className="flex flex-row items-center">
           <FaRegFilePdf className="text-lg" />
           <span className="text-left text-slate-700 text-sm font-bold ml-1 mr-3">

@@ -88,13 +88,13 @@ const ProjectsTable = ({ client, matchingProjects }) => {
                   className="text-slate-700 font-light text-left border pl-2"
                   key={project.clientBudget}
                 >
-                  {project.clientBudget}
+                  $ {project.clientBudget}
                 </td>
                 <td
                   className="text-slate-700 font-light text-left border pl-2"
                   key={project.projectEstimate}
                 >
-                  {project.projectEstimate}
+                  $ {project.projectEstimate}
                 </td>
                 <td
                   className="text-slate-700 font-light text-left border pl-2"

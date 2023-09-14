@@ -66,7 +66,7 @@ const ServicesTable = ({ matchingServices }) => {
                 className="text-slate-700 font-light text-left border pl-2"
                 key={service.cost}
               >
-                {service.cost}
+                $ {service.cost}
               </td>
               <td
                 className="text-slate-700 font-light text-left border pl-2"
