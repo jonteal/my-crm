@@ -70,6 +70,11 @@ const cache = new InMemoryCache({
             return incoming;
           },
         },
+        clientActivityComments: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
       },
     },
   },

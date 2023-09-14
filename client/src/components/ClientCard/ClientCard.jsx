@@ -28,7 +28,7 @@ const ClientCard = ({ clientData }) => {
 
   return (
     <div
-      className={`${rootClass}-info-container mt-5 bg-slate-50 w-full rounded-xl`}
+      className={`${rootClass}-info-container mt-1 bg-slate-50 w-full rounded-xl`}
     >
       <div className="flex flex-row justify-end">
         <Link to={`/clients/${id}/edit`}>

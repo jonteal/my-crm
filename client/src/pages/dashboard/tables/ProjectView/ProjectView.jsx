@@ -7,7 +7,7 @@ import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../../../graphql/queries/proje
 
 // COMPONENTS
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
-import CommentFeed from "../../../../components/CommentFeed/CommentFeed";
+import ProjectCommentFeed from "../../../../components/ProjectCommentFeed/ProjectCommentFeed";
 // import ProjectViewItem from "../../components/_projects_/ProjectViewItem/ProjectViewItem";
 
 // UTILS
@@ -146,7 +146,7 @@ const ProjectView = () => {
             </div>
           </div>
         </div>
-        <CommentFeed
+        <ProjectCommentFeed
           matchingProjectActivityComments={matchingProjectActivityComments}
           projectId={projectId}
         />

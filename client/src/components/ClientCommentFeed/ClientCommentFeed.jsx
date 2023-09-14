@@ -3,47 +3,40 @@ import { useState } from "react";
 // LIBRARIES
 import { useMutation, useQuery } from "@apollo/client";
 
-import { ADD_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
-import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActivityCommentQueries";
+// GRAPHQL
+import { ADD_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
+import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../graphql/queries/clientActivityCommentQueries";
+import { GET_CLIENTS } from "../../graphql/queries/clientQueries";
 
+// COMPONENTS
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
 import Spinner from "../reusable/Spinner/Spinner";
-import { GET_PROJECTS } from "../../graphql/queries/projectQueries";
 
-const CommentFeed = ({ projectId, matchingProjectActivityComments }) => {
+const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
   const [commentText, setCommentText] = useState("");
 
-  console.log(
-    "matchingProjectActivityComments: ",
-    matchingProjectActivityComments
-  );
+  const [addClientActivityComment] = useMutation(ADD_CLIENT_ACTIVITY_COMMENT, {
+    variables: {
+      commentText,
+      clientId,
+    },
+    update(cache, { data: { addClientActivityComment } }) {
+      const { clientActivityComments } = cache.readQuery({
+        query: GET_CLIENT_ACTIVITY_COMMENTS,
+      });
+      cache.writeQuery({
+        query: GET_CLIENT_ACTIVITY_COMMENTS,
+        data: {
+          clientActivityComments: [
+            ...clientActivityComments,
+            addClientActivityComment,
+          ],
+        },
+      });
+    },
+  });
 
-  const [addProjectActivityComment] = useMutation(
-    ADD_PROJECT_ACTIVITY_COMMENT,
-    {
-      variables: {
-        commentText,
-        projectId,
-      },
-      update(cache, { data: { addProjectActivityComment } }) {
-        const { projectActivityComments } = cache.readQuery({
-          query: GET_PROJECT_ACTIVITY_COMMENTS,
-        });
-        cache.writeQuery({
-          query: GET_PROJECT_ACTIVITY_COMMENTS,
-          data: {
-            projectActivityComments: [
-              ...projectActivityComments,
-              addProjectActivityComment,
-            ],
-          },
-        });
-      },
-    }
-  );
-
-  //   const { loading, error, data } = useQuery(GET_PROJECT_ACTIVITY_COMMENTS);
-  const { loading, error, data } = useQuery(GET_PROJECTS);
+  const { loading, error, data } = useQuery(GET_CLIENTS);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -52,7 +45,7 @@ const CommentFeed = ({ projectId, matchingProjectActivityComments }) => {
       alert("You must write a comment");
     }
 
-    addProjectActivityComment(commentText, projectId);
+    addClientActivityComment(commentText, clientId);
 
     setCommentText("");
   };
@@ -65,12 +58,12 @@ const CommentFeed = ({ projectId, matchingProjectActivityComments }) => {
       <form onSubmit={onSubmit}>
         <label
           className="block uppercase tracking-wide text-gray-700 text-xs font-bold my-3"
-          htmlFor="grid-project-comment"
+          htmlFor="grid-client-comment"
         >
-          Project Activity Feed
+          Client Activity Feed
         </label>
         <textarea
-          id="grid-project-comment"
+          id="grid-client-comment"
           type="text"
           aria-label="Comment input"
           placeholder="Write a comment"
@@ -83,7 +76,7 @@ const CommentFeed = ({ projectId, matchingProjectActivityComments }) => {
       </form>
 
       <div className="mt-5">
-        {matchingProjectActivityComments.map((comment) => (
+        {matchingClientActivityComments.map((comment) => (
           <div className="my-4">
             <div
               className="border px-2 py-2  bg-slate-100 rounded-xl"
@@ -101,4 +94,4 @@ const CommentFeed = ({ projectId, matchingProjectActivityComments }) => {
   );
 };
 
-export default CommentFeed;
+export default ClientCommentFeed;
