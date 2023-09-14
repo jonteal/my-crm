@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
-const GET_ACTIVITY_COMMENTS = gql`
-  query getActivityComments {
-    activityComments {
+const GET_PROJECT_ACTIVITY_COMMENTS = gql`
+  query getProjectActivityComments {
+    projectActivityComments {
       id
       commentText
       createdAt
@@ -21,9 +21,9 @@ const GET_ACTIVITY_COMMENTS = gql`
   }
 `;
 
-const GET_ACTIVITY_COMMENT = gql`
-  query getActivityComment($id: ID) {
-    activityComment(id: $id) {
+const GET_PROJECT_ACTIVITY_COMMENT = gql`
+  query getProjectActivityComment($id: ID) {
+    projectActivityComment(id: $id) {
       id
       commentText
       createdAt
@@ -42,4 +42,4 @@ const GET_ACTIVITY_COMMENT = gql`
   }
 `;
 
-export { GET_ACTIVITY_COMMENTS, GET_ACTIVITY_COMMENT };
+export { GET_PROJECT_ACTIVITY_COMMENTS, GET_PROJECT_ACTIVITY_COMMENT };

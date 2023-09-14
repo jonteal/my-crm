@@ -52,9 +52,9 @@ const ClientTables = () => {
 
   return (
     <div className="w-full mr-5">
-      {/* {!projectsLoading && !projectsError && (
+      {!projectsLoading && !projectsError && (
         <ProjectsTable client={client} matchingProjects={matchingProjects} />
-      )} */}
+      )}
       {!servicesLoading && !servicesError && (
         <ServicesTable client={client} matchingServices={matchingServices} />
       )}

@@ -3,11 +3,11 @@ import { useQuery } from "@apollo/client";
 
 // GRAPHQL
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
-// import { GET_ACTIVITY_COMMENTS } from "../../graphql/queries/activityCommentQueries";
+import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../../../graphql/queries/projectActivityCommentQueries";
 
 // COMPONENTS
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
-// import ActivityFeed from "../../components/_activityFeed_/ActivityFeed/ActivityFeed";
+import CommentFeed from "../../../../components/CommentFeed/CommentFeed";
 // import ProjectViewItem from "../../components/_projects_/ProjectViewItem/ProjectViewItem";
 
 // UTILS
@@ -28,25 +28,27 @@ const ProjectView = () => {
     variables: { id },
   });
 
-  //   const {
-  //     loading: activityCommentsLoading,
-  //     error: activityCommentsError,
-  //     data: activityCommentData,
-  //   } = useQuery(GET_ACTIVITY_COMMENTS);
+  const {
+    loading: projectActivityCommentsLoading,
+    error: projectActivityCommentsError,
+    data: projectActivityCommentData,
+  } = useQuery(GET_PROJECT_ACTIVITY_COMMENTS);
 
   if (projectLoading) return <p>Loading...</p>;
   if (projectError) return <p>There was an error...</p>;
 
-  //   if (activityCommentsLoading) return <p>Loading...</p>;
-  //   if (activityCommentsError) return <p>There was an error...</p>;
+  if (projectActivityCommentsLoading) return <p>Loading...</p>;
+  if (projectActivityCommentsError) return <p>There was an error...</p>;
 
   const project = projectData.project;
 
   const projectId = project.id;
 
-  //   const matchingActivityComments = activityCommentData.activityComments.filter(
-  //     (activityComment) => activityComment.project.id === projectId
-  //   );
+  const matchingProjectActivityComments =
+    projectActivityCommentData.projectActivityComments.filter(
+      (projectActivityComment) =>
+        projectActivityComment.project.id === projectId
+    );
 
   const {
     title,
@@ -61,8 +63,8 @@ const ProjectView = () => {
 
   return (
     <>
-      <div className={`${rootClass}-main-container px-20`}>
-        <div>
+      <div className={`${rootClass}-main-container px-3 flex flex-row w-full`}>
+        <div className="rounded-xl bg-slate-50 mx-2 mt-3 p-3 w-full">
           {/* <div className={`${rootClass}-btn-container`}>
             <Link to={`/projects/${project.id}/edit`}>
               <SubmitButton className={`${rootClass}-edit-btn`}>
@@ -144,12 +146,11 @@ const ProjectView = () => {
             </div>
           </div>
         </div>
+        <CommentFeed
+          matchingProjectActivityComments={matchingProjectActivityComments}
+          projectId={projectId}
+        />
       </div>
-
-      {/* <ActivityFeed
-        matchingActivityComments={matchingActivityComments}
-        projectId={projectId}
-      /> */}
     </>
   );
 };

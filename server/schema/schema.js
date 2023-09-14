@@ -1,6 +1,6 @@
 const Client = require("../models/Client");
 const Project = require("../models/Project");
-const ActivityComment = require("../models/ActivityComment");
+const ProjectActivityComment = require("../models/ProjectActivityComment");
 const Invoice = require("../models/Invoice");
 const Transaction = require("../models/Transaction");
 const Service = require("../models/Service");
@@ -109,9 +109,9 @@ const TransactionType = new GraphQLObjectType({
   }),
 });
 
-// ActivityComment Type
-const ActivityCommentType = new GraphQLObjectType({
-  name: "ActivityComment",
+// ProjectActivityComment Type
+const ProjectActivityCommentType = new GraphQLObjectType({
+  name: "ProjectActivityComment",
   fields: () => ({
     id: { type: GraphQLID },
     commentText: { type: GraphQLString },
@@ -194,17 +194,17 @@ const RootQuery = new GraphQLObjectType({
         return Client.findById(args.id);
       },
     },
-    activityComments: {
-      type: new GraphQLList(ActivityCommentType),
+    projectActivityComments: {
+      type: new GraphQLList(ProjectActivityCommentType),
       resolve(parent, args) {
-        return ActivityComment.find();
+        return ProjectActivityComment.find();
       },
     },
-    activityComment: {
-      type: ActivityCommentType,
+    projectActivityComment: {
+      type: ProjectActivityCommentType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        return ActivityComment.findById(args.id);
+        return ProjectActivityComment.findById(args.id);
       },
     },
   },
@@ -357,18 +357,13 @@ const mutation = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
-        ActivityComment.find({ projectId: args.id }).then(
-          (activityComments) => {
-            activityComments.forEach((activityComment) => {
-              activityComment.remove();
+        ProjectActivityComment.find({ projectId: args.id }).then(
+          (projectActivityComments) => {
+            projectActivityComments.forEach((projectActivityComment) => {
+              projectActivityComment.remove();
             });
           }
         );
-        Kanban.find({ projectId: args.id }).then((kanbans) => {
-          kanbans.forEach((kanban) => {
-            kanban.remove();
-          });
-        });
         return Project.findByIdAndRemove(args.id);
       },
     },
@@ -639,32 +634,50 @@ const mutation = new GraphQLObjectType({
       },
     },
 
-    // Add a comment
-    addActivityComment: {
-      type: ActivityCommentType,
+    // Add a Project Activity Comment
+    addProjectActivityComment: {
+      type: ProjectActivityCommentType,
       args: {
         commentText: { type: new GraphQLNonNull(GraphQLString) },
         projectId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
-        const activityComment = new ActivityComment({
+        const projectActivityComment = new ProjectActivityComment({
           commentText: args.commentText,
           createdAt: args.createdAt,
           projectId: args.projectId,
         });
 
-        return activityComment.save();
+        return projectActivityComment.save();
       },
     },
 
     // Delete a comment
-    deleteActivityComment: {
-      type: ActivityCommentType,
+    deleteProjectActivityComment: {
+      type: ProjectActivityCommentType,
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
-        return ActivityComment.findByIdAndRemove(args.id);
+        return ProjectActivityComment.findByIdAndRemove(args.id);
+      },
+    },
+
+    updateProjectActivityComment: {
+      type: ProjectActivityCommentType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        commentText: { type: new GraphQLNonNull(GraphQLString) },
+        projectId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        const projectActivityComment = new ProjectActivityComment({
+          commentText: args.commentText,
+          createdAt: args.createdAt,
+          projectId: args.projectId,
+        });
+
+        return projectActivityComment.save();
       },
     },
   },

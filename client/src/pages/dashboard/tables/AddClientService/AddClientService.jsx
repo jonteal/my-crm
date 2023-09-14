@@ -6,10 +6,9 @@ import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 
 // GRAPHQL
-import { ADD_PROJECT } from "../../../../graphql/mutations/projectMutations";
-import { GET_PROJECTS } from "../../../../graphql/queries/projectQueries";
 import { GET_CLIENTS } from "../../../../graphql/queries/clientQueries";
 import { ADD_SERVICE } from "../../../../graphql/mutations/serviceMutations";
+import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 
 // COMPONENTS
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
@@ -20,7 +19,6 @@ import DatePicker from "react-datepicker";
 
 // CSS
 import "react-datepicker/dist/react-datepicker.css";
-import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 
 const rootClass = "add-project";
 

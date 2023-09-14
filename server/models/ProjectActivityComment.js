@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const moment = require("moment");
 
-// ActivityComment Schema
-const activityCommentSchema = new mongoose.Schema({
+// projectActivityComment Schema
+const projectActivityCommentSchema = new mongoose.Schema({
   commentText: {
     type: String,
     required: true,
@@ -19,9 +19,9 @@ const activityCommentSchema = new mongoose.Schema({
   },
 });
 
-const ActivityComment = mongoose.model(
-  "ActivityComment",
-  activityCommentSchema
+const ProjectActivityComment = mongoose.model(
+  "ProjectActivityComment",
+  projectActivityCommentSchema
 );
 
-module.exports = ActivityComment;
+module.exports = ProjectActivityComment;

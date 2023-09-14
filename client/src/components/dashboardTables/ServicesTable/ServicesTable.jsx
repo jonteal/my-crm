@@ -42,6 +42,12 @@ const ServicesTable = ({ matchingServices }) => {
             <th className="text-slate-400 font-light w-2/12 text-left pl-2">
               Status
             </th>
+            <th className="text-slate-400 font-light w-2/12 text-left pl-2">
+              Start Date
+            </th>
+            <th className="text-slate-400 font-light w-2/12 text-left pl-2">
+              End Date
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -73,17 +79,13 @@ const ServicesTable = ({ matchingServices }) => {
                 className="text-slate-700 font-light text-left border pl-2"
                 key={service.id}
               >
-                {/* <Link to={`/clients/${client.id}/projects/${service.id}`}>
-                  <FaRegEye className="text-sky-600" />
-                </Link> */}
+                {service.startDate}
               </td>
               <td
                 className="text-slate-700 font-light text-left border pl-2"
                 key={service.id}
               >
-                {/* <Link>
-                  <FaRegTrashAlt className="text-red-500" />
-                </Link> */}
+                {service.endDate}
               </td>
             </tr>
           ))}
