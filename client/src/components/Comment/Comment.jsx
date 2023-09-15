@@ -1,6 +1,8 @@
 import { FiEdit2 } from "react-icons/fi";
 
 const Comment = ({ comment }) => {
+  const formattedDate = new Date(parseInt(comment.createdAt)).toDateString();
+
   return (
     <div className="my-4">
       <div
@@ -13,7 +15,7 @@ const Comment = ({ comment }) => {
         </div>
       </div>
       <p className="text-slate-600 text-start text-xs mt-2 ml-2">
-        {comment.createdAt}
+        {formattedDate}
       </p>
     </div>
   );
