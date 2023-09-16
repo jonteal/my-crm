@@ -11,7 +11,6 @@ const clientActivityCommentSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now(),
-    get: (timeValue) => moment(timeValue).format("MM/DD/YYYY"),
   },
   clientId: {
     type: mongoose.Schema.Types.ObjectId,

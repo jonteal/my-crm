@@ -11,7 +11,6 @@ const projectActivityCommentSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now(),
-    // get: (timeValue) => moment(timeValue).format("MM/DD/YYYY"),
   },
   projectId: {
     type: mongoose.Schema.Types.ObjectId,

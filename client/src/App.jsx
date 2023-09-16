@@ -75,6 +75,11 @@ const cache = new InMemoryCache({
             return incoming;
           },
         },
+        clientActivityCommentReplies: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
       },
     },
   },

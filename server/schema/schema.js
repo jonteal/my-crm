@@ -5,6 +5,7 @@ const ClientActivityComment = require("../models/ClientActivityComment");
 const Invoice = require("../models/Invoice");
 const Transaction = require("../models/Transaction");
 const Service = require("../models/Service");
+const ClientActivityCommentReply = require("../models/ClientActivityCommentReply");
 
 const {
   GraphQLObjectType,
@@ -142,6 +143,22 @@ const ClientActivityCommentType = new GraphQLObjectType({
   }),
 });
 
+// ClientActivityCommentReply Type
+const ClientActivityCommentReplyType = new GraphQLObjectType({
+  name: "ClientActivityCommentReply",
+  fields: () => ({
+    id: { type: GraphQLID },
+    commentText: { type: GraphQLString },
+    createdAt: { type: GraphQLString },
+    clientActivityComment: {
+      type: ClientActivityCommentType,
+      resolve(parent, args) {
+        return ClientActivityComment.findById(parent.commentId);
+      },
+    },
+  }),
+});
+
 // RootQuery
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -235,6 +252,19 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return ClientActivityComment.findById(args.id);
+      },
+    },
+    clientActivityCommentReplies: {
+      type: new GraphQLList(ClientActivityCommentReplyType),
+      resolve(parent, args) {
+        return ClientActivityCommentReply.find();
+      },
+    },
+    clientActivityCommentReply: {
+      type: ClientActivityCommentReplyType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return ClientActivityCommentReply.findById(args.id);
       },
     },
   },
@@ -757,6 +787,54 @@ const mutation = new GraphQLObjectType({
         });
 
         return clientActivityComment.save();
+      },
+    },
+
+    // Add a Client Activity Comment Reply
+    addClientActivityCommentReply: {
+      type: ClientActivityCommentReplyType,
+      args: {
+        commentText: { type: new GraphQLNonNull(GraphQLString) },
+        commentId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        const clientActivityCommentReply = new ClientActivityCommentReply({
+          commentText: args.commentText,
+          createdAt: args.createdAt,
+          commentId: args.commentId,
+        });
+
+        return clientActivityCommentReply.save();
+      },
+    },
+
+    // Delete a Client Activity Comment Reply
+    deleteClientActivityCommentReply: {
+      type: ClientActivityCommentReplyType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return ClientActivityCommentReply.findByIdAndRemove(args.id);
+      },
+    },
+
+    // Update a Client Activity Comment Reply
+    updateClientActivityCommentReply: {
+      type: ClientActivityCommentReplyType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        commentText: { type: new GraphQLNonNull(GraphQLString) },
+        commentId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        const clientActivityCommentReply = new ClientActivityCommentReply({
+          commentText: args.commentText,
+          createdAt: args.createdAt,
+          commentId: args.commentId,
+        });
+
+        return clientActivityCommentReply.save();
       },
     },
   },
