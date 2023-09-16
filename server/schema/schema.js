@@ -6,6 +6,7 @@ const Invoice = require("../models/Invoice");
 const Transaction = require("../models/Transaction");
 const Service = require("../models/Service");
 const ClientActivityCommentReply = require("../models/ClientActivityCommentReply");
+const ProjectActivityCommentReply = require("../models/ProjectActivityCommentReply");
 
 const {
   GraphQLObjectType,
@@ -159,6 +160,22 @@ const ClientActivityCommentReplyType = new GraphQLObjectType({
   }),
 });
 
+// ProjectActivityCommentReply Type
+const ProjectActivityCommentReplyType = new GraphQLObjectType({
+  name: "ProjectActivityCommentReply",
+  fields: () => ({
+    id: { type: GraphQLID },
+    commentText: { type: GraphQLString },
+    createdAt: { type: GraphQLString },
+    projectActivityComment: {
+      type: ProjectActivityCommentType,
+      resolve(parent, args) {
+        return ProjectActivityComment.findById(parent.commentId);
+      },
+    },
+  }),
+});
+
 // RootQuery
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -265,6 +282,19 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return ClientActivityCommentReply.findById(args.id);
+      },
+    },
+    projectActivityCommentReplies: {
+      type: new GraphQLList(ProjectActivityCommentReplyType),
+      resolve(parent, args) {
+        return ProjectActivityCommentReply.find();
+      },
+    },
+    projectActivityCommentReply: {
+      type: ProjectActivityCommentReplyType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return ProjectActivityCommentReply.findById(args.id);
       },
     },
   },
@@ -835,6 +865,54 @@ const mutation = new GraphQLObjectType({
         });
 
         return clientActivityCommentReply.save();
+      },
+    },
+
+    // Add a Project Activity Comment Reply
+    addProjectActivityCommentReply: {
+      type: ProjectActivityCommentReplyType,
+      args: {
+        commentText: { type: new GraphQLNonNull(GraphQLString) },
+        commentId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        const projectActivityCommentReply = new ProjectActivityCommentReply({
+          commentText: args.commentText,
+          createdAt: args.createdAt,
+          commentId: args.commentId,
+        });
+
+        return projectActivityCommentReply.save();
+      },
+    },
+
+    // Delete a Project Activity Comment Reply
+    deleteProjectActivityCommentReply: {
+      type: ProjectActivityCommentReplyType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return ProjectActivityCommentReply.findByIdAndRemove(args.id);
+      },
+    },
+
+    // Update a Project Activity Comment Reply
+    updateProjectActivityCommentReply: {
+      type: ProjectActivityCommentReplyType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        commentText: { type: new GraphQLNonNull(GraphQLString) },
+        commentId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        const projectActivityCommentReply = new ProjectActivityCommentReply({
+          commentText: args.commentText,
+          createdAt: args.createdAt,
+          commentId: args.commentId,
+        });
+
+        return projectActivityCommentReply.save();
       },
     },
   },

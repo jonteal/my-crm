@@ -4,11 +4,14 @@ import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_CLIENT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/clientActivityCommentReplyMutations";
 import { GET_CLIENT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/clientActivityCommentReplyQueries";
+import { ADD_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/projectActivityCommentReplyMutations";
+import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
 import Spinner from "../reusable/Spinner/Spinner";
 
 const Comment = ({ comment }) => {
   const [addReply, setAddReply] = useState(false);
   const [commentText, setCommentText] = useState("");
+  const [isClientComment, setIsClientComment] = useState(false);
 
   const formattedDate = new Date(parseInt(comment.createdAt)).toDateString();
 
@@ -38,16 +41,55 @@ const Comment = ({ comment }) => {
     }
   );
 
+  const [addProjectActivityCommentReply] = useMutation(
+    ADD_PROJECT_ACTIVITY_COMMENT_REPLY,
+    {
+      variables: {
+        commentText,
+        commentId,
+      },
+      update(cache, { data: { addProjectActivityCommentReply } }) {
+        const { projectActivityCommentReplies } = cache.readQuery({
+          query: GET_PROJECT_ACTIVITY_COMMENT_REPLIES,
+        });
+        cache.writeQuery({
+          query: GET_PROJECT_ACTIVITY_COMMENT_REPLIES,
+          data: {
+            projectActivityCommentReplies: [
+              ...projectActivityCommentReplies,
+              addProjectActivityCommentReply,
+            ],
+          },
+        });
+      },
+    }
+  );
+
   const {
-    loading,
-    error,
-    data: clientActivityCommentReplies,
+    loading: clientActivityCommentRepliesLoading,
+    error: clientActivityCommentRepliesError,
+    data: clientActivityCommentRepliesData,
   } = useQuery(GET_CLIENT_ACTIVITY_COMMENT_REPLIES);
 
-  if (loading) return <Spinner />;
-  if (error) return <p>There was an error loading the comment feed</p>;
+  const {
+    loading: projectActivityCommentRepliesLoading,
+    error: projectActivityCommentRepliesError,
+    data: projectActivityCommentRepliesData,
+  } = useQuery(GET_PROJECT_ACTIVITY_COMMENT_REPLIES);
 
-  const replies = clientActivityCommentReplies.clientActivityCommentReplies;
+  if (
+    clientActivityCommentRepliesLoading ||
+    projectActivityCommentRepliesLoading
+  )
+    return <Spinner />;
+  if (clientActivityCommentRepliesError || projectActivityCommentRepliesError)
+    return <p>There was an error loading the comment feed</p>;
+
+  const clientCommentReplies =
+    clientActivityCommentRepliesData.clientActivityCommentReplies;
+
+  const projectCommentReplies =
+    projectActivityCommentRepliesData.projectActivityCommentReplies;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -56,14 +98,22 @@ const Comment = ({ comment }) => {
       alert("You must write a reply");
     }
 
-    addClientActivityCommentReply(commentText, comment.id);
+    if (isClientComment) {
+      addClientActivityCommentReply(commentText, comment.id);
+    } else if (!isClientComment) {
+      addProjectActivityCommentReply(commentText, comment.id);
+    }
 
     setCommentText("");
     setAddReply(false);
   };
 
-  const matchingReplies = replies.filter(
+  const matchingClientReplies = clientCommentReplies.filter(
     (reply) => reply.clientActivityComment.id === commentId
+  );
+
+  const matchingProjectReplies = projectCommentReplies.filter(
+    (reply) => reply.projectActivityComment.id === commentId
   );
 
   return (
@@ -87,7 +137,7 @@ const Comment = ({ comment }) => {
           className="text-sm mt-2 text-slate-600"
           onClick={() => setAddReply(!addReply)}
         >
-          {addReply ? "Close" : "Reply"}
+          {addReply ? "X" : "Reply"}
         </button>
       </div>
 
@@ -105,7 +155,7 @@ const Comment = ({ comment }) => {
               type="text"
               aria-label="Comment input"
               placeholder="Write a comment"
-              className="border p-2 mb-2 rounded-md appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="border p-2 mb-2 rounded-md appearance-none block w-full bg-slate-50 text-gray-700 border-gray-200 py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               rows={3}
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
@@ -117,24 +167,43 @@ const Comment = ({ comment }) => {
         </div>
       )}
 
-      {matchingReplies.map((reply) => (
-        <>
-          <div
-            key={reply.id}
-            className="border ml-10 mt-2 px-3 py-2 bg-slate-100 rounded-xl flex flex-row justify-between items-center"
-          >
-            <p>{reply.commentText}</p>
-            <div className="flex justify-end">
-              <button>
-                <FiEdit2 />
-              </button>
-            </div>
-          </div>
-          <p className="text-slate-600 text-start text-xs mt-2 mr-3 ml-12">
-            {formattedDate}
-          </p>
-        </>
-      ))}
+      {isClientComment
+        ? matchingClientReplies.map((reply) => (
+            <>
+              <div
+                key={reply.id}
+                className="border ml-10 mt-2 px-3 py-2 bg-slate-100 rounded-xl flex flex-row justify-between items-center"
+              >
+                <p>{reply.commentText}</p>
+                <div className="flex justify-end">
+                  <button>
+                    <FiEdit2 />
+                  </button>
+                </div>
+              </div>
+              <p className="text-slate-600 text-start text-xs mt-2 mr-3 ml-12">
+                {formattedDate}
+              </p>
+            </>
+          ))
+        : matchingProjectReplies.map((reply) => (
+            <>
+              <div
+                key={reply.id}
+                className="border ml-10 mt-2 px-3 py-2 bg-slate-100 rounded-xl flex flex-row justify-between items-center"
+              >
+                <p>{reply.commentText}</p>
+                <div className="flex justify-end">
+                  <button>
+                    <FiEdit2 />
+                  </button>
+                </div>
+              </div>
+              <p className="text-slate-600 text-start text-xs mt-2 mr-3 ml-12">
+                {formattedDate}
+              </p>
+            </>
+          ))}
     </div>
   );
 };
