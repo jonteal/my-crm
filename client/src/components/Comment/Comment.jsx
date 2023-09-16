@@ -8,10 +8,9 @@ import { ADD_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/proj
 import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
 import Spinner from "../reusable/Spinner/Spinner";
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, type }) => {
   const [addReply, setAddReply] = useState(false);
   const [commentText, setCommentText] = useState("");
-  const [isClientComment, setIsClientComment] = useState(false);
 
   const formattedDate = new Date(parseInt(comment.createdAt)).toDateString();
 
@@ -98,9 +97,9 @@ const Comment = ({ comment }) => {
       alert("You must write a reply");
     }
 
-    if (isClientComment) {
+    if (type === "client") {
       addClientActivityCommentReply(commentText, comment.id);
-    } else if (!isClientComment) {
+    } else if (type === "project") {
       addProjectActivityCommentReply(commentText, comment.id);
     }
 
@@ -167,7 +166,7 @@ const Comment = ({ comment }) => {
         </div>
       )}
 
-      {isClientComment
+      {type === "client"
         ? matchingClientReplies.map((reply) => (
             <>
               <div

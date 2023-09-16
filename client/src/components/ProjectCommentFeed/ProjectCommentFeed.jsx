@@ -83,7 +83,7 @@ const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
 
       <div className="mt-5">
         {matchingProjectActivityComments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
+          <Comment type="project" key={comment.id} comment={comment} />
         ))}
       </div>
     </div>

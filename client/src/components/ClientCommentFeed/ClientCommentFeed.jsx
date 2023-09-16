@@ -88,7 +88,7 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
             return new Date(b.date) - new Date(a.date);
           })
           .map((comment) => (
-            <Comment key={comment.id} comment={comment} />
+            <Comment type="client" key={comment.id} comment={comment} />
           ))}
       </div>
     </div>
