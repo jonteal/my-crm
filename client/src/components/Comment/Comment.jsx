@@ -7,8 +7,9 @@ import { GET_CLIENT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/clien
 import { ADD_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/projectActivityCommentReplyMutations";
 import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
 import Spinner from "../reusable/Spinner/Spinner";
+import CommentReply from "../CommentReply/CommentReply";
 
-const Comment = ({ comment, type }) => {
+const Comment = ({ comment, type, replies }) => {
   const [addReply, setAddReply] = useState(false);
   const [commentText, setCommentText] = useState("");
 
@@ -168,40 +169,18 @@ const Comment = ({ comment, type }) => {
 
       {type === "client"
         ? matchingClientReplies.map((reply) => (
-            <>
-              <div
-                key={reply.id}
-                className="border ml-10 mt-2 px-3 py-2 bg-slate-100 rounded-xl flex flex-row justify-between items-center"
-              >
-                <p>{reply.commentText}</p>
-                <div className="flex justify-end">
-                  <button>
-                    <FiEdit2 />
-                  </button>
-                </div>
-              </div>
-              <p className="text-slate-600 text-start text-xs mt-2 mr-3 ml-12">
-                {formattedDate}
-              </p>
-            </>
+            <CommentReply
+              key={reply.id}
+              formattedDate={formattedDate}
+              reply={reply}
+            />
           ))
         : matchingProjectReplies.map((reply) => (
-            <>
-              <div
-                key={reply.id}
-                className="border ml-10 mt-2 px-3 py-2 bg-slate-100 rounded-xl flex flex-row justify-between items-center"
-              >
-                <p>{reply.commentText}</p>
-                <div className="flex justify-end">
-                  <button>
-                    <FiEdit2 />
-                  </button>
-                </div>
-              </div>
-              <p className="text-slate-600 text-start text-xs mt-2 mr-3 ml-12">
-                {formattedDate}
-              </p>
-            </>
+            <CommentReply
+              key={reply.id}
+              formattedDate={formattedDate}
+              reply={reply}
+            />
           ))}
     </div>
   );
