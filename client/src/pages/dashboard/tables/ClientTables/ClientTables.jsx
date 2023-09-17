@@ -8,6 +8,7 @@ import { GET_PROJECTS } from "../../../../graphql/queries/projectQueries";
 import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
 import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 import ServicesTable from "../../../../components/dashboardTables/ServicesTable/ServicesTable";
+import ProjectsContainer from "../../../../components/ProjectsContainer/ProjectsContainer";
 
 const ClientTables = () => {
   const { id } = useParams();
@@ -36,13 +37,29 @@ const ClientTables = () => {
   // if (projectsError || servicesError)
   //   return <p>There was a problem loading the client projects...</p>;
 
+  const projectContainers = [
+    {
+      id: "notStarted",
+      state: "Not Started",
+    },
+    {
+      id: "inProgress",
+      state: "In Progress",
+    },
+    {
+      id: "completed",
+      state: "Completed",
+    },
+  ];
+
   const projectsArray = projectsData.projects;
   const servicesArray = servicesData.services;
 
   const client = clientData.client;
 
   const clientId = clientData.client.id;
-  const matchingProjects = projectsArray.filter(
+
+  const clientProjects = projectsArray.filter(
     (project) => project.client.id === clientId
   );
 
@@ -50,14 +67,23 @@ const ClientTables = () => {
     (service) => service.client.id === clientId
   );
 
+  console.log("clienttables matches: ", clientProjects);
+
   return (
     <div className="w-full mr-5">
-      {!projectsLoading && !projectsError && (
+      {projectContainers.map((projectContainer) => (
+        <ProjectsContainer
+          key={projectContainer.id}
+          projectContainer={projectContainer}
+          clientProjects={clientProjects}
+        />
+      ))}
+      {/* {!projectsLoading && !projectsError && (
         <ProjectsTable client={client} matchingProjects={matchingProjects} />
       )}
       {!servicesLoading && !servicesError && (
         <ServicesTable client={client} matchingServices={matchingServices} />
-      )}
+      )} */}
     </div>
   );
 };

@@ -51,6 +51,11 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
     setCommentText("");
   };
 
+  console.log(
+    "matchingClientActivityComments: ",
+    matchingClientActivityComments
+  );
+
   // matchingClientActivityComments.sort(function (a, b) {
   //   return new Date(b.date) - new Date(a.date);
   // });
@@ -85,7 +90,7 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
       <div className="mt-5 pb-2">
         {matchingClientActivityComments
           .sort(function (a, b) {
-            return new Date(b.date) - new Date(a.date);
+            return new Date(b.createdAt) - new Date(a.createdAt);
           })
           .map((comment) => (
             <Comment type="client" key={comment.id} comment={comment} />

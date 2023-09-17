@@ -80,6 +80,11 @@ const cache = new InMemoryCache({
             return incoming;
           },
         },
+        projectActivityCommentReplies: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
       },
     },
   },

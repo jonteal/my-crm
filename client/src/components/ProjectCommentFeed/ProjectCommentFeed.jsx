@@ -82,9 +82,13 @@ const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
       </form>
 
       <div className="mt-5">
-        {matchingProjectActivityComments.map((comment) => (
-          <Comment type="project" key={comment.id} comment={comment} />
-        ))}
+        {matchingProjectActivityComments
+          .sort(function (a, b) {
+            return new Date(a.createdAt) - new Date(b.createdAt);
+          })
+          .map((comment) => (
+            <Comment type="project" key={comment.id} comment={comment} />
+          ))}
       </div>
     </div>
   );

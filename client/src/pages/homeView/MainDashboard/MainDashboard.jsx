@@ -1,3 +1,4 @@
+import NewClientsThisMonth from "../../../components/mainDashboard/NewClientsThisMonth/NewClientsThisMonth";
 import TotalClients from "../../../components/mainDashboard/TotalClients/TotalClients";
 // import Spinner from "../../../components/reusable/Spinner/Spinner";
 import { GET_CLIENTS } from "../../../graphql/queries/clientQueries";
@@ -24,8 +25,9 @@ const MainDashboard = () => {
   if (clientError) return <p>There was an error loading the content</p>;
 
   return (
-    <div className="bg-slate-200 h-screen">
+    <div className="bg-slate-200 h-screen flex flex-row">
       {clientsData && <TotalClients clientsData={clientsData} />}
+      <NewClientsThisMonth />
     </div>
   );
 };

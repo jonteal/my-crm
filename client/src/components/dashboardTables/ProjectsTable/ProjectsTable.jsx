@@ -9,7 +9,7 @@ import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 // COMPONENTS
 import AddButton from "../../reusable/buttons/AddButton/AddButton";
 
-const ProjectsTable = ({ client, matchingProjects }) => {
+const ProjectsTable = ({ client, projects, projectContainer }) => {
   const { id } = useParams();
   const {
     loading: clientLoading,
@@ -19,7 +19,9 @@ const ProjectsTable = ({ client, matchingProjects }) => {
     variables: { id },
   });
 
-  console.log("projects: ", matchingProjects);
+  console.log("clientData: ", clientData.client.id);
+
+  console.log("projects projects table: ", projects);
   return (
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 px-3 w-full">
       <div className="flex flex-row justify-between items-center py-3">
@@ -55,10 +57,10 @@ const ProjectsTable = ({ client, matchingProjects }) => {
           </tr>
         </thead>
         <tbody>
-          {matchingProjects
-            // .filter((client) => client.status === clientContainer.state)
+          {projects
+            ?.filter((project) => project.status === projectContainer.state)
             .map((project, index) => (
-              <tr>
+              <tr key={project.id}>
                 <td className="text-slate-700 font-light text-left border pl-2 pr-2">
                   {index + 1}
                 </td>
@@ -102,7 +104,9 @@ const ProjectsTable = ({ client, matchingProjects }) => {
                   className="text-slate-700 font-light text-left border pl-2"
                   key={project.id}
                 >
-                  <Link to={`/clients/${client.id}/projects/${project.id}`}>
+                  <Link
+                    to={`/clients/${clientData.client.id}/projects/${project.id}`}
+                  >
                     <FaRegEye className="text-sky-600" />
                   </Link>
                 </td>
