@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 // LIBRARIES
 import { useMutation, useQuery } from "@apollo/client";
@@ -7,6 +8,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ADD_INVOICE } from "../../../../graphql/mutations/invoiceMutations";
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import { GET_CLIENTS } from "../../../../graphql/queries/clientQueries";
+import { GET_PROJECTS } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
@@ -18,15 +20,15 @@ import DatePicker from "react-datepicker";
 // CSS
 import "react-datepicker/dist/react-datepicker.css";
 
-// import "./addClient.css";
-
 const rootClass = "add-invoice";
 
 const AddInvoice = () => {
+  const { id: selectedProjectId } = useParams();
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
-  const [clientId, setClientId] = useState("");
+  const [clientId, setClientId] = useState(selectedProjectId);
+  const [projectId, setProjectId] = useState(selectedProjectId);
 
   const [addInvoice] = useMutation(ADD_INVOICE, {
     variables: {
@@ -34,6 +36,7 @@ const AddInvoice = () => {
       amount,
       invoiceNumber,
       clientId,
+      projectId,
     },
     update(cache, { data: { addInvoice } }) {
       const { invoices } = cache.readQuery({ query: GET_INVOICES });
@@ -44,11 +47,33 @@ const AddInvoice = () => {
     },
   });
 
-  const { loading, error, data } = useQuery(GET_CLIENTS);
+  const {
+    loading: clientsLoading,
+    error: clientsError,
+    data: clientsData,
+  } = useQuery(GET_CLIENTS);
+  const {
+    loading: projectsLoading,
+    error: projectsError,
+    data: projectsData,
+  } = useQuery(GET_PROJECTS);
 
   const handleDateChange = (date) => {
     setDate(date);
   };
+
+  if (clientsLoading || projectsLoading) return <Spinner />;
+  if (clientsError || projectsError)
+    return <p>There was an error loading the content</p>;
+
+  const matchingProjects = projectsData?.projects.filter(
+    (project) => project.id === selectedProjectId
+  );
+  const matchingClient = clientsData.clients.filter(
+    (client) => client.id === matchingProjects[0].client.id
+  );
+  const matchingClientId = matchingClient[0].id;
+  const matchingProjectId = matchingProjects[0].client.id;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -57,16 +82,19 @@ const AddInvoice = () => {
       alert("Please fill in all fields");
     }
 
-    addInvoice(date, amount, invoiceNumber, clientId);
+    addInvoice(
+      date,
+      amount,
+      invoiceNumber,
+      matchingClientId,
+      matchingProjectId
+    );
 
     setDate(new Date());
     setAmount("");
     setInvoiceNumber("");
     setClientId("");
   };
-
-  if (loading) return <Spinner />;
-  if (error) return <p>There was an error loading the content</p>;
 
   return (
     <div
@@ -76,21 +104,9 @@ const AddInvoice = () => {
         Add Invoice
       </h3>
 
-      <label className="form-label client-select">Client Name</label>
-      <select
-        className="form-select w-2/3 mb-4 mx-auto"
-        aria-label="Default select example"
-        id="clientId"
-        value={clientId}
-        onChange={(e) => setClientId(e.target.value)}
-      >
-        <option value="">Select Client</option>
-        {data.clients.map((client) => (
-          <option key={client.id} value={client.id}>
-            {client.firstName + " " + client.lastName}
-          </option>
-        ))}
-      </select>
+      <h1 className="text-slate-700 text-xl">
+        Project: {matchingProjects[0].title}
+      </h1>
 
       <form className="w-full max-w-lg" onSubmit={onSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">

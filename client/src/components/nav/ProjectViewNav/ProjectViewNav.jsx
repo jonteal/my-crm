@@ -1,5 +1,7 @@
 import { BsFillPersonVcardFill, BsActivity } from "react-icons/bs";
 import { MdElectricalServices } from "react-icons/md";
+import { GiMoneyStack } from "react-icons/gi";
+
 import { NavLink } from "react-router-dom";
 
 const ProjectViewNav = ({ projectData }) => {
@@ -34,6 +36,13 @@ const ProjectViewNav = ({ projectData }) => {
           >
             <BsActivity className="text-orange-500" />
             <p className="text-base leading-4">Activity</p>
+          </NavLink>
+          <NavLink
+            to="financials"
+            className="flex justify-start items-center space-x-2 hover:text-white focus:bg-sky-600 focus:text-slate-100 hover:bg-sky-300 text-slate-600 rounded my-1 px-3 py-2 w-full md:w-30"
+          >
+            <GiMoneyStack className="text-green-500" />
+            <p className="text-base leading-4">Financials</p>
           </NavLink>
         </div>
       </div>

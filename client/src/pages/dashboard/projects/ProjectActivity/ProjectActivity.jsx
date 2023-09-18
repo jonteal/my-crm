@@ -3,6 +3,7 @@ import ProjectCommentFeed from "../../../../components/ProjectCommentFeed/Projec
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../../../graphql/queries/projectActivityCommentQueries";
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
+import ProjectHistory from "../../../../components/ProjectHistory/ProjectHistory";
 
 const ProjectActivity = () => {
   const { id } = useParams();
@@ -35,10 +36,17 @@ const ProjectActivity = () => {
         projectActivityComment.project.id === projectId
     );
   return (
-    <ProjectCommentFeed
-      projectId={projectId}
-      matchingProjectActivityComments={matchingProjectActivityComments}
-    />
+    <div className="flex flex-row w-full">
+      <div className="w-1/2">
+        <ProjectCommentFeed
+          projectId={projectId}
+          matchingProjectActivityComments={matchingProjectActivityComments}
+        />
+      </div>
+      <div className="w-1/2">
+        <ProjectHistory />
+      </div>
+    </div>
   );
 };
 

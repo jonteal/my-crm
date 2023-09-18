@@ -5,6 +5,7 @@ const ADD_INVOICE = gql`
     $date: String!
     $amount: String!
     $clientId: ID!
+    $projectId: ID!
     $invoiceNumber: String!
   ) {
     addInvoice(
@@ -12,6 +13,7 @@ const ADD_INVOICE = gql`
       amount: $amount
       invoiceNumber: $invoiceNumber
       clientId: $clientId
+      projectId: $projectId
     ) {
       id
       date
@@ -21,6 +23,10 @@ const ADD_INVOICE = gql`
         id
         firstName
         lastName
+      }
+      project {
+        id
+        title
       }
       createdAt
     }
@@ -56,6 +62,10 @@ const UPDATE_INVOICE = gql`
         id
         firstName
         lastName
+      }
+      project {
+        id
+        title
       }
       createdAt
     }

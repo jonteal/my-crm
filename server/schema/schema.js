@@ -89,6 +89,12 @@ const InvoiceType = new GraphQLObjectType({
         return Client.findById(parent.clientId);
       },
     },
+    project: {
+      type: ProjectType,
+      resolve(parent, args) {
+        return Project.findById(parent.projectId);
+      },
+    },
     createdAt: { type: GraphQLString },
   }),
 });
@@ -596,6 +602,7 @@ const mutation = new GraphQLObjectType({
         amount: { type: new GraphQLNonNull(GraphQLString) },
         invoiceNumber: { type: new GraphQLNonNull(GraphQLString) },
         clientId: { type: new GraphQLNonNull(GraphQLID) },
+        projectId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
         const invoice = new Invoice({
@@ -603,6 +610,7 @@ const mutation = new GraphQLObjectType({
           amount: args.amount,
           invoiceNumber: args.invoiceNumber,
           clientId: args.clientId,
+          projectId: args.projectId,
         });
 
         return invoice.save();
@@ -638,6 +646,7 @@ const mutation = new GraphQLObjectType({
               amount: args.amount,
               invoiceNumber: args.invoiceNumber,
               clientId: args.clientId,
+              projectId: args.projectId,
             },
           },
           { new: true }

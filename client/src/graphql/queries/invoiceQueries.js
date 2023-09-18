@@ -12,6 +12,10 @@ const GET_INVOICES = gql`
         firstName
         lastName
       }
+      project {
+        id
+        title
+      }
       createdAt
     }
   }
@@ -28,6 +32,10 @@ const GET_INVOICE = gql`
         id
         firstName
         lastName
+      }
+      project {
+        id
+        title
       }
       createdAt
     }

@@ -8,7 +8,7 @@ import Home from "./pages/homeView/Home/Home";
 
 // Components
 import ClientView from "./pages/dashboard/ClientView/ClientView";
-import ProjectView from "./pages/dashboard/tables/ProjectView/ProjectView";
+import ProjectView from "./pages/dashboard/projects/ProjectView/ProjectView";
 import NotFound from "./pages/NotFound/NotFound";
 import AddClient from "./pages/homeView/AddClient/AddClient";
 import ClientDashboard from "./pages/dashboard/profile/ClientDashboard/ClientDashboard";
@@ -24,17 +24,15 @@ import ClientTransactionsView from "./pages/dashboard/billing/ClientTransactions
 import AddTransaction from "./pages/dashboard/billing/AddTransaction/AddTransaction";
 import MainDashboard from "./pages/homeView/MainDashboard/MainDashboard";
 import AddClientService from "./pages/dashboard/tables/AddClientService/AddClientService";
+import ProjectServices from "./pages/dashboard/projects/ProjectServices/ProjectServices";
+import ProjectActivity from "./pages/dashboard/projects/ProjectActivity/ProjectActivity";
+import ProjectProfile from "./pages/dashboard/projects/ProjectProfile/ProjectProfile";
 // import EditProject from "./pages/EditProject/EditProject";
 // import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
 // import ClientsPage from "./pages/ClientsPage/ClientsPage";
 
 import "./App.css";
-import ClientProfile from "./pages/dashboard/profile/ClientProfile/ClientProfile";
-import ServicesTable from "./components/dashboardTables/ServicesTable/ServicesTable";
-import ProjectCommentFeed from "./components/ProjectCommentFeed/ProjectCommentFeed";
-import ProjectServices from "./pages/dashboard/projects/ProjectServices/ProjectServices";
-import ProjectActivity from "./pages/dashboard/projects/ProjectActivity/ProjectActivity";
-import ProjectProfile from "./pages/dashboard/projects/ProjectProfile/ProjectProfile";
+import ProjectFinancials from "./pages/dashboard/projects/ProjectFinancials/ProjectFinancials";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -138,6 +136,14 @@ function App() {
                     element={<ProjectActivity />}
                     path="/clients/:id/projects/:id/activity"
                   />
+                  <Route
+                    element={<ProjectFinancials />}
+                    path="/clients/:id/projects/:id/financials"
+                  />
+                  <Route
+                    path="/clients/:id/projects/:id/financials/addInvoice"
+                    element={<AddInvoice />}
+                  />
                 </Route>
                 <Route
                   path="/clients/:id/addProject"
@@ -151,10 +157,6 @@ function App() {
                 <Route
                   path="/clients/:id/billing/invoices"
                   element={<ClientInvoices />}
-                />
-                <Route
-                  path="/clients/:id/billing/addInvoice"
-                  element={<AddInvoice />}
                 />
                 <Route
                   path="/clients/:id/billing/addTransaction"

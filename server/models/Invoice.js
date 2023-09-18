@@ -16,6 +16,10 @@ const InvoiceSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Client",
   },
+  projectId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project",
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
