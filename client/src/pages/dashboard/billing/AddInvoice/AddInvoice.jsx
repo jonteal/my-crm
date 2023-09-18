@@ -26,6 +26,7 @@ const AddInvoice = () => {
   const { id: selectedProjectId } = useParams();
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
+  const [notes, setNotes] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
   const [clientId, setClientId] = useState(selectedProjectId);
   const [projectId, setProjectId] = useState(selectedProjectId);
@@ -34,6 +35,7 @@ const AddInvoice = () => {
     variables: {
       date,
       amount,
+      notes,
       invoiceNumber,
       clientId,
       projectId,
@@ -85,6 +87,7 @@ const AddInvoice = () => {
     addInvoice(
       date,
       amount,
+      notes,
       invoiceNumber,
       matchingClientId,
       matchingProjectId
@@ -92,6 +95,7 @@ const AddInvoice = () => {
 
     setDate(new Date());
     setAmount("");
+    setNotes("");
     setInvoiceNumber("");
     setClientId("");
   };
@@ -162,6 +166,24 @@ const AddInvoice = () => {
                 onChange={(e) => setAmount(e.target.value)}
               />
             </div>
+          </div>
+          <div className="w-full">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-notes"
+            >
+              Notes
+            </label>
+            <textarea
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-notes"
+              aria-label="Invoice notes section"
+              //   type="text"
+              rows="3"
+              placeholder="Notes about this invoice"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+            />
           </div>
         </div>
 

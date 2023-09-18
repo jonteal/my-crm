@@ -6,6 +6,7 @@ const GET_INVOICES = gql`
       id
       date
       amount
+      notes
       invoiceNumber
       client {
         id
@@ -27,6 +28,7 @@ const GET_INVOICE = gql`
       id
       date
       amount
+      notes
       invoiceNumber
       client {
         id

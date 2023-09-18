@@ -83,6 +83,7 @@ const InvoiceType = new GraphQLObjectType({
     amount: { type: GraphQLString },
     invoiceNumber: { type: GraphQLString },
     date: { type: GraphQLString },
+    notes: { type: GraphQLString },
     client: {
       type: ClientType,
       resolve(parent, args) {
@@ -600,6 +601,7 @@ const mutation = new GraphQLObjectType({
       args: {
         date: { type: new GraphQLNonNull(GraphQLString) },
         amount: { type: new GraphQLNonNull(GraphQLString) },
+        notes: { type: GraphQLString },
         invoiceNumber: { type: new GraphQLNonNull(GraphQLString) },
         clientId: { type: new GraphQLNonNull(GraphQLID) },
         projectId: { type: new GraphQLNonNull(GraphQLID) },
@@ -608,6 +610,7 @@ const mutation = new GraphQLObjectType({
         const invoice = new Invoice({
           date: args.date,
           amount: args.amount,
+          notes: args.notes,
           invoiceNumber: args.invoiceNumber,
           clientId: args.clientId,
           projectId: args.projectId,
@@ -635,6 +638,7 @@ const mutation = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLID) },
         date: { type: GraphQLString },
         amount: { type: GraphQLString },
+        notes: { type: GraphQLString },
         invoiceNumber: { type: GraphQLString },
       },
       resolve(parent, args) {
@@ -644,6 +648,7 @@ const mutation = new GraphQLObjectType({
             $set: {
               date: args.date,
               amount: args.amount,
+              notes: args.notes,
               invoiceNumber: args.invoiceNumber,
               clientId: args.clientId,
               projectId: args.projectId,

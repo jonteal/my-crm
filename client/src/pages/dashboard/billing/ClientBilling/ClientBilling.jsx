@@ -49,7 +49,7 @@ const ClientBilling = () => {
   if (invoicesError || transactionsError || projectsError)
     return <p>There was a problem loading the client transactions...</p>;
 
-  const invoicesArray = invoicesData.invoices;
+  // const invoicesArray = invoicesData.invoices;
   const transactionsArray = transactionsData.transactions;
 
   const clientId = clientData.client.id;
@@ -62,32 +62,32 @@ const ClientBilling = () => {
     return acc + parseFloat(obj.clientBudget);
   }, 0);
 
-  const matchingInvoices = invoicesArray.filter(
-    (invoice) => invoice.client.id === clientId
-  );
+  // const matchingInvoices = invoicesArray.filter(
+  //   (invoice) => invoice.client.id === clientId
+  // );
 
-  const invoicesTotalSum = matchingInvoices.reduce(function (acc, obj) {
-    return acc + parseFloat(obj.amount);
-  }, 0);
+  // const invoicesTotalSum = matchingInvoices.reduce(function (acc, obj) {
+  //   return acc + parseFloat(obj.amount);
+  // }, 0);
 
   const matchingTransactions = transactionsArray.filter(
     (transaction) => transaction.client.id === clientId
   );
 
-  const budgetRemaining = budgetsTotalSum - invoicesTotalSum;
+  // const budgetRemaining = budgetsTotalSum - invoicesTotalSum;
   const billedThisMonth = 50;
 
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-row">
-        <TotalBilledCard totalBilled={invoicesTotalSum} />
+        {/* <TotalBilledCard totalBilled={invoicesTotalSum} /> */}
 
         <BilledThisMonth billedThisMonth={billedThisMonth} />
 
-        <BudgetRemaining budgetRemaining={budgetRemaining} />
+        {/* <BudgetRemaining budgetRemaining={budgetRemaining} /> */}
       </div>
       <div className="w-full flex flex-row">
-        <InvoiceTable invoices={matchingInvoices} />
+        {/* <InvoiceTable invoices={matchingInvoices} /> */}
         <ClientTransactions transactions={matchingTransactions} />
       </div>
     </div>

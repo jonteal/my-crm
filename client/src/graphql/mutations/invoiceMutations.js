@@ -4,6 +4,7 @@ const ADD_INVOICE = gql`
   mutation AddInvoice(
     $date: String!
     $amount: String!
+    $notes: String
     $clientId: ID!
     $projectId: ID!
     $invoiceNumber: String!
@@ -11,6 +12,7 @@ const ADD_INVOICE = gql`
     addInvoice(
       date: $date
       amount: $amount
+      notes: $notes
       invoiceNumber: $invoiceNumber
       clientId: $clientId
       projectId: $projectId
@@ -18,6 +20,7 @@ const ADD_INVOICE = gql`
       id
       date
       amount
+      notes
       invoiceNumber
       client {
         id
@@ -45,6 +48,7 @@ const UPDATE_INVOICE = gql`
   mutation UpdateInvoice(
     $id: ID!
     $date: String
+    $notes: String
     $amount: String
     $invoiceNumber: String
   ) {
@@ -52,11 +56,13 @@ const UPDATE_INVOICE = gql`
       id: $id
       date: $date
       amount: $amount
+      notes: $notes
       invoiceNumber: $invoiceNumber
     ) {
       id
       date
       amount
+      notes
       invoiceNumber
       client {
         id

@@ -26,11 +26,11 @@ const ClientViewNav = ({ clientData }) => {
             <p className="text-base leading-4">Dashboard</p>
           </NavLink>
           <NavLink
-            to="tables"
+            to="projects"
             className="flex justify-start items-center space-x-6 hover:text-white focus:bg-sky-600 focus:text-slate-100 hover:bg-sky-300 text-slate-600 rounded px-3 py-3 3w-full md:w-52"
           >
             <FaTable className="text-rose-500" />
-            <p className="text-base leading-4">Tables</p>
+            <p className="text-base leading-4">Projects</p>
           </NavLink>
           <NavLink
             to="billing"

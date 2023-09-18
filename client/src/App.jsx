@@ -115,7 +115,10 @@ function App() {
                   path="/clients/:id/dashboard"
                   element={<ClientDashboard />}
                 />
-                <Route path="/clients/:id/tables" element={<ClientTables />} />
+                <Route
+                  path="/clients/:id/projects"
+                  element={<ClientTables />}
+                />
                 <Route
                   path="/clients/:id/billing"
                   element={<ClientBilling />}

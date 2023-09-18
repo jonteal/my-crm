@@ -18,8 +18,6 @@ const ProjectFinancials = () => {
   if (invoicesError)
     return <p>There was a problem loading the client invoices...</p>;
 
-  console.log(invoicesData);
-
   const invoicesArray = invoicesData.invoices;
 
   const matchingInvoices = invoicesArray.filter(
@@ -27,8 +25,7 @@ const ProjectFinancials = () => {
   );
 
   return (
-    <div>
-      ProjectFinancials
+    <div className="mt-2">
       <InvoiceTable invoices={matchingInvoices} />
     </div>
   );
