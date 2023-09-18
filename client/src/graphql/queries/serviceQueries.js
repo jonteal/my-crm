@@ -7,10 +7,9 @@ const GET_SERVICES = gql`
       service
       cost
       status
-      client {
+      project {
         id
-        firstName
-        lastName
+        title
       }
       createdAt
       startDate
@@ -26,10 +25,9 @@ const GET_SERVICE = gql`
       service
       cost
       status
-      client {
+      project {
         id
-        firstName
-        lastName
+        title
       }
       createdAt
       startDate

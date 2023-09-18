@@ -74,7 +74,7 @@ const AddClientProject = () => {
     if (title === "" || description === "" || status === "") {
       setAlertOn(true);
       return (
-        <div class="alert alert-danger" role="alert">
+        <div className="alert alert-danger" role="alert">
           Please provide a title, description, and status!
         </div>
       );
@@ -172,17 +172,17 @@ const AddClientProject = () => {
             </div>
           </div>
 
-          <form class="w-full mt-3" onSubmit={onSubmit}>
-            <div class="flex flex-col mb-6">
-              <div class="w-full mb-6 md:mb-0">
+          <form className="w-full mt-3" onSubmit={onSubmit}>
+            <div className="flex flex-col mb-6">
+              <div className="w-full mb-6 md:mb-0">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-project-title"
                 >
                   Title
                 </label>
                 <input
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="grid-project-title"
                   aria-label="Project Title input"
                   type="text"
@@ -191,15 +191,15 @@ const AddClientProject = () => {
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
-              <div class="w-full">
+              <div className="w-full">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-project-description"
                 >
                   Description
                 </label>
                 <textarea
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-last-name"
                   aria-label="Project description input"
                   //   type="text"
@@ -235,15 +235,15 @@ const AddClientProject = () => {
               </div>
             </div>
 
-            <div class="w-full md:w-full">
+            <div className="w-full md:w-full">
               <label
-                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-project-notes"
               >
                 Notes
               </label>
               <textarea
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-project-notes"
                 aria-label="Project notes"
                 rows="3"
@@ -252,16 +252,16 @@ const AddClientProject = () => {
                 onChange={(e) => setNotes(e.target.value)}
               />
             </div>
-            <div class="flex flex-wrap -mx-3 mb-6 my-3">
-              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div className="flex flex-wrap -mx-3 mb-6 my-3">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-client-budget"
                 >
                   Budget
                 </label>
                 <input
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="grid-client-budget"
                   type="text"
                   placeholder="ex. $500"
@@ -270,15 +270,15 @@ const AddClientProject = () => {
                   onChange={(e) => setClientBudget(e.target.value)}
                 />
               </div>
-              <div class="w-full md:w-1/2 px-3">
+              <div className="w-full md:w-1/2 px-3">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-project-estimate"
                 >
                   Project Estimate
                 </label>
                 <input
-                  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-project-estimate"
                   type="text"
                   placeholder="ex. $400"

@@ -48,10 +48,10 @@ const ServiceType = new GraphQLObjectType({
     id: { type: GraphQLID },
     service: { type: GraphQLString },
     cost: { type: GraphQLString },
-    client: {
-      type: ClientType,
+    project: {
+      type: ProjectType,
       resolve(parent, args) {
-        return Client.findById(parent.clientId);
+        return Project.findById(parent.projectId);
       },
     },
     status: { type: GraphQLString },
@@ -518,7 +518,7 @@ const mutation = new GraphQLObjectType({
           }),
           defaultValue: "Off",
         },
-        clientId: { type: new GraphQLNonNull(GraphQLID) },
+        projectId: { type: new GraphQLNonNull(GraphQLID) },
         startDate: { type: GraphQLString },
         endDate: { type: GraphQLString },
       },
@@ -528,7 +528,7 @@ const mutation = new GraphQLObjectType({
           cost: args.cost,
           status: args.status,
           notes: args.notes,
-          clientId: args.clientId,
+          projectId: args.projectId,
           startDate: args.startDate,
           endDate: args.endDate,
         });
@@ -565,7 +565,7 @@ const mutation = new GraphQLObjectType({
           }),
           defaultValue: "Off",
         },
-        clientId: { type: new GraphQLNonNull(GraphQLID) },
+        projectId: { type: new GraphQLNonNull(GraphQLID) },
         startDate: { type: GraphQLString },
         endDate: { type: GraphQLString },
       },
@@ -578,7 +578,7 @@ const mutation = new GraphQLObjectType({
               cost: args.cost,
               status: args.status,
               notes: args.notes,
-              clientId: args.clientId,
+              projectId: args.projectId,
               startDate: args.startDate,
               endDate: args.endDate,
             },

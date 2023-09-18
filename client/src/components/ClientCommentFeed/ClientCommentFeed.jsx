@@ -51,11 +51,6 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
     setCommentText("");
   };
 
-  console.log(
-    "matchingClientActivityComments: ",
-    matchingClientActivityComments
-  );
-
   // matchingClientActivityComments.sort(function (a, b) {
   //   return new Date(b.date) - new Date(a.date);
   // });

@@ -14,8 +14,6 @@ const ProjectsContainer = ({ clientProjects, projectContainer }) => {
     setIsExpanded(!isExpanded);
   };
 
-  console.log("matchingProjects container: ", clientProjects);
-
   return (
     <div>
       <div className={`${rootClass}-main-container`}>

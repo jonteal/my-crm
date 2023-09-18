@@ -19,9 +19,6 @@ const ProjectsTable = ({ client, projects, projectContainer }) => {
     variables: { id },
   });
 
-  console.log("clientData: ", clientData.client.id);
-
-  console.log("projects projects table: ", projects);
   return (
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 px-3 w-full">
       <div className="flex flex-row justify-between items-center py-3">

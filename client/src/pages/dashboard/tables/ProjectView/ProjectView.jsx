@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 // GRAPHQL
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../../../graphql/queries/projectActivityCommentQueries";
+import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 
 // COMPONENTS
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
@@ -13,7 +14,9 @@ import ProjectCommentFeed from "../../../../components/ProjectCommentFeed/Projec
 // UTILS
 // import { formatCurrency } from "../../utilities/formatCurrency";
 
+import ServicesTable from "../../../../components/dashboardTables/ServicesTable/ServicesTable";
 import "./projectView.css";
+import ProjectInfoItem from "../../../../components/ProjectInfoItem/ProjectInfoItem";
 
 const rootClass = "project-view";
 
@@ -34,11 +37,21 @@ const ProjectView = () => {
     data: projectActivityCommentData,
   } = useQuery(GET_PROJECT_ACTIVITY_COMMENTS);
 
+  const {
+    loading: servicesLoading,
+    error: servicesError,
+    data: servicesData,
+  } = useQuery(GET_SERVICES);
+
   if (projectLoading) return <p>Loading...</p>;
-  if (projectError) return <p>There was an error...</p>;
+  if (projectError) return <p>There was an error loading project...</p>;
+
+  if (servicesLoading) return <p>Loading...</p>;
+  if (servicesError) return <p>There was an error loading services...</p>;
 
   if (projectActivityCommentsLoading) return <p>Loading...</p>;
-  if (projectActivityCommentsError) return <p>There was an error...</p>;
+  if (projectActivityCommentsError)
+    return <p>There was an error loading comments...</p>;
 
   const project = projectData.project;
 
@@ -49,6 +62,10 @@ const ProjectView = () => {
       (projectActivityComment) =>
         projectActivityComment.project.id === projectId
     );
+
+  const matchingServices = servicesData.services.filter(
+    (service) => service.project.id === projectId
+  );
 
   const {
     title,
@@ -73,83 +90,21 @@ const ProjectView = () => {
             </Link>
           </div> */}
           <div className={`${rootClass}-project-info`}>
-            <div className="flex flex-col ml-5 my-3">
-              <p className="text-slate-600 font-light text-left text-sm">
-                Title
-              </p>
-              <h1 className="text-slate-800 font-normal text-left text-2xl">
-                {title}
-              </h1>
-            </div>
-
-            <div className="flex flex-col ml-5 my-3">
-              <p className="text-slate-600 font-light text-left text-sm">
-                Description
-              </p>
-              <h1 className="text-slate-800 font-normal text-left text-base">
-                {description}
-              </h1>
-            </div>
-
-            <div className="flex flex-col ml-5 my-3">
-              <p className="text-slate-600 font-light text-left text-sm">
-                Notes
-              </p>
-              <h1 className="text-slate-800 font-normal text-left text-base">
-                {notes}
-              </h1>
-            </div>
-
-            <div className="flex flex-col ml-5 my-3">
-              <p className="text-slate-600 font-light text-left text-sm">
-                Status
-              </p>
-              <h1 className="text-slate-800 font-normal text-left text-base">
-                {status}
-              </h1>
-            </div>
-
-            <div className="flex flex-col ml-5 my-3">
-              <p className="text-slate-600 font-light text-left text-sm">
-                Start Date
-              </p>
-              <h1 className="text-slate-800 font-normal text-left text-base">
-                {startDate}
-              </h1>
-            </div>
-
-            <div className="flex flex-col ml-5 my-3">
-              <p className="text-slate-600 font-light text-left text-sm">
-                Deadline
-              </p>
-              <h1 className="text-slate-800 font-normal text-left text-base">
-                {deadline}
-              </h1>
-            </div>
-
-            <div className="flex flex-col ml-5 my-3">
-              <p className="text-slate-600 font-light text-left text-sm">
-                Client Budget
-              </p>
-              <h1 className="text-slate-800 font-normal text-left text-base">
-                {clientBudget}
-              </h1>
-            </div>
-
-            <div className="flex flex-col ml-5 my-3">
-              <p className="text-slate-600 font-light text-left text-sm">
-                Project Estimate
-              </p>
-              <h1 className="text-slate-800 font-normal text-left text-base">
-                {projectEstimate}
-              </h1>
-            </div>
+            <ProjectInfoItem name="Title" value={title} />
+            <ProjectInfoItem name="Description" value={description} />
+            <ProjectInfoItem name="Notes" value={notes} />
+            <ProjectInfoItem name="Status" value={status} />
+            <ProjectInfoItem name="Start Date" value={startDate} />
+            <ProjectInfoItem name="Deadline" value={deadline} />
+            <ProjectInfoItem name="Client Budget" value={clientBudget} />
+            <ProjectInfoItem name="Project Estimate" value={projectEstimate} />
           </div>
         </div>
         <ProjectCommentFeed
           matchingProjectActivityComments={matchingProjectActivityComments}
           projectId={projectId}
         />
+        <ServicesTable matchingServices={matchingServices} />
       </div>
     </>
   );

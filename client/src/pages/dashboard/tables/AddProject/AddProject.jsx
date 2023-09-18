@@ -70,7 +70,7 @@ const AddProject = () => {
     if (title === "" || description === "" || status === "") {
       setAlertOn(true);
       return (
-        <div class="alert alert-danger" role="alert">
+        <div className="alert alert-danger" role="alert">
           Please provide a title, description, and status!
         </div>
       );

@@ -12,9 +12,9 @@ const ServiceSchema = new mongoose.Schema({
     type: String,
     enum: ["On", "Off"],
   },
-  clientId: {
+  projectId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Client",
+    ref: "Project",
   },
   startDate: {
     type: String,

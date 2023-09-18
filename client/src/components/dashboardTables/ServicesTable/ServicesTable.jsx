@@ -52,39 +52,24 @@ const ServicesTable = ({ matchingServices }) => {
         </thead>
         <tbody>
           {matchingServices.map((service, index) => (
-            <tr>
+            <tr key={service.id}>
               <td className="text-slate-700 font-light text-left border pl-2 pr-2">
                 {index + 1}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={service.service}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 {service.service}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={service.cost}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 $ {service.cost}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={service.status}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 {service.status}
               </td>
 
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={service.id}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 {service.startDate}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={service.id}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 {service.endDate}
               </td>
             </tr>

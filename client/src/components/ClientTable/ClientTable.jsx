@@ -39,54 +39,30 @@ const ClientTable = ({ clients, clientContainer }) => {
               <td className="text-slate-700 font-light text-left border pl-2 pr-2">
                 {index + 1}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={client.firstName}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 {client.firstName}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={client.lastName}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 {client.lastName}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={client.phoneNumber}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 {client.phoneNumber}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={client.emailAddress}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 {client.emailAddress}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={client.companyName}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 {client.companyName}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={client.status}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 {client.status}
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={client.status}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 <Link to={`/clients/${client.id}/dashboard`}>
                   <FaRegEye className="text-sky-600" />
                 </Link>
               </td>
-              <td
-                className="text-slate-700 font-light text-left border pl-2"
-                key={client.status}
-              >
+              <td className="text-slate-700 font-light text-left border pl-2">
                 <Link>
                   <FaRegTrashAlt className="text-red-500" />
                 </Link>

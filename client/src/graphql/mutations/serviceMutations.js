@@ -5,7 +5,7 @@ const ADD_SERVICE = gql`
     $service: String!
     $cost: String!
     $status: ServiceStatus!
-    $clientId: ID!
+    $projectId: ID!
     $startDate: String
     $endDate: String
   ) {
@@ -13,7 +13,7 @@ const ADD_SERVICE = gql`
       service: $service
       cost: $cost
       status: $status
-      clientId: $clientId
+      projectId: $projectId
       startDate: $startDate
       endDate: $endDate
     ) {
@@ -21,10 +21,9 @@ const ADD_SERVICE = gql`
       service
       cost
       status
-      client {
+      project {
         id
-        firstName
-        lastName
+        title
       }
       startDate
       endDate
@@ -62,10 +61,9 @@ const UPDATE_SERVICE = gql`
       service
       cost
       status
-      client {
+      project {
         id
-        firstName
-        lastName
+        title
       }
       startDate
       endDate
