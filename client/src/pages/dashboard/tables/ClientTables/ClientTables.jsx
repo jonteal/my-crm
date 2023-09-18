@@ -1,17 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
-import ProjectsTable from "../../../../components/dashboardTables/ProjectsTable/ProjectsTable";
+// COMPONENTS
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
+import ProjectsContainer from "../../../../components/ProjectsContainer/ProjectsContainer";
 
+// GRAPHQL
 import { GET_PROJECTS } from "../../../../graphql/queries/projectQueries";
 import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
-import ProjectsContainer from "../../../../components/ProjectsContainer/ProjectsContainer";
 
 const ClientTables = () => {
   const { id } = useParams();
-
-  console.log("id: ", id);
 
   const {
     loading: clientLoading,
@@ -46,8 +45,6 @@ const ClientTables = () => {
     },
   ];
 
-  console.log("clientData: ", clientData);
-
   const projectsArray = projectsData.projects;
 
   const client = clientData.client;
@@ -59,7 +56,10 @@ const ClientTables = () => {
   );
 
   return (
-    <div className="w-full mr-5">
+    <div className="w-full mr-5 rounded-xl bg-slate-50 mx-2 mt-1 px-3 py-3">
+      <h1 className="block uppercase tracking-wide text-gray-700 text-xs font-bold my-3 text-left">
+        Projects
+      </h1>
       {projectContainers.map((projectContainer) => (
         <ProjectsContainer
           key={projectContainer.id}
@@ -67,12 +67,6 @@ const ClientTables = () => {
           clientProjects={clientProjects}
         />
       ))}
-      {/* {!projectsLoading && !projectsError && (
-        <ProjectsTable client={client} matchingProjects={matchingProjects} />
-      )}
-      {!servicesLoading && !servicesError && (
-        <ServicesTable client={client} matchingServices={matchingServices} />
-      )} */}
     </div>
   );
 };
