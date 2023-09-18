@@ -29,6 +29,12 @@ import AddClientService from "./pages/dashboard/tables/AddClientService/AddClien
 // import ClientsPage from "./pages/ClientsPage/ClientsPage";
 
 import "./App.css";
+import ClientProfile from "./pages/dashboard/profile/ClientProfile/ClientProfile";
+import ServicesTable from "./components/dashboardTables/ServicesTable/ServicesTable";
+import ProjectCommentFeed from "./components/ProjectCommentFeed/ProjectCommentFeed";
+import ProjectServices from "./pages/dashboard/projects/ProjectServices/ProjectServices";
+import ProjectActivity from "./pages/dashboard/projects/ProjectActivity/ProjectActivity";
+import ProjectProfile from "./pages/dashboard/projects/ProjectProfile/ProjectProfile";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -119,7 +125,20 @@ function App() {
                 <Route
                   path="/clients/:id/projects/:id"
                   element={<ProjectView />}
-                />
+                >
+                  <Route
+                    element={<ProjectProfile />}
+                    path="/clients/:id/projects/:id/profile"
+                  />
+                  <Route
+                    element={<ProjectServices />}
+                    path="/clients/:id/projects/:id/services"
+                  />
+                  <Route
+                    element={<ProjectActivity />}
+                    path="/clients/:id/projects/:id/activity"
+                  />
+                </Route>
                 <Route
                   path="/clients/:id/addProject"
                   element={<AddClientProject />}

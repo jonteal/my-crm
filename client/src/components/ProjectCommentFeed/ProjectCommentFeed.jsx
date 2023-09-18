@@ -58,7 +58,7 @@ const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
   if (error) return <p>There was an error loading the comment feed</p>;
 
   return (
-    <div className="rounded-xl bg-slate-50 mx-2 mt-3 px-3 w-full">
+    <div className="rounded-xl bg-slate-50 ml-2 mr-5 mt-3 px-3 pb-2 w-full">
       <form className="flex flex-col" onSubmit={onSubmit}>
         <label
           className="block uppercase tracking-wide text-gray-700 text-xs font-bold my-3"
@@ -83,9 +83,9 @@ const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
 
       <div className="mt-5">
         {matchingProjectActivityComments
-          .sort(function (a, b) {
-            return new Date(a.createdAt) - new Date(b.createdAt);
-          })
+          // .sort(function (a, b) {
+          //   return new Date(a.createdAt) - new Date(b.createdAt);
+          // })
           .map((comment) => (
             <Comment type="project" key={comment.id} comment={comment} />
           ))}

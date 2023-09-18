@@ -61,56 +61,32 @@ const ProjectsTable = ({ client, projects, projectContainer }) => {
                 <td className="text-slate-700 font-light text-left border pl-2 pr-2">
                   {index + 1}
                 </td>
-                <td
-                  className="text-slate-700 font-light text-left border pl-2"
-                  key={project.title}
-                >
+                <td className="text-slate-700 font-light text-left border pl-2">
                   {project.title}
                 </td>
-                <td
-                  className="text-slate-700 font-light text-left border pl-2"
-                  key={project.status}
-                >
+                <td className="text-slate-700 font-light text-left border pl-2">
                   {project.status}
                 </td>
-                <td
-                  className="text-slate-700 font-light text-left border pl-2"
-                  key={project.startDate}
-                >
+                <td className="text-slate-700 font-light text-left border pl-2">
                   {project.startDate}
                 </td>
-                <td
-                  className="text-slate-700 font-light text-left border pl-2"
-                  key={project.deadline}
-                >
+                <td className="text-slate-700 font-light text-left border pl-2">
                   {project.deadline}
                 </td>
-                <td
-                  className="text-slate-700 font-light text-left border pl-2"
-                  key={project.clientBudget}
-                >
+                <td className="text-slate-700 font-light text-left border pl-2">
                   $ {project.clientBudget}
                 </td>
-                <td
-                  className="text-slate-700 font-light text-left border pl-2"
-                  key={project.projectEstimate}
-                >
+                <td className="text-slate-700 font-light text-left border pl-2">
                   $ {project.projectEstimate}
                 </td>
-                <td
-                  className="text-slate-700 font-light text-left border pl-2"
-                  key={project.id}
-                >
+                <td className="text-slate-700 font-light text-left border pl-2">
                   <Link
                     to={`/clients/${clientData.client.id}/projects/${project.id}`}
                   >
                     <FaRegEye className="text-sky-600" />
                   </Link>
                 </td>
-                <td
-                  className="text-slate-700 font-light text-left border pl-2"
-                  key={project.id}
-                >
+                <td className="text-slate-700 font-light text-left border pl-2">
                   <Link>
                     <FaRegTrashAlt className="text-red-500" />
                   </Link>
