@@ -7,8 +7,8 @@ import { useMutation, useQuery } from "@apollo/client";
 // GRAPHQL
 import { ADD_INVOICE } from "../../../../graphql/mutations/invoiceMutations";
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
-import { GET_CLIENTS } from "../../../../graphql/queries/clientQueries";
-import { GET_PROJECTS } from "../../../../graphql/queries/projectQueries";
+import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
+import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
@@ -23,13 +23,11 @@ import "react-datepicker/dist/react-datepicker.css";
 const rootClass = "add-invoice";
 
 const AddInvoice = () => {
-  const { id: selectedProjectId } = useParams();
+  const { clientId, projectId } = useParams();
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [notes, setNotes] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
-  const [clientId, setClientId] = useState(selectedProjectId);
-  const [projectId, setProjectId] = useState(selectedProjectId);
 
   const [addInvoice] = useMutation(ADD_INVOICE, {
     variables: {
@@ -53,12 +51,13 @@ const AddInvoice = () => {
     loading: clientsLoading,
     error: clientsError,
     data: clientsData,
-  } = useQuery(GET_CLIENTS);
+  } = useQuery(GET_CLIENT, { variables: { id: clientId } });
+
   const {
     loading: projectsLoading,
     error: projectsError,
     data: projectsData,
-  } = useQuery(GET_PROJECTS);
+  } = useQuery(GET_PROJECT, { variables: { id: projectId } });
 
   const handleDateChange = (date) => {
     setDate(date);
@@ -68,15 +67,6 @@ const AddInvoice = () => {
   if (clientsError || projectsError)
     return <p>There was an error loading the content</p>;
 
-  const matchingProjects = projectsData?.projects.filter(
-    (project) => project.id === selectedProjectId
-  );
-  const matchingClient = clientsData.clients.filter(
-    (client) => client.id === matchingProjects[0].client.id
-  );
-  const matchingClientId = matchingClient[0].id;
-  const matchingProjectId = matchingProjects[0].client.id;
-
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -84,20 +74,12 @@ const AddInvoice = () => {
       alert("Please fill in all fields");
     }
 
-    addInvoice(
-      date,
-      amount,
-      notes,
-      invoiceNumber,
-      matchingClientId,
-      matchingProjectId
-    );
+    addInvoice(date, amount, notes, invoiceNumber, projectId, clientId);
 
     setDate(new Date());
     setAmount("");
     setNotes("");
     setInvoiceNumber("");
-    setClientId("");
   };
 
   return (
@@ -108,9 +90,9 @@ const AddInvoice = () => {
         Add Invoice
       </h3>
 
-      <h1 className="text-slate-700 text-xl">
+      {/* <h1 className="text-slate-700 text-xl">
         Project: {matchingProjects[0].title}
-      </h1>
+      </h1> */}
 
       <form className="w-full max-w-lg" onSubmit={onSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
@@ -170,7 +152,7 @@ const AddInvoice = () => {
           <div className="w-full">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-notes"
+              htmlFor="grid-notes"
             >
               Notes
             </label>

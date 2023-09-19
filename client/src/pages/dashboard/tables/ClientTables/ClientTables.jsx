@@ -10,14 +10,14 @@ import { GET_PROJECTS } from "../../../../graphql/queries/projectQueries";
 import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
 
 const ClientTables = () => {
-  const { id } = useParams();
+  const { clientId } = useParams();
 
   const {
     loading: clientLoading,
     error: clientError,
     data: clientData,
   } = useQuery(GET_CLIENT, {
-    variables: { id },
+    variables: { id: clientId },
   });
 
   const {
@@ -47,9 +47,9 @@ const ClientTables = () => {
 
   const projectsArray = projectsData.projects;
 
-  const client = clientData.client;
+  // const client = clientData.client;
 
-  const clientId = clientData?.client.id;
+  // const clientId = clientData?.client.id;
 
   const clientProjects = projectsArray.filter(
     (project) => project.client.id === clientId

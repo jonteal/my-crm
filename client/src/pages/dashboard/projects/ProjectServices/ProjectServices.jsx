@@ -5,14 +5,14 @@ import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 import { useQuery } from "@apollo/client";
 
 const ProjectServices = () => {
-  const { id } = useParams();
+  const { projectId } = useParams();
 
   const {
     loading: projectLoading,
     error: projectError,
     data: projectData,
   } = useQuery(GET_PROJECT, {
-    variables: { id },
+    variables: { id: projectId },
   });
   const {
     loading: servicesLoading,
@@ -22,10 +22,6 @@ const ProjectServices = () => {
 
   if (servicesLoading) return <p>Loading...</p>;
   if (servicesError) return <p>There was an error loading services...</p>;
-
-  const project = projectData.project;
-
-  const projectId = project.id;
 
   const matchingServices = servicesData.services.filter(
     (service) => service.project.id === projectId

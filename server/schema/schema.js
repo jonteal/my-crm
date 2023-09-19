@@ -115,6 +115,12 @@ const TransactionType = new GraphQLObjectType({
         return Client.findById(parent.clientId);
       },
     },
+    project: {
+      type: ProjectType,
+      resolve(parent, args) {
+        return Project.findById(parent.projectId);
+      },
+    },
     createdAt: { type: GraphQLString },
   }),
 });
@@ -667,6 +673,7 @@ const mutation = new GraphQLObjectType({
         amount: { type: new GraphQLNonNull(GraphQLString) },
         paymentParty: { type: new GraphQLNonNull(GraphQLString) },
         clientId: { type: new GraphQLNonNull(GraphQLID) },
+        projectId: { type: new GraphQLNonNull(GraphQLID) },
         incomingOutgoing: {
           type: new GraphQLEnumType({
             name: "IncomingOutgoing",
@@ -684,6 +691,7 @@ const mutation = new GraphQLObjectType({
           amount: args.amount,
           paymentParty: args.paymentParty,
           clientId: args.clientId,
+          projectId: args.projectId,
           incomingOutgoing: args.incomingOutgoing,
         });
 
@@ -730,6 +738,7 @@ const mutation = new GraphQLObjectType({
               amount: args.amount,
               paymentParty: args.paymentParty,
               clientId: args.clientId,
+              projectId: args.projectId,
               incomingOutgoing: args.incomingOutgoing,
             },
           },

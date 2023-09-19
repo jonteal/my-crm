@@ -110,63 +110,66 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<MainDashboard />} />
               <Route path="/addClient" element={<AddClient />} />
-              <Route path="/clients/:id" element={<ClientView />}>
+              <Route path="/clients/:clientId" element={<ClientView />}>
                 <Route
-                  path="/clients/:id/dashboard"
+                  path="/clients/:clientId/dashboard"
                   element={<ClientDashboard />}
                 />
                 <Route
-                  path="/clients/:id/projects"
+                  path="/clients/:clientId/projects"
                   element={<ClientTables />}
                 />
                 <Route
-                  path="/clients/:id/billing"
+                  path="/clients/:clientId/billing"
                   element={<ClientBilling />}
                 />
                 <Route
-                  path="/clients/:id/projects/:id"
+                  path="/clients/:clientId/projects/:projectId"
                   element={<ProjectView />}
                 >
                   <Route
                     element={<ProjectProfile />}
-                    path="/clients/:id/projects/:id/profile"
+                    path="/clients/:clientId/projects/:projectId/profile"
                   />
                   <Route
                     element={<ProjectServices />}
-                    path="/clients/:id/projects/:id/services"
+                    path="/clients/:clientId/projects/:projectId/services"
                   />
                   <Route
                     element={<ProjectActivity />}
-                    path="/clients/:id/projects/:id/activity"
+                    path="/clients/:clientId/projects/:projectId/activity"
                   />
                   <Route
                     element={<ProjectFinancials />}
-                    path="/clients/:id/projects/:id/financials"
+                    path="/clients/:clientId/projects/:projectId/financials"
                   />
                   <Route
-                    path="/clients/:id/projects/:id/financials/addInvoice"
+                    path="/clients/:clientId/projects/:projectId/financials/addInvoice"
                     element={<AddInvoice />}
+                  />
+                  <Route
+                    path="/clients/:clientId/projects/:projectId/financials/addTransaction"
+                    element={<AddTransaction />}
                   />
                 </Route>
                 <Route
-                  path="/clients/:id/addProject"
+                  path="/clients/:clientId/addProject"
                   element={<AddClientProject />}
                 />
                 <Route
-                  path="/clients/:id/addService"
+                  path="/clients/:clientId/addService"
                   element={<AddClientService />}
                 />
-                <Route path="/clients/:id/edit" element={<EditClient />} />
                 <Route
-                  path="/clients/:id/billing/invoices"
+                  path="/clients/:clientId/edit"
+                  element={<EditClient />}
+                />
+                <Route
+                  path="/clients/:clientId/billing/invoices"
                   element={<ClientInvoices />}
                 />
                 <Route
-                  path="/clients/:id/billing/addTransaction"
-                  element={<AddTransaction />}
-                />
-                <Route
-                  path="/clients/:id/billing/transactions"
+                  path="/clients/:clientId/billing/transactions"
                   element={<ClientTransactionsView />}
                 />
               </Route>

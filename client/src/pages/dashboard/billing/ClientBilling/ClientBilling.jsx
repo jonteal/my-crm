@@ -16,14 +16,14 @@ import BilledThisMonth from "../../../../components/dashboardBilling/BilledThisM
 import BudgetRemaining from "../../../../components/dashboardBilling/BudgetRemaining/BudgetRemaining";
 
 const ClientBilling = () => {
-  const { id } = useParams();
+  const { clientId } = useParams();
 
   const {
     loading: clientLoading,
     error: clientError,
     data: clientData,
   } = useQuery(GET_CLIENT, {
-    variables: { id },
+    variables: { id: clientId },
   });
 
   const {
@@ -51,8 +51,6 @@ const ClientBilling = () => {
 
   // const invoicesArray = invoicesData.invoices;
   const transactionsArray = transactionsData.transactions;
-
-  const clientId = clientData.client.id;
 
   const matchingProjects = projectsData.projects.filter(
     (project) => project.client.id === clientId

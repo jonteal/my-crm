@@ -12,6 +12,10 @@ const TransactionSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Client",
   },
+  projectId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project",
+  },
   paymentDate: {
     type: String,
     get: (timeValue) => moment(timeValue).format("MM/DD/YYYY"),

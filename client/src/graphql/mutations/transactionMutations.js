@@ -5,6 +5,7 @@ const ADD_TRANSACTION = gql`
     $paymentDate: String!
     $amount: String!
     $clientId: ID!
+    $projectId: ID!
     $paymentParty: String!
     $incomingOutgoing: IncomingOutgoing!
   ) {
@@ -13,6 +14,7 @@ const ADD_TRANSACTION = gql`
       amount: $amount
       paymentParty: $paymentParty
       clientId: $clientId
+      projectId: $projectId
       incomingOutgoing: $incomingOutgoing
     ) {
       id
@@ -24,6 +26,10 @@ const ADD_TRANSACTION = gql`
         id
         firstName
         lastName
+      }
+      project {
+        id
+        title
       }
       createdAt
     }
@@ -61,6 +67,10 @@ const UPDATE_TRANSACTION = gql`
         id
         firstName
         lastName
+      }
+      project {
+        id
+        title
       }
       incomingOutgoing
       createdAt

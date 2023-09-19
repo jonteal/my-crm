@@ -11,14 +11,14 @@ import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
 import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../../../graphql/queries/clientActivityCommentQueries";
 
 const ClientDashboard = () => {
-  const { id } = useParams();
+  const { clientId } = useParams();
 
   const {
     loading: clientLoading,
     error: clientError,
     data: clientData,
   } = useQuery(GET_CLIENT, {
-    variables: { id },
+    variables: { id: clientId },
   });
 
   const {

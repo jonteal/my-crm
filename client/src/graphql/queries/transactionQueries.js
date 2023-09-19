@@ -13,6 +13,10 @@ const GET_TRANSACTIONS = gql`
         firstName
         lastName
       }
+      project {
+        id
+        title
+      }
       createdAt
     }
   }
@@ -30,6 +34,10 @@ const GET_TRANSACTION = gql`
         id
         firstName
         lastName
+      }
+      project {
+        id
+        title
       }
       createdAt
     }

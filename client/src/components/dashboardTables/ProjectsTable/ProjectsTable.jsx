@@ -10,13 +10,9 @@ import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 import AddButton from "../../reusable/buttons/AddButton/AddButton";
 
 const ProjectsTable = ({ client, projects, projectContainer }) => {
-  const { id } = useParams();
-  const {
-    loading: clientLoading,
-    error: clientError,
-    data: clientData,
-  } = useQuery(GET_CLIENT, {
-    variables: { id },
+  const { clientId } = useParams();
+  const { data: clientData } = useQuery(GET_CLIENT, {
+    variables: { id: clientId },
   });
 
   return (
@@ -25,7 +21,7 @@ const ProjectsTable = ({ client, projects, projectContainer }) => {
         <h2 className="text-left text-slate-700 text-lg mx-3">
           Projects Table
         </h2>
-        <Link to={`/clients/${id}/addProject`}>
+        <Link to={`/clients/${clientId}/addProject`}>
           <AddButton>Add Project</AddButton>
         </Link>
       </div>

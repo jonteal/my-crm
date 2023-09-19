@@ -4,7 +4,7 @@ import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 import ProjectInfoItem from "../../../../components/ProjectInfoItem/ProjectInfoItem";
 
 const ProjectProfile = () => {
-  const { id } = useParams();
+  const { projectId } = useParams();
 
   const rootClass = "project-view";
 
@@ -13,7 +13,7 @@ const ProjectProfile = () => {
     error: projectError,
     data: projectData,
   } = useQuery(GET_PROJECT, {
-    variables: { id },
+    variables: { id: projectId },
   });
 
   if (projectLoading) return <p>Loading...</p>;

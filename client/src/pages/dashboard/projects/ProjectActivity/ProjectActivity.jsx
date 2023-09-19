@@ -1,19 +1,21 @@
 import { useParams } from "react-router-dom";
-import ProjectCommentFeed from "../../../../components/ProjectCommentFeed/ProjectCommentFeed";
 import { useQuery } from "@apollo/client";
+
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../../../graphql/queries/projectActivityCommentQueries";
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
+
+import ProjectCommentFeed from "../../../../components/ProjectCommentFeed/ProjectCommentFeed";
 import ProjectHistory from "../../../../components/ProjectHistory/ProjectHistory";
 
 const ProjectActivity = () => {
-  const { id } = useParams();
+  const { projectId } = useParams();
 
   const {
     loading: projectLoading,
     error: projectError,
     data: projectData,
   } = useQuery(GET_PROJECT, {
-    variables: { id },
+    variables: { id: projectId },
   });
 
   const {
@@ -21,10 +23,6 @@ const ProjectActivity = () => {
     error: projectActivityCommentsError,
     data: projectActivityCommentData,
   } = useQuery(GET_PROJECT_ACTIVITY_COMMENTS);
-
-  const project = projectData.project;
-
-  const projectId = project.id;
 
   if (projectActivityCommentsLoading) return <p>Loading...</p>;
   if (projectActivityCommentsError)

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 // LIBRARIES
 import { useMutation, useQuery } from "@apollo/client";
@@ -6,7 +7,8 @@ import { useMutation, useQuery } from "@apollo/client";
 // GRAPHQL
 import { ADD_TRANSACTION } from "../../../../graphql/mutations/transactionMutations";
 import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
-import { GET_CLIENTS } from "../../../../graphql/queries/clientQueries";
+import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
+import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
@@ -18,15 +20,14 @@ import DatePicker from "react-datepicker";
 // CSS
 import "react-datepicker/dist/react-datepicker.css";
 
-// import "./addClient.css";
-
 const rootClass = "add-transaction";
 
 const AddTransaction = () => {
+  const { clientId, projectId } = useParams();
+
   const [paymentDate, setPaymentDate] = useState("");
   const [amount, setAmount] = useState("");
   const [paymentParty, setPaymentParty] = useState("");
-  const [clientId, setClientId] = useState("");
   const [incomingOutgoing, setIncomingOutgoing] = useState("outgoing");
 
   const [addTransaction] = useMutation(ADD_TRANSACTION, {
@@ -35,6 +36,7 @@ const AddTransaction = () => {
       amount,
       paymentParty,
       clientId,
+      projectId,
       incomingOutgoing,
     },
     update(cache, { data: { addTransaction } }) {
@@ -46,11 +48,25 @@ const AddTransaction = () => {
     },
   });
 
-  const { loading, error, data } = useQuery(GET_CLIENTS);
+  const {
+    loading: clientsLoading,
+    error: clientsError,
+    data: clientsData,
+  } = useQuery(GET_CLIENT, { variables: { id: clientId } });
+
+  const {
+    loading: projectsLoading,
+    error: projectsError,
+    data: projectsData,
+  } = useQuery(GET_PROJECT, { variables: { id: projectId } });
 
   const handleDateChange = (date) => {
     setPaymentDate(date);
   };
+
+  if (clientsLoading || projectsLoading) return <Spinner />;
+  if (clientsError || projectsError)
+    return <p>There was an error loading the content</p>;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -63,41 +79,27 @@ const AddTransaction = () => {
       paymentDate,
       amount,
       paymentParty,
+      incomingOutgoing,
       clientId,
-      incomingOutgoing
+      projectId
     );
 
     setPaymentDate(new Date());
     setAmount("");
     setPaymentParty("");
-    setClientId("");
     setIncomingOutgoing("outgoing");
   };
 
-  if (loading) return <Spinner />;
-  if (error) return <p>There was an error loading the content</p>;
-
   return (
     <div className={`${rootClass}-container bg-slate-50 rounded-xl mx-2`}>
-      <h3 className={`${rootClass}-title`}>Add Transaction</h3>
+      <h3 className={`${rootClass}-title pt-3 mt-2`}>Add Transaction</h3>
 
-      <label className="form-label client-select block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-        Client Name
-      </label>
-      <select
-        className="form-select w-2/3 mx-auto mb-4"
-        aria-label="Client select"
-        id="clientId"
-        value={clientId}
-        onChange={(e) => setClientId(e.target.value)}
-      >
-        <option value="">Select Client</option>
-        {data.clients.map((client) => (
-          <option key={client.id} value={client.id}>
-            {client.firstName + " " + client.lastName}
-          </option>
-        ))}
-      </select>
+      {/* <h1 className="text-slate-700 text-xl">
+        Client: {matchingClient[0].firstName + " " + matchingClient[0].lastName}
+      </h1>
+      <h2 className="text-slate-700 text-xl">
+        Project: {matchingProjects[0].title}
+      </h2> */}
 
       <form className="w-full max-w-lg" onSubmit={onSubmit}>
         <div className="flex flex-wrap -mx-3 mb-3">
