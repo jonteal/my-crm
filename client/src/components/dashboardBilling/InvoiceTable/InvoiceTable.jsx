@@ -9,7 +9,9 @@ const InvoiceTable = ({ invoices, shortList }) => {
     <div className="bg-slate-50 w-full rounded-xl mx-2 py-2">
       <div className="flex flex-row justify-between py-2 px-2">
         <h2 className="text-left text-slate-700 text-lg mx-2">Invoices</h2>
-        <Link to="addInvoice">
+        <Link
+          to={`/clients/${clientId}/projects/${projectId}/financials/addInvoice`}
+        >
           <AddButton className="mx-2">Add Invoice</AddButton>
         </Link>
       </div>

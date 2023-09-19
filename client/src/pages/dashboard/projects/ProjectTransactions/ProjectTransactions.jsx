@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
 
-import ClientTransactions from "../../../../components/dashboardBilling/TransactionTable/TransactionTable";
+import ClientTransactions from "../../../../components/TransactionTable/TransactionTable";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 
 const ProjectTransactions = () => {

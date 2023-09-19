@@ -24,7 +24,7 @@ const GET_TRANSACTIONS = gql`
 
 const GET_TRANSACTION = gql`
   query getTransaction($id: ID) {
-    invoice(id: $id) {
+    transaction(id: $id) {
       id
       paymentDate
       amount

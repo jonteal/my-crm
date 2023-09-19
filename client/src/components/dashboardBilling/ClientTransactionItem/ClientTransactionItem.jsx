@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BsArrowUpSquare, BsArrowDownSquare } from "react-icons/bs";
 
 const ClientTransactionItem = ({ transaction }) => {

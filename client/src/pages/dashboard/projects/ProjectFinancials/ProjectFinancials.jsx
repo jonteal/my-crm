@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
-import ClientTransactions from "../../../../components/dashboardBilling/TransactionTable/TransactionTable";
+import ClientTransactions from "../../../../components/TransactionTable/TransactionTable";
 import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
 import EditButton from "../../../../components/reusable/buttons/EditButton/EditButton";
 
