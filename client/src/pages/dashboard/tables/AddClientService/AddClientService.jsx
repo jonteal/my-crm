@@ -8,7 +8,7 @@ import { useMutation, useQuery } from "@apollo/client";
 // GRAPHQL
 import { ADD_SERVICE } from "../../../../graphql/mutations/serviceMutations";
 import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
-import { GET_PROJECTS } from "../../../../graphql/queries/projectQueries";
+import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
@@ -23,12 +23,12 @@ import "react-datepicker/dist/react-datepicker.css";
 const rootClass = "add-project";
 
 const AddClientService = () => {
-  const { id: selectedProjectId } = useParams();
+  const { projectId } = useParams();
 
   const [service, setService] = useState("");
   const [cost, setCost] = useState("");
   const [status, setStatus] = useState("off");
-  const [projectId, setProjectId] = useState(selectedProjectId);
+  // const [projectId, setProjectId] = useState(selectedProjectId);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [alertOn, setAlertOn] = useState(false);
@@ -51,7 +51,9 @@ const AddClientService = () => {
     },
   });
 
-  const { loading, error, data } = useQuery(GET_PROJECTS);
+  const { loading, error, data } = useQuery(GET_PROJECT, {
+    variables: { id: projectId },
+  });
 
   const handleStartDateChange = (date) => {
     setStartDate(date);
@@ -78,7 +80,6 @@ const AddClientService = () => {
     setService("");
     setCost("");
     setStatus("off");
-    setProjectId(selectedProjectId);
     setStartDate(new Date());
     setEndDate(new Date());
   };
@@ -97,26 +98,6 @@ const AddClientService = () => {
           )}
 
           <div className="flex flex-row items-end">
-            <div className="flex flex-col justify-center w-1/2 mr-2">
-              <label className="form-label client-select block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Project Name
-              </label>
-              <select
-                className="form-select block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                aria-label="Default select option"
-                id="projectId"
-                value={projectId}
-                onChange={(e) => setProjectId(e.target.value)}
-              >
-                <option value="">Select Project</option>
-                {data.projects.map((project) => (
-                  <option key={project.id} value={project.id}>
-                    {project.title}
-                  </option>
-                ))}
-              </select>
-            </div>
-
             <div className="flex flex-col justify-center w-1/2 ml-2">
               <div className="w-full">
                 <label
@@ -144,8 +125,8 @@ const AddClientService = () => {
           </div>
 
           <form className="w-full mt-3" onSubmit={onSubmit}>
-            <div className="flex flex-col mb-6">
-              <div className="w-full mb-6 md:mb-0">
+            <div className="flex flex-row mb-6">
+              <div className="w-full mr-2 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-service-name"
@@ -162,14 +143,14 @@ const AddClientService = () => {
                   onChange={(e) => setService(e.target.value)}
                 />
               </div>
-              <div className="w-full">
+              <div className="w-full ml-2">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-service-cost"
                 >
                   Cost
                 </label>
-                <textarea
+                <input
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-service-cost"
                   min="0.01"
@@ -183,7 +164,7 @@ const AddClientService = () => {
               </div>
             </div>
 
-            <div classNameName="flex flex-row justify-around -mx-auto mb-6 my-3">
+            <div className="flex flex-row mb-6 my-3">
               <div className={`mb-3 ${rootClass}-form-item`}>
                 <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Start Date

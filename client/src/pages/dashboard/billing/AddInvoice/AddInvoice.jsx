@@ -84,7 +84,7 @@ const AddInvoice = () => {
 
   return (
     <div
-      className={`${rootClass}-container bg-slate-50 flex flex-col items-center rounded-xl mx-auto`}
+      className={`${rootClass}-container bg-slate-50 flex flex-col items-center rounded-xl mx-2 mt-2`}
     >
       <h3 className={`${rootClass}-title font-semibold text-lg mt-2`}>
         Add Invoice
@@ -94,7 +94,7 @@ const AddInvoice = () => {
         Project: {matchingProjects[0].title}
       </h1> */}
 
-      <form className="w-full max-w-lg" onSubmit={onSubmit}>
+      <form className="w-full max-w-lg mb-3" onSubmit={onSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <div className="mb-3">

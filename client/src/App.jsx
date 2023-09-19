@@ -151,14 +151,14 @@ function App() {
                     path="/clients/:clientId/projects/:projectId/financials/addTransaction"
                     element={<AddTransaction />}
                   />
+                  <Route
+                    path="/clients/:clientId/projects/:projectId/addService"
+                    element={<AddClientService />}
+                  />
                 </Route>
                 <Route
                   path="/clients/:clientId/addProject"
                   element={<AddClientProject />}
-                />
-                <Route
-                  path="/clients/:clientId/addService"
-                  element={<AddClientService />}
                 />
                 <Route
                   path="/clients/:clientId/edit"

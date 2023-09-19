@@ -49,24 +49,27 @@ const AddTransaction = () => {
   });
 
   const {
-    loading: clientsLoading,
-    error: clientsError,
-    data: clientsData,
+    loading: clientLoading,
+    error: clientError,
+    data: clientData,
   } = useQuery(GET_CLIENT, { variables: { id: clientId } });
 
   const {
-    loading: projectsLoading,
-    error: projectsError,
-    data: projectsData,
+    loading: projectLoading,
+    error: projectError,
+    data: projectData,
   } = useQuery(GET_PROJECT, { variables: { id: projectId } });
 
   const handleDateChange = (date) => {
     setPaymentDate(date);
   };
 
-  if (clientsLoading || projectsLoading) return <Spinner />;
-  if (clientsError || projectsError)
+  if (clientLoading || projectLoading) return <Spinner />;
+  if (clientError || projectError)
     return <p>There was an error loading the content</p>;
+
+  const client = clientData.client;
+  const project = projectData.project;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -94,14 +97,14 @@ const AddTransaction = () => {
     <div className={`${rootClass}-container bg-slate-50 rounded-xl mx-2`}>
       <h3 className={`${rootClass}-title pt-3 mt-2`}>Add Transaction</h3>
 
-      {/* <h1 className="text-slate-700 text-xl">
-        Client: {matchingClient[0].firstName + " " + matchingClient[0].lastName}
+      <h1 className="text-slate-700 my-2 text-base">
+        Client: {client.firstName + " " + client.lastName}
       </h1>
-      <h2 className="text-slate-700 text-xl">
-        Project: {matchingProjects[0].title}
-      </h2> */}
+      <h2 className="text-slate-700 text-sm mb-4 mt-1">
+        Project: {project.title}
+      </h2>
 
-      <form className="w-full max-w-lg" onSubmit={onSubmit}>
+      <form className="w-full max-w-lg pb-3" onSubmit={onSubmit}>
         <div className="flex flex-wrap -mx-3 mb-3">
           <div className="w-full md:w-1/2 px-2 mb-6 md:mb-0">
             <div className="mb-3">

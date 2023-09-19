@@ -16,6 +16,8 @@ const ProjectFinancials = () => {
     data: invoicesData,
   } = useQuery(GET_INVOICES, { variables: { id: projectId } });
 
+  console.log("invoicesData: ", invoicesData);
+
   const {
     loading: transactionsLoading,
     error: transactionsError,
@@ -25,8 +27,6 @@ const ProjectFinancials = () => {
   if (invoicesLoading || transactionsLoading) return <Spinner />;
   if (invoicesError || transactionsError)
     return <p>There was a problem loading the client invoices...</p>;
-
-  console.log("invoicesData: ", invoicesData);
 
   const invoicesArray = invoicesData.invoices;
 

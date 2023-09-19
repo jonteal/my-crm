@@ -9,14 +9,14 @@ import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 import { useQuery } from "@apollo/client";
 
 const ServicesTable = ({ matchingServices }) => {
-  const { id } = useParams();
+  const { clientId, projectId } = useParams();
 
   const {
     loading: clientLoading,
     error: clientError,
     data: clientData,
   } = useQuery(GET_CLIENT, {
-    variables: { id },
+    variables: { id: clientId },
   });
 
   return (
@@ -25,7 +25,7 @@ const ServicesTable = ({ matchingServices }) => {
         <h2 className="text-left text-slate-700 text-lg mx-3">
           Services Table
         </h2>
-        <Link to={`/clients/${id}/addService`}>
+        <Link to={`/clients/${clientId}/projects/${projectId}/addService`}>
           <AddButton>Add Service</AddButton>
         </Link>
       </div>

@@ -3,20 +3,6 @@ import ProjectInfoItem from "../../../../components/ProjectInfoItem/ProjectInfoI
 const ClientProfile = ({ project }) => {
   const rootClass = "project-view";
 
-  console.log("project: ", project);
-  console.log("project title: ", project?.title);
-
-  //   const {
-  //     title,
-  //     description,
-  //     notes,
-  //     status,
-  //     startDate,
-  //     deadline,
-  //     clientBudget,
-  //     projectEstimate,
-  //   } = project;
-
   return (
     <div className={`${rootClass}-main-container px-0 flex flex-col w-full`}>
       <div className="flex flex-row">
