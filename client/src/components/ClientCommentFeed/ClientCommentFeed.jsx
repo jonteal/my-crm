@@ -6,7 +6,7 @@ import { useMutation, useQuery } from "@apollo/client";
 // GRAPHQL
 import { ADD_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
 import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../graphql/queries/clientActivityCommentQueries";
-import { GET_CLIENTS } from "../../graphql/queries/clientQueries";
+import { GET_CLIENT } from "../../graphql/queries/clientQueries";
 
 // COMPONENTS
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
@@ -37,7 +37,9 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
     },
   });
 
-  const { loading, error, data } = useQuery(GET_CLIENTS);
+  const { loading, error } = useQuery(GET_CLIENT, {
+    variables: { id: clientId },
+  });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -50,10 +52,6 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
 
     setCommentText("");
   };
-
-  // matchingClientActivityComments.sort(function (a, b) {
-  //   return new Date(b.date) - new Date(a.date);
-  // });
 
   if (loading) return <Spinner />;
   if (error) return <p>There was an error loading the comment feed</p>;

@@ -94,7 +94,7 @@ const AddTransaction = () => {
   };
 
   return (
-    <div className={`${rootClass}-container bg-slate-50 rounded-xl mx-2`}>
+    <div className={`${rootClass}-container bg-slate-50 rounded-xl mx-2 w-1/2`}>
       <h3 className={`${rootClass}-title pt-3 mt-2`}>Add Transaction</h3>
 
       <h1 className="text-slate-700 my-2 text-base">

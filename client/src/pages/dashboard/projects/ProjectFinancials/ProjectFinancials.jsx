@@ -1,11 +1,12 @@
 import React from "react";
 import InvoiceTable from "../../../../components/dashboardBilling/InvoiceTable/InvoiceTable";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 import ClientTransactions from "../../../../components/dashboardBilling/ClientTransactions/ClientTransactions";
 import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
+import EditButton from "../../../../components/reusable/buttons/EditButton/EditButton";
 
 const ProjectFinancials = () => {
   const { projectId } = useParams();
@@ -15,8 +16,6 @@ const ProjectFinancials = () => {
     error: invoicesError,
     data: invoicesData,
   } = useQuery(GET_INVOICES, { variables: { id: projectId } });
-
-  console.log("invoicesData: ", invoicesData);
 
   const {
     loading: transactionsLoading,
@@ -41,9 +40,22 @@ const ProjectFinancials = () => {
   );
 
   return (
-    <div className="mt-2 flex flex-row">
-      <InvoiceTable invoices={matchingInvoices} />
-      <ClientTransactions transactions={matchingTransactions} />
+    <div className="mt-2">
+      <div className="flex flex-row w-full">
+        <div className="flex flex-col w-full items-start mx-2">
+          <Link to="invoices" className="mx-2 my-2">
+            <EditButton className="mx-2">View All Invoices</EditButton>
+          </Link>
+
+          <InvoiceTable invoices={matchingInvoices} />
+        </div>
+        <div className="flex flex-col w-full items-start mx-2">
+          <Link to="transactions" className="mx-2 my-2">
+            <EditButton className="mx-2">View All</EditButton>
+          </Link>
+          <ClientTransactions transactions={matchingTransactions} />
+        </div>
+      </div>
     </div>
   );
 };

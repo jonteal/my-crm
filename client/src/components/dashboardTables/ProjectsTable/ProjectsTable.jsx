@@ -77,7 +77,7 @@ const ProjectsTable = ({ client, projects, projectContainer }) => {
                 </td>
                 <td className="text-slate-700 font-light text-left border pl-2">
                   <Link
-                    to={`/clients/${clientData.client.id}/projects/${project.id}`}
+                    to={`/clients/${clientData.client.id}/projects/${project.id}/profile`}
                   >
                     <FaRegEye className="text-sky-600" />
                   </Link>

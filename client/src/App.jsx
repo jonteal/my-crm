@@ -33,6 +33,8 @@ import ProjectProfile from "./pages/dashboard/projects/ProjectProfile/ProjectPro
 
 import "./App.css";
 import ProjectFinancials from "./pages/dashboard/projects/ProjectFinancials/ProjectFinancials";
+import ProjectInvoices from "./pages/dashboard/projects/ProjectInvoices/ProjectInvoices";
+import ProjectInvoice from "./pages/dashboard/projects/ProjectInvoice/ProjectInvoice";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -142,6 +144,14 @@ function App() {
                   <Route
                     element={<ProjectFinancials />}
                     path="/clients/:clientId/projects/:projectId/financials"
+                  />
+                  <Route
+                    element={<ProjectInvoices />}
+                    path="/clients/:clientId/projects/:projectId/financials/invoices"
+                  />
+                  <Route
+                    element={<ProjectInvoice />}
+                    path="/clients/:clientId/projects/:projectId/financials/invoices/:invoiceId"
                   />
                   <Route
                     path="/clients/:clientId/projects/:projectId/financials/addInvoice"

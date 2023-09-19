@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import EditButton from "../reusable/buttons/EditButton/EditButton";
 import "./clientCard.css";
+import ClientCardInfoItem from "../ClientCardInfoItem/ClientCardInfoItem";
 
 const rootClass = "client-card";
 
@@ -44,32 +45,17 @@ const ClientCard = ({ clientData }) => {
           <p className="text-slate-800 font-normal text-left text-base">{`${firstName} ${lastName}`}</p>
         </div>
 
-        <div className="flex flex-col ml-5 my-3">
-          <p className="text-slate-600 font-light text-left text-sm">
-            Primary Phone Number
-          </p>
-          <p className="text-slate-800 font-normal text-left text-base">
-            {formatPhoneNumber(phoneNumber)}
-          </p>
-        </div>
+        <ClientCardInfoItem
+          label="Primary Phone Number"
+          value={formatPhoneNumber(phoneNumber)}
+        />
 
-        <div className="flex flex-col ml-5 my-3">
-          <p className="text-slate-600 font-light text-left text-sm">
-            Primary Email Address
-          </p>
-          <p className="text-slate-800 font-normal text-left text-base">
-            {emailAddress}
-          </p>
-        </div>
+        <ClientCardInfoItem
+          label="Primary Email Address"
+          value={emailAddress}
+        />
 
-        <div className="flex flex-col ml-5 my-3">
-          <p className="text-slate-600 font-light text-left text-sm">
-            Client Status
-          </p>
-          <p className="text-slate-800 font-normal text-left text-base">
-            {status}
-          </p>
-        </div>
+        <ClientCardInfoItem label="Client Status" value={status} />
       </div>
     </div>
   );
