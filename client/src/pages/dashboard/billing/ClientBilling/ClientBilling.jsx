@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 // COMPONENTS
 import InvoiceTable from "../../../../components/dashboardBilling/InvoiceTable/InvoiceTable";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
-import ClientTransactions from "../../../../components/dashboardBilling/ClientTransactions/ClientTransactions";
+import ClientTransactions from "../../../../components/dashboardBilling/TransactionTable/TransactionTable";
 
 // GRAPHQL
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";

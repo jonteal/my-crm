@@ -21,8 +21,8 @@ const ProjectInvoices = () => {
     (invoice) => invoice.project.id === projectId
   );
   return (
-    <div>
-      <InvoiceTable invoices={matchingInvoices} />
+    <div className="mt-2">
+      <InvoiceTable shortList={false} invoices={matchingInvoices} />
     </div>
   );
 };

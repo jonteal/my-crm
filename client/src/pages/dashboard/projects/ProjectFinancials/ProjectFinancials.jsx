@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
-import ClientTransactions from "../../../../components/dashboardBilling/ClientTransactions/ClientTransactions";
+import ClientTransactions from "../../../../components/dashboardBilling/TransactionTable/TransactionTable";
 import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
 import EditButton from "../../../../components/reusable/buttons/EditButton/EditButton";
 
@@ -47,13 +47,16 @@ const ProjectFinancials = () => {
             <EditButton className="mx-2">View All Invoices</EditButton>
           </Link>
 
-          <InvoiceTable invoices={matchingInvoices} />
+          <InvoiceTable shortList={true} invoices={matchingInvoices} />
         </div>
         <div className="flex flex-col w-full items-start mx-2">
           <Link to="transactions" className="mx-2 my-2">
-            <EditButton className="mx-2">View All</EditButton>
+            <EditButton className="mx-2">View All Transactions</EditButton>
           </Link>
-          <ClientTransactions transactions={matchingTransactions} />
+          <ClientTransactions
+            shortList={true}
+            transactions={matchingTransactions}
+          />
         </div>
       </div>
     </div>
