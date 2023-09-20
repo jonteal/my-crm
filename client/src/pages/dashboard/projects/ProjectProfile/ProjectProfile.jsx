@@ -6,8 +6,6 @@ import ProjectInfoItem from "../../../../components/ProjectInfoItem/ProjectInfoI
 const ProjectProfile = () => {
   const { projectId } = useParams();
 
-  const rootClass = "project-view";
-
   const {
     loading: projectLoading,
     error: projectError,
@@ -31,7 +29,7 @@ const ProjectProfile = () => {
   } = projectData.project;
 
   return (
-    <div className={`${rootClass}-main-container px-0 flex flex-col w-full`}>
+    <div className="px-0 flex flex-col w-full">
       <div className="flex flex-row">
         <div className="rounded-xl bg-slate-50 mx-2 mt-3 p-2 w-full">
           {/* <div className={`${rootClass}-btn-container`}>
@@ -41,7 +39,7 @@ const ProjectProfile = () => {
     </SubmitButton>
   </Link>
 </div> */}
-          <div className={`${rootClass}-project-info`}>
+          <>
             <div className="flex flex-col ml-5 my-3">
               <p className="text-slate-600 font-light text-left text-sm">
                 Title
@@ -57,7 +55,7 @@ const ProjectProfile = () => {
             <ProjectInfoItem name="Deadline" value={deadline} />
             <ProjectInfoItem name="Client Budget" value={clientBudget} />
             <ProjectInfoItem name="Project Estimate" value={projectEstimate} />
-          </div>
+          </>
         </div>
       </div>
     </div>

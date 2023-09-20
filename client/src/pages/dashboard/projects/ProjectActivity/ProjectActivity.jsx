@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../../../graphql/queries/projectActivityCommentQueries";
-import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 
 import ProjectCommentFeed from "../../../../components/ProjectCommentFeed/ProjectCommentFeed";
 import ProjectHistory from "../../../../components/ProjectHistory/ProjectHistory";
@@ -11,18 +10,10 @@ const ProjectActivity = () => {
   const { projectId } = useParams();
 
   const {
-    loading: projectLoading,
-    error: projectError,
-    data: projectData,
-  } = useQuery(GET_PROJECT, {
-    variables: { id: projectId },
-  });
-
-  const {
     loading: projectActivityCommentsLoading,
     error: projectActivityCommentsError,
     data: projectActivityCommentData,
-  } = useQuery(GET_PROJECT_ACTIVITY_COMMENTS);
+  } = useQuery(GET_PROJECT_ACTIVITY_COMMENTS, { variables: { id: projectId } });
 
   if (projectActivityCommentsLoading) return <p>Loading...</p>;
   if (projectActivityCommentsError)
@@ -33,6 +24,7 @@ const ProjectActivity = () => {
       (projectActivityComment) =>
         projectActivityComment.project.id === projectId
     );
+
   return (
     <div className="flex flex-row w-full">
       <div className="w-1/2">

@@ -21,21 +21,17 @@ const ProjectFinancials = () => {
     loading: transactionsLoading,
     error: transactionsError,
     data: transactionsData,
-  } = useQuery(GET_TRANSACTIONS);
+  } = useQuery(GET_TRANSACTIONS, { variables: { id: projectId } });
 
   if (invoicesLoading || transactionsLoading) return <Spinner />;
   if (invoicesError || transactionsError)
     return <p>There was a problem loading the client invoices...</p>;
 
-  const invoicesArray = invoicesData.invoices;
-
-  const matchingInvoices = invoicesArray.filter(
+  const matchingInvoices = invoicesData.invoices.filter(
     (invoice) => invoice.project.id === projectId
   );
 
-  const transactionsArray = transactionsData.transactions;
-
-  const matchingTransactions = transactionsArray.filter(
+  const matchingTransactions = transactionsData.transactions.filter(
     (transaction) => transaction.project.id === projectId
   );
 
