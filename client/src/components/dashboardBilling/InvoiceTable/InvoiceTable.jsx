@@ -18,6 +18,7 @@ const InvoiceTable = ({ invoices, shortList }) => {
 
       {filteredList.map((invoice) => (
         <Link
+          key={invoice.id}
           to={`/clients/${clientId}/projects/${projectId}/financials/invoices/${invoice.id}`}
         >
           <InvoiceTableItem key={invoice.id} invoice={invoice} />

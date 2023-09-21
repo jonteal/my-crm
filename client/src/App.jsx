@@ -27,16 +27,17 @@ import AddClientService from "./pages/dashboard/tables/AddClientService/AddClien
 import ProjectServices from "./pages/dashboard/projects/ProjectServices/ProjectServices";
 import ProjectActivity from "./pages/dashboard/projects/ProjectActivity/ProjectActivity";
 import ProjectProfile from "./pages/dashboard/projects/ProjectProfile/ProjectProfile";
-// import EditProject from "./pages/EditProject/EditProject";
-// import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
-// import ClientsPage from "./pages/ClientsPage/ClientsPage";
-
-import "./App.css";
 import ProjectFinancials from "./pages/dashboard/projects/ProjectFinancials/ProjectFinancials";
 import ProjectInvoices from "./pages/dashboard/projects/ProjectInvoices/ProjectInvoices";
 import ProjectInvoice from "./pages/dashboard/projects/ProjectInvoice/ProjectInvoice";
-import ProjectTransactions from "./pages/dashboard/projects/ProjectTransactions/ProjectTransactions";
+import { ProjectTransactions } from "./pages/dashboard/projects/ProjectTransactions/ProjectTransactions";
 import ProjectTransaction from "./pages/dashboard/projects/ProjectTransaction/ProjectTransaction";
+// import EditProject from "./pages/EditProject/EditProject";
+// import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
+
+import "./App.css";
+import Projects from "./pages/Projects/Projects";
+import Clients from "./pages/Clients/Clients";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -194,9 +195,9 @@ function App() {
                 />
               </Route>
               <Route path="/addProject" element={<AddProject />} />
-              {/* <Route path="/clients" element={<ClientsPage />} /> */}
-              {/* <Route path="/projects" element={<ProjectsPage />} /> */}
-              {/* <Route path="/projects/:id/edit" element={<EditProject />} /> */}
+              <Route path="/clients" element={<Clients />} />
+              <Route path="/projects" element={<Projects />} />
+              {/* <Route path="/projects/:projectId/edit" element={<EditProject />} /> */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

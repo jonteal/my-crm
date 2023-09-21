@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 import ProjectInfoItem from "../../../../components/ProjectInfoItem/ProjectInfoItem";
+import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
 
 const ProjectProfile = () => {
   const { projectId } = useParams();
@@ -40,7 +41,7 @@ const ProjectProfile = () => {
   </Link>
 </div> */}
           <>
-            <div className="flex flex-col ml-5 my-3">
+            <div className="flex flex-col ml-2 my-3">
               <p className="text-slate-600 font-light text-left text-sm">
                 Title
               </p>
@@ -48,13 +49,16 @@ const ProjectProfile = () => {
                 {title}
               </h1>
             </div>
-            <ProjectInfoItem name="Description" value={description} />
-            <ProjectInfoItem name="Notes" value={notes} />
-            <ProjectInfoItem name="Status" value={status} />
-            <ProjectInfoItem name="Start Date" value={startDate} />
-            <ProjectInfoItem name="Deadline" value={deadline} />
-            <ProjectInfoItem name="Client Budget" value={clientBudget} />
-            <ProjectInfoItem name="Project Estimate" value={projectEstimate} />
+            <NameValuePair name="Description" value={description} />
+            <NameValuePair name="Notes" value={notes} />
+            <NameValuePair name="Status" value={status} />
+            <NameValuePair name="Start Date" value={startDate} />
+            <NameValuePair name="Deadline" value={deadline} />
+            <NameValuePair name="Client Budget" value={`$ ${clientBudget}`} />
+            <NameValuePair
+              name="Project Estimate"
+              value={`$ ${projectEstimate}`}
+            />
           </>
         </div>
       </div>

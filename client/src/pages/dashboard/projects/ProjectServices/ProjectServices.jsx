@@ -1,19 +1,11 @@
 import { useParams } from "react-router-dom";
 import ServicesTable from "../../../../components/dashboardTables/ServicesTable/ServicesTable";
-import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 import { useQuery } from "@apollo/client";
 
 const ProjectServices = () => {
   const { projectId } = useParams();
 
-  const {
-    loading: projectLoading,
-    error: projectError,
-    data: projectData,
-  } = useQuery(GET_PROJECT, {
-    variables: { id: projectId },
-  });
   const {
     loading: servicesLoading,
     error: servicesError,
