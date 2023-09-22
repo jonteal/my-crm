@@ -1,4 +1,3 @@
-import React from "react";
 import InvoiceTable from "../../../../components/dashboardBilling/InvoiceTable/InvoiceTable";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
@@ -50,7 +49,11 @@ const ProjectFinancials = () => {
     return acc + parseFloat(obj.amount);
   }, 0);
 
+  console.log("invoiceSum: ", invoiceSum);
+
   const budgetUsed = (invoiceSum / projectData.project.clientBudget) * 100;
+
+  console.log("budgetUsed: ", budgetUsed);
 
   return (
     <div className="mt-2">

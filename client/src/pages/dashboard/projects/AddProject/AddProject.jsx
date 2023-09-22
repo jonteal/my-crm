@@ -24,7 +24,7 @@ const rootClass = "add-project";
 const AddProject = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("new");
+  const [status, setStatus] = useState("notStarted");
   const [clientId, setClientId] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [deadline, setDeadline] = useState(new Date());
@@ -95,7 +95,7 @@ const AddProject = () => {
 
     setTitle("");
     setDescription("");
-    setStatus("new");
+    setStatus("notStarted");
     setClientId("");
     setStartDate(new Date());
     setDeadline(new Date());
@@ -164,8 +164,8 @@ const AddProject = () => {
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
               >
-                <option value="new">Not Started</option>
-                <option value="progress">In Progress</option>
+                <option value="notStarted">Not Started</option>
+                <option value="inProgress">In Progress</option>
                 <option value="completed">Completed</option>
               </select>
             </div>

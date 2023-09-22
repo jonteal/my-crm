@@ -126,8 +126,8 @@ const EditProject = () => {
           value={status}
           onChange={(e) => setStatus(e.target.value)}
         >
-          <option value="new">Not Started</option>
-          <option value="progress">In Progress</option>
+          <option value="notStarted">Not Started</option>
+          <option value="inProgress">In Progress</option>
           <option value="completed">Completed</option>
         </select>
 
