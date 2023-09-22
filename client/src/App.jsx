@@ -16,7 +16,6 @@ import EditClient from "./pages/homeView/EditClient/EditClient";
 import ClientInvoices from "./pages/dashboard/billing/ClientInvoices/ClientInvoices";
 import AddInvoice from "./pages/dashboard/billing/AddInvoice/AddInvoice";
 import Navigation from "./components/Navigation/Navigation";
-import ClientTables from "./pages/dashboard/tables/ClientTables/ClientTables";
 import ClientBilling from "./pages/dashboard/billing/ClientBilling/ClientBilling";
 import ClientTransactionsView from "./pages/dashboard/billing/ClientTransactionsView/ClientTransactionsView";
 import AddTransaction from "./pages/dashboard/billing/AddTransaction/AddTransaction";
@@ -117,10 +116,6 @@ function App() {
                 <Route
                   path="/clients/:clientId/dashboard"
                   element={<ClientDashboard />}
-                />
-                <Route
-                  path="/clients/:clientId/projects"
-                  element={<ClientTables />}
                 />
                 <Route
                   path="/clients/:clientId/billing"

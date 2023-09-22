@@ -20,14 +20,8 @@ const EditProject = () => {
     data: projectData,
   } = useQuery(GET_PROJECT, { variables: { id: projectId } });
 
-  const {
-    loading: clientsLoading,
-    error: clientsError,
-    data: clientsData,
-  } = useQuery(GET_CLIENTS);
-
-  if (projectLoading || clientsLoading) return <Spinner />;
-  if (projectError || clientsError)
+  if (projectLoading) return <Spinner />;
+  if (projectError)
     return <p>There was a problem loading the project information...</p>;
 
   const project = projectData.project;
@@ -74,6 +68,7 @@ const EditProject = () => {
     }
 
     updateProject(
+      projectId,
       title,
       description,
       status,
@@ -85,9 +80,9 @@ const EditProject = () => {
     );
   };
   return (
-    <div>
+    <div className="w-2/3 mx-auto mt-5">
       <form onSubmit={onSubmit}>
-        <label className="form-label client-select">Client Name</label>
+        {/* <label className="form-label client-select">Client Name</label>
         <select
           className="form-select"
           aria-label="Default select example"
@@ -101,7 +96,7 @@ const EditProject = () => {
               {client.firstName + " " + client.lastName}
             </option>
           ))}
-        </select>
+        </select> */}
         <div className="mb-3">
           <label className="form-label">Title</label>
           <input
@@ -181,18 +176,9 @@ const EditProject = () => {
           />
         </div>
 
-        <div className="modal-footer">
-          <SubmitButton type="submit" className="" data-bs-dismiss="modal">
-            Submit
-          </SubmitButton>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-        </div>
+        <SubmitButton type="submit" className="" data-bs-dismiss="modal">
+          Submit
+        </SubmitButton>
       </form>
     </div>
   );

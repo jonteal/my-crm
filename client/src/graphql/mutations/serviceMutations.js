@@ -57,7 +57,7 @@ const UPDATE_SERVICE = gql`
     $serviceProvider: ServiceProviderUpdate
     $notes: String
     $paymentSchedule: ServicePaymentScheduleUpdate
-    $status: ProjectStatusUpdate
+    $status: ServiceStatusUpdate
     $startDate: String
     $endDate: String
   ) {
