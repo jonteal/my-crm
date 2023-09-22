@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
-import ProjectInfoItem from "../../../../components/ProjectInfoItem/ProjectInfoItem";
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
+import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
 
 const ProjectProfile = () => {
-  const { projectId } = useParams();
+  const { projectId, clientId } = useParams();
 
   const {
     loading: projectLoading,
@@ -33,13 +33,11 @@ const ProjectProfile = () => {
     <div className="px-0 flex flex-col w-full">
       <div className="flex flex-row">
         <div className="rounded-xl bg-slate-50 mx-2 mt-3 p-2 w-full">
-          {/* <div className={`${rootClass}-btn-container`}>
-  <Link to={`/projects/${project.id}/edit`}>
-    <SubmitButton className={`${rootClass}-edit-btn`}>
-      Edit
-    </SubmitButton>
-  </Link>
-</div> */}
+          <div className="">
+            <Link to={`/clients/${clientId}/projects/${projectId}/edit`}>
+              <SubmitButton>Edit</SubmitButton>
+            </Link>
+          </div>
           <>
             <div className="flex flex-col ml-2 my-3">
               <p className="text-slate-600 font-light text-left text-sm">

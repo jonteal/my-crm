@@ -67,7 +67,12 @@ const AddProject = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (title === "" || description === "" || status === "") {
+    if (
+      title === "" ||
+      description === "" ||
+      status === "" ||
+      clientBudget === ""
+    ) {
       setAlertOn(true);
       return (
         <div className="alert alert-danger" role="alert">

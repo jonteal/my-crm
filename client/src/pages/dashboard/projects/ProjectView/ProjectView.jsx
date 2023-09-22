@@ -1,4 +1,4 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 // GRAPHQL
@@ -6,9 +6,6 @@ import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
 import ProjectViewNav from "../../../../components/nav/ProjectViewNav/ProjectViewNav";
-
-// UTILS
-// import { formatCurrency } from "../../utilities/formatCurrency";
 
 const ProjectView = () => {
   const { id } = useParams();

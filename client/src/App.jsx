@@ -7,12 +7,12 @@ import Home from "./pages/homeView/Home/Home";
 // import Header from "./components/Header/Header";
 
 // Components
-import ClientView from "./pages/dashboard/ClientView/ClientView";
+import { ClientView } from "./pages/dashboard/ClientView/ClientView";
 import ProjectView from "./pages/dashboard/projects/ProjectView/ProjectView";
 import NotFound from "./pages/NotFound/NotFound";
 import AddClient from "./pages/homeView/AddClient/AddClient";
 import ClientDashboard from "./pages/dashboard/profile/ClientDashboard/ClientDashboard";
-import AddProject from "./pages/dashboard/tables/AddProject/AddProject";
+import AddProject from "./pages/dashboard/projects/AddProject/AddProject";
 import AddClientProject from "./pages/dashboard/tables/AddClientProject/AddClientProject";
 import EditClient from "./pages/homeView/EditClient/EditClient";
 import ClientInvoices from "./pages/dashboard/billing/ClientInvoices/ClientInvoices";
@@ -32,12 +32,11 @@ import ProjectInvoices from "./pages/dashboard/projects/ProjectInvoices/ProjectI
 import ProjectInvoice from "./pages/dashboard/projects/ProjectInvoice/ProjectInvoice";
 import { ProjectTransactions } from "./pages/dashboard/projects/ProjectTransactions/ProjectTransactions";
 import ProjectTransaction from "./pages/dashboard/projects/ProjectTransaction/ProjectTransaction";
-// import EditProject from "./pages/EditProject/EditProject";
-// import ProjectsPage from "./pages/ProjectsPage/ProjectsPage";
-
-import "./App.css";
 import Projects from "./pages/Projects/Projects";
 import Clients from "./pages/Clients/Clients";
+import EditProject from "./pages/dashboard/projects/EditProject/EditProject";
+
+import "./App.css";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -176,6 +175,10 @@ function App() {
                     path="/clients/:clientId/projects/:projectId/addService"
                     element={<AddClientService />}
                   />
+                  <Route
+                    path="/clients/:clientId/projects/:projectId/edit"
+                    element={<EditProject />}
+                  />
                 </Route>
                 <Route
                   path="/clients/:clientId/addProject"
@@ -197,7 +200,6 @@ function App() {
               <Route path="/addProject" element={<AddProject />} />
               <Route path="/clients" element={<Clients />} />
               <Route path="/projects" element={<Projects />} />
-              {/* <Route path="/projects/:projectId/edit" element={<EditProject />} /> */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
