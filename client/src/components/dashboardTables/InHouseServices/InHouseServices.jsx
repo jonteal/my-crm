@@ -1,30 +1,21 @@
-import Table from "react-bootstrap/Table";
-
-import { FaRegEye, FaRegTrashAlt } from "react-icons/fa";
-import AddButton from "../../reusable/buttons/AddButton/AddButton";
 import { Link, useParams } from "react-router-dom";
+import Table from "react-bootstrap/Table";
+import { BsHouseDoor } from "react-icons/bs";
 
-// GRAPHQL
-import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
-import { useQuery } from "@apollo/client";
+import AddButton from "../../reusable/buttons/AddButton/AddButton";
 
 export const InHouseServices = ({ matchingServices }) => {
   const { clientId, projectId } = useParams();
 
-  const {
-    loading: clientLoading,
-    error: clientError,
-    data: clientData,
-  } = useQuery(GET_CLIENT, {
-    variables: { id: clientId },
-  });
-
   return (
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 px-3 w-full">
       <div className="flex flex-row justify-between items-center py-3">
-        <h2 className="text-left text-slate-700 text-lg mx-3">
-          In House Services
-        </h2>
+        <div className="flex flex-row items-center">
+          <BsHouseDoor />
+          <h2 className="text-left text-slate-700 text-lg mx-2">
+            In House Services
+          </h2>
+        </div>
         <Link to={`/clients/${clientId}/projects/${projectId}/addService`}>
           <AddButton>Add Service</AddButton>
         </Link>

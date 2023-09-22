@@ -19,7 +19,7 @@ const ServiceSchema = new mongoose.Schema({
     type: String,
     enum: ["On", "Off"],
   },
-  inHouse: {
+  serviceProvider: {
     type: String,
     enum: ["In House", "Third Party"],
   },

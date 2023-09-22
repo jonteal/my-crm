@@ -4,7 +4,6 @@ import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 
 // Pages
 import Home from "./pages/homeView/Home/Home";
-// import Header from "./components/Header/Header";
 
 // Components
 import { ClientView } from "./pages/dashboard/ClientView/ClientView";
@@ -22,7 +21,7 @@ import ClientBilling from "./pages/dashboard/billing/ClientBilling/ClientBilling
 import ClientTransactionsView from "./pages/dashboard/billing/ClientTransactionsView/ClientTransactionsView";
 import AddTransaction from "./pages/dashboard/billing/AddTransaction/AddTransaction";
 import MainDashboard from "./pages/homeView/MainDashboard/MainDashboard";
-import AddClientService from "./pages/dashboard/tables/AddClientService/AddClientService";
+import { AddService } from "./pages/dashboard/projects/AddService/AddService";
 import ProjectServices from "./pages/dashboard/projects/ProjectServices/ProjectServices";
 import ProjectActivity from "./pages/dashboard/projects/ProjectActivity/ProjectActivity";
 import ProjectProfile from "./pages/dashboard/projects/ProjectProfile/ProjectProfile";
@@ -34,6 +33,7 @@ import ProjectTransaction from "./pages/dashboard/projects/ProjectTransaction/Pr
 import Projects from "./pages/Projects/Projects";
 import Clients from "./pages/Clients/Clients";
 import EditProject from "./pages/dashboard/projects/EditProject/EditProject";
+import { ProjectService } from "./pages/dashboard/projects/ProjectService/ProjectService";
 
 import "./App.css";
 
@@ -139,6 +139,10 @@ function App() {
                     path="/clients/:clientId/projects/:projectId/services"
                   />
                   <Route
+                    element={<ProjectService />}
+                    path="/clients/:clientId/projects/:projectId/services/:serviceId"
+                  />
+                  <Route
                     element={<ProjectActivity />}
                     path="/clients/:clientId/projects/:projectId/activity"
                   />
@@ -172,7 +176,7 @@ function App() {
                   />
                   <Route
                     path="/clients/:clientId/projects/:projectId/addService"
-                    element={<AddClientService />}
+                    element={<AddService />}
                   />
                   <Route
                     path="/clients/:clientId/projects/:projectId/edit"

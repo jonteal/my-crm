@@ -56,7 +56,7 @@ const ServiceType = new GraphQLObjectType({
         return Project.findById(parent.projectId);
       },
     },
-    inHouse: { type: GraphQLString },
+    serviceProvider: { type: GraphQLString },
     status: { type: GraphQLString },
     startDate: { type: GraphQLString },
     endDate: { type: GraphQLString },
@@ -537,7 +537,7 @@ const mutation = new GraphQLObjectType({
           }),
           defaultValue: "Monthly",
         },
-        inHouse: {
+        serviceProvider: {
           type: new GraphQLEnumType({
             name: "ServiceProvider",
             values: {
@@ -567,6 +567,7 @@ const mutation = new GraphQLObjectType({
           cost: args.cost,
           notes: args.notes,
           paymentSchedule: args.paymentSchedule,
+          serviceProvider: args.serviceProvider,
           status: args.status,
           notes: args.notes,
           projectId: args.projectId,
@@ -597,7 +598,7 @@ const mutation = new GraphQLObjectType({
         service: { type: new GraphQLNonNull(GraphQLString) },
         cost: { type: new GraphQLNonNull(GraphQLString) },
         notes: { type: GraphQLString },
-        inHouse: {
+        serviceProvider: {
           type: new GraphQLEnumType({
             name: "ServiceProviderUpdate",
             values: {
@@ -641,6 +642,7 @@ const mutation = new GraphQLObjectType({
               service: args.service,
               cost: args.cost,
               notes: args.notes,
+              serviceProvider: args.serviceProvider,
               paymentSchedule: args.paymentSchedule,
               status: args.status,
               notes: args.notes,

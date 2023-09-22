@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 import ServicesTable from "../../../../components/dashboardTables/ServicesTable/ServicesTable";
 import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
-import { useQuery } from "@apollo/client";
 import { InHouseServices } from "../../../../components/dashboardTables/InHouseServices/InHouseServices";
 
 const ProjectServices = () => {
@@ -22,8 +22,16 @@ const ProjectServices = () => {
 
   return (
     <div className="flex flex-col">
-      <ServicesTable matchingServices={matchingServices} />
-      <InHouseServices />
+      <ServicesTable
+        matchingServices={matchingServices.filter(
+          (service) => service.serviceProvider === "Third Party"
+        )}
+      />
+      <InHouseServices
+        matchingServices={matchingServices.filter(
+          (service) => service.serviceProvider === "In House"
+        )}
+      />
     </div>
   );
 };

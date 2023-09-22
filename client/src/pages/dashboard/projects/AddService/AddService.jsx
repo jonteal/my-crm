@@ -22,7 +22,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const rootClass = "add-project";
 
-const AddClientService = () => {
+export const AddService = () => {
   const { projectId } = useParams();
 
   const [service, setService] = useState("");
@@ -30,7 +30,7 @@ const AddClientService = () => {
   const [status, setStatus] = useState("off");
   const [notes, setNotes] = useState("");
   const [paymentSchedule, setPaymentSchedule] = useState("monthly");
-  const [serviceProvicer, setServiceProvicer] = useState("inHouse");
+  const [serviceProvider, setServiceProvider] = useState("inHouse");
   // const [projectId, setProjectId] = useState(selectedProjectId);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -42,7 +42,7 @@ const AddClientService = () => {
       cost,
       notes,
       paymentSchedule,
-      inHouse,
+      serviceProvider,
       projectId,
       status,
       startDate,
@@ -81,13 +81,22 @@ const AddClientService = () => {
       );
     }
 
-    addService(service, cost, projectId, status, startDate, endDate);
+    addService(
+      service,
+      cost,
+      projectId,
+      notes,
+      serviceProvider,
+      status,
+      startDate,
+      endDate
+    );
 
     setService("");
     setCost("");
     setPaymentSchedule("monthly");
     setNotes("");
-    setServiceProvicer("inHouse");
+    setServiceProvider("inHouse");
     setStatus("off");
     setStartDate(new Date());
     setEndDate(new Date());
@@ -106,12 +115,16 @@ const AddClientService = () => {
             </div>
           )}
 
+          <h1 className="text-gray-700 block uppercase tracking-wide text-lg font-bold mt-2 mb-3 pt-3">
+            Add Service
+          </h1>
+
           <div className="flex flex-row items-end">
             <div className="flex flex-col justify-center w-1/2 ml-2">
               <div className="w-full">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-state"
+                  htmlFor="grid-state"
                 >
                   Service Status
                 </label>
@@ -133,7 +146,7 @@ const AddClientService = () => {
               <div className="w-full">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-state"
+                  htmlFor="grid-state"
                 >
                   In House / Third Party
                 </label>
@@ -141,8 +154,8 @@ const AddClientService = () => {
                   className="form-select block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                   aria-label="In House or Third Party select"
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
+                  value={serviceProvider}
+                  onChange={(e) => setServiceProvider(e.target.value)}
                 >
                   <option aria-label="In House option" value="inHouse">
                     In House
@@ -155,7 +168,7 @@ const AddClientService = () => {
               <div className="w-full">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-state"
+                  htmlFor="grid-state"
                 >
                   Payment Schedule
                 </label>
@@ -173,9 +186,9 @@ const AddClientService = () => {
                     Monthly
                   </option>
                   <option aria-label="Yearly option" value="yearly">
-                    Monthly
+                    Yearly
                   </option>
-                  <option aria-label="Per Instance option" value="per instance">
+                  <option aria-label="Per Instance option" value="perInstance">
                     Per Instance
                   </option>
                 </select>
@@ -188,7 +201,7 @@ const AddClientService = () => {
               <div className="w-full mr-2 mb-6 md:mb-0">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-service-name"
+                  htmlFor="grid-service-name"
                 >
                   Service
                 </label>
@@ -205,7 +218,7 @@ const AddClientService = () => {
               <div className="w-full ml-2">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-service-cost"
+                  htmlFor="grid-service-cost"
                 >
                   Cost
                 </label>
@@ -275,5 +288,3 @@ const AddClientService = () => {
     </div>
   );
 };
-
-export default AddClientService;

@@ -1,6 +1,7 @@
 import Table from "react-bootstrap/Table";
 
 import { FaRegEye, FaRegTrashAlt } from "react-icons/fa";
+import { PiGasPumpThin } from "react-icons/pi";
 import AddButton from "../../reusable/buttons/AddButton/AddButton";
 import { Link, useParams } from "react-router-dom";
 
@@ -11,20 +12,15 @@ import { useQuery } from "@apollo/client";
 const ServicesTable = ({ matchingServices }) => {
   const { clientId, projectId } = useParams();
 
-  const {
-    loading: clientLoading,
-    error: clientError,
-    data: clientData,
-  } = useQuery(GET_CLIENT, {
-    variables: { id: clientId },
-  });
-
   return (
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 px-3 w-full">
       <div className="flex flex-row justify-between items-center py-3">
-        <h2 className="text-left text-slate-700 text-lg mx-3">
-          Third Party Services
-        </h2>
+        <div className="flex flex-row items-center">
+          <PiGasPumpThin />
+          <h2 className="text-left text-slate-700 text-lg mx-2">
+            Third Party Services
+          </h2>
+        </div>
         <Link to={`/clients/${clientId}/projects/${projectId}/addService`}>
           <AddButton>Add Service</AddButton>
         </Link>
