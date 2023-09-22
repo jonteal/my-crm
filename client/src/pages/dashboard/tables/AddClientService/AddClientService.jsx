@@ -28,6 +28,8 @@ const AddClientService = () => {
   const [service, setService] = useState("");
   const [cost, setCost] = useState("");
   const [status, setStatus] = useState("off");
+  const [notes, setNotes] = useState("");
+  const [paymentSchedule, setPaymentSchedule] = useState("monthly");
   // const [projectId, setProjectId] = useState(selectedProjectId);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -118,6 +120,34 @@ const AddClientService = () => {
                   </option>
                   <option aria-label="Service on option" value="on">
                     On
+                  </option>
+                </select>
+              </div>
+              <div className="w-full">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-state"
+                >
+                  Payment Schedule
+                </label>
+                <select
+                  className="form-select block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                  aria-label="Payment Schedule select"
+                  value={paymentSchedule}
+                  onChange={(e) => setPaymentSchedule(e.target.value)}
+                >
+                  <option aria-label="Weekly option" value="weekly">
+                    Weekly
+                  </option>
+                  <option aria-label="Monthly option" value="monthly">
+                    Monthly
+                  </option>
+                  <option aria-label="Yearly option" value="yearly">
+                    Monthly
+                  </option>
+                  <option aria-label="Per Instance option" value="per instance">
+                    Per Instance
                   </option>
                 </select>
               </div>

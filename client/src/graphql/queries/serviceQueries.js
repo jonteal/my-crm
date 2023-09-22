@@ -7,6 +7,7 @@ const GET_SERVICES = gql`
       service
       cost
       notes
+      inHouse
       paymentSchedule
       status
       project {
@@ -27,6 +28,7 @@ const GET_SERVICE = gql`
       service
       cost
       notes
+      inHouse
       paymentSchedule
       status
       project {

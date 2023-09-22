@@ -19,6 +19,10 @@ const ServiceSchema = new mongoose.Schema({
     type: String,
     enum: ["On", "Off"],
   },
+  inHouse: {
+    type: String,
+    enum: ["In House", "Third Party"],
+  },
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Project",

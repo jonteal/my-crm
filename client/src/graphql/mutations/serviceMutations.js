@@ -5,6 +5,7 @@ const ADD_SERVICE = gql`
     $service: String!
     $cost: String!
     $notes: String
+    $inHouse: ServiceProvider!
     $paymentSchedule: ServicePaymentSchedule!
     $status: ServiceStatus!
     $projectId: ID!
@@ -15,6 +16,7 @@ const ADD_SERVICE = gql`
       service: $service
       cost: $cost
       notes: $notes
+      inHouse: $inHouse
       paymentSchedule: $paymentSchedule
       status: $status
       projectId: $projectId
@@ -25,6 +27,7 @@ const ADD_SERVICE = gql`
       service
       cost
       notes
+      inHouse
       paymentSchedule
       status
       project {
@@ -51,6 +54,7 @@ const UPDATE_SERVICE = gql`
     $id: ID!
     $service: String
     $cost: String
+    $inHouse: ServiceProviderUpdate
     $notes: String
     paymentSchedule: ServicePaymentScheduleUpdate
     $status: ProjectStatusUpdate
@@ -61,6 +65,7 @@ const UPDATE_SERVICE = gql`
       id: $id
       service: $service
       cost: $cost
+      inHouse: $inHouse
       notes: $notes
       paymentSchedule: $paymentSchedule
       status: $status
@@ -70,6 +75,7 @@ const UPDATE_SERVICE = gql`
       id
       service
       cost
+      inHouse
       notes
       paymentSchedule
       status
