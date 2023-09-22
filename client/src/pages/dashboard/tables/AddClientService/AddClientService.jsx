@@ -30,6 +30,7 @@ const AddClientService = () => {
   const [status, setStatus] = useState("off");
   const [notes, setNotes] = useState("");
   const [paymentSchedule, setPaymentSchedule] = useState("monthly");
+  const [serviceProvicer, setServiceProvicer] = useState("inHouse");
   // const [projectId, setProjectId] = useState(selectedProjectId);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -39,6 +40,9 @@ const AddClientService = () => {
     variables: {
       service,
       cost,
+      notes,
+      paymentSchedule,
+      inHouse,
       projectId,
       status,
       startDate,
@@ -81,6 +85,9 @@ const AddClientService = () => {
 
     setService("");
     setCost("");
+    setPaymentSchedule("monthly");
+    setNotes("");
+    setServiceProvicer("inHouse");
     setStatus("off");
     setStartDate(new Date());
     setEndDate(new Date());
@@ -120,6 +127,28 @@ const AddClientService = () => {
                   </option>
                   <option aria-label="Service on option" value="on">
                     On
+                  </option>
+                </select>
+              </div>
+              <div className="w-full">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-state"
+                >
+                  In House / Third Party
+                </label>
+                <select
+                  className="form-select block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                  aria-label="In House or Third Party select"
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                >
+                  <option aria-label="In House option" value="inHouse">
+                    In House
+                  </option>
+                  <option aria-label="Third Party option" value="thirdParty">
+                    Third Party
                   </option>
                 </select>
               </div>
@@ -192,6 +221,25 @@ const AddClientService = () => {
                   onChange={(e) => setCost(e.target.value)}
                 />
               </div>
+            </div>
+
+            <div className="w-full">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="grid-notes"
+              >
+                Notes
+              </label>
+              <textarea
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-notes"
+                aria-label="Invoice notes section"
+                //   type="text"
+                rows="3"
+                placeholder="Notes about this invoice"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+              />
             </div>
 
             <div className="flex flex-row mb-6 my-3">
