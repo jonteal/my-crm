@@ -13,7 +13,6 @@ import NotFound from "./pages/NotFound/NotFound";
 import AddClient from "./pages/homeView/AddClient/AddClient";
 import ClientDashboard from "./pages/dashboard/profile/ClientDashboard/ClientDashboard";
 import AddProject from "./pages/dashboard/projects/AddProject/AddProject";
-import AddClientProject from "./pages/dashboard/tables/AddClientProject/AddClientProject";
 import EditClient from "./pages/homeView/EditClient/EditClient";
 import ClientInvoices from "./pages/dashboard/billing/ClientInvoices/ClientInvoices";
 import AddInvoice from "./pages/dashboard/billing/AddInvoice/AddInvoice";
@@ -180,10 +179,7 @@ function App() {
                     element={<EditProject />}
                   />
                 </Route>
-                <Route
-                  path="/clients/:clientId/addProject"
-                  element={<AddClientProject />}
-                />
+
                 <Route
                   path="/clients/:clientId/edit"
                   element={<EditClient />}

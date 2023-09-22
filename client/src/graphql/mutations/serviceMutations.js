@@ -4,6 +4,8 @@ const ADD_SERVICE = gql`
   mutation AddService(
     $service: String!
     $cost: String!
+    $notes: String
+    $paymentSchedule: ServicePaymentSchedule!
     $status: ServiceStatus!
     $projectId: ID!
     $startDate: String
@@ -12,6 +14,8 @@ const ADD_SERVICE = gql`
     addService(
       service: $service
       cost: $cost
+      notes: $notes
+      paymentSchedule: $paymentSchedule
       status: $status
       projectId: $projectId
       startDate: $startDate
@@ -20,6 +24,8 @@ const ADD_SERVICE = gql`
       id
       service
       cost
+      notes
+      paymentSchedule
       status
       project {
         id
@@ -45,6 +51,8 @@ const UPDATE_SERVICE = gql`
     $id: ID!
     $service: String
     $cost: String
+    $notes: String
+    paymentSchedule: ServicePaymentScheduleUpdate
     $status: ProjectStatusUpdate
     $startDate: String
     $endDate: String
@@ -53,6 +61,8 @@ const UPDATE_SERVICE = gql`
       id: $id
       service: $service
       cost: $cost
+      notes: $notes
+      paymentSchedule: $paymentSchedule
       status: $status
       startDate: $startDate
       endDate: $endDate
@@ -60,6 +70,8 @@ const UPDATE_SERVICE = gql`
       id
       service
       cost
+      notes
+      paymentSchedule
       status
       project {
         id

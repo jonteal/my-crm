@@ -56,6 +56,7 @@ const ProjectFinancials = () => {
     <div className="mt-2">
       <div className="flex flex-col w-full">
         <div className="w-full mx-2 my-3">
+          <h2 className="text-left my-2">Budget Used</h2>
           <ProgressBar now={budgetUsed} />
         </div>
         <div className="flex flex-row w-full">

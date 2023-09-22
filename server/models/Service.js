@@ -8,6 +8,13 @@ const ServiceSchema = new mongoose.Schema({
   cost: {
     type: Number,
   },
+  notes: {
+    type: String,
+  },
+  paymentSchedule: {
+    type: String,
+    enum: ["Weekly", "Monthly", "Yearly", "Per Instance"],
+  },
   status: {
     type: String,
     enum: ["On", "Off"],

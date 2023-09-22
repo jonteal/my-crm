@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 import { useQuery } from "@apollo/client";
 
-const ServicesTable = ({ matchingServices }) => {
+export const InHouseServices = ({ matchingServices }) => {
   const { clientId, projectId } = useParams();
 
   const {
@@ -23,7 +23,7 @@ const ServicesTable = ({ matchingServices }) => {
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 px-3 w-full">
       <div className="flex flex-row justify-between items-center py-3">
         <h2 className="text-left text-slate-700 text-lg mx-3">
-          Third Party Services
+          In House Services
         </h2>
         <Link to={`/clients/${clientId}/projects/${projectId}/addService`}>
           <AddButton>Add Service</AddButton>
@@ -79,5 +79,3 @@ const ServicesTable = ({ matchingServices }) => {
     </div>
   );
 };
-
-export default ServicesTable;

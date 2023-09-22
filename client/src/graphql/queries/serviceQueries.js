@@ -6,6 +6,8 @@ const GET_SERVICES = gql`
       id
       service
       cost
+      notes
+      paymentSchedule
       status
       project {
         id
@@ -24,6 +26,8 @@ const GET_SERVICE = gql`
       id
       service
       cost
+      notes
+      paymentSchedule
       status
       project {
         id

@@ -48,6 +48,8 @@ const ServiceType = new GraphQLObjectType({
     id: { type: GraphQLID },
     service: { type: GraphQLString },
     cost: { type: GraphQLString },
+    notes: { type: GraphQLString },
+    paymentSchedule: { type: GraphQLString },
     project: {
       type: ProjectType,
       resolve(parent, args) {
@@ -521,6 +523,19 @@ const mutation = new GraphQLObjectType({
       args: {
         service: { type: new GraphQLNonNull(GraphQLString) },
         cost: { type: new GraphQLNonNull(GraphQLString) },
+        notes: { type: GraphQLString },
+        paymentSchedule: {
+          type: new GraphQLEnumType({
+            name: "ServicePaymentSchedule",
+            values: {
+              weekly: { value: "Weekly" },
+              monthly: { value: "Monthly" },
+              yearly: { value: "Yearly" },
+              perInstance: { value: "Per Instance" },
+            },
+          }),
+          defaultValue: "Monthly",
+        },
         status: {
           type: new GraphQLEnumType({
             name: "ServiceStatus",
@@ -539,6 +554,8 @@ const mutation = new GraphQLObjectType({
         const service = new Service({
           service: args.service,
           cost: args.cost,
+          notes: args.notes,
+          paymentSchedule: args.paymentSchedule,
           status: args.status,
           notes: args.notes,
           projectId: args.projectId,
@@ -568,6 +585,19 @@ const mutation = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLID) },
         service: { type: new GraphQLNonNull(GraphQLString) },
         cost: { type: new GraphQLNonNull(GraphQLString) },
+        notes: { type: GraphQLString },
+        paymentSchedule: {
+          type: new GraphQLEnumType({
+            name: "ServicePaymentScheduleUpdate",
+            values: {
+              weekly: { value: "Weekly" },
+              monthly: { value: "Monthly" },
+              yearly: { value: "Yearly" },
+              perInstance: { value: "Per Instance" },
+            },
+          }),
+          defaultValue: "Monthly",
+        },
         status: {
           type: new GraphQLEnumType({
             name: "ServiceStatusUpdate",
@@ -589,6 +619,8 @@ const mutation = new GraphQLObjectType({
             $set: {
               service: args.service,
               cost: args.cost,
+              notes: args.notes,
+              paymentSchedule: args.paymentSchedule,
               status: args.status,
               notes: args.notes,
               projectId: args.projectId,
