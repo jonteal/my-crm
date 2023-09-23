@@ -4,8 +4,7 @@ import { GiMoneyStack } from "react-icons/gi";
 
 import { NavLink } from "react-router-dom";
 
-const ProjectViewNav = ({ projectData }) => {
-  // const { companyName } = clientData.client;
+const ProjectViewNav = () => {
   return (
     <div
       id="Main"

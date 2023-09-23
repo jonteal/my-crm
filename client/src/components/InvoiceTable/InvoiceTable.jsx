@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { TbFileInvoice } from "react-icons/tb";
-import AddButton from "../../reusable/buttons/AddButton/AddButton";
-import InvoiceTableItem from "../InvoiceTableItem/InvoiceTableItem";
+import AddButton from "../reusable/buttons/AddButton/AddButton";
+import InvoiceTableItem from "../dashboardBilling/InvoiceTableItem/InvoiceTableItem";
 
 const InvoiceTable = ({ invoices, shortList }) => {
   const { clientId, projectId } = useParams();

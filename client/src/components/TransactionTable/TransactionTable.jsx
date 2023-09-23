@@ -26,16 +26,28 @@ const TransactionTable = ({ transactions, shortList }) => {
           </div>
         )}
       </div>
-      {filteredList.map((transaction) => (
-        <Link
-          to={`/clients/${clientId}/projects/${projectId}/financials/transactions/${transaction.id}`}
-        >
-          <ClientTransactionItem
+
+      {filteredList.length === 0 ? (
+        <div className="flex flex-row items-center justify-center px-5">
+          <h2 className="mt-5 text-lg italic pb-4">
+            {`You do not have any transaction for this ${
+              projectId ? "project" : "client"
+            } yet. To add an transaction, select a project and add transaction in Financials section`}
+          </h2>
+        </div>
+      ) : (
+        filteredList.map((transaction) => (
+          <Link
             key={transaction.id}
-            transaction={transaction}
-          />
-        </Link>
-      ))}
+            to={`/clients/${clientId}/projects/${projectId}/financials/transactions/${transaction.id}`}
+          >
+            <ClientTransactionItem
+              key={transaction.id}
+              transaction={transaction}
+            />
+          </Link>
+        ))
+      )}
     </div>
   );
 };
