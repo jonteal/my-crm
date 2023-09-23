@@ -129,6 +129,8 @@ const EditProject = () => {
           <option value="notStarted">Not Started</option>
           <option value="inProgress">In Progress</option>
           <option value="completed">Completed</option>
+          <option value="paused">Paused</option>
+          <option value="needsAttention">Needs Attention</option>
         </select>
 
         <div className="">

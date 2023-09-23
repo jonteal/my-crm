@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { CiNoWaitingSign } from "react-icons/ci";
 import { GiProgression } from "react-icons/gi";
 import { BsCheckCircle } from "react-icons/bs";
+import { PiPauseDuotone } from "react-icons/pi";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 const StatusBadge = ({ status }) => {
   const [statusColor, setStatusColor] = useState("");
@@ -12,7 +14,11 @@ const StatusBadge = ({ status }) => {
     } else if (status === "In Progress") {
       setStatusColor("bg-green-600");
     } else if (status === "Completed") {
+      setStatusColor("bg-sky-600");
+    } else if (status === "Paused") {
       setStatusColor("bg-red-600");
+    } else if (status === "Needs Attention") {
+      setStatusColor("bg-orange-500");
     }
   }, [status]);
 
@@ -21,8 +27,12 @@ const StatusBadge = ({ status }) => {
       return <CiNoWaitingSign />;
     } else if (status === "In Progress") {
       return <GiProgression />;
-    } else {
+    } else if (status === "Completed") {
       return <BsCheckCircle />;
+    } else if (status === "Paused") {
+      return <PiPauseDuotone />;
+    } else {
+      return <AiOutlineExclamationCircle />;
     }
   };
 

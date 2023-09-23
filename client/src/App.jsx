@@ -35,6 +35,7 @@ import EditProject from "./pages/dashboard/projects/EditProject/EditProject";
 import { ProjectService } from "./pages/dashboard/projects/ProjectService/ProjectService";
 
 import "./App.css";
+import ClientProjects from "./pages/dashboard/projects/ClientProjects/ClientProjects";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -120,6 +121,10 @@ function App() {
                 <Route
                   path="/clients/:clientId/billing"
                   element={<ClientBilling />}
+                />
+                <Route
+                  path="/clients/:clientId/projects"
+                  element={<ClientProjects />}
                 />
                 <Route
                   path="/clients/:clientId/projects/:projectId"
