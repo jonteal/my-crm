@@ -18,13 +18,13 @@ import BudgetRemaining from "../../../../components/dashboardBilling/BudgetRemai
 const ClientBilling = () => {
   const { clientId } = useParams();
 
-  const {
-    loading: clientLoading,
-    error: clientError,
-    data: clientData,
-  } = useQuery(GET_CLIENT, {
-    variables: { id: clientId },
-  });
+  // const {
+  //   loading: clientLoading,
+  //   error: clientError,
+  //   data: clientData,
+  // } = useQuery(GET_CLIENT, {
+  //   variables: { id: clientId },
+  // });
 
   const {
     loading: invoicesLoading,
@@ -49,26 +49,25 @@ const ClientBilling = () => {
   if (invoicesError || transactionsError || projectsError)
     return <p>There was a problem loading the client transactions...</p>;
 
-  // const invoicesArray = invoicesData.invoices;
-  const transactionsArray = transactionsData.transactions;
-
-  const matchingProjects = projectsData.projects.filter(
-    (project) => project.client.id === clientId
-  );
-
-  const budgetsTotalSum = matchingProjects.reduce(function (acc, obj) {
-    return acc + parseFloat(obj.clientBudget);
-  }, 0);
-
-  // const matchingInvoices = invoicesArray.filter(
-  //   (invoice) => invoice.client.id === clientId
+  // const matchingProjects = projectsData.projects.filter(
+  //   (project) => project.client.id === clientId
   // );
+
+  // const budgetsTotalSum = matchingProjects.reduce(function (acc, obj) {
+  //   return acc + parseFloat(obj.clientBudget);
+  // }, 0);
 
   // const invoicesTotalSum = matchingInvoices.reduce(function (acc, obj) {
   //   return acc + parseFloat(obj.amount);
   // }, 0);
 
-  const matchingTransactions = transactionsArray.filter(
+  console.log("invoicesData: ", invoicesData);
+
+  const matchingInvoices = invoicesData.invoices.filter(
+    (invoice) => invoice.client.id === clientId
+  );
+
+  const matchingTransactions = transactionsData.transactions.filter(
     (transaction) => transaction.client.id === clientId
   );
 
@@ -85,7 +84,7 @@ const ClientBilling = () => {
         {/* <BudgetRemaining budgetRemaining={budgetRemaining} /> */}
       </div>
       <div className="w-full flex flex-row">
-        {/* <InvoiceTable invoices={matchingInvoices} /> */}
+        <InvoiceTable invoices={matchingInvoices} />
         <ClientTransactions transactions={matchingTransactions} />
       </div>
     </div>

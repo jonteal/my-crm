@@ -24,6 +24,7 @@ const rootClass = "add-invoice";
 
 const AddInvoice = () => {
   const { clientId, projectId } = useParams();
+
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [notes, setNotes] = useState("");
@@ -59,6 +60,9 @@ const AddInvoice = () => {
     data: projectsData,
   } = useQuery(GET_PROJECT, { variables: { id: projectId } });
 
+  console.log("projectsData: ", projectsData);
+  console.log("clientsData,: ", clientsData);
+
   const handleDateChange = (date) => {
     setDate(date);
   };
@@ -80,6 +84,7 @@ const AddInvoice = () => {
     setAmount("");
     setNotes("");
     setInvoiceNumber("");
+    // setProject(projectId);
   };
 
   return (
@@ -93,6 +98,22 @@ const AddInvoice = () => {
       {/* <h1 className="text-slate-700 text-xl">
         Project: {matchingProjects[0].title}
       </h1> */}
+
+      {/* <label className="form-label client-select">Project Name</label>
+      <select
+        className="form-select"
+        aria-label="Default select example"
+        id="projectId"
+        value={projectId}
+        onChange={(e) => setProject(e.target.value)}
+      >
+        <option value="">Select Client</option>
+        {projectsData.projects.map((project) => (
+          <option key={project.id} value={project.id}>
+            {project.title}
+          </option>
+        ))}
+      </select> */}
 
       <form className="w-full max-w-lg mb-3" onSubmit={onSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">

@@ -8,7 +8,9 @@ const InvoiceTableItem = ({ invoice }) => {
         <p className="text-left text-slate-700 text-base font-semibold mx-3 my-1">
           {date}
         </p>
-        <p className="text-left text-slate-500 text-sm mx-3">{invoiceNumber}</p>
+        <p className="text-left text-slate-500 text-sm mx-3">
+          # {invoiceNumber}
+        </p>
       </div>
       <div className="flex flex-row items-center">
         <p className="text-left text-slate-500 text-base mx-4">$ {amount}</p>
