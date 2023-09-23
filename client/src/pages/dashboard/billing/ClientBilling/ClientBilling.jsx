@@ -2,7 +2,7 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 // COMPONENTS
-import InvoiceTable from "../../../../components/dashboardBilling/InvoiceTable/InvoiceTable";
+import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 import ClientTransactions from "../../../../components/TransactionTable/TransactionTable";
 
@@ -60,8 +60,6 @@ const ClientBilling = () => {
   // const invoicesTotalSum = matchingInvoices.reduce(function (acc, obj) {
   //   return acc + parseFloat(obj.amount);
   // }, 0);
-
-  console.log("invoicesData: ", invoicesData);
 
   const matchingInvoices = invoicesData.invoices.filter(
     (invoice) => invoice.client.id === clientId

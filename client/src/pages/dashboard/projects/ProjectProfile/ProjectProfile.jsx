@@ -33,7 +33,7 @@ const ProjectProfile = () => {
     <div className="px-0 flex flex-col w-full">
       <div className="flex flex-row">
         <div className="rounded-xl bg-slate-50 mx-2 mt-3 p-2 w-full">
-          <div className="">
+          <div className="w-full flex flex-row justify-end">
             <Link to={`/clients/${clientId}/projects/${projectId}/edit`}>
               <SubmitButton>Edit</SubmitButton>
             </Link>

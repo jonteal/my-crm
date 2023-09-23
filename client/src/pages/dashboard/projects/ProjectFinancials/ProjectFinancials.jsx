@@ -1,4 +1,4 @@
-import InvoiceTable from "../../../../components/dashboardBilling/InvoiceTable/InvoiceTable";
+import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";

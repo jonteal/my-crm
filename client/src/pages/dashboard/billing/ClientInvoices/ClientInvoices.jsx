@@ -1,4 +1,4 @@
-import InvoiceTable from "../../../../components/dashboardBilling/InvoiceTable/InvoiceTable";
+import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
 // GRAPHQL
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
