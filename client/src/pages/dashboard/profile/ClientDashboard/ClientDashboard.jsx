@@ -10,7 +10,7 @@ import ClientCommentFeed from "../../../../components/ClientCommentFeed/ClientCo
 import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
 import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../../../graphql/queries/clientActivityCommentQueries";
 
-const ClientDashboard = () => {
+export const ClientDashboard = () => {
   const { clientId } = useParams();
 
   const {
@@ -54,5 +54,3 @@ const ClientDashboard = () => {
     </div>
   );
 };
-
-export default ClientDashboard;

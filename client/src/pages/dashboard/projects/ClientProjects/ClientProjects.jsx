@@ -4,14 +4,18 @@ import { GET_PROJECTS } from "../../../../graphql/queries/projectQueries";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 import ProjectPageCard from "../../../../components/ProjectPageCard/ProjectPageCard";
 
-const ClientProjects = () => {
+export const ClientProjects = () => {
   const { clientId } = useParams();
 
   const {
     loading: projectsLoading,
     error: projectsError,
     data: projectsData,
-  } = useQuery(GET_PROJECTS);
+  } = useQuery(GET_PROJECTS, {
+    variables: { id: { client: { id: clientId } } },
+  });
+
+  console.log("projectsData: ", projectsData);
 
   if (projectsLoading) return <Spinner />;
   if (projectsError) return <p>There was an error loading the comment feed</p>;
@@ -28,5 +32,3 @@ const ClientProjects = () => {
     </div>
   );
 };
-
-export default ClientProjects;

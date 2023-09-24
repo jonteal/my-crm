@@ -15,7 +15,7 @@ import "./editClient.css";
 const rootClass = "edit-client";
 
 const EditClient = () => {
-  const { id } = useParams();
+  const { clientId } = useParams();
   //   const navigate = useNavigate();
 
   //   const handleBackNavigate = () => {
@@ -27,16 +27,10 @@ const EditClient = () => {
     error: clientError,
     data: clientData,
   } = useQuery(GET_CLIENT, {
-    variables: { id },
+    variables: { id: clientId },
   });
 
-  //   const clientEditLocation = `/clients/${clientData.client.id}/edit`;
-
-  //   useEffect(() => {
-  //     navigate(clientEditLocation);
-  //   }, [clientEditLocation, navigate]);
-
-  //   const clientLocation = `/clients/${clientData.client.id}`;
+  console.log("clientData: ", clientData);
 
   const client = clientData?.client;
 

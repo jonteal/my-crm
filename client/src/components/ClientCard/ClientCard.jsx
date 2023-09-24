@@ -1,22 +1,12 @@
 import { Link } from "react-router-dom";
 import EditButton from "../reusable/buttons/EditButton/EditButton";
-import "./clientCard.css";
 import ClientCardInfoItem from "../ClientCardInfoItem/ClientCardInfoItem";
+import { formatPhoneNumber } from "../../utils/format";
+import "./clientCard.css";
 
 const rootClass = "client-card";
 
 const ClientCard = ({ clientData }) => {
-  let formatPhoneNumber = (str) => {
-    let cleaned = ("" + str).replace(/\D/g, "");
-    let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-
-    if (match) {
-      return "(" + match[1] + ") " + match[2] + "-" + match[3];
-    }
-
-    return null;
-  };
-
   const {
     id,
     companyName,

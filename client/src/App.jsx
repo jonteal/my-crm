@@ -8,9 +8,9 @@ import Home from "./pages/homeView/Home/Home";
 // Components
 import { ClientView } from "./pages/dashboard/ClientView/ClientView";
 import ProjectView from "./pages/dashboard/projects/ProjectView/ProjectView";
-import NotFound from "./pages/NotFound/NotFound";
+import { NotFound } from "./pages/NotFound/NotFound";
 import AddClient from "./pages/homeView/AddClient/AddClient";
-import ClientDashboard from "./pages/dashboard/profile/ClientDashboard/ClientDashboard";
+import { ClientDashboard } from "./pages/dashboard/profile/ClientDashboard/ClientDashboard";
 import AddProject from "./pages/dashboard/projects/AddProject/AddProject";
 import EditClient from "./pages/homeView/EditClient/EditClient";
 import ClientInvoices from "./pages/dashboard/billing/ClientInvoices/ClientInvoices";
@@ -23,7 +23,7 @@ import MainDashboard from "./pages/homeView/MainDashboard/MainDashboard";
 import { AddService } from "./pages/dashboard/projects/AddService/AddService";
 import ProjectServices from "./pages/dashboard/projects/ProjectServices/ProjectServices";
 import ProjectActivity from "./pages/dashboard/projects/ProjectActivity/ProjectActivity";
-import ProjectProfile from "./pages/dashboard/projects/ProjectProfile/ProjectProfile";
+import { ProjectProfile } from "./pages/dashboard/projects/ProjectProfile/ProjectProfile";
 import ProjectFinancials from "./pages/dashboard/projects/ProjectFinancials/ProjectFinancials";
 import ProjectInvoices from "./pages/dashboard/projects/ProjectInvoices/ProjectInvoices";
 import ProjectInvoice from "./pages/dashboard/projects/ProjectInvoice/ProjectInvoice";
@@ -33,9 +33,9 @@ import Projects from "./pages/Projects/Projects";
 import Clients from "./pages/Clients/Clients";
 import EditProject from "./pages/dashboard/projects/EditProject/EditProject";
 import { ProjectService } from "./pages/dashboard/projects/ProjectService/ProjectService";
+import { ClientProjects } from "./pages/dashboard/projects/ClientProjects/ClientProjects";
 
 import "./App.css";
-import ClientProjects from "./pages/dashboard/projects/ClientProjects/ClientProjects";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment

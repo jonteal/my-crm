@@ -4,7 +4,7 @@ import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
 
-const ProjectProfile = () => {
+export const ProjectProfile = () => {
   const { projectId, clientId } = useParams();
 
   const {
@@ -63,5 +63,3 @@ const ProjectProfile = () => {
     </div>
   );
 };
-
-export default ProjectProfile;

@@ -14,14 +14,14 @@ import "./clientView.css";
 const rootClass = "client-view";
 
 export const ClientView = () => {
-  const { id } = useParams();
+  const { clientId } = useParams();
 
   const {
     loading: clientLoading,
     error: clientError,
     data: clientData,
   } = useQuery(GET_CLIENT, {
-    variables: { id },
+    variables: { id: clientId },
   });
 
   if (clientLoading) return <Spinner />;

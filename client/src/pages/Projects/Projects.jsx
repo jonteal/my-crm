@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { GET_PROJECTS } from "../../graphql/queries/projectQueries";
 import { useQuery } from "@apollo/client";
+import { GET_PROJECTS } from "../../graphql/queries/projectQueries";
 import ProjectPageCard from "../../components/ProjectPageCard/ProjectPageCard";
 import Spinner from "../../components/reusable/Spinner/Spinner";
 import { Link } from "react-router-dom";
@@ -24,6 +24,10 @@ const Projects = () => {
         onChange={(event) => setSearchTerm(event.target.value)}
         className="searchBar w-40 border rounded-xl pl-3 py-1 ml-5"
       />
+
+      <p className="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2">
+        Total Projects: {data.projects.length}
+      </p>
 
       <div className="flex flex-row flex-wrap mx-auto">
         {data.projects
