@@ -7,7 +7,7 @@ import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 // COMPONENTS
 import ProjectViewNav from "../../../../components/nav/ProjectViewNav/ProjectViewNav";
 
-const ProjectView = () => {
+export const ProjectView = () => {
   const { id } = useParams();
 
   const {
@@ -28,5 +28,3 @@ const ProjectView = () => {
     </div>
   );
 };
-
-export default ProjectView;

@@ -1,5 +1,3 @@
-const ClientTransactionsView = () => {
+export const ClientTransactionsView = () => {
   return <div>ClientTransactionsView</div>;
 };
-
-export default ClientTransactionsView;

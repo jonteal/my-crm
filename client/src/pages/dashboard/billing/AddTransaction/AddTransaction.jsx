@@ -22,7 +22,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const rootClass = "add-transaction";
 
-const AddTransaction = () => {
+export const AddTransaction = () => {
   const { clientId, projectId } = useParams();
 
   const [paymentDate, setPaymentDate] = useState("");
@@ -197,5 +197,3 @@ const AddTransaction = () => {
     </div>
   );
 };
-
-export default AddTransaction;

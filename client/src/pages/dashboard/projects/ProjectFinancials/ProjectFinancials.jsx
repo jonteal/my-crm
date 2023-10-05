@@ -1,15 +1,19 @@
-import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
-import Spinner from "../../../../components/reusable/Spinner/Spinner";
-import TransactionTable from "../../../../components/TransactionTable/TransactionTable";
-import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
-import EditButton from "../../../../components/reusable/buttons/EditButton/EditButton";
-import ProgressBar from "../../../../components/ProgressBar/ProgressBar";
-import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 
-const ProjectFinancials = () => {
+// COMPONENTS
+import Spinner from "../../../../components/reusable/Spinner/Spinner";
+import EditButton from "../../../../components/reusable/buttons/EditButton/EditButton";
+import TransactionTable from "../../../../components/TransactionTable/TransactionTable";
+import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
+import ProgressBar from "../../../../components/ProgressBar/ProgressBar";
+
+// GRAPHQL
+import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
+import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
+import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
+
+export const ProjectFinancials = () => {
   const { projectId } = useParams();
 
   const {
@@ -17,8 +21,6 @@ const ProjectFinancials = () => {
     error: projectError,
     data: projectData,
   } = useQuery(GET_PROJECT, { variables: { id: projectId } });
-
-  console.log("projectData: ", projectData);
 
   const {
     loading: invoicesLoading,
@@ -49,11 +51,7 @@ const ProjectFinancials = () => {
     return acc + parseFloat(obj.amount);
   }, 0);
 
-  console.log("invoiceSum: ", invoiceSum);
-
   const budgetUsed = (invoiceSum / projectData.project.clientBudget) * 100;
-
-  console.log("budgetUsed: ", budgetUsed);
 
   return (
     <div className="mt-2">
@@ -84,5 +82,3 @@ const ProjectFinancials = () => {
     </div>
   );
 };
-
-export default ProjectFinancials;

@@ -15,7 +15,7 @@ import TotalBilledCard from "../../../../components/dashboardBilling/TotalBilled
 import BilledThisMonth from "../../../../components/dashboardBilling/BilledThisMonth/BilledThisMonth";
 import BudgetRemaining from "../../../../components/dashboardBilling/BudgetRemaining/BudgetRemaining";
 
-const ClientBilling = () => {
+export const ClientBilling = () => {
   const { clientId } = useParams();
 
   // const {
@@ -88,5 +88,3 @@ const ClientBilling = () => {
     </div>
   );
 };
-
-export default ClientBilling;

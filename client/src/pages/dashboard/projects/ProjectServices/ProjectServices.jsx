@@ -4,7 +4,7 @@ import ServicesTable from "../../../../components/dashboardTables/ServicesTable/
 import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 import { InHouseServices } from "../../../../components/dashboardTables/InHouseServices/InHouseServices";
 
-const ProjectServices = () => {
+export const ProjectServices = () => {
   const { projectId } = useParams();
 
   const {
@@ -35,5 +35,3 @@ const ProjectServices = () => {
     </div>
   );
 };
-
-export default ProjectServices;

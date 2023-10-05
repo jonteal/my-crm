@@ -14,7 +14,7 @@ import "./addClient.css";
 
 const rootClass = "add-client";
 
-const AddClient = () => {
+export const AddClient = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -221,5 +221,3 @@ const AddClient = () => {
     </div>
   );
 };
-
-export default AddClient;

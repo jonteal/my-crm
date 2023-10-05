@@ -15,8 +15,6 @@ export const ClientProjects = () => {
     variables: { id: { client: { id: clientId } } },
   });
 
-  console.log("projectsData: ", projectsData);
-
   if (projectsLoading) return <Spinner />;
   if (projectsError) return <p>There was an error loading the comment feed</p>;
 

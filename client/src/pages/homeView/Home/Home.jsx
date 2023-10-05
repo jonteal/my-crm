@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import AddButton from "../../../components/reusable/buttons/AddButton/AddButton";
 import SubmitButton from "../../../components/reusable/buttons/submitButton/SubmitButton";
 
-const Home = () => {
+export const Home = () => {
   return (
     <div className="mx-20">
       <div className="mt-3">
@@ -16,5 +15,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;

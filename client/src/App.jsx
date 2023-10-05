@@ -3,35 +3,35 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 
 // Pages
-import Home from "./pages/homeView/Home/Home";
+import { Home } from "./pages/homeView/Home/Home";
 
 // Components
 import { ClientView } from "./pages/dashboard/ClientView/ClientView";
-import ProjectView from "./pages/dashboard/projects/ProjectView/ProjectView";
+import { ProjectView } from "./pages/dashboard/projects/ProjectView/ProjectView";
 import { NotFound } from "./pages/NotFound/NotFound";
-import AddClient from "./pages/homeView/AddClient/AddClient";
+import { AddClient } from "./pages/homeView/AddClient/AddClient";
 import { ClientDashboard } from "./pages/dashboard/profile/ClientDashboard/ClientDashboard";
-import AddProject from "./pages/dashboard/projects/AddProject/AddProject";
-import EditClient from "./pages/homeView/EditClient/EditClient";
-import ClientInvoices from "./pages/dashboard/billing/ClientInvoices/ClientInvoices";
-import AddInvoice from "./pages/dashboard/billing/AddInvoice/AddInvoice";
-import Navigation from "./components/Navigation/Navigation";
-import ClientBilling from "./pages/dashboard/billing/ClientBilling/ClientBilling";
-import ClientTransactionsView from "./pages/dashboard/billing/ClientTransactionsView/ClientTransactionsView";
-import AddTransaction from "./pages/dashboard/billing/AddTransaction/AddTransaction";
-import MainDashboard from "./pages/homeView/MainDashboard/MainDashboard";
+import { AddProject } from "./pages/dashboard/projects/AddProject/AddProject";
+import { EditClient } from "./pages/homeView/EditClient/EditClient";
+import { ClientInvoices } from "./pages/dashboard/billing/ClientInvoices/ClientInvoices";
+import { AddInvoice } from "./pages/dashboard/billing/AddInvoice/AddInvoice";
+import { Navigation } from "./components/Navigation/Navigation";
+import { ClientBilling } from "./pages/dashboard/billing/ClientBilling/ClientBilling";
+import { ClientTransactionsView } from "./pages/dashboard/billing/ClientTransactionsView/ClientTransactionsView";
+import { AddTransaction } from "./pages/dashboard/billing/AddTransaction/AddTransaction";
+import { MainDashboard } from "./pages/homeView/MainDashboard/MainDashboard";
 import { AddService } from "./pages/dashboard/projects/AddService/AddService";
-import ProjectServices from "./pages/dashboard/projects/ProjectServices/ProjectServices";
-import ProjectActivity from "./pages/dashboard/projects/ProjectActivity/ProjectActivity";
+import { ProjectServices } from "./pages/dashboard/projects/ProjectServices/ProjectServices";
+import { ProjectActivity } from "./pages/dashboard/projects/ProjectActivity/ProjectActivity";
 import { ProjectProfile } from "./pages/dashboard/projects/ProjectProfile/ProjectProfile";
-import ProjectFinancials from "./pages/dashboard/projects/ProjectFinancials/ProjectFinancials";
-import ProjectInvoices from "./pages/dashboard/projects/ProjectInvoices/ProjectInvoices";
-import ProjectInvoice from "./pages/dashboard/projects/ProjectInvoice/ProjectInvoice";
+import { ProjectFinancials } from "./pages/dashboard/projects/ProjectFinancials/ProjectFinancials";
+import { ProjectInvoices } from "./pages/dashboard/projects/ProjectInvoices/ProjectInvoices";
+import { ProjectInvoice } from "./pages/dashboard/projects/ProjectInvoice/ProjectInvoice";
 import { ProjectTransactions } from "./pages/dashboard/projects/ProjectTransactions/ProjectTransactions";
-import ProjectTransaction from "./pages/dashboard/projects/ProjectTransaction/ProjectTransaction";
-import Projects from "./pages/Projects/Projects";
-import Clients from "./pages/Clients/Clients";
-import EditProject from "./pages/dashboard/projects/EditProject/EditProject";
+import { ProjectTransaction } from "./pages/dashboard/projects/ProjectTransaction/ProjectTransaction";
+import { Projects } from "./pages/Projects/Projects";
+import { Clients } from "./pages/Clients/Clients";
+import { EditProject } from "./pages/dashboard/projects/EditProject/EditProject";
 import { ProjectService } from "./pages/dashboard/projects/ProjectService/ProjectService";
 import { ClientProjects } from "./pages/dashboard/projects/ClientProjects/ClientProjects";
 

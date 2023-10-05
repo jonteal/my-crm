@@ -4,7 +4,7 @@ import { GET_INVOICE } from "../../../../graphql/queries/invoiceQueries";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
 
-const ProjectInvoice = () => {
+export const ProjectInvoice = () => {
   const { invoiceId } = useParams();
 
   const {
@@ -32,5 +32,3 @@ const ProjectInvoice = () => {
     </div>
   );
 };
-
-export default ProjectInvoice;

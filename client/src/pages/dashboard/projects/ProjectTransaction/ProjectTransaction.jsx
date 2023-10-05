@@ -4,7 +4,7 @@ import { GET_TRANSACTION } from "../../../../graphql/queries/transactionQueries"
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
 
-const ProjectTransaction = () => {
+export const ProjectTransaction = () => {
   const { transactionId } = useParams();
 
   const {
@@ -66,5 +66,3 @@ const ProjectTransaction = () => {
     </div>
   );
 };
-
-export default ProjectTransaction;

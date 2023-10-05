@@ -4,7 +4,7 @@ import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
 import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
 
-const ClientInvoices = () => {
+export const ClientInvoices = () => {
   const { id } = useParams();
 
   const {
@@ -22,7 +22,5 @@ const ClientInvoices = () => {
   const matchingInvoices = invoicesArray.filter(
     (invoice) => invoice.client.id === clientId
   );
-  return <InvoiceTable invoices={matchingInvoice} />;
+  return <InvoiceTable invoices={matchingInvoices} />;
 };
-
-export default ClientInvoices;

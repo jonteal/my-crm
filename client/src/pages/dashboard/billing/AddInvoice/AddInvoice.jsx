@@ -22,7 +22,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const rootClass = "add-invoice";
 
-const AddInvoice = () => {
+export const AddInvoice = () => {
   const { clientId, projectId } = useParams();
 
   const [date, setDate] = useState("");
@@ -59,9 +59,6 @@ const AddInvoice = () => {
     error: projectsError,
     data: projectsData,
   } = useQuery(GET_PROJECT, { variables: { id: projectId } });
-
-  console.log("projectsData: ", projectsData);
-  console.log("clientsData,: ", clientsData);
 
   const handleDateChange = (date) => {
     setDate(date);
@@ -197,5 +194,3 @@ const AddInvoice = () => {
     </div>
   );
 };
-
-export default AddInvoice;

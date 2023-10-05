@@ -7,7 +7,7 @@ const ProjectPageCard = ({ project }) => {
   const { title, status, client } = project;
   return (
     <Link to={`/clients/${project.client.id}/projects/${project.id}/profile`}>
-      <div className="border w-72 my-2 rounded-xl shadow-md py-2 mx-2 hover:bg-slate-100 flex flex-col items-center">
+      <div className="border w-72 my-2 rounded-xl shadow-md p-3 mx-2 bg-slate-50 hover:bg-slate-100 flex flex-col items-center">
         <div className="flex flex-row items-center">
           <FaProjectDiagram className="mr-2" />
           <h2 className="my-2 font-bold">{title}</h2>

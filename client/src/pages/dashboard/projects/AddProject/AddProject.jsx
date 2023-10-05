@@ -21,7 +21,7 @@ import "./addProject.css";
 
 const rootClass = "add-project";
 
-const AddProject = () => {
+export const AddProject = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("notStarted");
@@ -229,5 +229,3 @@ const AddProject = () => {
     </div>
   );
 };
-
-export default AddProject;

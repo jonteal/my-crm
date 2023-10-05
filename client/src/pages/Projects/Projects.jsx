@@ -6,7 +6,7 @@ import Spinner from "../../components/reusable/Spinner/Spinner";
 import { Link } from "react-router-dom";
 import AddButton from "../../components/reusable/buttons/AddButton/AddButton";
 
-const Projects = () => {
+export const Projects = () => {
   const { loading, error, data } = useQuery(GET_PROJECTS);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -59,5 +59,3 @@ const Projects = () => {
     </div>
   );
 };
-
-export default Projects;

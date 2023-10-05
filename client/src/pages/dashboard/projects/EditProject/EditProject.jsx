@@ -11,7 +11,7 @@ import { GET_CLIENTS } from "../../../../graphql/queries/clientQueries";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const EditProject = () => {
+export const EditProject = () => {
   const { projectId, clientId } = useParams();
 
   const {
@@ -185,5 +185,3 @@ const EditProject = () => {
     </div>
   );
 };
-
-export default EditProject;

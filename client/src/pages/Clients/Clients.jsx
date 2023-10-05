@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import ClientList from "../homeView/ClientList/ClientList";
 import AddButton from "../../components/reusable/buttons/AddButton/AddButton";
 
-const Clients = () => {
+export const Clients = () => {
   return (
     <div className="px-10 py-5">
       <Link to="/addClient" className="mx-2">
@@ -12,5 +12,3 @@ const Clients = () => {
     </div>
   );
 };
-
-export default Clients;

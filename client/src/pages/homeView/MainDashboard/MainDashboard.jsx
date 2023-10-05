@@ -5,7 +5,7 @@ import { GET_CLIENTS } from "../../../graphql/queries/clientQueries";
 import { GET_INVOICES } from "../../../graphql/queries/invoiceQueries";
 import { useQuery } from "@apollo/client";
 
-const MainDashboard = () => {
+export const MainDashboard = () => {
   // This Month's Sales / Revenue
   // Annual Revenue Graph
 
@@ -31,5 +31,3 @@ const MainDashboard = () => {
     </div>
   );
 };
-
-export default MainDashboard;

@@ -4,7 +4,7 @@ import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 
-const ProjectInvoices = () => {
+export const ProjectInvoices = () => {
   const { projectId } = useParams();
 
   const {
@@ -26,5 +26,3 @@ const ProjectInvoices = () => {
     </div>
   );
 };
-
-export default ProjectInvoices;

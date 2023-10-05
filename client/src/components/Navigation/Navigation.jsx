@@ -3,7 +3,7 @@ import MenuDrawer from "../nav/MenuDrawer/MenuDrawer";
 
 import "./navigation.css";
 
-const Navigation = () => {
+export const Navigation = () => {
   return (
     <div className="flex flex-row justify-between navigation__main-container bg-gradient-to-r from-sky-400 to-sky-600 px-20">
       <div className="navigation__company-name bg-sky-700 pt-10 pb-2">
@@ -19,5 +19,3 @@ const Navigation = () => {
     </div>
   );
 };
-
-export default Navigation;

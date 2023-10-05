@@ -14,7 +14,7 @@ import "./editClient.css";
 
 const rootClass = "edit-client";
 
-const EditClient = () => {
+export const EditClient = () => {
   const { clientId } = useParams();
   //   const navigate = useNavigate();
 
@@ -194,5 +194,3 @@ const EditClient = () => {
     </div>
   );
 };
-
-export default EditClient;

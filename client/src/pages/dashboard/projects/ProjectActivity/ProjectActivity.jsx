@@ -6,7 +6,7 @@ import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../../../graphql/queries/proje
 import ProjectCommentFeed from "../../../../components/ProjectCommentFeed/ProjectCommentFeed";
 import ProjectHistory from "../../../../components/ProjectHistory/ProjectHistory";
 
-const ProjectActivity = () => {
+export const ProjectActivity = () => {
   const { projectId } = useParams();
 
   const {
@@ -39,5 +39,3 @@ const ProjectActivity = () => {
     </div>
   );
 };
-
-export default ProjectActivity;
