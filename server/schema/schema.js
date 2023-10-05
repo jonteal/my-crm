@@ -472,6 +472,21 @@ const mutation = new GraphQLObjectType({
             });
           }
         );
+        Service.find({ projectId: args.id }).then((services) => {
+          services.forEach((service) => {
+            service.remove();
+          });
+        });
+        Transaction.find({ projectId: args.id }).then((transactions) => {
+          transactions.forEach((transaction) => {
+            transaction.remove();
+          });
+        });
+        Invoice.find({ projectId: args.id }).then((invoices) => {
+          invoices.forEach((invoice) => {
+            invoice.remove();
+          });
+        });
         return Project.findByIdAndRemove(args.id);
       },
     },
@@ -831,6 +846,15 @@ const mutation = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
+        ProjectActivityCommentReply.find({ commentId: args.id }).then(
+          (projectActivityCommentReplies) => {
+            projectActivityCommentReplies.forEach(
+              (projectActivityCommentReply) => {
+                projectActivityCommentReply.remove();
+              }
+            );
+          }
+        );
         return ProjectActivityComment.findByIdAndRemove(args.id);
       },
     },
@@ -879,6 +903,15 @@ const mutation = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
+        ClientActivityCommentReply.find({ commentId: args.id }).then(
+          (clientActivityCommentReplies) => {
+            clientActivityCommentReplies.forEach(
+              (clientActivityCommentReply) => {
+                clientActivityCommentReply.remove();
+              }
+            );
+          }
+        );
         return ClientActivityComment.findByIdAndRemove(args.id);
       },
     },
