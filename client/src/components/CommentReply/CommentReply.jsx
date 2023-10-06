@@ -1,3 +1,4 @@
+import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FiEdit2 } from "react-icons/fi";
 
 const CommentReply = ({ reply, formattedDate }) => {
@@ -9,8 +10,11 @@ const CommentReply = ({ reply, formattedDate }) => {
       >
         <p>{reply.commentText}</p>
         <div className="flex justify-end">
-          <button>
+          <button className="mr-2">
             <FiEdit2 />
+          </button>
+          <button>
+            <BiDotsVerticalRounded className="text-lg" />
           </button>
         </div>
       </div>

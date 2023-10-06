@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_CLIENT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/clientActivityCommentReplyMutations";
@@ -113,7 +114,7 @@ const Comment = ({ comment, type, replies }) => {
   );
 
   const matchingProjectReplies = projectCommentReplies.filter(
-    (reply) => reply.projectActivityComment.id === commentId
+    (reply) => reply.projectActivityComment?.id === commentId
   );
 
   return (
@@ -124,8 +125,11 @@ const Comment = ({ comment, type, replies }) => {
       >
         <p className="text-start w-5/6">{comment.commentText}</p>
         <div className="flex justify-end">
-          <button>
+          <button className="mr-2">
             <FiEdit2 />
+          </button>
+          <button>
+            <BiDotsVerticalRounded className="text-lg" />
           </button>
         </div>
       </div>
