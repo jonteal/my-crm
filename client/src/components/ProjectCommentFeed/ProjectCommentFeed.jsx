@@ -11,7 +11,7 @@ import { GET_PROJECTS } from "../../graphql/queries/projectQueries";
 // COMPONENTS
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
 import Spinner from "../reusable/Spinner/Spinner";
-import Comment from "../Comment/Comment";
+import { Comment } from "../Comment/Comment";
 
 const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
   const [commentText, setCommentText] = useState("");

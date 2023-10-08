@@ -4,10 +4,9 @@ import { useMutation, useQuery } from "@apollo/client";
 // ICONS
 import { FiEdit2 } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { BiDotsVerticalRounded } from "react-icons/bi";
 
 // COMPONENTS
-import CommentReply from "../CommentReply/CommentReply";
+import { CommentReply } from "../CommentReply/CommentReply";
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
 import Spinner from "../reusable/Spinner/Spinner";
 
@@ -21,7 +20,7 @@ import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/proj
 import { DELETE_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
 import { DELETE_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
 
-const Comment = ({ comment, type, replies }) => {
+export const Comment = ({ comment, type, replies }) => {
   const [addReply, setAddReply] = useState(false);
   const [commentText, setCommentText] = useState("");
 
@@ -89,7 +88,6 @@ const Comment = ({ comment, type, replies }) => {
     data: projectActivityCommentRepliesData,
   } = useQuery(GET_PROJECT_ACTIVITY_COMMENT_REPLIES);
 
-  // NEED TO BREAK UP WHICH MUTATION IS DELETING THE COMMENT. MIGHT NEED TO MAKE ANOTHER COMMENT COMPONENT OR SOMETHING
   const [deleteClientComment] = useMutation(DELETE_CLIENT_ACTIVITY_COMMENT, {
     variables: { id: commentId },
     refetchQueries: [
@@ -109,10 +107,8 @@ const Comment = ({ comment, type, replies }) => {
   const handleCommentDelete = () => {
     if (type === "client") {
       deleteClientComment();
-      console.log("client comment");
     } else if (type === "project") {
       deleteProjectComment();
-      console.log("project comment");
     }
   };
 
@@ -215,6 +211,7 @@ const Comment = ({ comment, type, replies }) => {
               key={reply.id}
               formattedDate={formattedDate}
               reply={reply}
+              type="client"
             />
           ))
         : matchingProjectReplies.map((reply) => (
@@ -222,10 +219,9 @@ const Comment = ({ comment, type, replies }) => {
               key={reply.id}
               formattedDate={formattedDate}
               reply={reply}
+              type="project"
             />
           ))}
     </div>
   );
 };
-
-export default Comment;

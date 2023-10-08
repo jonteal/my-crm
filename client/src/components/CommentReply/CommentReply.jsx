@@ -1,7 +1,46 @@
-import { BiDotsVerticalRounded } from "react-icons/bi";
+import { useMutation } from "@apollo/client";
+
+// ICONS
+import { FaRegTrashAlt } from "react-icons/fa";
 import { FiEdit2 } from "react-icons/fi";
 
-const CommentReply = ({ reply, formattedDate }) => {
+// GRAPHQL
+import { DELETE_CLIENT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/clientActivityCommentReplyMutations";
+import { DELETE_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/projectActivityCommentReplyMutations";
+import { GET_CLIENT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/clientActivityCommentReplyQueries";
+import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
+
+export const CommentReply = ({ reply, formattedDate, type }) => {
+  const [deleteClientCommentReply] = useMutation(
+    DELETE_CLIENT_ACTIVITY_COMMENT_REPLY,
+    {
+      variables: { id: reply.id },
+      refetchQueries: [
+        { query: GET_CLIENT_ACTIVITY_COMMENT_REPLIES },
+        { query: GET_CLIENT_ACTIVITY_COMMENT_REPLIES },
+      ],
+    }
+  );
+
+  const [deleteProjectCommentReply] = useMutation(
+    DELETE_PROJECT_ACTIVITY_COMMENT_REPLY,
+    {
+      variables: { id: reply.id },
+      refetchQueries: [
+        { query: GET_PROJECT_ACTIVITY_COMMENT_REPLIES },
+        { query: GET_PROJECT_ACTIVITY_COMMENT_REPLIES },
+      ],
+    }
+  );
+
+  const handleCommentDelete = () => {
+    if (type === "client") {
+      deleteClientCommentReply();
+    } else if (type === "project") {
+      deleteProjectCommentReply();
+    }
+  };
+
   return (
     <>
       <div
@@ -13,8 +52,8 @@ const CommentReply = ({ reply, formattedDate }) => {
           <button className="mr-2">
             <FiEdit2 />
           </button>
-          <button>
-            <BiDotsVerticalRounded className="text-lg" />
+          <button onClick={handleCommentDelete}>
+            <FaRegTrashAlt className="text-red-500" />
           </button>
         </div>
       </div>
@@ -24,5 +63,3 @@ const CommentReply = ({ reply, formattedDate }) => {
     </>
   );
 };
-
-export default CommentReply;

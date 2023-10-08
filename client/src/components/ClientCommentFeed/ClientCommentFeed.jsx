@@ -11,7 +11,7 @@ import { GET_CLIENT } from "../../graphql/queries/clientQueries";
 // COMPONENTS
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
 import Spinner from "../reusable/Spinner/Spinner";
-import Comment from "../Comment/Comment";
+import { Comment } from "../Comment/Comment";
 
 const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
   const [commentText, setCommentText] = useState("");
