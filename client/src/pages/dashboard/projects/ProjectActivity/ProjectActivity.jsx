@@ -22,20 +22,20 @@ export const ProjectActivity = () => {
   const matchingProjectActivityComments =
     projectActivityCommentData.projectActivityComments.filter(
       (projectActivityComment) =>
-        projectActivityComment.project.id === projectId
+        projectActivityComment.project?.id === projectId
     );
 
   return (
     <div className="flex flex-row w-full">
-      <div className="w-1/2">
+      <div className="w-full">
         <ProjectCommentFeed
           projectId={projectId}
           matchingProjectActivityComments={matchingProjectActivityComments}
         />
       </div>
-      <div className="w-1/2">
+      {/* <div className="w-1/2">
         <ProjectHistory />
-      </div>
+      </div> */}
     </div>
   );
 };

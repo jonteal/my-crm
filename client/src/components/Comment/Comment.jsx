@@ -1,14 +1,25 @@
 import { useState } from "react";
-import { FiEdit2 } from "react-icons/fi";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
 import { useMutation, useQuery } from "@apollo/client";
+
+// ICONS
+import { FiEdit2 } from "react-icons/fi";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { BiDotsVerticalRounded } from "react-icons/bi";
+
+// COMPONENTS
+import CommentReply from "../CommentReply/CommentReply";
+import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
+import Spinner from "../reusable/Spinner/Spinner";
+
+// GRAPHQL
 import { ADD_CLIENT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/clientActivityCommentReplyMutations";
 import { GET_CLIENT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/clientActivityCommentReplyQueries";
+import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../graphql/queries/clientActivityCommentQueries";
+import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActivityCommentQueries";
 import { ADD_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/projectActivityCommentReplyMutations";
 import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
-import Spinner from "../reusable/Spinner/Spinner";
-import CommentReply from "../CommentReply/CommentReply";
+import { DELETE_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
+import { DELETE_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
 
 const Comment = ({ comment, type, replies }) => {
   const [addReply, setAddReply] = useState(false);
@@ -78,6 +89,33 @@ const Comment = ({ comment, type, replies }) => {
     data: projectActivityCommentRepliesData,
   } = useQuery(GET_PROJECT_ACTIVITY_COMMENT_REPLIES);
 
+  // NEED TO BREAK UP WHICH MUTATION IS DELETING THE COMMENT. MIGHT NEED TO MAKE ANOTHER COMMENT COMPONENT OR SOMETHING
+  const [deleteClientComment] = useMutation(DELETE_CLIENT_ACTIVITY_COMMENT, {
+    variables: { id: commentId },
+    refetchQueries: [
+      { query: GET_CLIENT_ACTIVITY_COMMENTS },
+      { query: GET_CLIENT_ACTIVITY_COMMENTS },
+    ],
+  });
+
+  const [deleteProjectComment] = useMutation(DELETE_PROJECT_ACTIVITY_COMMENT, {
+    variables: { id: commentId },
+    refetchQueries: [
+      { query: GET_PROJECT_ACTIVITY_COMMENTS },
+      { query: GET_PROJECT_ACTIVITY_COMMENTS },
+    ],
+  });
+
+  const handleCommentDelete = () => {
+    if (type === "client") {
+      deleteClientComment();
+      console.log("client comment");
+    } else if (type === "project") {
+      deleteProjectComment();
+      console.log("project comment");
+    }
+  };
+
   if (
     clientActivityCommentRepliesLoading ||
     projectActivityCommentRepliesLoading
@@ -128,8 +166,8 @@ const Comment = ({ comment, type, replies }) => {
           <button className="mr-2">
             <FiEdit2 />
           </button>
-          <button>
-            <BiDotsVerticalRounded className="text-lg" />
+          <button onClick={handleCommentDelete}>
+            <FaRegTrashAlt className="text-red-500" />
           </button>
         </div>
       </div>
@@ -141,7 +179,7 @@ const Comment = ({ comment, type, replies }) => {
           className="text-sm mt-2 text-slate-600"
           onClick={() => setAddReply(!addReply)}
         >
-          {addReply ? "X" : "Reply"}
+          {addReply ? "Close" : "Reply"}
         </button>
       </div>
 

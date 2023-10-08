@@ -33,7 +33,7 @@ export const ClientDashboard = () => {
   const matchingClientActivityComments =
     clientActivityCommentData.clientActivityComments.filter(
       (clientActivityComment) =>
-        clientActivityComment.client.id === clientData.client.id
+        clientActivityComment.client?.id === clientData.client.id
     );
 
   return (
