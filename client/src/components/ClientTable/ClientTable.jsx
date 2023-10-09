@@ -1,9 +1,10 @@
 import Table from "react-bootstrap/Table";
 import { FaRegEye, FaRegTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { DELETE_CLIENT } from "../../graphql/mutations/clientMutations";
+// import { DELETE_CLIENT } from "../../graphql/mutations/clientMutations";
+// import { GET_CLIENTS } from "../../graphql/queries/clientQueries";
 
-import "./clientTable.css";
+// import { useMutation } from "@apollo/client";
 
 const ClientTable = ({ clients, clientContainer }) => {
   return (
@@ -63,9 +64,9 @@ const ClientTable = ({ clients, clientContainer }) => {
                 </Link>
               </td>
               <td className="text-slate-700 font-light text-left border pl-2">
-                <Link>
+                {/* <button>
                   <FaRegTrashAlt className="text-red-500" />
-                </Link>
+                </button> */}
               </td>
             </tr>
           ))}
