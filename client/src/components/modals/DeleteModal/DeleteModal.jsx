@@ -11,9 +11,6 @@ export const DeleteModal = ({ deleteClient, subject }) => {
 
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button> */}
       <div onClick={handleShow}>
         <DeleteButton>Delete</DeleteButton>
       </div>
@@ -28,8 +25,8 @@ export const DeleteModal = ({ deleteClient, subject }) => {
           <Modal.Title>Delete {subject}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to delete this client? You cannot undo this
-          action!
+          {`Are you sure you want to delete this ${subject}? You cannot undo this
+          action!`}
         </Modal.Body>
         <Modal.Footer>
           <Button
