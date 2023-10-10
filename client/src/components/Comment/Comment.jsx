@@ -17,12 +17,20 @@ import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../graphql/queries/clientActivi
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActivityCommentQueries";
 import { ADD_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/projectActivityCommentReplyMutations";
 import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
-import { DELETE_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
+import {
+  DELETE_PROJECT_ACTIVITY_COMMENT,
+  UPDATE_PROJECT_ACTIVITY_COMMENT,
+} from "../../graphql/mutations/projectActivityCommentMutations";
 import { DELETE_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
+import { useParams } from "react-router-dom";
+import { CommentEdit } from "../CommentEdit/CommentEdit";
 
 export const Comment = ({ comment, type, replies }) => {
+  const { projectId } = useParams();
+
   const [addReply, setAddReply] = useState(false);
   const [commentText, setCommentText] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
   const formattedDate = new Date(parseInt(comment.createdAt)).toDateString();
 
@@ -151,15 +159,28 @@ export const Comment = ({ comment, type, replies }) => {
     (reply) => reply.projectActivityComment?.id === commentId
   );
 
+  console.log("isEditing: ", isEditing);
+
   return (
     <div className="my-4 bg-slate-200 p-2 rounded-xl">
       <div
         className="border px-3 py-2 bg-slate-100 rounded-xl flex flex-row justify-between items-center"
         key={comment.id}
       >
-        <p className="text-start w-5/6">{comment.commentText}</p>
+        <p className="text-start w-5/6">
+          {!isEditing ? (
+            comment.commentText
+          ) : (
+            <CommentEdit
+              id={comment.id}
+              comment={comment.commentText}
+              projectId={projectId}
+              setIsEditing={setIsEditing}
+            />
+          )}
+        </p>
         <div className="flex justify-end">
-          <button className="mr-2">
+          <button onClick={() => setIsEditing(true)} className="mr-2">
             <FiEdit2 />
           </button>
           <button onClick={handleCommentDelete}>

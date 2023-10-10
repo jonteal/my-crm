@@ -12,8 +12,6 @@ const ADD_PROJECT_ACTIVITY_COMMENT = gql`
       project {
         id
         title
-        description
-        status
         client {
           id
           firstName
@@ -34,20 +32,26 @@ const DELETE_PROJECT_ACTIVITY_COMMENT = gql`
 
 const UPDATE_PROJECT_ACTIVITY_COMMENT = gql`
   mutation UpdateProjectActivityComment(
+    $id: ID!
     $commentText: String!
-    $createdAt: String!
     $projectId: ID!
   ) {
     updateProjectActivityComment(
+      id: $id
       commentText: $commentText
-      status: $status
-      clientId: $clientId
+      projectId: $projectId
     ) {
       id
       commentText
       createdAt
-      projectId {
+      project {
         id
+        title
+        client {
+          id
+          firstName
+          lastName
+        }
       }
     }
   }

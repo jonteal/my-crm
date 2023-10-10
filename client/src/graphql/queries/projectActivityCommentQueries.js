@@ -8,9 +8,6 @@ const GET_PROJECT_ACTIVITY_COMMENTS = gql`
       createdAt
       project {
         id
-        title
-        description
-        status
         client {
           id
           firstName
@@ -29,9 +26,6 @@ const GET_PROJECT_ACTIVITY_COMMENT = gql`
       createdAt
       project {
         id
-        title
-        description
-        status
         client {
           id
           firstName

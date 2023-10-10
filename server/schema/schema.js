@@ -868,13 +868,17 @@ const mutation = new GraphQLObjectType({
         projectId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
-        const projectActivityComment = new ProjectActivityComment({
-          commentText: args.commentText,
-          createdAt: args.createdAt,
-          projectId: args.projectId,
-        });
-
-        return projectActivityComment.save();
+        return ProjectActivityComment.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              id: args.id,
+              commentText: args.commentText,
+              projectId: args.projectId,
+            },
+          },
+          { new: true }
+        );
       },
     },
 
