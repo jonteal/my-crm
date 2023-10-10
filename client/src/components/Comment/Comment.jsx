@@ -1,8 +1,9 @@
 import { useState } from "react";
+// import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 
 // ICONS
-import { FiEdit2 } from "react-icons/fi";
+// import { FiEdit2 } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 // COMPONENTS
@@ -17,16 +18,12 @@ import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../graphql/queries/clientActivi
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActivityCommentQueries";
 import { ADD_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/projectActivityCommentReplyMutations";
 import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
-import {
-  DELETE_PROJECT_ACTIVITY_COMMENT,
-  UPDATE_PROJECT_ACTIVITY_COMMENT,
-} from "../../graphql/mutations/projectActivityCommentMutations";
+import { DELETE_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
 import { DELETE_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
-import { useParams } from "react-router-dom";
-import { CommentEdit } from "../CommentEdit/CommentEdit";
+// import { CommentEdit } from "../CommentEdit/CommentEdit";
 
 export const Comment = ({ comment, type, replies }) => {
-  const { projectId } = useParams();
+  // const { projectId } = useParams();
 
   const [addReply, setAddReply] = useState(false);
   const [commentText, setCommentText] = useState("");
@@ -159,46 +156,47 @@ export const Comment = ({ comment, type, replies }) => {
     (reply) => reply.projectActivityComment?.id === commentId
   );
 
-  console.log("isEditing: ", isEditing);
-
   return (
     <div className="my-4 bg-slate-200 p-2 rounded-xl">
-      <div
-        className="border px-3 py-2 bg-slate-100 rounded-xl flex flex-row justify-between items-center"
-        key={comment.id}
-      >
-        <p className="text-start w-5/6">
-          {!isEditing ? (
-            comment.commentText
-          ) : (
-            <CommentEdit
-              id={comment.id}
-              comment={comment.commentText}
-              projectId={projectId}
-              setIsEditing={setIsEditing}
-            />
-          )}
-        </p>
-        <div className="flex justify-end">
-          <button onClick={() => setIsEditing(true)} className="mr-2">
-            <FiEdit2 />
-          </button>
-          <button onClick={handleCommentDelete}>
-            <FaRegTrashAlt className="text-red-500" />
+      {/* {isEditing ? (
+        <div className={!isEditing && "hidden"}>
+          <CommentEdit
+            id={comment.id}
+            comment={comment.commentText}
+            projectId={projectId}
+            setIsEditing={setIsEditing}
+          />
+        </div>
+      ) : ( */}
+      <>
+        <div
+          className="border px-3 py-2 bg-slate-100 rounded-xl flex flex-row justify-between items-center"
+          key={comment.id}
+        >
+          <p className="text-start w-5/6">{comment.commentText}</p>
+
+          <div className="flex justify-end">
+            {/* <button onClick={() => setIsEditing(true)} className="mr-2">
+              <FiEdit2 />
+            </button> */}
+            <button onClick={handleCommentDelete}>
+              <FaRegTrashAlt className="text-red-500" />
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-row items-center">
+          <p className="text-slate-600 text-start text-xs mt-2 ml-2 mr-3">
+            {formattedDate}
+          </p>
+          <button
+            className="text-sm mt-2 text-slate-600"
+            onClick={() => setAddReply(!addReply)}
+          >
+            {addReply ? "Close" : "Reply"}
           </button>
         </div>
-      </div>
-      <div className="flex flex-row items-center">
-        <p className="text-slate-600 text-start text-xs mt-2 ml-2 mr-3">
-          {formattedDate}
-        </p>
-        <button
-          className="text-sm mt-2 text-slate-600"
-          onClick={() => setAddReply(!addReply)}
-        >
-          {addReply ? "Close" : "Reply"}
-        </button>
-      </div>
+      </>
+      {/* )} */}
 
       {addReply && (
         <div>

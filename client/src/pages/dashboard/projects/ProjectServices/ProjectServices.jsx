@@ -17,7 +17,7 @@ export const ProjectServices = () => {
   if (servicesError) return <p>There was an error loading services...</p>;
 
   const matchingServices = servicesData.services.filter(
-    (service) => service.project.id === projectId
+    (service) => service.project?.id === projectId
   );
 
   return (

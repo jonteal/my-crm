@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 
 // GRAPHQL
@@ -16,11 +16,6 @@ const rootClass = "edit-client";
 
 export const EditClient = () => {
   const { clientId } = useParams();
-  //   const navigate = useNavigate();
-
-  //   const handleBackNavigate = () => {
-  //     navigate(-1);
-  //   };
 
   const {
     loading: clientLoading,
@@ -29,8 +24,6 @@ export const EditClient = () => {
   } = useQuery(GET_CLIENT, {
     variables: { id: clientId },
   });
-
-  console.log("clientData: ", clientData);
 
   const client = clientData?.client;
 
@@ -91,7 +84,6 @@ export const EditClient = () => {
       companyName,
       status
     );
-    // navigate(clientLocation);
   };
 
   if (clientLoading) return <Spinner />;
@@ -175,19 +167,9 @@ export const EditClient = () => {
               </div>
             </div>
 
-            <div>
-              <SubmitButton onClick={onSubmit} type="submit">
-                Submit
-              </SubmitButton>
-              {/* <button
-                buttonType="back"
-                onClick={handleBackNavigate}
-                type="button"
-                className={`${rootClass}-back-btn`}
-              >
-                Back
-              </button> */}
-            </div>
+            <SubmitButton onClick={onSubmit} type="submit">
+              Submit
+            </SubmitButton>
           </form>
         </div>
       )}

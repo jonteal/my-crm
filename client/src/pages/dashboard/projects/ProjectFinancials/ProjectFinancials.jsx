@@ -40,11 +40,11 @@ export const ProjectFinancials = () => {
     return <p>There was a problem loading the client invoices...</p>;
 
   const matchingInvoices = invoicesData.invoices.filter(
-    (invoice) => invoice.project.id === projectId
+    (invoice) => invoice.project?.id === projectId
   );
 
   const matchingTransactions = transactionsData.transactions.filter(
-    (transaction) => transaction.project.id === projectId
+    (transaction) => transaction.project?.id === projectId
   );
 
   const invoiceSum = matchingInvoices.reduce(function (acc, obj) {
