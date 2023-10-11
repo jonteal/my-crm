@@ -196,11 +196,30 @@ const ProjectActivityCommentReplyType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    projects: {
+    clients: {
+      type: new GraphQLList(ClientType),
+      resolve(parent, args) {
+        return Client.find();
+      },
+    },
+    client: {
+      type: ClientType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Client.findById(args.id);
+      },
+    },
+    clientProjects: {
       type: new GraphQLList(ProjectType),
       args: { clientId: { type: GraphQLID } },
       resolve(parent, args) {
         return Project.find({ clientId: args.clientId });
+      },
+    },
+    projects: {
+      type: new GraphQLList(ProjectType),
+      resolve(parent, args) {
+        return Project.find();
       },
     },
     project: {
@@ -249,23 +268,11 @@ const RootQuery = new GraphQLObjectType({
         return Transaction.findById(args.id);
       },
     },
-    clients: {
-      type: new GraphQLList(ClientType),
-      resolve(parent, args) {
-        return Client.find();
-      },
-    },
-    client: {
-      type: ClientType,
-      args: { id: { type: GraphQLID } },
-      resolve(parent, args) {
-        return Client.findById(args.id);
-      },
-    },
     projectActivityComments: {
       type: new GraphQLList(ProjectActivityCommentType),
+      args: { projectId: { type: GraphQLID } },
       resolve(parent, args) {
-        return ProjectActivityComment.find();
+        return ProjectActivityComment.find({ projectId: args.projectId });
       },
     },
     projectActivityComment: {
@@ -277,8 +284,9 @@ const RootQuery = new GraphQLObjectType({
     },
     clientActivityComments: {
       type: new GraphQLList(ClientActivityCommentType),
+      args: { clientId: { type: GraphQLID } },
       resolve(parent, args) {
-        return ClientActivityComment.find();
+        return ClientActivityComment.find({ clientId: args.clientId });
       },
     },
     clientActivityComment: {

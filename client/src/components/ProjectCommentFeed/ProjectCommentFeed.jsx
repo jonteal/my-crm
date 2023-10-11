@@ -1,19 +1,17 @@
 import { useState } from "react";
 
 // LIBRARIES
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 
 // GRAPHQL
 import { ADD_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActivityCommentQueries";
-import { GET_PROJECTS } from "../../graphql/queries/projectQueries";
 
 // COMPONENTS
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
-import Spinner from "../reusable/Spinner/Spinner";
 import { Comment } from "../Comment/Comment";
 
-const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
+const ProjectCommentFeed = ({ projectId, comments }) => {
   const [commentText, setCommentText] = useState("");
 
   const [addProjectActivityComment] = useMutation(
@@ -26,9 +24,11 @@ const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
       update(cache, { data: { addProjectActivityComment } }) {
         const { projectActivityComments } = cache.readQuery({
           query: GET_PROJECT_ACTIVITY_COMMENTS,
+          variables: { projectId },
         });
         cache.writeQuery({
           query: GET_PROJECT_ACTIVITY_COMMENTS,
+          variables: { projectId },
           data: {
             projectActivityComments: [
               ...projectActivityComments,
@@ -39,8 +39,6 @@ const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
       },
     }
   );
-
-  const { loading, error, data } = useQuery(GET_PROJECTS);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -53,9 +51,6 @@ const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
 
     setCommentText("");
   };
-
-  if (loading) return <Spinner />;
-  if (error) return <p>There was an error loading the comment feed</p>;
 
   return (
     <div className="rounded-xl bg-slate-50 ml-2 mr-5 mt-3 px-3 pb-2 w-full">
@@ -82,7 +77,7 @@ const ProjectCommentFeed = ({ projectId, matchingProjectActivityComments }) => {
       </form>
 
       <div className="mt-5">
-        {matchingProjectActivityComments
+        {comments
           // .sort(function (a, b) {
           //   return new Date(a.createdAt) - new Date(b.createdAt);
           // })

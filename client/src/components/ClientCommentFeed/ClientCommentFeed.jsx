@@ -1,19 +1,17 @@
 import { useState } from "react";
 
 // LIBRARIES
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 
 // GRAPHQL
 import { ADD_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
 import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../graphql/queries/clientActivityCommentQueries";
-import { GET_CLIENT } from "../../graphql/queries/clientQueries";
 
 // COMPONENTS
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
-import Spinner from "../reusable/Spinner/Spinner";
 import { Comment } from "../Comment/Comment";
 
-const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
+export const ClientCommentFeed = ({ clientId, comments }) => {
   const [commentText, setCommentText] = useState("");
 
   const [addClientActivityComment] = useMutation(ADD_CLIENT_ACTIVITY_COMMENT, {
@@ -24,9 +22,11 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
     update(cache, { data: { addClientActivityComment } }) {
       const { clientActivityComments } = cache.readQuery({
         query: GET_CLIENT_ACTIVITY_COMMENTS,
+        variables: { clientId },
       });
       cache.writeQuery({
         query: GET_CLIENT_ACTIVITY_COMMENTS,
+        variables: { clientId },
         data: {
           clientActivityComments: [
             ...clientActivityComments,
@@ -35,10 +35,6 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
         },
       });
     },
-  });
-
-  const { loading, error } = useQuery(GET_CLIENT, {
-    variables: { id: clientId },
   });
 
   const onSubmit = (e) => {
@@ -52,9 +48,6 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
 
     setCommentText("");
   };
-
-  if (loading) return <Spinner />;
-  if (error) return <p>There was an error loading the comment feed</p>;
 
   return (
     <div className="rounded-xl bg-slate-50 mx-2 px-3 mt-1 w-full">
@@ -81,10 +74,10 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
       </form>
 
       <div className="mt-5 pb-2">
-        {matchingClientActivityComments
-          .sort(function (a, b) {
-            return new Date(b.createdAt) - new Date(a.createdAt);
-          })
+        {comments
+          // .sort(function (a, b) {
+          //   return new Date(b.createdAt) - new Date(a.createdAt);
+          // })
           .map((comment) => (
             <Comment type="client" key={comment.id} comment={comment} />
           ))}
@@ -92,5 +85,3 @@ const ClientCommentFeed = ({ clientId, matchingClientActivityComments }) => {
     </div>
   );
 };
-
-export default ClientCommentFeed;

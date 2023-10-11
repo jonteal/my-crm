@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 import { GET_PROJECTS } from "../../graphql/queries/projectQueries";
 import ProjectPageCard from "../../components/ProjectPageCard/ProjectPageCard";
 import Spinner from "../../components/reusable/Spinner/Spinner";
-import { Link } from "react-router-dom";
 import AddButton from "../../components/reusable/buttons/AddButton/AddButton";
 
 export const Projects = () => {
   const { loading, error, data } = useQuery(GET_PROJECTS);
+  console.log("data: ", data);
   const [searchTerm, setSearchTerm] = useState("");
 
   if (loading) return <Spinner />;

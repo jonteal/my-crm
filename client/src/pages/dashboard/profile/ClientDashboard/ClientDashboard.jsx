@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 
 // COMPONENTS
 import ClientCard from "../../../../components/ClientCard/ClientCard";
-import ClientCommentFeed from "../../../../components/ClientCommentFeed/ClientCommentFeed";
+import { ClientCommentFeed } from "../../../../components/ClientCommentFeed/ClientCommentFeed";
 
 // GRAPHQL
 import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
@@ -25,16 +25,12 @@ export const ClientDashboard = () => {
     loading: clientActivityCommentsLoading,
     error: clientActivityCommentsError,
     data: clientActivityCommentData,
-  } = useQuery(GET_CLIENT_ACTIVITY_COMMENTS);
+  } = useQuery(GET_CLIENT_ACTIVITY_COMMENTS, {
+    variables: { clientId },
+  });
 
   if (clientActivityCommentsLoading) return <p>Loading...</p>;
   if (clientActivityCommentsError) return <p>There was an error...</p>;
-
-  const matchingClientActivityComments =
-    clientActivityCommentData.clientActivityComments.filter(
-      (clientActivityComment) =>
-        clientActivityComment.client?.id === clientData.client.id
-    );
 
   return (
     <div className="w-full flex flex-row">
@@ -46,7 +42,7 @@ export const ClientDashboard = () => {
       <div className="w-full">
         {!clientLoading && !clientError && (
           <ClientCommentFeed
-            matchingClientActivityComments={matchingClientActivityComments}
+            comments={clientActivityCommentData.clientActivityComments}
             clientId={clientData.client.id}
           />
         )}

@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
-import { GET_PROJECTS } from "../../../../graphql/queries/projectQueries";
+import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 import ProjectPageCard from "../../../../components/ProjectPageCard/ProjectPageCard";
 import AddButton from "../../../../components/reusable/buttons/AddButton/AddButton";
@@ -12,22 +12,16 @@ export const ClientProjects = () => {
     loading: projectsLoading,
     error: projectsError,
     data: projectsData,
-  } = useQuery(GET_PROJECTS, {
+  } = useQuery(GET_CLIENT_PROJECTS, {
     variables: { clientId },
   });
-
-  console.log("projectsData: ", projectsData);
 
   if (projectsLoading) return <Spinner />;
   if (projectsError) return <p>There was an error loading the project feed</p>;
 
-  const matchingProjects = projectsData.projects.filter(
-    (project) => project.client.id === clientId
-  );
-
   return (
     <div className="flex flex-row flex-wrap">
-      {matchingProjects.length === 0 ? (
+      {projectsData.clientProjects.length === 0 ? (
         <div className="rounded-xl bg-slate-50 mx-2 py-3 px-4 w-full">
           <Link to="/addProject" className="mx-2 mt-4">
             <AddButton>Add Project</AddButton>
@@ -37,7 +31,7 @@ export const ClientProjects = () => {
           </p>
         </div>
       ) : (
-        matchingProjects.map((project) => (
+        projectsData.clientProjects.map((project) => (
           <ProjectPageCard key={project.id} project={project} />
         ))
       )}

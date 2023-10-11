@@ -27,7 +27,7 @@ export const Comment = ({ comment, type, replies }) => {
 
   const [addReply, setAddReply] = useState(false);
   const [commentText, setCommentText] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
 
   const formattedDate = new Date(parseInt(comment.createdAt)).toDateString();
 
