@@ -13,11 +13,13 @@ export const ClientProjects = () => {
     error: projectsError,
     data: projectsData,
   } = useQuery(GET_PROJECTS, {
-    variables: { id: { client: { id: clientId } } },
+    variables: { clientId },
   });
 
+  console.log("projectsData: ", projectsData);
+
   if (projectsLoading) return <Spinner />;
-  if (projectsError) return <p>There was an error loading the comment feed</p>;
+  if (projectsError) return <p>There was an error loading the project feed</p>;
 
   const matchingProjects = projectsData.projects.filter(
     (project) => project.client.id === clientId
