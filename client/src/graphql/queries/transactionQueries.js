@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const GET_TRANSACTIONS = gql`
-  query getTransactions {
-    transactions {
+  query getTransactions($projectId: ID) {
+    transactions(projectId: $projectId) {
       id
       paymentDate
       amount

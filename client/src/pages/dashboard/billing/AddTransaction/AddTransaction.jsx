@@ -40,9 +40,13 @@ export const AddTransaction = () => {
       incomingOutgoing,
     },
     update(cache, { data: { addTransaction } }) {
-      const { transactions } = cache.readQuery({ query: GET_TRANSACTIONS });
+      const { transactions } = cache.readQuery({
+        query: GET_TRANSACTIONS,
+        variables: { projectId, clientId },
+      });
       cache.writeQuery({
         query: GET_TRANSACTIONS,
+        variables: { projectId, clientId },
         data: { transactions: [...transactions, addTransaction] },
       });
     },

@@ -1,11 +1,9 @@
 import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
 // GRAPHQL
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
-import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
-import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
 
 export const ClientInvoices = () => {
-  const { id } = useParams();
+  const { clientId } = useParams();
 
   const {
     loading: invoicesLoading,
@@ -17,9 +15,7 @@ export const ClientInvoices = () => {
   if (transactionsError)
     return <p>There was a problem loading the client transactions...</p>;
 
-  const invoicesArray = invoicesData.invoices;
-
-  const matchingInvoices = invoicesArray.filter(
+  const matchingInvoices = invoicesData.invoices.filter(
     (invoice) => invoice.client.id === clientId
   );
   return <InvoiceTable invoices={matchingInvoices} />;

@@ -32,7 +32,7 @@ export const ProjectFinancials = () => {
     loading: transactionsLoading,
     error: transactionsError,
     data: transactionsData,
-  } = useQuery(GET_TRANSACTIONS, { variables: { id: projectId } });
+  } = useQuery(GET_TRANSACTIONS, { variables: { projectId } });
 
   if (invoicesLoading || transactionsLoading || projectLoading)
     return <Spinner />;
@@ -41,10 +41,6 @@ export const ProjectFinancials = () => {
 
   const matchingInvoices = invoicesData.invoices.filter(
     (invoice) => invoice.project?.id === projectId
-  );
-
-  const matchingTransactions = transactionsData.transactions.filter(
-    (transaction) => transaction.project?.id === projectId
   );
 
   const invoiceSum = matchingInvoices.reduce(function (acc, obj) {
@@ -74,7 +70,7 @@ export const ProjectFinancials = () => {
             </Link>
             <TransactionTable
               shortList={true}
-              transactions={matchingTransactions}
+              transactions={transactionsData.transactions}
             />
           </div>
         </div>
