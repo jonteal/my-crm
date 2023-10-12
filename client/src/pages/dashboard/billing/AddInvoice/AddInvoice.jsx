@@ -40,9 +40,13 @@ export const AddInvoice = () => {
       projectId,
     },
     update(cache, { data: { addInvoice } }) {
-      const { invoices } = cache.readQuery({ query: GET_INVOICES });
+      const { invoices } = cache.readQuery({
+        query: GET_INVOICES,
+        variables: { projectId },
+      });
       cache.writeQuery({
         query: GET_INVOICES,
+        variables: { projectId },
         data: { invoices: [...invoices, addInvoice] },
       });
     },

@@ -49,9 +49,13 @@ export const AddService = () => {
       endDate,
     },
     update(cache, { data: { addService } }) {
-      const { services } = cache.readQuery({ query: GET_SERVICES });
+      const { services } = cache.readQuery({
+        query: GET_SERVICES,
+        variables: { projectId },
+      });
       cache.writeQuery({
         query: GET_SERVICES,
+        variables: { projectId },
         data: { services: [...services, addService] },
       });
     },

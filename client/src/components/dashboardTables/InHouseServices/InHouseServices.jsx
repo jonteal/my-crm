@@ -4,7 +4,7 @@ import { BsHouseDoor } from "react-icons/bs";
 
 import AddButton from "../../reusable/buttons/AddButton/AddButton";
 
-export const InHouseServices = ({ matchingServices }) => {
+export const InHouseServices = ({ services }) => {
   const { clientId, projectId } = useParams();
 
   return (
@@ -20,7 +20,7 @@ export const InHouseServices = ({ matchingServices }) => {
           <AddButton>Add Service</AddButton>
         </Link>
       </div>
-      {matchingServices.length === 0 ? (
+      {services.length === 0 ? (
         <p className="italic text-lg py-3 px-2">
           You do not currently have any active services for this project
         </p>
@@ -49,7 +49,7 @@ export const InHouseServices = ({ matchingServices }) => {
             </tr>
           </thead>
           <tbody>
-            {matchingServices.map((service, index) => (
+            {services.map((service, index) => (
               <tr key={service.id}>
                 <td className="text-slate-700 font-light text-left border pl-2 pr-2">
                   {index + 1}

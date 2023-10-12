@@ -26,7 +26,7 @@ export const ProjectFinancials = () => {
     loading: invoicesLoading,
     error: invoicesError,
     data: invoicesData,
-  } = useQuery(GET_INVOICES, { variables: { id: projectId } });
+  } = useQuery(GET_INVOICES, { variables: { projectId } });
 
   const {
     loading: transactionsLoading,
@@ -39,11 +39,7 @@ export const ProjectFinancials = () => {
   if (invoicesError || transactionsError || projectError)
     return <p>There was a problem loading the client invoices...</p>;
 
-  const matchingInvoices = invoicesData.invoices.filter(
-    (invoice) => invoice.project?.id === projectId
-  );
-
-  const invoiceSum = matchingInvoices.reduce(function (acc, obj) {
+  const invoiceSum = invoicesData.invoices.reduce(function (acc, obj) {
     return acc + parseFloat(obj.amount);
   }, 0);
 
@@ -62,7 +58,7 @@ export const ProjectFinancials = () => {
               <EditButton className="mx-2">View All Invoices</EditButton>
             </Link>
 
-            <InvoiceTable shortList={true} invoices={matchingInvoices} />
+            <InvoiceTable shortList={true} invoices={invoicesData.invoices} />
           </div>
           <div className="flex flex-col w-full items-start ml-2">
             <Link to="transactions" className="mx-2 my-2">

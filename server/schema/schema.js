@@ -231,8 +231,9 @@ const RootQuery = new GraphQLObjectType({
     },
     services: {
       type: new GraphQLList(ServiceType),
+      args: { projectId: { type: GraphQLID } },
       resolve(parent, args) {
-        return Service.find();
+        return Service.find({ projectId: args.projectId });
       },
     },
     service: {
@@ -244,8 +245,9 @@ const RootQuery = new GraphQLObjectType({
     },
     invoices: {
       type: new GraphQLList(InvoiceType),
+      args: { projectId: { type: GraphQLID } },
       resolve(parent, args) {
-        return Invoice.find();
+        return Invoice.find({ projectId: args.projectId });
       },
     },
     invoice: {

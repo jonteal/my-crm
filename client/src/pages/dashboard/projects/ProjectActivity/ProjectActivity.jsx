@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../../../graphql/queries/projectActivityCommentQueries";
 
 import ProjectCommentFeed from "../../../../components/ProjectCommentFeed/ProjectCommentFeed";
-import ProjectHistory from "../../../../components/ProjectHistory/ProjectHistory";
+// import ProjectHistory from "../../../../components/ProjectHistory/ProjectHistory";
 
 export const ProjectActivity = () => {
   const { projectId } = useParams();
@@ -15,17 +15,9 @@ export const ProjectActivity = () => {
     data: projectActivityCommentData,
   } = useQuery(GET_PROJECT_ACTIVITY_COMMENTS, { variables: { projectId } });
 
-  console.log("projectActivityCommentData: ", projectActivityCommentData);
-
   if (projectActivityCommentsLoading) return <p>Loading...</p>;
   if (projectActivityCommentsError)
     return <p>There was an error loading comments...</p>;
-
-  // const matchingProjectActivityComments =
-  //   projectActivityCommentData.projectActivityComments.filter(
-  //     (projectActivityComment) =>
-  //       projectActivityComment.project?.id === projectId
-  //   );
 
   return (
     <div className="flex flex-row w-full">
