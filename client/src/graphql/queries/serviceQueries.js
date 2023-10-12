@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const GET_SERVICES = gql`
-  query getServices {
-    services {
+  query getServices($projectId: ID) {
+    services(projectId: $projectId) {
       id
       service
       cost

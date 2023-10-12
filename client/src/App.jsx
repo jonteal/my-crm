@@ -26,6 +26,7 @@ import { ProjectActivity } from "./pages/dashboard/projects/ProjectActivity/Proj
 import { ProjectProfile } from "./pages/dashboard/projects/ProjectProfile/ProjectProfile";
 import { ProjectFinancials } from "./pages/dashboard/projects/ProjectFinancials/ProjectFinancials";
 import { ProjectKanban } from "./pages/dashboard/projects/ProjectKanban/ProjectKanban";
+import { AddKanbanTicket } from "./pages/dashboard/projects/AddKanbanTicket/AddKanbanTicket";
 import { ProjectInvoices } from "./pages/dashboard/projects/ProjectInvoices/ProjectInvoices";
 import { ProjectInvoice } from "./pages/dashboard/projects/ProjectInvoice/ProjectInvoice";
 import { ProjectTransactions } from "./pages/dashboard/projects/ProjectTransactions/ProjectTransactions";
@@ -93,6 +94,11 @@ const cache = new InMemoryCache({
             return incoming;
           },
         },
+        tickets: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
       },
     },
   },
@@ -154,6 +160,10 @@ function App() {
                   <Route
                     element={<ProjectKanban />}
                     path="/clients/:clientId/projects/:projectId/kanban"
+                  />
+                  <Route
+                    element={<AddKanbanTicket />}
+                    path="/clients/:clientId/projects/:projectId/kanban/addTicket"
                   />
                   <Route
                     element={<ProjectInvoices />}
