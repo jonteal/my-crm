@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
-import ProjectViewNav from "../../../../components/nav/ProjectViewNav/ProjectViewNav";
+import { ProjectViewNav } from "../../../../components/nav/ProjectViewNav/ProjectViewNav";
 
 export const ProjectView = () => {
   const { id } = useParams();

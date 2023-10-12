@@ -7,6 +7,7 @@ const Transaction = require("../models/Transaction");
 const Service = require("../models/Service");
 const ClientActivityCommentReply = require("../models/ClientActivityCommentReply");
 const ProjectActivityCommentReply = require("../models/ProjectActivityCommentReply");
+const Ticket = require("../models/Ticket");
 
 const {
   GraphQLObjectType,
@@ -192,6 +193,26 @@ const ProjectActivityCommentReplyType = new GraphQLObjectType({
   }),
 });
 
+// Ticket type
+const TicketType = new GraphQLObjectType({
+  name: "Ticket",
+  fields: () => ({
+    id: { type: GraphQLID },
+    title: { type: GraphQLString },
+    description: { type: GraphQLString },
+    status: { type: GraphQLString },
+    project: {
+      type: ProjectType,
+      resolve(parent, args) {
+        return Project.findById(parent.projectId);
+      },
+    },
+    createdAt: {
+      type: GraphQLString,
+    },
+  }),
+});
+
 // RootQuery
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -323,6 +344,20 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         return ProjectActivityCommentReply.findById(args.id);
+      },
+    },
+    tickets: {
+      type: new GraphQLList(TicketType),
+      args: { projectId: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Ticket.find({ projectId: args.projectId });
+      },
+    },
+    ticket: {
+      type: TicketType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Ticket.findById(args.id);
       },
     },
   },
@@ -1044,6 +1079,84 @@ const mutation = new GraphQLObjectType({
         });
 
         return projectActivityCommentReply.save();
+      },
+    },
+
+    // Add a Ticket
+    addTicket: {
+      type: TicketType,
+      args: {
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
+        status: {
+          type: new GraphQLEnumType({
+            name: "TicketStatus",
+            values: {
+              pre: { value: "Ready" },
+              middle: { value: "In Progress" },
+              old: { value: "Done" },
+            },
+          }),
+          defaultValue: "Ready",
+        },
+        projectId: { type: new GraphQLNonNull(GraphQLID) },
+        createdAt: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        const ticket = new Ticket({
+          title: args.title,
+          description: args.description,
+          status: args.status,
+          projectId: args.projectId,
+          createdAt: args.createdAt,
+        });
+
+        return ticket.save();
+      },
+    },
+
+    // Delete a ticket
+    deleteTicket: {
+      type: TicketType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Ticket.findByIdAndRemove(args.id);
+      },
+    },
+
+    // Update an ticket
+    updateTicket: {
+      type: TicketType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        title: { type: GraphQLString },
+        description: { type: GraphQLString },
+        status: {
+          type: new GraphQLEnumType({
+            name: "TicketStatusUpdate",
+            values: {
+              pre: { value: "Ready" },
+              middle: { value: "In Progress" },
+              old: { value: "Done" },
+            },
+          }),
+        },
+        createdAt: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return Ticket.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              title: args.title,
+              description: args.description,
+              status: args.status,
+            },
+          },
+          { new: true }
+        );
       },
     },
   },

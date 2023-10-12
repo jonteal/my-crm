@@ -25,6 +25,7 @@ import { ProjectServices } from "./pages/dashboard/projects/ProjectServices/Proj
 import { ProjectActivity } from "./pages/dashboard/projects/ProjectActivity/ProjectActivity";
 import { ProjectProfile } from "./pages/dashboard/projects/ProjectProfile/ProjectProfile";
 import { ProjectFinancials } from "./pages/dashboard/projects/ProjectFinancials/ProjectFinancials";
+import { ProjectKanban } from "./pages/dashboard/projects/ProjectKanban/ProjectKanban";
 import { ProjectInvoices } from "./pages/dashboard/projects/ProjectInvoices/ProjectInvoices";
 import { ProjectInvoice } from "./pages/dashboard/projects/ProjectInvoice/ProjectInvoice";
 import { ProjectTransactions } from "./pages/dashboard/projects/ProjectTransactions/ProjectTransactions";
@@ -149,6 +150,10 @@ function App() {
                   <Route
                     element={<ProjectFinancials />}
                     path="/clients/:clientId/projects/:projectId/financials"
+                  />
+                  <Route
+                    element={<ProjectKanban />}
+                    path="/clients/:clientId/projects/:projectId/kanban"
                   />
                   <Route
                     element={<ProjectInvoices />}
