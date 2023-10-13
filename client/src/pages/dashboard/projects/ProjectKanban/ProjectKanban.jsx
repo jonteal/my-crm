@@ -1,8 +1,9 @@
+import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_TICKETS } from "../../../../graphql/queries/ticketQueries";
 import { StatusColumn } from "../../../../components/kanban/StatusColumn/StatusColumn";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
-import { Link, useParams } from "react-router-dom";
+import AddButton from "../../../../components/reusable/buttons/AddButton/AddButton";
 
 export const ProjectKanban = () => {
   const { projectId } = useParams();
@@ -34,7 +35,11 @@ export const ProjectKanban = () => {
 
   return (
     <div className="kanban-container">
-      <Link to="addTicket">Add Ticket</Link>
+      <div className="mt-2">
+        <Link to="addTicket">
+          <AddButton>Add Ticket</AddButton>
+        </Link>
+      </div>
       <StatusColumn statusColumns={statusColumns} ticketData={ticketData} />
     </div>
   );

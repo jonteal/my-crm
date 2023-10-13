@@ -1,0 +1,26 @@
+.ticket-view-container {
+    min-height: 100vh;
+    border: 1px rgb(162, 161, 161) solid;
+    border-radius: 3px;
+  }
+  
+  .ticket-view-card {
+    min-height: 100vh;
+  }
+  
+  .ticket-view-content {
+    margin-top: 30px;
+  }
+  
+  .description {
+    min-height: 300px;
+    padding: 20px;
+    border: 1px rgb(162, 161, 161) solid;
+    border-radius: 3px;
+  }
+  
+  .ticket-view-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
