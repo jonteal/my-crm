@@ -12,6 +12,12 @@ const TicketSchema = new mongoose.Schema({
     type: String,
     enum: ["Ready", "In Progress", "Done"],
   },
+  blocked: {
+    type: Boolean,
+  },
+  blockedReason: {
+    type: String,
+  },
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Project",

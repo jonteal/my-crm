@@ -17,6 +17,7 @@ const {
   GraphQLNonNull,
   GraphQLSchema,
   GraphQLEnumType,
+  GraphQLBoolean,
 } = require("graphql");
 
 // Project Type
@@ -200,6 +201,8 @@ const TicketType = new GraphQLObjectType({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
     description: { type: GraphQLString },
+    blocked: { type: GraphQLBoolean },
+    blockedReason: { type: GraphQLString },
     status: { type: GraphQLString },
     project: {
       type: ProjectType,
@@ -1099,6 +1102,8 @@ const mutation = new GraphQLObjectType({
           }),
           defaultValue: "Ready",
         },
+        blocked: { type: GraphQLBoolean },
+        blockedReason: { type: GraphQLString },
         projectId: { type: new GraphQLNonNull(GraphQLID) },
         createdAt: { type: GraphQLString },
       },
@@ -1107,6 +1112,8 @@ const mutation = new GraphQLObjectType({
           title: args.title,
           description: args.description,
           status: args.status,
+          blocked: args.blocked,
+          blockedReason: args.blockedReason,
           projectId: args.projectId,
           createdAt: args.createdAt,
         });
@@ -1133,6 +1140,8 @@ const mutation = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLID) },
         title: { type: GraphQLString },
         description: { type: GraphQLString },
+        blocked: { type: GraphQLBoolean },
+        blockedReason: { type: GraphQLString },
         status: {
           type: new GraphQLEnumType({
             name: "TicketStatusUpdate",
@@ -1153,6 +1162,8 @@ const mutation = new GraphQLObjectType({
               title: args.title,
               description: args.description,
               status: args.status,
+              blocked: args.blocked,
+              blockedReason: args.blockedReason,
             },
           },
           { new: true }

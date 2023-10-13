@@ -31,7 +31,6 @@ export const AddService = () => {
   const [notes, setNotes] = useState("");
   const [paymentSchedule, setPaymentSchedule] = useState("monthly");
   const [serviceProvider, setServiceProvider] = useState("inHouse");
-  // const [projectId, setProjectId] = useState(selectedProjectId);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [alertOn, setAlertOn] = useState(false);

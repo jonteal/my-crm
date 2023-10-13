@@ -5,18 +5,24 @@ const ADD_TICKET = gql`
     $title: String!
     $description: String!
     $status: TicketStatus!
+    $blocked: Boolean!
+    $blockedReason: String
     $projectId: ID!
   ) {
     addTicket(
       title: $title
       description: $description
       status: $status
+      blocked: $blocked
+      blockedReason: $blockedReason
       projectId: $projectId
     ) {
       id
       title
       description
       status
+      blocked
+      blockedReason
       project {
         id
       }
@@ -38,17 +44,23 @@ const UPDATE_TICKET = gql`
     $id: ID!
     $title: String!
     $description: String!
+    $blocked: Boolean!
+    $blockedReason: String
     $status: TicketStatusUpdate!
   ) {
     updateTicket(
       id: $id
       title: $title
       description: $description
+      blocked: $blocked
+      blockedReason: $blockedReason
       status: $status
     ) {
       id
       title
       description
+      blocked
+      blockedReason
       status
       project {
         id

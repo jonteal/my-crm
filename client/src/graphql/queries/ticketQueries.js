@@ -7,6 +7,8 @@ const GET_TICKETS = gql`
       title
       description
       status
+      blocked
+      blockedReason
       project {
         id
       }
@@ -22,6 +24,8 @@ const GET_TICKET = gql`
       title
       description
       status
+      blocked
+      blockedReason
       project {
         id
       }
