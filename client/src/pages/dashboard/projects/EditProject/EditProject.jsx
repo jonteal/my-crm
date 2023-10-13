@@ -12,7 +12,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export const EditProject = () => {
-  const { projectId, clientId } = useParams();
+  const { projectId } = useParams();
 
   const {
     loading: projectLoading,
@@ -20,22 +20,22 @@ export const EditProject = () => {
     data: projectData,
   } = useQuery(GET_PROJECT, { variables: { id: projectId } });
 
-  if (projectLoading) return <Spinner />;
-  if (projectError)
-    return <p>There was a problem loading the project information...</p>;
+  const project = projectData?.project;
 
-  const project = projectData.project;
-
-  const [title, setTitle] = useState(project.title);
-  const [description, setDescription] = useState(project.description);
-  const [status, setStatus] = useState(project.status);
-  const [notes, setNotes] = useState(project.notes);
-  const [startDate, setStartDate] = useState(new Date(project.startDate));
-  const [deadline, setDeadline] = useState(new Date(project.deadline));
-  const [clientBudget, setClientBudget] = useState(project.clientBudget);
+  const [title, setTitle] = useState(project?.title);
+  const [description, setDescription] = useState(project?.description);
+  const [status, setStatus] = useState(project?.status);
+  const [notes, setNotes] = useState(project?.notes);
+  const [startDate, setStartDate] = useState(new Date(project?.startDate));
+  const [deadline, setDeadline] = useState(new Date(project?.deadline));
+  const [clientBudget, setClientBudget] = useState(project?.clientBudget);
   const [projectEstimate, setProjectEstimate] = useState(
-    project.projectEstimate
+    project?.projectEstimate
   );
+
+  console.log("project: ", project);
+  console.log("project.status: ", project?.status);
+  console.log("status: ", status);
 
   const [updateProject] = useMutation(UPDATE_PROJECT, {
     variables: {
@@ -79,6 +79,10 @@ export const EditProject = () => {
       projectEstimate
     );
   };
+
+  if (projectLoading) return <Spinner />;
+  if (projectError)
+    return <p>There was a problem loading the project information...</p>;
   return (
     <div className="w-2/3 mx-auto mt-5">
       <form onSubmit={onSubmit}>

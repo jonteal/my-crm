@@ -1,24 +1,47 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 
 // GRAPHQL
-import { GET_TICKETS } from "../../../../graphql/queries/ticketQueries";
-import { ADD_TICKET } from "../../../../graphql/mutations/ticketMutations";
+import {
+  GET_TICKET,
+  GET_TICKETS,
+} from "../../../../graphql/queries/ticketQueries";
+import { UPDATE_TICKET } from "../../../../graphql/mutations/ticketMutations";
 
 // COMPONENTS
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
+import Spinner from "../../../../components/reusable/Spinner/Spinner";
 
-export const AddKanbanTicket = () => {
-  const { projectId } = useParams();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("pre");
-  const [blocked, setBlocked] = useState(false);
-  const [blockedReason, setBlockedReason] = useState("");
+export const EditKanbanTicket = () => {
+  const { projectId, ticketId } = useParams();
 
-  const [addTicket] = useMutation(ADD_TICKET, {
+  const {
+    loading: ticketLoading,
+    error: ticketError,
+    data: ticketData,
+  } = useQuery(GET_TICKET, {
+    variables: { id: ticketId },
+  });
+
+  const ticket = ticketData?.ticket;
+
+  console.log("ticket: ", ticket);
+
+  const [title, setTitle] = useState(ticket?.title);
+  const [description, setDescription] = useState(ticket?.description);
+  const [status, setStatus] = useState(ticket?.status);
+  const [blocked, setBlocked] = useState(ticket?.blocked);
+  const [blockedReason, setBlockedReason] = useState(ticket?.blockedReason);
+
+  console.log("ticket: ", ticket);
+  console.log("ticket.status: ", ticket?.status);
+
+  console.log("status: ", status);
+
+  const [updateTicket] = useMutation(UPDATE_TICKET, {
     variables: {
+      id: ticketId,
       title,
       description,
       blocked,
@@ -26,7 +49,9 @@ export const AddKanbanTicket = () => {
       status,
       blockedReason,
     },
-    update(cache, { data: { addTicket } }) {
+    refetchQueries: [{ query: GET_TICKET, variables: { id: ticketId } }],
+
+    update(cache, { data: { updateTicket } }) {
       const { tickets } = cache.readQuery({
         query: GET_TICKETS,
         variables: { projectId },
@@ -34,10 +59,13 @@ export const AddKanbanTicket = () => {
       cache.writeQuery({
         query: GET_TICKETS,
         variables: { projectId },
-        data: { tickets: [...tickets, addTicket] },
+        data: { tickets: [...tickets, updateTicket] },
       });
     },
   });
+
+  if (ticketLoading) return <Spinner />;
+  if (ticketError) return <p>Something went wrong</p>;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -46,18 +74,20 @@ export const AddKanbanTicket = () => {
       return alert("Please fill out all fields");
     }
 
-    addTicket(title, description, projectId, status, blocked, blockedReason);
-
-    setTitle("");
-    setDescription("");
-    setStatus("pre");
-    setBlocked(false);
-    setBlockedReason("");
+    updateTicket(
+      id,
+      title,
+      description,
+      projectId,
+      status,
+      blocked,
+      blockedReason
+    );
   };
 
   return (
     <div className="bg-slate-50 mt-2 mx-2 p-3 rounded-xl">
-      <h1 className="text-lg text-left">New Ticket</h1>
+      <h1 className="text-lg text-left">Update Ticket</h1>
       <div className="">
         <form onSubmit={onSubmit}>
           <div>
