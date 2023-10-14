@@ -27,7 +27,7 @@ export const AddInvoice = () => {
   const [amount, setAmount] = useState("");
   const [notes, setNotes] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
-  const [project, setProject] = useState("");
+  const [projectId, setProjectId] = useState("");
   const [isProjectInvoice, setIsProjectInvoice] = useState(false);
 
   const {
@@ -43,7 +43,7 @@ export const AddInvoice = () => {
       notes,
       invoiceNumber,
       clientId,
-      projectId: project.id,
+      projectId,
     },
     update(cache, { data: { addInvoice } }) {
       const { invoices } = cache.readQuery({
@@ -78,7 +78,7 @@ export const AddInvoice = () => {
     setAmount("");
     setNotes("");
     setInvoiceNumber("");
-    setProject("");
+    setProjectId("");
   };
 
   return (
@@ -110,8 +110,8 @@ export const AddInvoice = () => {
               className="form-select"
               aria-label="Select Project"
               id="projectId"
-              value={project}
-              onChange={(e) => setProject(e.target.value)}
+              value={projectId}
+              onChange={(e) => setProjectId(e.target.value)}
             >
               <option value="">Select Project</option>
               {projectsData.clientProjects.map((project) => (

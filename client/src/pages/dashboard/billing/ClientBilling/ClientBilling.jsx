@@ -22,6 +22,8 @@ export const ClientBilling = () => {
     data: invoicesData,
   } = useQuery(GET_INVOICES, { variables: { clientId } });
 
+  console.log("invoicesData", invoicesData);
+
   const {
     loading: transactionsLoading,
     error: transactionsError,
