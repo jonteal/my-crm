@@ -36,7 +36,6 @@ export const EditKanbanTicket = () => {
 
   console.log("ticket: ", ticket);
   console.log("ticket.status: ", ticket?.status);
-
   console.log("status: ", status);
 
   const [updateTicket] = useMutation(UPDATE_TICKET, {
@@ -75,7 +74,7 @@ export const EditKanbanTicket = () => {
     }
 
     updateTicket(
-      id,
+      ticketId,
       title,
       description,
       projectId,

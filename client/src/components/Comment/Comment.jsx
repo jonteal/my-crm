@@ -95,18 +95,12 @@ export const Comment = ({ comment, type, replies }) => {
 
   const [deleteClientComment] = useMutation(DELETE_CLIENT_ACTIVITY_COMMENT, {
     variables: { id: commentId },
-    refetchQueries: [
-      { query: GET_CLIENT_ACTIVITY_COMMENTS },
-      { query: GET_CLIENT_ACTIVITY_COMMENTS },
-    ],
+    refetchQueries: [{ query: GET_CLIENT_ACTIVITY_COMMENTS }],
   });
 
   const [deleteProjectComment] = useMutation(DELETE_PROJECT_ACTIVITY_COMMENT, {
     variables: { id: commentId },
-    refetchQueries: [
-      { query: GET_PROJECT_ACTIVITY_COMMENTS },
-      { query: GET_PROJECT_ACTIVITY_COMMENTS },
-    ],
+    refetchQueries: [{ query: GET_PROJECT_ACTIVITY_COMMENTS }],
   });
 
   const handleCommentDelete = () => {
