@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/client";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 import EditButton from "../../../../components/reusable/buttons/EditButton/EditButton";
 import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
-import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
+import { InvoiceTable } from "../../../../components/InvoiceTable/InvoiceTable";
 import ProgressBar from "../../../../components/ProgressBar/ProgressBar";
 
 // GRAPHQL

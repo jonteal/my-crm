@@ -2,12 +2,12 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 // COMPONENTS
-import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
+import { InvoiceTable } from "../../../../components/InvoiceTable/InvoiceTable";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
 
 // GRAPHQL
-import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
+import { GET_ALL_CLIENT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
 import BilledThisMonth from "../../../../components/dashboardBilling/BilledThisMonth/BilledThisMonth";
 // import TotalBilledCard from "../../../../components/dashboardBilling/TotalBilledCard/TotalBilledCard";
@@ -20,9 +20,7 @@ export const ClientBilling = () => {
     loading: invoicesLoading,
     error: invoicesError,
     data: invoicesData,
-  } = useQuery(GET_INVOICES, { variables: { clientId } });
-
-  console.log("invoicesData", invoicesData);
+  } = useQuery(GET_ALL_CLIENT_INVOICES, { variables: { clientId } });
 
   const {
     loading: transactionsLoading,
@@ -45,7 +43,7 @@ export const ClientBilling = () => {
         {/* <BudgetRemaining budgetRemaining={budgetRemaining} /> */}
       </div>
       <div className="w-full flex flex-row">
-        <InvoiceTable invoices={invoicesData.invoices} />
+        <InvoiceTable invoices={invoicesData.clientInvoices} />
         <TransactionTable transactions={transactionsData.transactions} />
       </div>
     </div>

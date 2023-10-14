@@ -267,7 +267,7 @@ const RootQuery = new GraphQLObjectType({
         return Service.findById(args.id);
       },
     },
-    invoices: {
+    clientInvoices: {
       type: new GraphQLList(InvoiceType),
       args: { clientId: { type: GraphQLID } },
       resolve(parent, args) {

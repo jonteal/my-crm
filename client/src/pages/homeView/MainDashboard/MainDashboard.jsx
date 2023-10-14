@@ -2,7 +2,7 @@ import NewClientsThisMonth from "../../../components/mainDashboard/NewClientsThi
 import TotalClients from "../../../components/mainDashboard/TotalClients/TotalClients";
 // import Spinner from "../../../components/reusable/Spinner/Spinner";
 import { GET_CLIENTS } from "../../../graphql/queries/clientQueries";
-import { GET_INVOICES } from "../../../graphql/queries/invoiceQueries";
+import { GET_ALL_CLIENT_INVOICES } from "../../../graphql/queries/invoiceQueries";
 import { useQuery } from "@apollo/client";
 
 export const MainDashboard = () => {
@@ -19,7 +19,7 @@ export const MainDashboard = () => {
     loading: invoicesLoading,
     error: invoicesError,
     data: invoicesData,
-  } = useQuery(GET_CLIENT_INVOICES);
+  } = useQuery(GET_ALL_CLIENT_INVOICES);
 
   //   if (clientLoading) return <Spinner />;
   if (clientError) return <p>There was an error loading the content</p>;

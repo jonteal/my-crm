@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
+import { InvoiceTable } from "../../../../components/InvoiceTable/InvoiceTable";
 import { GET_PROJECT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 

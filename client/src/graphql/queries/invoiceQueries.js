@@ -22,9 +22,9 @@ const GET_PROJECT_INVOICES = gql`
   }
 `;
 
-const GET_INVOICES = gql`
+const GET_ALL_CLIENT_INVOICES = gql`
   query getInvoices($clientId: ID) {
-    invoices(clientId: $clientId) {
+    clientInvoices(clientId: $clientId) {
       id
       date
       amount
@@ -66,4 +66,4 @@ const GET_INVOICE = gql`
   }
 `;
 
-export { GET_PROJECT_INVOICES, GET_INVOICES, GET_INVOICE };
+export { GET_PROJECT_INVOICES, GET_ALL_CLIENT_INVOICES, GET_INVOICE };

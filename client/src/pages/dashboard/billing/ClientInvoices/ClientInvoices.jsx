@@ -1,6 +1,6 @@
-import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
+import { InvoiceTable } from "../../../../components/InvoiceTable/InvoiceTable";
 // GRAPHQL
-import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
+import { GET_ALL_CLIENT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 
 export const ClientInvoices = () => {
   const { clientId } = useParams();
@@ -9,7 +9,7 @@ export const ClientInvoices = () => {
     loading: invoicesLoading,
     error: invoicesError,
     data: invoicesData,
-  } = useQuery(GET_INVOICES, { clientId });
+  } = useQuery(GET_ALL_CLIENT_INVOICES, { clientId });
 
   if (invoicesLoading) return <Spinner />;
   if (invoicesError)

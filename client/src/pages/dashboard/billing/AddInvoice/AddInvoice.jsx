@@ -6,7 +6,7 @@ import { useMutation, useQuery } from "@apollo/client";
 
 // GRAPHQL
 import { ADD_INVOICE } from "../../../../graphql/mutations/invoiceMutations";
-import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
+import { GET_ALL_CLIENT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
 import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries";
 
@@ -47,11 +47,11 @@ export const AddInvoice = () => {
     },
     update(cache, { data: { addInvoice } }) {
       const { invoices } = cache.readQuery({
-        query: GET_INVOICES,
+        query: GET_ALL_CLIENT_INVOICES,
         variables: { clientId },
       });
       cache.writeQuery({
-        query: GET_INVOICES,
+        query: GET_ALL_CLIENT_INVOICES,
         variables: { clientId },
         data: { invoices: [...invoices, addInvoice] },
       });

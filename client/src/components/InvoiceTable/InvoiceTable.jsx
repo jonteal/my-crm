@@ -3,7 +3,7 @@ import { TbFileInvoice } from "react-icons/tb";
 import AddButton from "../reusable/buttons/AddButton/AddButton";
 import InvoiceTableItem from "../dashboardBilling/InvoiceTableItem/InvoiceTableItem";
 
-const InvoiceTable = ({ invoices, shortList }) => {
+export const InvoiceTable = ({ invoices, shortList }) => {
   const { clientId, projectId } = useParams();
 
   const filteredList = shortList ? invoices : invoices.slice(0, 5);
@@ -43,5 +43,3 @@ const InvoiceTable = ({ invoices, shortList }) => {
     </div>
   );
 };
-
-export default InvoiceTable;
