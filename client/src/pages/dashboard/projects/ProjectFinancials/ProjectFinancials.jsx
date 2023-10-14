@@ -4,17 +4,17 @@ import { useQuery } from "@apollo/client";
 // COMPONENTS
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 import EditButton from "../../../../components/reusable/buttons/EditButton/EditButton";
-import TransactionTable from "../../../../components/TransactionTable/TransactionTable";
+import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
 import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
 import ProgressBar from "../../../../components/ProgressBar/ProgressBar";
 
 // GRAPHQL
-import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
+import { GET_PROJECT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
 
 export const ProjectFinancials = () => {
-  const { projectId } = useParams();
+  const { projectId, clientId } = useParams();
 
   const {
     loading: projectLoading,
@@ -26,7 +26,7 @@ export const ProjectFinancials = () => {
     loading: invoicesLoading,
     error: invoicesError,
     data: invoicesData,
-  } = useQuery(GET_INVOICES, { variables: { projectId } });
+  } = useQuery(GET_PROJECT_INVOICES, { variables: { projectId } });
 
   const {
     loading: transactionsLoading,
@@ -39,7 +39,7 @@ export const ProjectFinancials = () => {
   if (invoicesError || transactionsError || projectError)
     return <p>There was a problem loading the client invoices...</p>;
 
-  const invoiceSum = invoicesData.invoices.reduce(function (acc, obj) {
+  const invoiceSum = invoicesData.projectInvoices.reduce(function (acc, obj) {
     return acc + parseFloat(obj.amount);
   }, 0);
 
@@ -58,7 +58,10 @@ export const ProjectFinancials = () => {
               <EditButton className="mx-2">View All Invoices</EditButton>
             </Link>
 
-            <InvoiceTable shortList={true} invoices={invoicesData.invoices} />
+            <InvoiceTable
+              shortList={true}
+              invoices={invoicesData.projectInvoices}
+            />
           </div>
           <div className="flex flex-col w-full items-start ml-2">
             <Link to="transactions" className="mx-2 my-2">

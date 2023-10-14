@@ -8,7 +8,6 @@ import AddButton from "../../components/reusable/buttons/AddButton/AddButton";
 
 export const Projects = () => {
   const { loading, error, data } = useQuery(GET_PROJECTS);
-  console.log("data: ", data);
   const [searchTerm, setSearchTerm] = useState("");
 
   if (loading) return <Spinner />;

@@ -33,10 +33,6 @@ export const EditProject = () => {
     project?.projectEstimate
   );
 
-  console.log("project: ", project);
-  console.log("project.status: ", project?.status);
-  console.log("status: ", status);
-
   const [updateProject] = useMutation(UPDATE_PROJECT, {
     variables: {
       id: projectId,

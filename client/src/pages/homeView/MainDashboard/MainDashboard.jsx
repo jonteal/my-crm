@@ -19,7 +19,7 @@ export const MainDashboard = () => {
     loading: invoicesLoading,
     error: invoicesError,
     data: invoicesData,
-  } = useQuery(GET_INVOICES);
+  } = useQuery(GET_CLIENT_INVOICES);
 
   //   if (clientLoading) return <Spinner />;
   if (clientError) return <p>There was an error loading the content</p>;

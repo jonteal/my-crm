@@ -26,17 +26,11 @@ export const EditKanbanTicket = () => {
 
   const ticket = ticketData?.ticket;
 
-  console.log("ticket: ", ticket);
-
   const [title, setTitle] = useState(ticket?.title);
   const [description, setDescription] = useState(ticket?.description);
   const [status, setStatus] = useState(ticket?.status);
   const [blocked, setBlocked] = useState(ticket?.blocked);
   const [blockedReason, setBlockedReason] = useState(ticket?.blockedReason);
-
-  console.log("ticket: ", ticket);
-  console.log("ticket.status: ", ticket?.status);
-  console.log("status: ", status);
 
   const [updateTicket] = useMutation(UPDATE_TICKET, {
     variables: {

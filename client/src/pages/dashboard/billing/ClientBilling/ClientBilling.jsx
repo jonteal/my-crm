@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 // COMPONENTS
 import InvoiceTable from "../../../../components/InvoiceTable/InvoiceTable";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
-import ClientTransactions from "../../../../components/TransactionTable/TransactionTable";
+import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
 
 // GRAPHQL
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
@@ -20,25 +20,17 @@ export const ClientBilling = () => {
     loading: invoicesLoading,
     error: invoicesError,
     data: invoicesData,
-  } = useQuery(GET_INVOICES);
+  } = useQuery(GET_INVOICES, { variables: { clientId } });
 
   const {
     loading: transactionsLoading,
     error: transactionsError,
     data: transactionsData,
-  } = useQuery(GET_TRANSACTIONS);
+  } = useQuery(GET_TRANSACTIONS, { variables: { clientId } });
 
   if (invoicesLoading || transactionsLoading) return <Spinner />;
   if (invoicesError || transactionsError)
     return <p>There was a problem loading the client transactions...</p>;
-
-  const matchingInvoices = invoicesData.invoices.filter(
-    (invoice) => invoice.client.id === clientId
-  );
-
-  const matchingTransactions = transactionsData.transactions.filter(
-    (transaction) => transaction.client?.id === clientId
-  );
 
   // const budgetRemaining = budgetsTotalSum - invoicesTotalSum;
   const billedThisMonth = 50;
@@ -47,14 +39,12 @@ export const ClientBilling = () => {
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-row">
         {/* <TotalBilledCard totalBilled={invoicesTotalSum} /> */}
-
         <BilledThisMonth billedThisMonth={billedThisMonth} />
-
         {/* <BudgetRemaining budgetRemaining={budgetRemaining} /> */}
       </div>
       <div className="w-full flex flex-row">
-        <InvoiceTable invoices={matchingInvoices} />
-        <ClientTransactions transactions={matchingTransactions} />
+        <InvoiceTable invoices={invoicesData.invoices} />
+        <TransactionTable transactions={transactionsData.transactions} />
       </div>
     </div>
   );

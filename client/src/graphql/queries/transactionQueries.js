@@ -1,8 +1,30 @@
 import { gql } from "@apollo/client";
 
-const GET_TRANSACTIONS = gql`
+const GET_PROJECT_TRANSACTIONS = gql`
   query getTransactions($projectId: ID) {
     transactions(projectId: $projectId) {
+      id
+      paymentDate
+      amount
+      paymentParty
+      incomingOutgoing
+      client {
+        id
+        firstName
+        lastName
+      }
+      project {
+        id
+        title
+      }
+      createdAt
+    }
+  }
+`;
+
+const GET_TRANSACTIONS = gql`
+  query getTransactions($clientId: ID) {
+    transactions(clientId: $clientId) {
       id
       paymentDate
       amount
@@ -44,4 +66,4 @@ const GET_TRANSACTION = gql`
   }
 `;
 
-export { GET_TRANSACTIONS, GET_TRANSACTION };
+export { GET_TRANSACTIONS, GET_PROJECT_TRANSACTIONS, GET_TRANSACTION };

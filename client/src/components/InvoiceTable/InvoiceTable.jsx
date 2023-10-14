@@ -5,7 +5,9 @@ import InvoiceTableItem from "../dashboardBilling/InvoiceTableItem/InvoiceTableI
 
 const InvoiceTable = ({ invoices, shortList }) => {
   const { clientId, projectId } = useParams();
+
   const filteredList = shortList ? invoices : invoices.slice(0, 5);
+
   return (
     <div className="bg-slate-50 w-full rounded-xl mx-2 py-2">
       <div className="flex flex-row justify-between items-start">
@@ -13,15 +15,11 @@ const InvoiceTable = ({ invoices, shortList }) => {
           <TbFileInvoice className="ml-2 text-lg" />
           <h2 className="text-left text-slate-700 text-lg mx-2">Invoices</h2>
         </div>
-        {projectId && (
-          <div className="flex flex-row justify-between py-2 px-2">
-            <Link
-              to={`/clients/${clientId}/projects/${projectId}/financials/addInvoice`}
-            >
-              <AddButton className="mx-2">Add Invoice</AddButton>
-            </Link>
-          </div>
-        )}
+        <div className="flex flex-row justify-between py-2 px-2">
+          <Link to={`/clients/${clientId}/addInvoice`}>
+            <AddButton className="mx-2">Add Invoice</AddButton>
+          </Link>
+        </div>
       </div>
 
       {filteredList.length === 0 ? (

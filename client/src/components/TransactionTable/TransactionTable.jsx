@@ -3,7 +3,7 @@ import { GrTransaction } from "react-icons/gr";
 import AddButton from "../reusable/buttons/AddButton/AddButton";
 import ClientTransactionItem from "../dashboardBilling/ClientTransactionItem/ClientTransactionItem";
 
-const TransactionTable = ({ transactions, shortList }) => {
+export const TransactionTable = ({ transactions, shortList }) => {
   const { clientId, projectId } = useParams();
   const filteredList = shortList ? transactions : transactions.slice(0, 5);
 
@@ -51,5 +51,3 @@ const TransactionTable = ({ transactions, shortList }) => {
     </div>
   );
 };
-
-export default TransactionTable;

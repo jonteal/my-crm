@@ -6,7 +6,7 @@ const ADD_INVOICE = gql`
     $amount: String!
     $notes: String
     $clientId: ID!
-    $projectId: ID!
+    $projectId: ID
     $invoiceNumber: String!
   ) {
     addInvoice(

@@ -8,7 +8,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ADD_INVOICE } from "../../../../graphql/mutations/invoiceMutations";
 import { GET_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
-import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
+import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
@@ -20,15 +20,21 @@ import DatePicker from "react-datepicker";
 // CSS
 import "react-datepicker/dist/react-datepicker.css";
 
-const rootClass = "add-invoice";
-
 export const AddInvoice = () => {
-  const { clientId, projectId } = useParams();
+  const { clientId } = useParams();
 
   const [date, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [notes, setNotes] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
+  const [project, setProject] = useState("");
+  const [isProjectInvoice, setIsProjectInvoice] = useState(false);
+
+  const {
+    loading: projectsLoading,
+    error: projectsError,
+    data: projectsData,
+  } = useQuery(GET_CLIENT_PROJECTS, { variables: { clientId } });
 
   const [addInvoice] = useMutation(ADD_INVOICE, {
     variables: {
@@ -37,40 +43,27 @@ export const AddInvoice = () => {
       notes,
       invoiceNumber,
       clientId,
-      projectId,
+      projectId: project.id,
     },
     update(cache, { data: { addInvoice } }) {
       const { invoices } = cache.readQuery({
         query: GET_INVOICES,
-        variables: { projectId },
+        variables: { clientId },
       });
       cache.writeQuery({
         query: GET_INVOICES,
-        variables: { projectId },
+        variables: { clientId },
         data: { invoices: [...invoices, addInvoice] },
       });
     },
   });
 
-  const {
-    loading: clientsLoading,
-    error: clientsError,
-    data: clientsData,
-  } = useQuery(GET_CLIENT, { variables: { id: clientId } });
-
-  const {
-    loading: projectsLoading,
-    error: projectsError,
-    data: projectsData,
-  } = useQuery(GET_PROJECT, { variables: { id: projectId } });
-
   const handleDateChange = (date) => {
     setDate(date);
   };
 
-  if (clientsLoading || projectsLoading) return <Spinner />;
-  if (clientsError || projectsError)
-    return <p>There was an error loading the content</p>;
+  if (projectsLoading) return <Spinner />;
+  if (projectsError) return <p>There was an error loading the content</p>;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -85,36 +78,51 @@ export const AddInvoice = () => {
     setAmount("");
     setNotes("");
     setInvoiceNumber("");
-    // setProject(projectId);
+    setProject("");
   };
 
   return (
-    <div
-      className={`${rootClass}-container bg-slate-50 flex flex-col items-center rounded-xl mx-2 mt-2`}
-    >
-      <h3 className={`${rootClass}-title font-semibold text-lg mt-2`}>
-        Add Invoice
-      </h3>
+    <div className="bg-slate-50 flex flex-col items-center rounded-xl mx-2 mt-2">
+      <h3 className="font-semibold text-lg mt-2">Add Invoice</h3>
+      <div className="flex flex-row justify-between my-3 w-full px-4">
+        <div className="flex flex-row items-center w-full mr-2 mb-5">
+          <input
+            id="default-checkbox"
+            type="checkbox"
+            value={isProjectInvoice}
+            onChange={() => setIsProjectInvoice(!isProjectInvoice)}
+            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          />
+          <label
+            htmlFor="default-checkbox"
+            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Is this an invoice for a project?
+          </label>
+        </div>
 
-      {/* <h1 className="text-slate-700 text-xl">
-        Project: {matchingProjects[0].title}
-      </h1> */}
-
-      {/* <label className="form-label client-select">Project Name</label>
-      <select
-        className="form-select"
-        aria-label="Default select example"
-        id="projectId"
-        value={projectId}
-        onChange={(e) => setProject(e.target.value)}
-      >
-        <option value="">Select Client</option>
-        {projectsData.projects.map((project) => (
-          <option key={project.id} value={project.id}>
-            {project.title}
-          </option>
-        ))}
-      </select> */}
+        {isProjectInvoice === true && (
+          <div className="flex flex-col w-full ml-2">
+            <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Project Name
+            </label>
+            <select
+              className="form-select"
+              aria-label="Select Project"
+              id="projectId"
+              value={project}
+              onChange={(e) => setProject(e.target.value)}
+            >
+              <option value="">Select Project</option>
+              {projectsData.clientProjects.map((project) => (
+                <option key={project.id} value={project.id}>
+                  {project.title}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
 
       <form className="w-full max-w-lg mb-3" onSubmit={onSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
@@ -148,7 +156,7 @@ export const AddInvoice = () => {
             />
           </div>
         </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
+        <div className="flex flex-wrap mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"

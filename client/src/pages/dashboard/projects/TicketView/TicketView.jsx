@@ -32,8 +32,6 @@ export const TicketView = () => {
 
   const { id, title, description, status, createdAt } = ticketData.ticket;
 
-  console.log("ticketData: ", ticketData);
-
   return (
     <div className="h-screen border-slate-500 rounded-xl">
       {!ticketLoading && !ticketError && (

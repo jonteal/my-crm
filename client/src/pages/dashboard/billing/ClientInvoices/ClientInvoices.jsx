@@ -9,14 +9,11 @@ export const ClientInvoices = () => {
     loading: invoicesLoading,
     error: invoicesError,
     data: invoicesData,
-  } = useQuery(GET_INVOICES);
+  } = useQuery(GET_INVOICES, { clientId });
 
-  if (transactionsLoading) return <Spinner />;
-  if (transactionsError)
+  if (invoicesLoading) return <Spinner />;
+  if (invoicesError)
     return <p>There was a problem loading the client transactions...</p>;
 
-  const matchingInvoices = invoicesData.invoices.filter(
-    (invoice) => invoice.client.id === clientId
-  );
-  return <InvoiceTable invoices={matchingInvoices} />;
+  return <InvoiceTable invoices={invoicesData.invoices} />;
 };

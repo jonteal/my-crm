@@ -269,9 +269,20 @@ const RootQuery = new GraphQLObjectType({
     },
     invoices: {
       type: new GraphQLList(InvoiceType),
+      args: { clientId: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Invoice.find({
+          clientId: args.clientId,
+        });
+      },
+    },
+    projectInvoices: {
+      type: new GraphQLList(InvoiceType),
       args: { projectId: { type: GraphQLID } },
       resolve(parent, args) {
-        return Invoice.find({ projectId: args.projectId });
+        return Invoice.find({
+          projectId: args.projectId,
+        });
       },
     },
     invoice: {
@@ -283,9 +294,9 @@ const RootQuery = new GraphQLObjectType({
     },
     transactions: {
       type: new GraphQLList(TransactionType),
-      args: { projectId: { type: GraphQLID } },
+      args: { clientId: { type: GraphQLID } },
       resolve(parent, args) {
-        return Transaction.find({ projectId: args.projectId });
+        return Transaction.find({ clientId: args.clientId });
       },
     },
     transaction: {
@@ -734,7 +745,7 @@ const mutation = new GraphQLObjectType({
         notes: { type: GraphQLString },
         invoiceNumber: { type: new GraphQLNonNull(GraphQLString) },
         clientId: { type: new GraphQLNonNull(GraphQLID) },
-        projectId: { type: new GraphQLNonNull(GraphQLID) },
+        projectId: { type: GraphQLID },
       },
       resolve(parent, args) {
         const invoice = new Invoice({
@@ -797,7 +808,7 @@ const mutation = new GraphQLObjectType({
         amount: { type: new GraphQLNonNull(GraphQLString) },
         paymentParty: { type: new GraphQLNonNull(GraphQLString) },
         clientId: { type: new GraphQLNonNull(GraphQLID) },
-        projectId: { type: new GraphQLNonNull(GraphQLID) },
+        projectId: { type: GraphQLID },
         incomingOutgoing: {
           type: new GraphQLEnumType({
             name: "IncomingOutgoing",

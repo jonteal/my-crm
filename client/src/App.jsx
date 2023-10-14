@@ -136,6 +136,10 @@ function App() {
                   element={<ClientProjects />}
                 />
                 <Route
+                  path="/clients/:clientId/addInvoice"
+                  element={<AddInvoice />}
+                />
+                <Route
                   path="/clients/:clientId/projects/:projectId"
                   element={<ProjectView />}
                 >
@@ -191,10 +195,7 @@ function App() {
                     element={<ProjectInvoice />}
                     path="/clients/:clientId/projects/:projectId/financials/invoices/:invoiceId"
                   />
-                  <Route
-                    path="/clients/:clientId/projects/:projectId/financials/addInvoice"
-                    element={<AddInvoice />}
-                  />
+
                   <Route
                     path="/clients/:clientId/projects/:projectId/financials/addTransaction"
                     element={<AddTransaction />}
