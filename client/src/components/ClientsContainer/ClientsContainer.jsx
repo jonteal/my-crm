@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import ClientTable from "../ClientTable/ClientTable";
+import { ClientTable } from "../ClientTable/ClientTable";
+import { Link } from "react-router-dom";
 
-import "./clientsContainer.css";
-
-const rootClass = "client-container";
-
-const ClientsContainer = ({ clientData, clientContainer }) => {
+export const ClientsContainer = ({ clientData, clientContainer }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleClick = () => {
@@ -14,40 +11,29 @@ const ClientsContainer = ({ clientData, clientContainer }) => {
   };
 
   return (
-    <div>
-      <div className={`${rootClass}-main-container`}>
-        <div
-          key={clientContainer.id}
-          className={`${rootClass}-status-container`}
-        >
-          <div className={`${rootClass}-header-section`}>
-            <h5 className={`${rootClass}-state-label`}>
-              {clientContainer.state}
-            </h5>
-            {isExpanded ? (
-              <FaChevronUp
-                onClick={handleClick}
-                className={`${rootClass}-carrot`}
-              />
-            ) : (
-              <FaChevronDown
-                onClick={handleClick}
-                className={`${rootClass}-carrot`}
-              />
-            )}
-          </div>
-
-          {isExpanded && (
-            <ClientTable
-              key={clientContainer.id}
-              clientContainer={clientContainer}
-              clients={clientData.clients}
-            />
+    <div
+      key={clientContainer.id}
+      className="mb-7 border-slate-400 p-2 rounded-md"
+    >
+      <div className="flex flex-row items-center justify-between border rounded-lg">
+        <div className="flex flex-row items-center">
+          <h5 className="text-base py-2 pl-2">{clientContainer.state}</h5>
+          {isExpanded ? (
+            <FaChevronUp onClick={handleClick} className="ml-1" />
+          ) : (
+            <FaChevronDown onClick={handleClick} className="ml-1" />
           )}
         </div>
+        <Link to={`list/${clientContainer.state}`}>View All</Link>
       </div>
+
+      {isExpanded && (
+        <ClientTable
+          key={clientContainer.id}
+          clientContainer={clientContainer}
+          clients={clientData.clients}
+        />
+      )}
     </div>
   );
 };
-
-export default ClientsContainer;

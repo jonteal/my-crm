@@ -4,21 +4,19 @@ import { useQuery } from "@apollo/client";
 import { GET_CLIENTS } from "../../../graphql/queries/clientQueries";
 
 // COMPONENTS
-import ClientsContainer from "../../../components/ClientsContainer/ClientsContainer";
+import { ClientsContainer } from "../../../components/ClientsContainer/ClientsContainer";
 import Spinner from "../../../components/reusable/Spinner/Spinner";
 
 import { FaUserAlt } from "react-icons/fa";
 
-import "./clientList.css";
-
-const rootClass = "clients";
-
-const ClientList = () => {
+export const ClientList = () => {
   const {
     loading: clientLoading,
     error: clientError,
     data: clientData,
   } = useQuery(GET_CLIENTS);
+
+  console.log("clientData: ", clientData);
 
   if (clientLoading) return <Spinner />;
   if (clientError) return <p>Something went wrong...</p>;
@@ -47,12 +45,10 @@ const ClientList = () => {
   ];
 
   return (
-    <div className={`${rootClass}-parent-container`}>
-      <div className={`${rootClass}-header-container flex flex-row`}>
-        <FaUserAlt className={`${rootClass}-header-icon mr-5`} />
-        <h5 className={`${rootClass}-header-label mb-3`}>
-          Total Records ({clientData?.clients.length})
-        </h5>
+    <div>
+      <div className="flex flex-row">
+        <FaUserAlt className="mr-5" />
+        <h5 className="mb-3">Total Records ({clientData?.clients.length})</h5>
       </div>
       <ul>
         {clientContainers.map((clientContainer) => (
@@ -66,5 +62,3 @@ const ClientList = () => {
     </div>
   );
 };
-
-export default ClientList;

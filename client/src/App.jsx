@@ -40,6 +40,7 @@ import { ClientProjects } from "./pages/dashboard/projects/ClientProjects/Client
 import "./App.css";
 import { TicketView } from "./pages/dashboard/projects/TicketView/TicketView";
 import { EditKanbanTicket } from "./pages/dashboard/projects/EditKanbanTicket/EditKanbanTicket";
+import { ClientsListByStatus } from "./pages/Clients/ClientsListByStatus/ClientsListByStatus";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -225,6 +226,10 @@ function App() {
               </Route>
               <Route path="/addProject" element={<AddProject />} />
               <Route path="/clients" element={<Clients />} />
+              <Route
+                path="/clients/list/:status"
+                element={<ClientsListByStatus />}
+              />
               <Route path="/projects" element={<Projects />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

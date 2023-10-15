@@ -226,6 +226,13 @@ const RootQuery = new GraphQLObjectType({
         return Client.find();
       },
     },
+    clientsByStatus: {
+      type: new GraphQLList(ClientType),
+      args: { status: { type: GraphQLString } },
+      resolve(parent, args) {
+        return Client.find({ status: args.status });
+      },
+    },
     client: {
       type: ClientType,
       args: { id: { type: GraphQLID } },
