@@ -5,7 +5,6 @@ import { UPDATE_PROJECT } from "../../../../graphql/mutations/projectMutations";
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
-import { GET_CLIENTS } from "../../../../graphql/queries/clientQueries";
 
 // DATE PICKING
 import DatePicker from "react-datepicker";

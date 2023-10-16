@@ -16,9 +16,9 @@ export const ClientViewNav = () => {
       className={`flex justify-start items-start h-screen border w-full  bg-slate-50 flex-col ml-2 rounded-xl ${
         !isOpen ? "sm:w-10" : "sm:w-64"
       }`}
-      onClick={handleNavCollapse}
     >
       <div
+        onClick={handleNavCollapse}
         className={`${
           !isOpen ? "block" : "hidden"
         } w-full flex flex-row justify-center`}

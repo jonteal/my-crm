@@ -3,7 +3,7 @@ import StatusBadge from "../reusable/StatusBadge/StatusBadge";
 import { BsPersonCircle } from "react-icons/bs";
 import { FaProjectDiagram } from "react-icons/fa";
 
-const ProjectPageCard = ({ project }) => {
+export const ProjectPageCard = ({ project }) => {
   const { title, status, client } = project;
   return (
     <Link to={`/clients/${project.client.id}/projects/${project.id}/profile`}>
@@ -23,5 +23,3 @@ const ProjectPageCard = ({ project }) => {
     </Link>
   );
 };
-
-export default ProjectPageCard;

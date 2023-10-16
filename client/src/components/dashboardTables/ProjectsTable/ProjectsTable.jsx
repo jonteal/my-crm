@@ -9,7 +9,7 @@ import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 // COMPONENTS
 import AddButton from "../../reusable/buttons/AddButton/AddButton";
 
-const ProjectsTable = ({ client, projects, projectContainer }) => {
+export const ProjectsTable = ({ projects, projectContainer }) => {
   const { clientId } = useParams();
   const { data: clientData } = useQuery(GET_CLIENT, {
     variables: { id: clientId },
@@ -94,5 +94,3 @@ const ProjectsTable = ({ client, projects, projectContainer }) => {
     </div>
   );
 };
-
-export default ProjectsTable;

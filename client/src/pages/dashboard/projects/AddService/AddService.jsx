@@ -20,8 +20,6 @@ import DatePicker from "react-datepicker";
 // CSS
 import "react-datepicker/dist/react-datepicker.css";
 
-const rootClass = "add-project";
-
 export const AddService = () => {
   const { projectId } = useParams();
 
@@ -111,7 +109,7 @@ export const AddService = () => {
   return (
     <div className="w-full bg-slate-50 mx-2 rounded-xl">
       {!loading && !error && (
-        <div className={`${rootClass}-container`}>
+        <div>
           {alertOn && (
             <div className="alert alert-danger mt-3" role="alert">
               Please provide a title, description, and status!
@@ -259,7 +257,7 @@ export const AddService = () => {
             </div>
 
             <div className="flex flex-row mb-6 my-3">
-              <div className={`mb-3 ${rootClass}-form-item`}>
+              <div className="mb-3">
                 <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Start Date
                 </label>

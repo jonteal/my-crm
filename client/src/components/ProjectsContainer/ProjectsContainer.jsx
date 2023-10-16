@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-// import ClientTable from "../ClientTable/ClientTable";
 
-// import "./clientsContainer.css";
-import ProjectsTable from "../dashboardTables/ProjectsTable/ProjectsTable";
+import { ProjectsTable } from "../dashboardTables/ProjectsTable/ProjectsTable";
 
-const rootClass = "client-container";
-
-const ProjectsContainer = ({ clientProjects, projectContainer }) => {
+export const ProjectsContainer = ({ clientProjects, projectContainer }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleClick = () => {
@@ -15,40 +11,23 @@ const ProjectsContainer = ({ clientProjects, projectContainer }) => {
   };
 
   return (
-    <div>
-      <div className={`${rootClass}-main-container`}>
-        <div
-          key={projectContainer.id}
-          className={`${rootClass}-status-container`}
-        >
-          <div className={`${rootClass}-header-section`}>
-            <h5 className={`${rootClass}-state-label`}>
-              {projectContainer.state}
-            </h5>
-            {isExpanded ? (
-              <FaChevronUp
-                onClick={handleClick}
-                className={`${rootClass}-carrot`}
-              />
-            ) : (
-              <FaChevronDown
-                onClick={handleClick}
-                className={`${rootClass}-carrot`}
-              />
-            )}
-          </div>
-
-          {isExpanded && (
-            <ProjectsTable
-              key={projectContainer.id}
-              projectContainer={projectContainer}
-              projects={clientProjects}
-            />
-          )}
-        </div>
+    <div key={projectContainer.id}>
+      <div>
+        <h5>{projectContainer.state}</h5>
+        {isExpanded ? (
+          <FaChevronUp onClick={handleClick} />
+        ) : (
+          <FaChevronDown onClick={handleClick} />
+        )}
       </div>
+
+      {isExpanded && (
+        <ProjectsTable
+          key={projectContainer.id}
+          projectContainer={projectContainer}
+          projects={clientProjects}
+        />
+      )}
     </div>
   );
 };
-
-export default ProjectsContainer;

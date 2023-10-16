@@ -10,10 +10,6 @@ import { UPDATE_CLIENT } from "../../../graphql/mutations/clientMutations";
 import Spinner from "../../../components/reusable/Spinner/Spinner";
 import SubmitButton from "../../../components/reusable/buttons/submitButton/SubmitButton";
 
-import "./editClient.css";
-
-const rootClass = "edit-client";
-
 export const EditClient = () => {
   const { clientId } = useParams();
 
@@ -90,16 +86,16 @@ export const EditClient = () => {
   if (clientError) return <p>There was an error...</p>;
 
   return (
-    <div className={`${rootClass}-main-container w-1/3 mx-auto`}>
+    <div className="w-1/3 mx-auto">
       {!clientLoading && !clientError && (
         <div className="mt-2">
           <form onSubmit={onSubmit}>
-            <div className={`${rootClass}-name-container`}>
+            <div>
               <div className="mb-3">
                 <label className="form-label">First Name</label>
                 <input
                   type="text"
-                  className={`${rootClass}-firstName form-control`}
+                  className="form-control"
                   id="firstName"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
@@ -110,7 +106,7 @@ export const EditClient = () => {
                 <label className="form-label">Last Name</label>
                 <input
                   type="text"
-                  className={`${rootClass}-lastName form-control`}
+                  className="form-control"
                   id="lastName"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
@@ -121,7 +117,7 @@ export const EditClient = () => {
                 <label className="form-label">Company Name</label>
                 <input
                   type="text"
-                  className={`${rootClass}-company-name form-control`}
+                  className="form-control"
                   id="companyName"
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
@@ -132,7 +128,7 @@ export const EditClient = () => {
                 <label className="form-label">Phone Number</label>
                 <input
                   type="text"
-                  className={`${rootClass}-phone-number form-control`}
+                  className="form-control"
                   id="phoneNumber"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
@@ -143,7 +139,7 @@ export const EditClient = () => {
                 <label className="form-label">Email Address</label>
                 <input
                   type="text"
-                  className={`${rootClass}-email-address form-control`}
+                  className="form-control"
                   id="emailAddress"
                   value={emailAddress}
                   onChange={(e) => setEmailAddress(e.target.value)}

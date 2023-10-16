@@ -17,10 +17,6 @@ import SubmitButton from "../../../../components/reusable/buttons/submitButton/S
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import "./addProject.css";
-
-const rootClass = "add-project";
-
 export const AddProject = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -110,14 +106,14 @@ export const AddProject = () => {
   return (
     <div>
       {!loading && !error && (
-        <div className={`${rootClass}-container`}>
+        <div className="w-3/5 mx-auto">
           {alertOn && (
             <div className="alert alert-danger mt-3" role="alert">
               Please provide a title, description, and status!
             </div>
           )}
 
-          <label className="form-label client-select">Client Name</label>
+          <label className="form-label mt-8">Client Name</label>
           <select
             className="form-select"
             aria-label="Default select example"
@@ -132,7 +128,7 @@ export const AddProject = () => {
               </option>
             ))}
           </select>
-          <form className={`${rootClass}-form mb-10`} onSubmit={onSubmit}>
+          <form className="mt-4 mb-10" onSubmit={onSubmit}>
             <div className="mb-3">
               <div className="mb-3">
                 <label className="form-label">Title</label>
@@ -172,7 +168,7 @@ export const AddProject = () => {
               </select>
             </div>
 
-            <div className={`mb-3 ${rootClass}-form-item`}>
+            <div className="mb-3">
               <label className="form-label">Start Date</label>
               <DatePicker
                 selected={startDate}

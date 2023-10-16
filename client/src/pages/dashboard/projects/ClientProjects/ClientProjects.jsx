@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
 import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries";
+import { ProjectPageCard } from "../../../../components/ProjectPageCard/ProjectPageCard";
 import Spinner from "../../../../components/reusable/Spinner/Spinner";
-import ProjectPageCard from "../../../../components/ProjectPageCard/ProjectPageCard";
 import AddButton from "../../../../components/reusable/buttons/AddButton/AddButton";
 
 export const ClientProjects = () => {

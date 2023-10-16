@@ -11,7 +11,7 @@ import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActi
 import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
 import { Comment } from "../Comment/Comment";
 
-const ProjectCommentFeed = ({ projectId, comments }) => {
+export const ProjectCommentFeed = ({ projectId, comments }) => {
   const [commentText, setCommentText] = useState("");
 
   const [addProjectActivityComment] = useMutation(
@@ -88,5 +88,3 @@ const ProjectCommentFeed = ({ projectId, comments }) => {
     </div>
   );
 };
-
-export default ProjectCommentFeed;

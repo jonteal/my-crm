@@ -10,10 +10,6 @@ import { GET_CLIENTS } from "../../../graphql/queries/clientQueries";
 // COMPONENTS
 import SubmitButton from "../../../components/reusable/buttons/submitButton/SubmitButton";
 
-import "./addClient.css";
-
-const rootClass = "add-client";
-
 export const AddClient = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -66,12 +62,8 @@ export const AddClient = () => {
   };
 
   return (
-    <div className={`${rootClass}-container flex flex-col items-center`}>
-      <h3
-        className={`${rootClass}-title font-semibold text-slate-800 text-lg my-3`}
-      >
-        Add Client
-      </h3>
+    <div className="flex flex-col items-center">
+      <h3 className="font-semibold text-slate-800 text-lg my-3">Add Client</h3>
 
       <form className="w-full max-w-lg" onSubmit={onSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">

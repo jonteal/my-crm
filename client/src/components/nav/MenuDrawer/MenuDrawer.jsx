@@ -1,11 +1,8 @@
 import { Fragment, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import "./menuDrawer.css";
-
-const MenuDrawer = ({ name, ...props }) => {
+export const MenuDrawer = ({ name, ...props }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -69,5 +66,3 @@ const MenuDrawer = ({ name, ...props }) => {
     </>
   );
 };
-
-export default MenuDrawer;
