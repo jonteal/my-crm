@@ -68,7 +68,9 @@ export const ServicesTable = ({ services }) => {
                   {service.startDate}
                 </td>
                 <td className="text-slate-700 font-light text-left border pl-2">
-                  {service.endDate}
+                  {service.endDate === "Invalid date"
+                    ? "Current"
+                    : service.endDate}
                 </td>
               </tr>
             ))}
