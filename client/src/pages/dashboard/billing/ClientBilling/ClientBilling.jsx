@@ -35,8 +35,6 @@ export const ClientBilling = () => {
   // const budgetRemaining = budgetsTotalSum - invoicesTotalSum;
   const billedThisMonth = 50;
 
-  console.log("invoicesData", invoicesData);
-
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-row">

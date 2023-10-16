@@ -16,8 +16,6 @@ export const ClientList = () => {
     data: clientData,
   } = useQuery(GET_CLIENTS);
 
-  console.log("clientData: ", clientData);
-
   if (clientLoading) return <Spinner />;
   if (clientError) return <p>Something went wrong...</p>;
 

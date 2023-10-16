@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const GET_PROJECT_ACTIVITY_COMMENT_REPLIES = gql`
-  query getProjectActivityCommentReplies {
-    projectActivityCommentReplies {
+  query getProjectActivityCommentReplies($commentId: ID) {
+    projectActivityCommentReplies(commentId: $commentId) {
       id
       commentText
       createdAt

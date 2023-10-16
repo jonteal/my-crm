@@ -39,8 +39,6 @@ export const ProjectFinancials = () => {
   if (invoicesError || transactionsError || projectError)
     return <p>There was a problem loading the client invoices...</p>;
 
-  console.log("transactionsData: ", transactionsData);
-
   const invoiceSum = invoicesData.projectInvoices.reduce(function (acc, obj) {
     return acc + parseFloat(obj.amount);
   }, 0);

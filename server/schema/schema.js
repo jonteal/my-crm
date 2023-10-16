@@ -350,8 +350,11 @@ const RootQuery = new GraphQLObjectType({
     },
     clientActivityCommentReplies: {
       type: new GraphQLList(ClientActivityCommentReplyType),
+      args: { commentId: { type: GraphQLID } },
       resolve(parent, args) {
-        return ClientActivityCommentReply.find();
+        return ClientActivityCommentReply.find({
+          commentId: args.commentId,
+        });
       },
     },
     clientActivityCommentReply: {
@@ -363,8 +366,11 @@ const RootQuery = new GraphQLObjectType({
     },
     projectActivityCommentReplies: {
       type: new GraphQLList(ProjectActivityCommentReplyType),
+      args: { commentId: { type: GraphQLID } },
       resolve(parent, args) {
-        return ProjectActivityCommentReply.find();
+        return ProjectActivityCommentReply.find({
+          commentId: args.commentId,
+        });
       },
     },
     projectActivityCommentReply: {

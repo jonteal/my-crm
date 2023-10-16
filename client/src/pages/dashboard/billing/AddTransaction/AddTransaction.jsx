@@ -87,8 +87,6 @@ export const AddTransaction = () => {
       projectId
     );
 
-    console.log("projectId: ", projectId);
-
     setPaymentDate(new Date());
     setAmount("");
     setPaymentParty("");

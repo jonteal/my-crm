@@ -6,7 +6,6 @@ import ClientTransactionItem from "../dashboardBilling/ClientTransactionItem/Cli
 export const TransactionTable = ({ transactions, shortList }) => {
   const { clientId, projectId } = useParams();
 
-  console.log("transactions: ", transactions);
   const filteredList = shortList ? transactions : transactions.slice(0, 5);
 
   return (

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 
 // ICONS
-// import { FiEdit2 } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 // COMPONENTS
@@ -20,14 +19,12 @@ import { ADD_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/proj
 import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
 import { DELETE_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
 import { DELETE_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
-// import { CommentEdit } from "../CommentEdit/CommentEdit";
 
-export const Comment = ({ comment, type, replies }) => {
+export const Comment = ({ comment, type }) => {
   // const { projectId } = useParams();
 
   const [addReply, setAddReply] = useState(false);
   const [commentText, setCommentText] = useState("");
-  // const [isEditing, setIsEditing] = useState(false);
 
   const formattedDate = new Date(parseInt(comment.createdAt)).toDateString();
 
@@ -43,9 +40,11 @@ export const Comment = ({ comment, type, replies }) => {
       update(cache, { data: { addClientActivityCommentReply } }) {
         const { clientActivityCommentReplies } = cache.readQuery({
           query: GET_CLIENT_ACTIVITY_COMMENT_REPLIES,
+          variables: { commentId },
         });
         cache.writeQuery({
           query: GET_CLIENT_ACTIVITY_COMMENT_REPLIES,
+          variables: { commentId },
           data: {
             clientActivityCommentReplies: [
               ...clientActivityCommentReplies,
@@ -67,9 +66,11 @@ export const Comment = ({ comment, type, replies }) => {
       update(cache, { data: { addProjectActivityCommentReply } }) {
         const { projectActivityCommentReplies } = cache.readQuery({
           query: GET_PROJECT_ACTIVITY_COMMENT_REPLIES,
+          variables: { commentId },
         });
         cache.writeQuery({
           query: GET_PROJECT_ACTIVITY_COMMENT_REPLIES,
+          variables: { commentId },
           data: {
             projectActivityCommentReplies: [
               ...projectActivityCommentReplies,
@@ -85,13 +86,17 @@ export const Comment = ({ comment, type, replies }) => {
     loading: clientActivityCommentRepliesLoading,
     error: clientActivityCommentRepliesError,
     data: clientActivityCommentRepliesData,
-  } = useQuery(GET_CLIENT_ACTIVITY_COMMENT_REPLIES);
+  } = useQuery(GET_CLIENT_ACTIVITY_COMMENT_REPLIES, {
+    variables: { commentId },
+  });
 
   const {
     loading: projectActivityCommentRepliesLoading,
     error: projectActivityCommentRepliesError,
     data: projectActivityCommentRepliesData,
-  } = useQuery(GET_PROJECT_ACTIVITY_COMMENT_REPLIES);
+  } = useQuery(GET_PROJECT_ACTIVITY_COMMENT_REPLIES, {
+    variables: { commentId },
+  });
 
   const [deleteClientComment] = useMutation(DELETE_CLIENT_ACTIVITY_COMMENT, {
     variables: { id: commentId },
@@ -142,26 +147,8 @@ export const Comment = ({ comment, type, replies }) => {
     setAddReply(false);
   };
 
-  const matchingClientReplies = clientCommentReplies.filter(
-    (reply) => reply.clientActivityComment.id === commentId
-  );
-
-  const matchingProjectReplies = projectCommentReplies.filter(
-    (reply) => reply.projectActivityComment?.id === commentId
-  );
-
   return (
     <div className="my-4 bg-slate-200 p-2 rounded-xl">
-      {/* {isEditing ? (
-        <div className={!isEditing && "hidden"}>
-          <CommentEdit
-            id={comment.id}
-            comment={comment.commentText}
-            projectId={projectId}
-            setIsEditing={setIsEditing}
-          />
-        </div>
-      ) : ( */}
       <>
         <div
           className="border px-3 py-2 bg-slate-100 rounded-xl flex flex-row justify-between items-center"
@@ -170,9 +157,6 @@ export const Comment = ({ comment, type, replies }) => {
           <p className="text-start w-5/6">{comment.commentText}</p>
 
           <div className="flex justify-end">
-            {/* <button onClick={() => setIsEditing(true)} className="mr-2">
-              <FiEdit2 />
-            </button> */}
             <button onClick={handleCommentDelete}>
               <FaRegTrashAlt className="text-red-500" />
             </button>
@@ -190,7 +174,6 @@ export const Comment = ({ comment, type, replies }) => {
           </button>
         </div>
       </>
-      {/* )} */}
 
       {addReply && (
         <div>
@@ -219,7 +202,7 @@ export const Comment = ({ comment, type, replies }) => {
       )}
 
       {type === "client"
-        ? matchingClientReplies.map((reply) => (
+        ? clientCommentReplies.map((reply) => (
             <CommentReply
               key={reply.id}
               formattedDate={formattedDate}
@@ -227,7 +210,7 @@ export const Comment = ({ comment, type, replies }) => {
               type="client"
             />
           ))
-        : matchingProjectReplies.map((reply) => (
+        : projectCommentReplies.map((reply) => (
             <CommentReply
               key={reply.id}
               formattedDate={formattedDate}
