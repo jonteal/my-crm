@@ -1,23 +1,45 @@
+import { useState } from "react";
 import { FaTable, FaWindowMaximize, FaCreditCard } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
+import { RiExpandRightLine } from "react-icons/ri";
 
-const ClientViewNav = ({ clientData }) => {
-  // const { companyName } = clientData.client;
+export const ClientViewNav = () => {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleNavCollapse = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <div
       id="Main"
-      className="transform  xl:translate-x-0  ease-in-out transition duration-500 flex justify-start items-start h-screen border w-full sm:w-64 bg-slate-50 flex-col ml-10 rounded-xl"
+      className={`flex justify-start items-start h-screen border w-full  bg-slate-50 flex-col ml-2 rounded-xl ${
+        !isOpen ? "sm:w-10" : "sm:w-64"
+      }`}
+      onClick={handleNavCollapse}
     >
-      <div className="hidden xl:flex justify-start p-6 items-center space-x-3">
-        {/* <p className="text-2xl leading-6 text-slate-700">
-          {companyName} Dashboard
-        </p> */}
+      <div
+        className={`${
+          !isOpen ? "block" : "hidden"
+        } w-full flex flex-row justify-center`}
+      >
+        <RiExpandRightLine className="mt-2 text-lg" />
       </div>
-      <div className="flex flex-col justify-start items-center px-6 w-full  ">
+      <div
+        className={`flex flex-col justify-start items-center px-6 w-full ${
+          !isOpen ? "hidden" : ""
+        }`}
+      >
         <div
           id="menu1"
-          className="flex justify-start  flex-col w-full md:w-auto items-start pb-1 "
+          className="flex justify-start flex-col w-full md:w-auto items-start pb-1 "
         >
+          <div className="flex flex-row w-full justify-end">
+            <AiOutlineClose
+              onClick={handleNavCollapse}
+              className="mt-2 text-lg"
+            />
+          </div>
           <NavLink
             to="dashboard"
             className="flex justify-start items-center space-x-6 hover:text-white focus:bg-sky-600 focus:text-slate-100 hover:bg-sky-300 text-slate-600 rounded px-3 py-3 w-full md:w-52"
@@ -44,5 +66,3 @@ const ClientViewNav = ({ clientData }) => {
     </div>
   );
 };
-
-export default ClientViewNav;

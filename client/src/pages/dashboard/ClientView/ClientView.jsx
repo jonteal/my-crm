@@ -6,12 +6,8 @@ import { useQuery } from "@apollo/client";
 import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 
 // COMPONENTS
-import ClientViewNav from "../../../components/dashboardMain/ClientViewNav/ClientViewNav";
+import { ClientViewNav } from "../../../components/dashboardMain/ClientViewNav/ClientViewNav";
 import Spinner from "../../../components/reusable/Spinner/Spinner";
-
-import "./clientView.css";
-
-const rootClass = "client-view";
 
 export const ClientView = () => {
   const { clientId } = useParams();
@@ -31,8 +27,8 @@ export const ClientView = () => {
   return (
     <div>
       {!clientLoading && !clientError && (
-        <div className={`${rootClass}-container bg-slate-200`}>
-          <div className={`${rootClass}-info-container flex flex-row`}>
+        <div className="flex flex-col bg-slate-200">
+          <div className="h-auto min-h-full mt-4 rounded-md flex flex-row">
             <ClientViewNav clientData={clientData} />
             <Outlet />
           </div>
