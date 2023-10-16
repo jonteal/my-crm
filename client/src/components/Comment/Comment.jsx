@@ -19,9 +19,10 @@ import { ADD_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/proj
 import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
 import { DELETE_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
 import { DELETE_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
+import { useParams } from "react-router-dom";
 
 export const Comment = ({ comment, type }) => {
-  // const { projectId } = useParams();
+  const { clientId, projectId } = useParams();
 
   const [addReply, setAddReply] = useState(false);
   const [commentText, setCommentText] = useState("");
@@ -100,12 +101,16 @@ export const Comment = ({ comment, type }) => {
 
   const [deleteClientComment] = useMutation(DELETE_CLIENT_ACTIVITY_COMMENT, {
     variables: { id: commentId },
-    refetchQueries: [{ query: GET_CLIENT_ACTIVITY_COMMENTS }],
+    refetchQueries: [
+      { query: GET_CLIENT_ACTIVITY_COMMENTS, variables: { clientId } },
+    ],
   });
 
   const [deleteProjectComment] = useMutation(DELETE_PROJECT_ACTIVITY_COMMENT, {
     variables: { id: commentId },
-    refetchQueries: [{ query: GET_PROJECT_ACTIVITY_COMMENTS }],
+    refetchQueries: [
+      { query: GET_PROJECT_ACTIVITY_COMMENTS, variables: { projectId } },
+    ],
   });
 
   const handleCommentDelete = () => {
@@ -205,6 +210,7 @@ export const Comment = ({ comment, type }) => {
         ? clientCommentReplies.map((reply) => (
             <CommentReply
               key={reply.id}
+              commentId={commentId}
               formattedDate={formattedDate}
               reply={reply}
               type="client"
@@ -213,6 +219,7 @@ export const Comment = ({ comment, type }) => {
         : projectCommentReplies.map((reply) => (
             <CommentReply
               key={reply.id}
+              commentId={commentId}
               formattedDate={formattedDate}
               reply={reply}
               type="project"

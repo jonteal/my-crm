@@ -10,14 +10,16 @@ import { DELETE_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/p
 import { GET_CLIENT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/clientActivityCommentReplyQueries";
 import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
 
-export const CommentReply = ({ reply, formattedDate, type }) => {
+export const CommentReply = ({ reply, formattedDate, type, commentId }) => {
   const [deleteClientCommentReply] = useMutation(
     DELETE_CLIENT_ACTIVITY_COMMENT_REPLY,
     {
       variables: { id: reply.id },
       refetchQueries: [
-        { query: GET_CLIENT_ACTIVITY_COMMENT_REPLIES },
-        { query: GET_CLIENT_ACTIVITY_COMMENT_REPLIES },
+        {
+          query: GET_CLIENT_ACTIVITY_COMMENT_REPLIES,
+          variables: { commentId },
+        },
       ],
     }
   );
@@ -27,8 +29,10 @@ export const CommentReply = ({ reply, formattedDate, type }) => {
     {
       variables: { id: reply.id },
       refetchQueries: [
-        { query: GET_PROJECT_ACTIVITY_COMMENT_REPLIES },
-        { query: GET_PROJECT_ACTIVITY_COMMENT_REPLIES },
+        {
+          query: GET_PROJECT_ACTIVITY_COMMENT_REPLIES,
+          variables: { commentId },
+        },
       ],
     }
   );

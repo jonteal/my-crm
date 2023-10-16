@@ -4,7 +4,7 @@ export const NameValuePair = ({ name, value, type }) => {
       <p className="text-slate-600 font-light text-left text-sm">{name}</p>
       <p
         className={`text-slate-800 font-normal text-left ${
-          type === "header" ? "text-lg" : "text-base"
+          type === "header" ? "text-lg font-bold" : "text-base"
         }`}
       >
         {value}

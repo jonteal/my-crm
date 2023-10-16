@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 // COMPONENTS
-import ClientCard from "../../../../components/ClientCard/ClientCard";
+import { ClientCard } from "../../../../components/ClientCard/ClientCard";
 import { ClientCommentFeed } from "../../../../components/ClientCommentFeed/ClientCommentFeed";
 
 // GRAPHQL

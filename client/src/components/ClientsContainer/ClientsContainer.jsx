@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { ClientTable } from "../ClientTable/ClientTable";
-import { Link } from "react-router-dom";
 
 export const ClientsContainer = ({ clientData, clientContainer }) => {
   const [isExpanded, setIsExpanded] = useState(false);
