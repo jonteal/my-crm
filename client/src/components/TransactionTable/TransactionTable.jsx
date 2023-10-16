@@ -18,13 +18,13 @@ export const TransactionTable = ({ transactions, shortList }) => {
             Transactions
           </h2>
         </div>
-        {projectId && (
-          <div className="flex flex-row justify-between py-2 px-2">
-            <Link to={`/clients/${clientId}/addTransaction`}>
-              <AddButton className="mx-2">Add Transaction</AddButton>
-            </Link>
-          </div>
-        )}
+        {/* {projectId && ( */}
+        <div className="flex flex-row justify-between py-2 px-2">
+          <Link to={`/clients/${clientId}/addTransaction`}>
+            <AddButton className="mx-2">Add Transaction</AddButton>
+          </Link>
+        </div>
+        {/* )} */}
       </div>
 
       {filteredList.length === 0 ? (

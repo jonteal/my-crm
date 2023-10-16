@@ -822,7 +822,7 @@ const mutation = new GraphQLObjectType({
         amount: { type: new GraphQLNonNull(GraphQLString) },
         paymentParty: { type: new GraphQLNonNull(GraphQLString) },
         clientId: { type: new GraphQLNonNull(GraphQLID) },
-        projectId: { type: GraphQLID },
+        projectId: { type: new GraphQLNonNull(GraphQLID) },
         incomingOutgoing: {
           type: new GraphQLEnumType({
             name: "IncomingOutgoing",

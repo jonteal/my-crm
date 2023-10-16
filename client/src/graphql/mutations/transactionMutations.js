@@ -6,7 +6,7 @@ const ADD_TRANSACTION = gql`
     $amount: String!
     $paymentParty: String!
     $clientId: ID!
-    $projectId: ID
+    $projectId: ID!
     $incomingOutgoing: IncomingOutgoing!
   ) {
     addTransaction(

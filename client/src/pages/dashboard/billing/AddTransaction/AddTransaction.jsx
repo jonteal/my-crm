@@ -33,7 +33,7 @@ export const AddTransaction = () => {
   const [paymentParty, setPaymentParty] = useState("");
   const [incomingOutgoing, setIncomingOutgoing] = useState("outgoing");
   const [projectId, setProjectId] = useState("");
-  const [isProjectTransaction, setIsProjectTransaction] = useState(false);
+  // const [isProjectTransaction, setIsProjectTransaction] = useState(false);
 
   const {
     loading: projectsLoading,
@@ -51,14 +51,14 @@ export const AddTransaction = () => {
       projectId,
     },
     update(cache, { data: { addTransaction } }) {
-      const { transactions } = cache.readQuery({
+      const { clientTransactions } = cache.readQuery({
         query: GET_ALL_CLIENT_TRANSACTIONS,
         variables: { clientId },
       });
       cache.writeQuery({
         query: GET_ALL_CLIENT_TRANSACTIONS,
         variables: { clientId },
-        data: { transactions: [...transactions, addTransaction] },
+        data: { clientTransactions: [...clientTransactions, addTransaction] },
       });
     },
   });
@@ -73,7 +73,12 @@ export const AddTransaction = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (paymentDate === "" || amount === "" || paymentParty === "") {
+    if (
+      paymentDate === "" ||
+      amount === "" ||
+      paymentParty === "" ||
+      projectId === ""
+    ) {
       alert("Please fill in all fields");
     }
 
@@ -100,7 +105,7 @@ export const AddTransaction = () => {
       <h3 className={`${rootClass}-title pt-3 mt-2`}>Add Transaction</h3>
 
       <div className="flex flex-row justify-between my-3 w-full px-4">
-        <div className="flex flex-row items-center w-full mr-2 mb-5">
+        {/* <div className="flex flex-row items-center w-full mr-2 mb-5">
           <input
             id="default-checkbox"
             type="checkbox"
@@ -114,29 +119,29 @@ export const AddTransaction = () => {
           >
             Is this a transaction for a project?
           </label>
-        </div>
+        </div> */}
 
-        {isProjectTransaction === true && (
-          <div className="flex flex-col w-full ml-2">
-            <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Project Name
-            </label>
-            <select
-              className="form-select"
-              aria-label="Select Project"
-              id="projectId"
-              value={projectId}
-              onChange={(e) => setProjectId(e.target.value)}
-            >
-              <option value="">Select Project</option>
-              {projectsData.clientProjects.map((project) => (
-                <option key={project.id} value={project.id}>
-                  {project.title}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
+        {/* {isProjectTransaction === true && ( */}
+        <div className="flex flex-col w-full ml-2">
+          <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Project Name
+          </label>
+          <select
+            className="form-select"
+            aria-label="Select Project"
+            id="projectId"
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
+          >
+            <option value="">Select Project</option>
+            {projectsData.clientProjects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.title}
+              </option>
+            ))}
+          </select>
+        </div>
+        {/* )} */}
       </div>
 
       <form className="w-full max-w-lg pb-3" onSubmit={onSubmit}>
