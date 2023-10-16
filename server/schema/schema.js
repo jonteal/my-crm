@@ -759,7 +759,7 @@ const mutation = new GraphQLObjectType({
         notes: { type: GraphQLString },
         invoiceNumber: { type: new GraphQLNonNull(GraphQLString) },
         clientId: { type: new GraphQLNonNull(GraphQLID) },
-        projectId: { type: GraphQLID },
+        projectId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
         const invoice = new Invoice({

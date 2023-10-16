@@ -7,11 +7,7 @@ import { useMutation, useQuery } from "@apollo/client";
 // GRAPHQL
 import { ADD_TRANSACTION } from "../../../../graphql/mutations/transactionMutations";
 import { GET_ALL_CLIENT_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
-import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
-import {
-  GET_CLIENT_PROJECTS,
-  GET_PROJECT,
-} from "../../../../graphql/queries/projectQueries";
+import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";

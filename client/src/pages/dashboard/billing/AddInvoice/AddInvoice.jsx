@@ -7,7 +7,6 @@ import { useMutation, useQuery } from "@apollo/client";
 // GRAPHQL
 import { ADD_INVOICE } from "../../../../graphql/mutations/invoiceMutations";
 import { GET_ALL_CLIENT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
-import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
 import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
@@ -28,7 +27,7 @@ export const AddInvoice = () => {
   const [notes, setNotes] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
   const [projectId, setProjectId] = useState("");
-  const [isProjectInvoice, setIsProjectInvoice] = useState(false);
+  // const [isProjectInvoice, setIsProjectInvoice] = useState(false);
 
   const {
     loading: projectsLoading,
@@ -46,14 +45,14 @@ export const AddInvoice = () => {
       projectId,
     },
     update(cache, { data: { addInvoice } }) {
-      const { invoices } = cache.readQuery({
+      const { clientInvoices } = cache.readQuery({
         query: GET_ALL_CLIENT_INVOICES,
         variables: { clientId },
       });
       cache.writeQuery({
         query: GET_ALL_CLIENT_INVOICES,
         variables: { clientId },
-        data: { invoices: [...invoices, addInvoice] },
+        data: { clientInvoices: [...clientInvoices, addInvoice] },
       });
     },
   });
@@ -68,7 +67,12 @@ export const AddInvoice = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (date === "" || amount === "" || invoiceNumber === "") {
+    if (
+      date === "" ||
+      amount === "" ||
+      invoiceNumber === "" ||
+      projectId === ""
+    ) {
       alert("Please fill in all fields");
     }
 
@@ -85,7 +89,7 @@ export const AddInvoice = () => {
     <div className="bg-slate-50 flex flex-col items-center rounded-xl mx-2 mt-2">
       <h3 className="font-semibold text-lg mt-2">Add Invoice</h3>
       <div className="flex flex-row justify-between my-3 w-full px-4">
-        <div className="flex flex-row items-center w-full mr-2 mb-5">
+        {/* <div className="flex flex-row items-center w-full mr-2 mb-5">
           <input
             id="default-checkbox"
             type="checkbox"
@@ -99,29 +103,29 @@ export const AddInvoice = () => {
           >
             Is this an invoice for a project?
           </label>
-        </div>
+        </div> */}
 
-        {isProjectInvoice === true && (
-          <div className="flex flex-col w-full ml-2">
-            <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Project Name
-            </label>
-            <select
-              className="form-select"
-              aria-label="Select Project"
-              id="projectId"
-              value={projectId}
-              onChange={(e) => setProjectId(e.target.value)}
-            >
-              <option value="">Select Project</option>
-              {projectsData.clientProjects.map((project) => (
-                <option key={project.id} value={project.id}>
-                  {project.title}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
+        {/* {isProjectInvoice === true && ( */}
+        <div className="flex flex-col w-full ml-2">
+          <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Project Name
+          </label>
+          <select
+            className="form-select"
+            aria-label="Select Project"
+            id="projectId"
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
+          >
+            <option value="">Select Project</option>
+            {projectsData.clientProjects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.title}
+              </option>
+            ))}
+          </select>
+        </div>
+        {/* )} */}
       </div>
 
       <form className="w-full max-w-lg mb-3" onSubmit={onSubmit}>
