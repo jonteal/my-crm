@@ -4,9 +4,9 @@ const ADD_TRANSACTION = gql`
   mutation AddTransaction(
     $paymentDate: String!
     $amount: String!
-    $clientId: ID!
-    $projectId: ID!
     $paymentParty: String!
+    $clientId: ID!
+    $projectId: ID
     $incomingOutgoing: IncomingOutgoing!
   ) {
     addTransaction(

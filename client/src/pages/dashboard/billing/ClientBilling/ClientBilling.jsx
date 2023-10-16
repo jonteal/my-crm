@@ -8,7 +8,7 @@ import { TransactionTable } from "../../../../components/TransactionTable/Transa
 
 // GRAPHQL
 import { GET_ALL_CLIENT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
-import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
+import { GET_ALL_CLIENT_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
 import BilledThisMonth from "../../../../components/dashboardBilling/BilledThisMonth/BilledThisMonth";
 // import TotalBilledCard from "../../../../components/dashboardBilling/TotalBilledCard/TotalBilledCard";
 // import BudgetRemaining from "../../../../components/dashboardBilling/BudgetRemaining/BudgetRemaining";
@@ -26,7 +26,7 @@ export const ClientBilling = () => {
     loading: transactionsLoading,
     error: transactionsError,
     data: transactionsData,
-  } = useQuery(GET_TRANSACTIONS, { variables: { clientId } });
+  } = useQuery(GET_ALL_CLIENT_TRANSACTIONS, { variables: { clientId } });
 
   if (invoicesLoading || transactionsLoading) return <Spinner />;
   if (invoicesError || transactionsError)
@@ -44,7 +44,7 @@ export const ClientBilling = () => {
       </div>
       <div className="w-full flex flex-row">
         <InvoiceTable invoices={invoicesData.clientInvoices} />
-        <TransactionTable transactions={transactionsData.transactions} />
+        <TransactionTable transactions={transactionsData.clientTransactions} />
       </div>
     </div>
   );

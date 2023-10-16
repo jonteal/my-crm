@@ -27,9 +27,12 @@ export const ClientsListByStatus = () => {
     return <p>There was a problem loading the client information...</p>;
   return (
     <>
-      <h1 className="text-2xl my-4">{status}</h1>
+      <h1 className="text-2xl mt-4 mb-2">{status}</h1>
+      <h2 className="mb-4">
+        Total {status} Records: {clientData.clientsByStatus.length}
+      </h2>
       <div className="mb-7 border-slate-400 p-2 rounded-md mx-5">
-        <div className="flex flex-row items-center justify-between border">
+        <div className="flex flex-row items-center justify-between border rounded-xl">
           <div className="flex flex-row items-center">
             <h5 className="text-base py-2 pl-2">{status}</h5>
             {isExpanded ? (

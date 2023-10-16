@@ -299,11 +299,18 @@ const RootQuery = new GraphQLObjectType({
         return Invoice.findById(args.id);
       },
     },
-    transactions: {
+    clientTransactions: {
       type: new GraphQLList(TransactionType),
       args: { clientId: { type: GraphQLID } },
       resolve(parent, args) {
         return Transaction.find({ clientId: args.clientId });
+      },
+    },
+    projectTransactions: {
+      type: new GraphQLList(TransactionType),
+      args: { projectId: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Transaction.find({ projectId: args.projectId });
       },
     },
     transaction: {

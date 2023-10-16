@@ -6,9 +6,12 @@ import { useMutation, useQuery } from "@apollo/client";
 
 // GRAPHQL
 import { ADD_TRANSACTION } from "../../../../graphql/mutations/transactionMutations";
-import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
+import { GET_ALL_CLIENT_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
 import { GET_CLIENT } from "../../../../graphql/queries/clientQueries";
-import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
+import {
+  GET_CLIENT_PROJECTS,
+  GET_PROJECT,
+} from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
 import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
@@ -23,57 +26,49 @@ import "react-datepicker/dist/react-datepicker.css";
 const rootClass = "add-transaction";
 
 export const AddTransaction = () => {
-  const { clientId, projectId } = useParams();
+  const { clientId } = useParams();
 
   const [paymentDate, setPaymentDate] = useState("");
   const [amount, setAmount] = useState("");
   const [paymentParty, setPaymentParty] = useState("");
   const [incomingOutgoing, setIncomingOutgoing] = useState("outgoing");
+  const [projectId, setProjectId] = useState("");
+  const [isProjectTransaction, setIsProjectTransaction] = useState(false);
+
+  const {
+    loading: projectsLoading,
+    error: projectsError,
+    data: projectsData,
+  } = useQuery(GET_CLIENT_PROJECTS, { variables: { clientId } });
 
   const [addTransaction] = useMutation(ADD_TRANSACTION, {
     variables: {
       paymentDate,
       amount,
       paymentParty,
+      incomingOutgoing,
       clientId,
       projectId,
-      incomingOutgoing,
     },
     update(cache, { data: { addTransaction } }) {
       const { transactions } = cache.readQuery({
-        query: GET_TRANSACTIONS,
-        variables: { projectId, clientId },
+        query: GET_ALL_CLIENT_TRANSACTIONS,
+        variables: { clientId },
       });
       cache.writeQuery({
-        query: GET_TRANSACTIONS,
-        variables: { projectId, clientId },
+        query: GET_ALL_CLIENT_TRANSACTIONS,
+        variables: { clientId },
         data: { transactions: [...transactions, addTransaction] },
       });
     },
   });
 
-  const {
-    loading: clientLoading,
-    error: clientError,
-    data: clientData,
-  } = useQuery(GET_CLIENT, { variables: { id: clientId } });
-
-  const {
-    loading: projectLoading,
-    error: projectError,
-    data: projectData,
-  } = useQuery(GET_PROJECT, { variables: { id: projectId } });
-
   const handleDateChange = (date) => {
     setPaymentDate(date);
   };
 
-  if (clientLoading || projectLoading) return <Spinner />;
-  if (clientError || projectError)
-    return <p>There was an error loading the content</p>;
-
-  const client = clientData.client;
-  const project = projectData.project;
+  if (projectsLoading) return <Spinner />;
+  if (projectsError) return <p>There was an error loading the content</p>;
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -91,22 +86,58 @@ export const AddTransaction = () => {
       projectId
     );
 
+    console.log("projectId: ", projectId);
+
     setPaymentDate(new Date());
     setAmount("");
     setPaymentParty("");
     setIncomingOutgoing("outgoing");
+    setProjectId("");
   };
 
   return (
     <div className={`${rootClass}-container bg-slate-50 rounded-xl mx-2 w-1/2`}>
       <h3 className={`${rootClass}-title pt-3 mt-2`}>Add Transaction</h3>
 
-      <h1 className="text-slate-700 my-2 text-base">
-        Client: {client.firstName + " " + client.lastName}
-      </h1>
-      <h2 className="text-slate-700 text-sm mb-4 mt-1">
-        Project: {project.title}
-      </h2>
+      <div className="flex flex-row justify-between my-3 w-full px-4">
+        <div className="flex flex-row items-center w-full mr-2 mb-5">
+          <input
+            id="default-checkbox"
+            type="checkbox"
+            value={isProjectTransaction}
+            onChange={() => setIsProjectTransaction(!isProjectTransaction)}
+            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          />
+          <label
+            htmlFor="default-checkbox"
+            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Is this a transaction for a project?
+          </label>
+        </div>
+
+        {isProjectTransaction === true && (
+          <div className="flex flex-col w-full ml-2">
+            <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Project Name
+            </label>
+            <select
+              className="form-select"
+              aria-label="Select Project"
+              id="projectId"
+              value={projectId}
+              onChange={(e) => setProjectId(e.target.value)}
+            >
+              <option value="">Select Project</option>
+              {projectsData.clientProjects.map((project) => (
+                <option key={project.id} value={project.id}>
+                  {project.title}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+      </div>
 
       <form className="w-full max-w-lg pb-3" onSubmit={onSubmit}>
         <div className="flex flex-wrap -mx-3 mb-3">

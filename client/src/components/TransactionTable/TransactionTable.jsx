@@ -5,6 +5,8 @@ import ClientTransactionItem from "../dashboardBilling/ClientTransactionItem/Cli
 
 export const TransactionTable = ({ transactions, shortList }) => {
   const { clientId, projectId } = useParams();
+
+  console.log("transactions: ", transactions);
   const filteredList = shortList ? transactions : transactions.slice(0, 5);
 
   return (
@@ -18,9 +20,7 @@ export const TransactionTable = ({ transactions, shortList }) => {
         </div>
         {projectId && (
           <div className="flex flex-row justify-between py-2 px-2">
-            <Link
-              to={`/clients/${clientId}/projects/${projectId}/financials/addTransaction`}
-            >
+            <Link to={`/clients/${clientId}/addTransaction`}>
               <AddButton className="mx-2">Add Transaction</AddButton>
             </Link>
           </div>

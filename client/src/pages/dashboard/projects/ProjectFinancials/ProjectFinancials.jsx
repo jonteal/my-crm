@@ -11,10 +11,10 @@ import ProgressBar from "../../../../components/ProgressBar/ProgressBar";
 // GRAPHQL
 import { GET_PROJECT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
-import { GET_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
+import { GET_PROJECT_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
 
 export const ProjectFinancials = () => {
-  const { projectId, clientId } = useParams();
+  const { projectId } = useParams();
 
   const {
     loading: projectLoading,
@@ -32,12 +32,14 @@ export const ProjectFinancials = () => {
     loading: transactionsLoading,
     error: transactionsError,
     data: transactionsData,
-  } = useQuery(GET_TRANSACTIONS, { variables: { projectId } });
+  } = useQuery(GET_PROJECT_TRANSACTIONS, { variables: { projectId } });
 
   if (invoicesLoading || transactionsLoading || projectLoading)
     return <Spinner />;
   if (invoicesError || transactionsError || projectError)
     return <p>There was a problem loading the client invoices...</p>;
+
+  console.log("transactionsData: ", transactionsData);
 
   const invoiceSum = invoicesData.projectInvoices.reduce(function (acc, obj) {
     return acc + parseFloat(obj.amount);
@@ -69,7 +71,7 @@ export const ProjectFinancials = () => {
             </Link>
             <TransactionTable
               shortList={true}
-              transactions={transactionsData.transactions}
+              transactions={transactionsData.projectTransactions}
             />
           </div>
         </div>
