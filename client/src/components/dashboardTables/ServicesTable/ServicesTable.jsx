@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import { PiGasPumpThin } from "react-icons/pi";
 import AddButton from "../../reusable/buttons/AddButton/AddButton";
 import { Link, useParams } from "react-router-dom";
+import { FaRegEye } from "react-icons/fa";
 
 export const ServicesTable = ({ services }) => {
   const { clientId, projectId } = useParams();
@@ -72,6 +73,11 @@ export const ServicesTable = ({ services }) => {
                     ? "Current"
                     : service.endDate}
                 </td>
+                <Link
+                  to={`/clients/${clientId}/projects/${projectId}/services/${service.id}`}
+                >
+                  <FaRegEye className="text-sky-600" />
+                </Link>
               </tr>
             ))}
           </tbody>

@@ -35,12 +35,13 @@ import { Projects } from "./pages/Projects/Projects";
 import { Clients } from "./pages/Clients/Clients";
 import { EditProject } from "./pages/dashboard/projects/EditProject/EditProject";
 import { ProjectService } from "./pages/dashboard/projects/ProjectService/ProjectService";
+import { ProjectServicesByProvider } from "./pages/dashboard/projects/ProjectServicesByProvider/ProjectServicesByProvider";
 import { ClientProjects } from "./pages/dashboard/projects/ClientProjects/ClientProjects";
-
-import "./App.css";
 import { TicketView } from "./pages/dashboard/projects/TicketView/TicketView";
 import { EditKanbanTicket } from "./pages/dashboard/projects/EditKanbanTicket/EditKanbanTicket";
 import { ClientsListByStatus } from "./pages/Clients/ClientsListByStatus/ClientsListByStatus";
+
+import "./App.css";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -156,6 +157,10 @@ function App() {
                     element={<ProjectServices />}
                     path="/clients/:clientId/projects/:projectId/services"
                   />
+                  {/* <Route
+                    element={<ProjectServicesByProvider />}
+                    path="/clients/:clientId/projects/:projectId/services/:serviceProvider"
+                  /> */}
                   <Route
                     element={<ProjectService />}
                     path="/clients/:clientId/projects/:projectId/services/:serviceId"
