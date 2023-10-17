@@ -200,6 +200,7 @@ const TicketType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
+    typeOfTicket: { type: GraphQLString },
     description: { type: GraphQLString },
     blocked: { type: GraphQLBoolean },
     blockedReason: { type: GraphQLString },
@@ -1121,6 +1122,16 @@ const mutation = new GraphQLObjectType({
       type: TicketType,
       args: {
         title: { type: new GraphQLNonNull(GraphQLString) },
+        typeOfTicket: {
+          type: new GraphQLEnumType({
+            name: "TypeOfTicket",
+            values: {
+              userStory: { value: "User Story" },
+              defect: { value: "Defect" },
+            },
+          }),
+          defaultValue: "User Story",
+        },
         description: { type: new GraphQLNonNull(GraphQLString) },
         status: {
           type: new GraphQLEnumType({
@@ -1141,6 +1152,7 @@ const mutation = new GraphQLObjectType({
       resolve(parent, args) {
         const ticket = new Ticket({
           title: args.title,
+          typeOfTicket: args.typeOfTicket,
           description: args.description,
           status: args.status,
           blocked: args.blocked,
@@ -1170,6 +1182,16 @@ const mutation = new GraphQLObjectType({
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
         title: { type: GraphQLString },
+        type: {
+          type: new GraphQLEnumType({
+            name: "TypeOfTicketUpdate",
+            values: {
+              userStory: { value: "User Story" },
+              defect: { value: "Defect" },
+            },
+          }),
+          defaultValue: "User Story",
+        },
         description: { type: GraphQLString },
         blocked: { type: GraphQLBoolean },
         blockedReason: { type: GraphQLString },
@@ -1191,6 +1213,7 @@ const mutation = new GraphQLObjectType({
           {
             $set: {
               title: args.title,
+              type: args.type,
               description: args.description,
               status: args.status,
               blocked: args.blocked,

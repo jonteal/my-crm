@@ -28,13 +28,11 @@ export const ProjectService = () => {
 
   const projectTitle = data.service.project.title;
 
-  console.log("data: ", data);
-
   return (
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 p-2 w-full">
       <NameValuePair type="header" name="Service" value={service} />
       <NameValuePair name="Project" value={projectTitle} />
-      <NameValuePair name="Cost" value={cost} />
+      <NameValuePair name="Cost" value={`$ ${cost}`} />
       <NameValuePair name="Payment Schedule" value={paymentSchedule} />
       <NameValuePair name="Provider" value={serviceProvider} />
       <NameValuePair name="Status" value={status} />

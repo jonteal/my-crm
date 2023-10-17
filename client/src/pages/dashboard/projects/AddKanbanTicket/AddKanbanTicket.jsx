@@ -12,6 +12,7 @@ import SubmitButton from "../../../../components/reusable/buttons/submitButton/S
 export const AddKanbanTicket = () => {
   const { projectId } = useParams();
   const [title, setTitle] = useState("");
+  const [typeOfTicket, setTypeOfTicket] = useState("userStory");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("pre");
   const [blocked, setBlocked] = useState(false);
@@ -20,6 +21,7 @@ export const AddKanbanTicket = () => {
   const [addTicket] = useMutation(ADD_TICKET, {
     variables: {
       title,
+      typeOfTicket,
       description,
       blocked,
       projectId,
@@ -46,9 +48,18 @@ export const AddKanbanTicket = () => {
       return alert("Please fill out all fields");
     }
 
-    addTicket(title, description, projectId, status, blocked, blockedReason);
+    addTicket(
+      title,
+      typeOfTicket,
+      description,
+      projectId,
+      status,
+      blocked,
+      blockedReason
+    );
 
     setTitle("");
+    setTypeOfTicket("userStory");
     setDescription("");
     setStatus("pre");
     setBlocked(false);
@@ -72,6 +83,18 @@ export const AddKanbanTicket = () => {
               placeholder="Name of the ticket"
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-3 mb-3 leading-tight focus:outline-none focus:bg-white"
             />
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold my-4">
+              Ticket Type
+            </label>
+            <select
+              id="type"
+              className="form-select mb-4"
+              value={typeOfTicket}
+              onChange={(e) => setTypeOfTicket(e.target.value)}
+            >
+              <option value="userStory">User Story</option>
+              <option value="defect">Defect</option>
+            </select>
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-4">
               Description
             </label>

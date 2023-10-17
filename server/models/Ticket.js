@@ -5,6 +5,10 @@ const TicketSchema = new mongoose.Schema({
   title: {
     type: String,
   },
+  typeOfTicket: {
+    type: String,
+    enum: ["User Story", "Defect"],
+  },
   description: {
     type: String,
   },

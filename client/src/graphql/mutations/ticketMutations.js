@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 const ADD_TICKET = gql`
   mutation AddTicket(
     $title: String!
+    $typeOfTicket: TypeOfTicket!
     $description: String!
     $status: TicketStatus!
     $blocked: Boolean!
@@ -11,6 +12,7 @@ const ADD_TICKET = gql`
   ) {
     addTicket(
       title: $title
+      typeOfTicket: $typeOfTicket
       description: $description
       status: $status
       blocked: $blocked
@@ -19,6 +21,7 @@ const ADD_TICKET = gql`
     ) {
       id
       title
+      typeOfTicket
       description
       status
       blocked
@@ -42,15 +45,17 @@ const DELETE_TICKET = gql`
 const UPDATE_TICKET = gql`
   mutation UpdateTicket(
     $id: ID!
-    $title: String!
-    $description: String!
-    $blocked: Boolean!
+    $title: String
+    $typeOfTicket: TypeOfTicketUpdate
+    $description: String
+    $blocked: Boolean
     $blockedReason: String
-    $status: TicketStatusUpdate!
+    $status: TicketStatusUpdate
   ) {
     updateTicket(
       id: $id
       title: $title
+      typeOfTicket: $typeOfTicket
       description: $description
       blocked: $blocked
       blockedReason: $blockedReason
@@ -58,6 +63,7 @@ const UPDATE_TICKET = gql`
     ) {
       id
       title
+      typeOfTicket
       description
       blocked
       blockedReason

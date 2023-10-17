@@ -33,6 +33,8 @@ export const ProjectKanban = () => {
   if (ticketLoading) return <Spinner />;
   if (ticketError) return <p>Something went wrong...</p>;
 
+  console.log("ticketData: ", ticketData);
+
   return (
     <div className="kanban-container">
       <div className="mt-2">

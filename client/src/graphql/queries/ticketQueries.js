@@ -5,6 +5,7 @@ const GET_TICKETS = gql`
     tickets(projectId: $projectId) {
       id
       title
+      typeOfTicket
       description
       status
       blocked
@@ -22,6 +23,7 @@ const GET_TICKET = gql`
     ticket(id: $id) {
       id
       title
+      typeOfTicket
       description
       status
       blocked
