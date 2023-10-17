@@ -8,7 +8,18 @@ export const StatusColumn = ({ statusColumns, ticketData }) => {
           key={column.id}
           className="flex flex-col items-center border-slate-500 w-1/2 mt-2 mr-2 rounded-lg h-auto min-h-screen bg-slate-300"
         >
-          <h5 className="mt-3 font-extrabold">{column.state}</h5>
+          <div className="flex flex-row items-center mt-2">
+            <h5 className="font-extrabold">{column.state}</h5>
+            <p className="ml-3">
+              (
+              {
+                ticketData.tickets.filter(
+                  (ticket) => ticket.status === column.state
+                ).length
+              }
+              )
+            </p>
+          </div>
           <ul className="list-none pl-0 w-full">
             {ticketData.tickets
               .filter((ticket) => ticket.status === column.state)

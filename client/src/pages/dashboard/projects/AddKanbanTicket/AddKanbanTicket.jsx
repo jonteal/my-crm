@@ -62,7 +62,7 @@ export const AddKanbanTicket = () => {
     setTypeOfTicket("userStory");
     setDescription("");
     setStatus("pre");
-    setBlocked(false);
+    setBlocked(!blocked);
     setBlockedReason("");
   };
 

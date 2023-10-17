@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 import { ServicesTable } from "../../../../components/dashboardTables/ServicesTable/ServicesTable";
-import { InHouseServices } from "../../../../components/dashboardTables/InHouseServices/InHouseServices";
 
 export const ProjectServices = () => {
   const { projectId } = useParams();
@@ -19,13 +18,14 @@ export const ProjectServices = () => {
   return (
     <div className="flex flex-col">
       <ServicesTable
-        services={servicesData.services.filter(
-          (service) => service.serviceProvider === "Third Party"
-        )}
-      />
-      <InHouseServices
+        type="In House"
         services={servicesData.services.filter(
           (service) => service.serviceProvider === "In House"
+        )}
+      />
+      <ServicesTable
+        services={servicesData.services.filter(
+          (service) => service.serviceProvider === "Third Party"
         )}
       />
     </div>

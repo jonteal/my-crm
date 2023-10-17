@@ -6,7 +6,7 @@ import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 import { EditButton } from "../../../../components/reusable/buttons/EditButton/EditButton";
 import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
 import { InvoiceTable } from "../../../../components/InvoiceTable/InvoiceTable";
-import { ProgressBar } from "../../../../components/ProgressBar/ProgressBar";
+import { ProgressBarComponent } from "../../../../components/ProgressBar/ProgressBar";
 
 // GRAPHQL
 import { GET_PROJECT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
@@ -50,7 +50,7 @@ export const ProjectFinancials = () => {
       <div className="flex flex-col w-full">
         <div className="w-full mx-2 my-3">
           <h2 className="text-left my-2">Budget Used</h2>
-          <ProgressBar now={budgetUsed} />
+          <ProgressBarComponent now={budgetUsed} />
         </div>
         <div className="flex flex-row w-full">
           <div className="flex flex-col w-full items-start mr-2">

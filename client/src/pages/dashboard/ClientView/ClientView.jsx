@@ -7,7 +7,7 @@ import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 
 // COMPONENTS
 import { ClientViewNav } from "../../../components/dashboardMain/ClientViewNav/ClientViewNav";
-import Spinner from "../../../components/reusable/Spinner/Spinner";
+import { Spinner } from "../../../components/reusable/Spinner/Spinner";
 
 export const ClientView = () => {
   const { clientId } = useParams();

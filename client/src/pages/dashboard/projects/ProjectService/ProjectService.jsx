@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { GET_SERVICE } from "../../../../graphql/queries/serviceQueries";
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
+import { EditButton } from "../../../../components/reusable/buttons/EditButton/EditButton";
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
 
 export const ProjectService = () => {
@@ -30,6 +31,7 @@ export const ProjectService = () => {
 
   return (
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 p-2 w-full">
+      <EditButton>Edit</EditButton>
       <NameValuePair type="header" name="Service" value={service} />
       <NameValuePair name="Project" value={projectTitle} />
       <NameValuePair name="Cost" value={`$ ${cost}`} />

@@ -1,20 +1,27 @@
 import Table from "react-bootstrap/Table";
 
-import { PiGasPumpThin } from "react-icons/pi";
+import { FaGasPump } from "react-icons/fa";
 import { AddButton } from "../../reusable/buttons/AddButton/AddButton";
 import { Link, useParams } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
 
-export const ServicesTable = ({ services }) => {
+export const ServicesTable = ({ services, type }) => {
   const { clientId, projectId } = useParams();
 
   return (
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 px-3 w-full">
       <div className="flex flex-row justify-between items-center py-3">
         <div className="flex flex-row items-center">
-          <PiGasPumpThin />
+          <div
+            className={`${
+              type === "In House" ? "bg-sky-500" : "bg-purple-500"
+            } p-2 rounded-full text-slate-50`}
+          >
+            {type === "In House" ? <AiFillHome /> : <FaGasPump />}
+          </div>
           <h2 className="text-left text-slate-700 text-lg mx-2">
-            Third Party Services
+            {type === "In House" ? "In House" : "Third Party Services"}
           </h2>
         </div>
         <Link to={`/clients/${clientId}/projects/${projectId}/addService`}>
@@ -27,26 +34,27 @@ export const ServicesTable = ({ services }) => {
         </p>
       ) : (
         <Table responsive>
-          <thead>
+          <thead className="border">
             <tr>
-              <th className="text-slate-400 font-light w-10 text-left pl-2">
+              <th className="text-slate-400 font-light w-10 text-left pl-2 border">
                 #
               </th>
-              <th className="text-slate-400 font-light w-2/12 text-left pl-2">
+              <th className="text-slate-400 font-light w-2/12 text-left pl-2 border">
                 Service
               </th>
-              <th className="text-slate-400 font-light w-2/12 text-left pl-2">
+              <th className="text-slate-400 font-light w-2/12 text-left pl-2 border">
                 Cost
               </th>
-              <th className="text-slate-400 font-light w-2/12 text-left pl-2">
+              <th className="text-slate-400 font-light w-2/12 text-left pl-2 border">
                 Status
               </th>
-              <th className="text-slate-400 font-light w-2/12 text-left pl-2">
+              <th className="text-slate-400 font-light w-2/12 text-left pl-2 border">
                 Start Date
               </th>
-              <th className="text-slate-400 font-light w-2/12 text-left pl-2">
+              <th className="text-slate-400 font-light w-2/12 text-left pl-2 border">
                 End Date
               </th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -61,8 +69,16 @@ export const ServicesTable = ({ services }) => {
                 <td className="text-slate-700 font-light text-left border pl-2">
                   $ {service.cost}
                 </td>
-                <td className="text-slate-700 font-light text-left border pl-2">
-                  {service.status}
+                <td className="font-light text-left pl-2 flex flex-row justify-center">
+                  <span
+                    className={`${
+                      service.status === "On"
+                        ? "bg-green-400 text-slate-700"
+                        : "bg-red-500 text-slate-50"
+                    } w-full font-semibold px-10 py-1 self-center rounded-md text-center`}
+                  >
+                    {service.status}
+                  </span>
                 </td>
 
                 <td className="text-slate-700 font-light text-left border pl-2">
@@ -73,11 +89,13 @@ export const ServicesTable = ({ services }) => {
                     ? "Current"
                     : service.endDate}
                 </td>
-                <Link
-                  to={`/clients/${clientId}/projects/${projectId}/services/${service.id}`}
-                >
-                  <FaRegEye className="text-sky-600" />
-                </Link>
+                <td>
+                  <Link
+                    to={`/clients/${clientId}/projects/${projectId}/services/${service.id}`}
+                  >
+                    <FaRegEye className="text-sky-600" />
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>

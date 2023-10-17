@@ -2,6 +2,8 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { DeleteButton } from "../../reusable/buttons/DeleteButton/DeleteButton";
+import { EditButton } from "../../reusable/buttons/EditButton/EditButton";
+import { Button as MyButton } from "../../reusable/buttons/Button/Button";
 
 export const DeleteModal = ({ deleteClient, subject }) => {
   const [show, setShow] = useState(false);
@@ -12,7 +14,7 @@ export const DeleteModal = ({ deleteClient, subject }) => {
   return (
     <>
       <div onClick={handleShow}>
-        <DeleteButton>Delete</DeleteButton>
+        <MyButton type="delete">Delete</MyButton>
       </div>
 
       <Modal

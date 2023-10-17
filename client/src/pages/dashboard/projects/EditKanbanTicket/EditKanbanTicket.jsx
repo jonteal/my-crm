@@ -42,7 +42,7 @@ export const EditKanbanTicket = () => {
       status,
       blockedReason,
     },
-    refetchQueries: [{ query: GET_TICKET, variables: { id: ticketId } }],
+    refetchQueries: [{ query: GET_TICKET, variables: { ticketId } }],
 
     update(cache, { data: { updateTicket } }) {
       const { tickets } = cache.readQuery({

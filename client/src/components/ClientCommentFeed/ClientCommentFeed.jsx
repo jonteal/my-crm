@@ -9,6 +9,7 @@ import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../graphql/queries/clientActivi
 
 // COMPONENTS
 import { SubmitButton } from "../reusable/buttons/submitButton/SubmitButton";
+import { Button } from "../reusable/buttons/Button/Button";
 import { Comment } from "../Comment/Comment";
 
 export const ClientCommentFeed = ({ clientId, comments }) => {
@@ -69,7 +70,8 @@ export const ClientCommentFeed = ({ clientId, comments }) => {
           onChange={(e) => setCommentText(e.target.value)}
         />
         <div className="w-1/2 text-left mt-2">
-          <SubmitButton type="submit">Save</SubmitButton>
+          <Button type="submit">Submit</Button>
+          {/* <SubmitButton type="submit">Save</SubmitButton> */}
         </div>
       </form>
 

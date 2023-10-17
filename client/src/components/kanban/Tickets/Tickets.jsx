@@ -10,10 +10,6 @@ export const Tickets = () => {
   if (loading) return <Spinner />;
   if (error) return <p>Something went wrong...</p>;
 
-  // Get the ticket data
-  // Look at each ticket in the array and see what status it has
-  // Put it in the correct column based on state
-
   return (
     <div>
       {data.tickets.length > 0 ? (

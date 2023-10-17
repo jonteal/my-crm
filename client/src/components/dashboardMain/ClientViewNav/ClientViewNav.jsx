@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { FaTable, FaWindowMaximize, FaCreditCard } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import { AiOutlineClose } from "react-icons/ai";
-import { RiExpandRightLine } from "react-icons/ri";
+import { RiExpandRightLine, RiExpandLeftLine } from "react-icons/ri";
 
 export const ClientViewNav = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -35,7 +34,7 @@ export const ClientViewNav = () => {
           className="flex justify-start flex-col w-full md:w-auto items-start pb-1 "
         >
           <div className="flex flex-row w-full justify-end">
-            <AiOutlineClose
+            <RiExpandLeftLine
               onClick={handleNavCollapse}
               className="mt-2 text-lg"
             />

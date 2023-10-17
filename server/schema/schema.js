@@ -1182,7 +1182,7 @@ const mutation = new GraphQLObjectType({
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
         title: { type: GraphQLString },
-        type: {
+        typeOfTicket: {
           type: new GraphQLEnumType({
             name: "TypeOfTicketUpdate",
             values: {
@@ -1213,7 +1213,7 @@ const mutation = new GraphQLObjectType({
           {
             $set: {
               title: args.title,
-              type: args.type,
+              typeOfTicket: args.typeOfTicket,
               description: args.description,
               status: args.status,
               blocked: args.blocked,
