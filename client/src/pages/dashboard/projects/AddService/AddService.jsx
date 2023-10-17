@@ -10,7 +10,7 @@ import { ADD_SERVICE } from "../../../../graphql/mutations/serviceMutations";
 import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 
 // COMPONENTS
-import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
+import { SubmitButton } from "../../../../components/reusable/buttons/submitButton/SubmitButton";
 
 // DATE PICKING
 import DatePicker from "react-datepicker";

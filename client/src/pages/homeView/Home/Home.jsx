@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import SubmitButton from "../../../components/reusable/buttons/submitButton/SubmitButton";
+import { SubmitButton } from "../../../components/reusable/buttons/submitButton/SubmitButton";
 
 export const Home = () => {
   return (

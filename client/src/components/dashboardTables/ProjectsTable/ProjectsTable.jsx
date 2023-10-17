@@ -7,7 +7,7 @@ import { useQuery } from "@apollo/client";
 import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 
 // COMPONENTS
-import AddButton from "../../reusable/buttons/AddButton/AddButton";
+import { AddButton } from "../../reusable/buttons/AddButton/AddButton";
 
 export const ProjectsTable = ({ projects, projectContainer }) => {
   const { clientId } = useParams();

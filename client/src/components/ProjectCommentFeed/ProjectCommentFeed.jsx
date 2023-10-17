@@ -8,7 +8,7 @@ import { ADD_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectAct
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActivityCommentQueries";
 
 // COMPONENTS
-import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
+import { SubmitButton } from "../reusable/buttons/submitButton/SubmitButton";
 import { Comment } from "../Comment/Comment";
 
 export const ProjectCommentFeed = ({ projectId, comments }) => {

@@ -10,8 +10,8 @@ import {
 import { UPDATE_TICKET } from "../../../../graphql/mutations/ticketMutations";
 
 // COMPONENTS
-import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
-import Spinner from "../../../../components/reusable/Spinner/Spinner";
+import { SubmitButton } from "../../../../components/reusable/buttons/submitButton/SubmitButton";
+import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 
 export const EditKanbanTicket = () => {
   const { projectId, ticketId } = useParams();

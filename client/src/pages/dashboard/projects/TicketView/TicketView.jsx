@@ -9,7 +9,7 @@ import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { BiEditAlt } from "react-icons/bi";
 
 // COMPONENTS
-import Spinner from "../../../../components/reusable/Spinner/Spinner";
+import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 
 export const TicketView = () => {
   const { ticketId, clientId, projectId } = useParams();

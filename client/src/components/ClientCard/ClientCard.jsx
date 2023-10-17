@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import EditButton from "../reusable/buttons/EditButton/EditButton";
+import { EditButton } from "../reusable/buttons/EditButton/EditButton";
 import { formatPhoneNumber } from "../../utils/format";
 import { DELETE_CLIENT } from "../../graphql/mutations/clientMutations";
 import { GET_CLIENTS } from "../../graphql/queries/clientQueries";

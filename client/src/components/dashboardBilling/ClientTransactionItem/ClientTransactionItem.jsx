@@ -1,6 +1,6 @@
 import { BsArrowUpSquare, BsArrowDownSquare } from "react-icons/bs";
 
-const ClientTransactionItem = ({ transaction }) => {
+export const ClientTransactionItem = ({ transaction }) => {
   return (
     <div className="flex flex-row justify-between items-center w-full px-4 my-2">
       <div className="flex flex-row items-center">
@@ -33,5 +33,3 @@ const ClientTransactionItem = ({ transaction }) => {
     </div>
   );
 };
-
-export default ClientTransactionItem;

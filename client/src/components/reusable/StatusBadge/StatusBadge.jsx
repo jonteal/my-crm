@@ -5,7 +5,7 @@ import { BsCheckCircle } from "react-icons/bs";
 import { PiPauseDuotone } from "react-icons/pi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 
-const StatusBadge = ({ status }) => {
+export const StatusBadge = ({ status }) => {
   const [statusColor, setStatusColor] = useState("");
 
   useEffect(() => {
@@ -48,5 +48,3 @@ const StatusBadge = ({ status }) => {
     </div>
   );
 };
-
-export default StatusBadge;

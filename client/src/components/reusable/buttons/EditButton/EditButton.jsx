@@ -1,4 +1,4 @@
-const EditButton = ({ children }) => {
+export const EditButton = ({ children }) => {
   return (
     <button
       href="#_"
@@ -8,5 +8,3 @@ const EditButton = ({ children }) => {
     </button>
   );
 };
-
-export default EditButton;

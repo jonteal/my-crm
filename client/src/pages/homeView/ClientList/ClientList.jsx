@@ -5,7 +5,7 @@ import { GET_CLIENTS } from "../../../graphql/queries/clientQueries";
 
 // COMPONENTS
 import { ClientsContainer } from "../../../components/ClientsContainer/ClientsContainer";
-import Spinner from "../../../components/reusable/Spinner/Spinner";
+import { Spinner } from "../../../components/reusable/Spinner/Spinner";
 
 import { FaUserAlt } from "react-icons/fa";
 

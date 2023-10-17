@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 import { BsHouseDoor } from "react-icons/bs";
 
-import AddButton from "../../reusable/buttons/AddButton/AddButton";
+import { AddButton } from "../../reusable/buttons/AddButton/AddButton";
 
 export const InHouseServices = ({ services }) => {
   const { clientId, projectId } = useParams();

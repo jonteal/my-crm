@@ -1,4 +1,4 @@
-import Spinner from "../Spinner/Spinner";
+import { Spinner } from "../Spinner/Spinner";
 import { Ticket } from "../Ticket/Ticket";
 
 import { useQuery } from "@apollo/client";

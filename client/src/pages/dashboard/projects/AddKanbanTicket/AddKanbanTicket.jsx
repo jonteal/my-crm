@@ -7,7 +7,7 @@ import { GET_TICKETS } from "../../../../graphql/queries/ticketQueries";
 import { ADD_TICKET } from "../../../../graphql/mutations/ticketMutations";
 
 // COMPONENTS
-import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
+import { SubmitButton } from "../../../../components/reusable/buttons/submitButton/SubmitButton";
 
 export const AddKanbanTicket = () => {
   const { projectId } = useParams();

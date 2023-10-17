@@ -1,4 +1,4 @@
-const Spinner = () => {
+export const Spinner = () => {
   return (
     <div className="d-flex justify-content-center">
       <div className="spinner-border" role="status">
@@ -7,5 +7,3 @@ const Spinner = () => {
     </div>
   );
 };
-
-export default Spinner;

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import StatusBadge from "../reusable/StatusBadge/StatusBadge";
+import { StatusBadge } from "../reusable/StatusBadge/StatusBadge";
 import { BsPersonCircle } from "react-icons/bs";
 import { FaProjectDiagram } from "react-icons/fa";
 

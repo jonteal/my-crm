@@ -6,7 +6,7 @@ import {
 } from "../../../../graphql/queries/projectQueries";
 import { DELETE_PROJECT } from "../../../../graphql/mutations/projectMutations";
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
-import EditButton from "../../../../components/reusable/buttons/EditButton/EditButton";
+import { EditButton } from "../../../../components/reusable/buttons/EditButton/EditButton";
 import { DeleteButton } from "../../../../components/reusable/buttons/DeleteButton/DeleteButton";
 
 export const ProjectProfile = () => {

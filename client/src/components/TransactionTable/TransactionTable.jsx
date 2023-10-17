@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { GrTransaction } from "react-icons/gr";
-import AddButton from "../reusable/buttons/AddButton/AddButton";
-import ClientTransactionItem from "../dashboardBilling/ClientTransactionItem/ClientTransactionItem";
+import { AddButton } from "../reusable/buttons/AddButton/AddButton";
+import { ClientTransactionItem } from "../dashboardBilling/ClientTransactionItem/ClientTransactionItem";
 
 export const TransactionTable = ({ transactions, shortList }) => {
   const { clientId, projectId } = useParams();

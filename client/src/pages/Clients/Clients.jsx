@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ClientList } from "../homeView/ClientList/ClientList";
-import AddButton from "../../components/reusable/buttons/AddButton/AddButton";
+import { AddButton } from "../../components/reusable/buttons/AddButton/AddButton";
 
 export const Clients = () => {
   return (

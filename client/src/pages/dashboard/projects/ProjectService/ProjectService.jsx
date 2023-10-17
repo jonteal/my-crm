@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { GET_SERVICE } from "../../../../graphql/queries/serviceQueries";
-import Spinner from "../../../../components/reusable/Spinner/Spinner";
+import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
 
 export const ProjectService = () => {

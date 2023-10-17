@@ -2,11 +2,11 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 // COMPONENTS
-import Spinner from "../../../../components/reusable/Spinner/Spinner";
-import EditButton from "../../../../components/reusable/buttons/EditButton/EditButton";
+import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
+import { EditButton } from "../../../../components/reusable/buttons/EditButton/EditButton";
 import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
 import { InvoiceTable } from "../../../../components/InvoiceTable/InvoiceTable";
-import ProgressBar from "../../../../components/ProgressBar/ProgressBar";
+import { ProgressBar } from "../../../../components/ProgressBar/ProgressBar";
 
 // GRAPHQL
 import { GET_PROJECT_INVOICES } from "../../../../graphql/queries/invoiceQueries";

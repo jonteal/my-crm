@@ -3,15 +3,15 @@ import { useQuery } from "@apollo/client";
 
 // COMPONENTS
 import { InvoiceTable } from "../../../../components/InvoiceTable/InvoiceTable";
-import Spinner from "../../../../components/reusable/Spinner/Spinner";
+import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
+import { BilledThisMonth } from "../../../../components/dashboardBilling/BilledThisMonth/BilledThisMonth";
 
 // GRAPHQL
 import { GET_ALL_CLIENT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import { GET_ALL_CLIENT_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
-import BilledThisMonth from "../../../../components/dashboardBilling/BilledThisMonth/BilledThisMonth";
-// import TotalBilledCard from "../../../../components/dashboardBilling/TotalBilledCard/TotalBilledCard";
-// import BudgetRemaining from "../../../../components/dashboardBilling/BudgetRemaining/BudgetRemaining";
+// import { TotalBilledCard }from "../../../../components/dashboardBilling/TotalBilledCard/TotalBilledCard";
+// import { BudgetRemaining } from "../../../../components/dashboardBilling/BudgetRemaining/BudgetRemaining";
 
 export const ClientBilling = () => {
   const { clientId } = useParams();

@@ -10,8 +10,8 @@ import { GET_ALL_CLIENT_INVOICES } from "../../../../graphql/queries/invoiceQuer
 import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
-import SubmitButton from "../../../../components/reusable/buttons/submitButton/SubmitButton";
-import Spinner from "../../../../components/reusable/Spinner/Spinner";
+import { SubmitButton } from "../../../../components/reusable/buttons/submitButton/SubmitButton";
+import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 
 // DATE PICKING
 import DatePicker from "react-datepicker";

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { UPDATE_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActivityCommentQueries";
 import { useMutation } from "@apollo/client";
-import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
+import { SubmitButton } from "../reusable/buttons/submitButton/SubmitButton";
 
 export const CommentEdit = ({ id, comment, projectId, setIsEditing }) => {
   const [commentText, setCommentText] = useState(comment);

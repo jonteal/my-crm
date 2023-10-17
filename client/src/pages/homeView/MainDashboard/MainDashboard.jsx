@@ -1,9 +1,11 @@
-import NewClientsThisMonth from "../../../components/mainDashboard/NewClientsThisMonth/NewClientsThisMonth";
-import TotalClients from "../../../components/mainDashboard/TotalClients/TotalClients";
-// import Spinner from "../../../components/reusable/Spinner/Spinner";
+import { useQuery } from "@apollo/client";
 import { GET_CLIENTS } from "../../../graphql/queries/clientQueries";
 import { GET_ALL_CLIENT_INVOICES } from "../../../graphql/queries/invoiceQueries";
-import { useQuery } from "@apollo/client";
+
+// COMPONENTS
+import { NewClientsThisMonth } from "../../../components/mainDashboard/NewClientsThisMonth/NewClientsThisMonth";
+import { TotalClients } from "../../../components/mainDashboard/TotalClients/TotalClients";
+// import { Spinner } from "../../../components/reusable/Spinner/Spinner";
 
 export const MainDashboard = () => {
   // This Month's Sales / Revenue

@@ -1,6 +1,6 @@
 import { FaRegFilePdf } from "react-icons/fa";
 
-const InvoiceTableItem = ({ invoice }) => {
+export const InvoiceTableItem = ({ invoice }) => {
   const { date, invoiceNumber, amount, project } = invoice;
 
   return (
@@ -33,5 +33,3 @@ const InvoiceTableItem = ({ invoice }) => {
     </div>
   );
 };
-
-export default InvoiceTableItem;

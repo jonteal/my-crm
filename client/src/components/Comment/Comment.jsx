@@ -7,8 +7,8 @@ import { FaRegTrashAlt } from "react-icons/fa";
 
 // COMPONENTS
 import { CommentReply } from "../CommentReply/CommentReply";
-import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
-import Spinner from "../reusable/Spinner/Spinner";
+import { SubmitButton } from "../reusable/buttons/submitButton/SubmitButton";
+import { Spinner } from "../reusable/Spinner/Spinner";
 
 // GRAPHQL
 import { ADD_CLIENT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/clientActivityCommentReplyMutations";

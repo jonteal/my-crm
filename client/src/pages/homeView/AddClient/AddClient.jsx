@@ -8,7 +8,7 @@ import { ADD_CLIENT } from "../../../graphql/mutations/clientMutations";
 import { GET_CLIENTS } from "../../../graphql/queries/clientQueries";
 
 // COMPONENTS
-import SubmitButton from "../../../components/reusable/buttons/submitButton/SubmitButton";
+import { SubmitButton } from "../../../components/reusable/buttons/submitButton/SubmitButton";
 
 export const AddClient = () => {
   const [firstName, setFirstName] = useState("");

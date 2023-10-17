@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { GET_ALL_CLIENT_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
 
 import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
-import Spinner from "../../../../components/reusable/Spinner/Spinner";
+import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 
 export const ProjectTransactions = () => {
   const { projectId } = useParams();

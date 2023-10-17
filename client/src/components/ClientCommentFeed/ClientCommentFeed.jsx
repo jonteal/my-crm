@@ -8,7 +8,7 @@ import { ADD_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActiv
 import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../graphql/queries/clientActivityCommentQueries";
 
 // COMPONENTS
-import SubmitButton from "../reusable/buttons/submitButton/SubmitButton";
+import { SubmitButton } from "../reusable/buttons/submitButton/SubmitButton";
 import { Comment } from "../Comment/Comment";
 
 export const ClientCommentFeed = ({ clientId, comments }) => {

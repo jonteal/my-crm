@@ -1,4 +1,4 @@
-const SubmitButton = ({ children }) => {
+export const SubmitButton = ({ children }) => {
   return (
     <button
       href="#_"
@@ -9,5 +9,3 @@ const SubmitButton = ({ children }) => {
     </button>
   );
 };
-
-export default SubmitButton;

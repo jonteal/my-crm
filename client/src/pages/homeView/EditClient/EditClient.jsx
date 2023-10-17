@@ -7,8 +7,8 @@ import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 import { UPDATE_CLIENT } from "../../../graphql/mutations/clientMutations";
 
 // COMPONENTS
-import Spinner from "../../../components/reusable/Spinner/Spinner";
-import SubmitButton from "../../../components/reusable/buttons/submitButton/SubmitButton";
+import { Spinner } from "../../../components/reusable/Spinner/Spinner";
+import { SubmitButton } from "../../../components/reusable/buttons/submitButton/SubmitButton";
 
 export const EditClient = () => {
   const { clientId } = useParams();

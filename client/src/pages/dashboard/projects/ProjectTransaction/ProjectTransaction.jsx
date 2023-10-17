@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_TRANSACTION } from "../../../../graphql/queries/transactionQueries";
-import Spinner from "../../../../components/reusable/Spinner/Spinner";
+import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
 
 export const ProjectTransaction = () => {

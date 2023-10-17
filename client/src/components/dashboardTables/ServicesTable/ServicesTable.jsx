@@ -1,7 +1,7 @@
 import Table from "react-bootstrap/Table";
 
 import { PiGasPumpThin } from "react-icons/pi";
-import AddButton from "../../reusable/buttons/AddButton/AddButton";
+import { AddButton } from "../../reusable/buttons/AddButton/AddButton";
 import { Link, useParams } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa";
 
