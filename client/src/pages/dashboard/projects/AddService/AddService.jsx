@@ -11,12 +11,8 @@ import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 
 // COMPONENTS
 import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
-
-// DATE PICKING
-import DatePicker from "react-datepicker";
-
-// CSS
-import "react-datepicker/dist/react-datepicker.css";
+import { DateSelector } from "../../../../components/reusable/DateSelector/DateSelector";
+import { Checkbox } from "../../../../components/reusable/Checkbox/Checkbox";
 
 export const AddService = () => {
   const { projectId } = useParams();
@@ -250,50 +246,34 @@ export const AddService = () => {
           </div>
 
           <div className="flex flex-row my-5 items-center justify-start">
-            <div className="mb-3">
-              <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Start Date
-              </label>
-              <DatePicker
-                className="border py-2 px-2 rounded"
-                selected={startDate}
-                onChange={handleStartDateChange}
-              />
-            </div>
+            <DateSelector
+              className="mb-3"
+              label="Start Date"
+              date={startDate}
+              dateChangeHandler={handleStartDateChange}
+            />
 
             <div className="flex flex-row">
-              <div className="flex flex-row items-center w-full mx-10 mb-5">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value={hasEndDate}
-                  onChange={() => setHasEndDate(!hasEndDate)}
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  htmlFor="default-checkbox"
-                  className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                  Is this an invoice for a project?
-                </label>
-              </div>
+              <Checkbox
+                label="Does this service have an end date?"
+                value={hasEndDate}
+                setChangeHandler={() => setHasEndDate(!hasEndDate)}
+              />
 
               {hasEndDate && (
-                <div className="mb-3">
-                  <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                    EndDate
-                  </label>
-                  <DatePicker
-                    className="border py-2 px-2 rounded"
-                    selected={endDate}
-                    onChange={handleEndDateChange}
-                  />
-                </div>
+                <DateSelector
+                  className="mb-3"
+                  label="End Date"
+                  date={endDate}
+                  dateChangeHandler={handleEndDateChange}
+                />
               )}
             </div>
           </div>
 
-          <DynamicButton type="submit">Submit</DynamicButton>
+          <DynamicButton className="mb-10 pb-10" color="red" type="submit">
+            Submit
+          </DynamicButton>
         </form>
       </div>
     </div>

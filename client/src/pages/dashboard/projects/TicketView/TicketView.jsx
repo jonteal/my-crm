@@ -6,10 +6,10 @@ import { GET_TICKET } from "../../../../graphql/queries/ticketQueries";
 
 // ICONS
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
-import { BiEditAlt } from "react-icons/bi";
 
 // COMPONENTS
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
+import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 
 export const TicketView = () => {
   const { ticketId, clientId, projectId } = useParams();
@@ -44,13 +44,14 @@ export const TicketView = () => {
               >
                 <FaRegArrowAltCircleLeft className="mr-2" /> <span>Back</span>
               </button>
-              <Link
-                to={`/clients/${clientId}/projects/${projectId}/kanban/${id}/edit`}
-                className="flex flex-row items-center hover:bg-slate-200 py-2 px-3 border rounded-xl"
+              <DynamicButton
+                className="ml-5"
+                type="link"
+                color="lightBlue"
+                link={`/clients/${clientId}/projects/${projectId}/kanban/${id}/edit`}
               >
-                <BiEditAlt className="mr-2" />
-                <span>Edit</span>
-              </Link>
+                Edit
+              </DynamicButton>
             </div>
 
             <div className="mt-5 flex flex-col items-start border rounded-xl py-3 bg-sky-300">

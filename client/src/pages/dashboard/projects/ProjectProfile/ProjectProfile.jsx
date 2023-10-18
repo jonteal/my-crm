@@ -11,6 +11,7 @@ import { DELETE_PROJECT } from "../../../../graphql/mutations/projectMutations";
 // COMPONENTS
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
 import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
+import { StatusBadge } from "../../../../components/reusable/StatusBadge/StatusBadge";
 
 export const ProjectProfile = () => {
   const { projectId, clientId } = useParams();
@@ -72,7 +73,9 @@ export const ProjectProfile = () => {
             </div>
             <NameValuePair name="Description" value={description} />
             <NameValuePair name="Notes" value={notes} />
-            <NameValuePair name="Status" value={status} />
+            <NameValuePair name="Status">
+              <StatusBadge className="mt-2" position="left" status={status} />
+            </NameValuePair>
             <NameValuePair name="Start Date" value={startDate} />
             <NameValuePair name="Deadline" value={deadline} />
             <NameValuePair name="Client Budget" value={`$ ${clientBudget}`} />

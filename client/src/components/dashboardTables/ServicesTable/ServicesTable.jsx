@@ -8,6 +8,7 @@ import { FaRegEye } from "react-icons/fa";
 // COMPONENTS
 import { DynamicButton } from "../../reusable/DynamicButton/DynamicButton";
 import Table from "react-bootstrap/Table";
+import { capitalized } from "../../../utils/format";
 
 export const ServicesTable = ({ services, type }) => {
   const { clientId, projectId } = useParams();
@@ -76,15 +77,15 @@ export const ServicesTable = ({ services, type }) => {
                 <td className="text-slate-700 font-light text-left border pl-2">
                   $ {service.cost}
                 </td>
-                <td className="font-light text-left pl-2 flex flex-row justify-center">
+                <td className="font-light text-left flex flex-row justify-center">
                   <span
                     className={`${
-                      service.status === "On"
+                      service.status === "on"
                         ? "bg-green-400 text-slate-700"
                         : "bg-red-500 text-slate-50"
                     } w-full font-semibold px-10 py-1 self-center rounded-md text-center`}
                   >
-                    {service.status}
+                    {capitalized(service.status)}
                   </span>
                 </td>
 

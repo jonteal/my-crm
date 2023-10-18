@@ -36,6 +36,8 @@ export const EditProject = () => {
     project?.projectEstimate
   );
 
+  console.log("project: ", project);
+
   const [updateProject] = useMutation(UPDATE_PROJECT, {
     variables: {
       id: projectId,
@@ -181,7 +183,9 @@ export const EditProject = () => {
           />
         </div>
 
-        <DynamicButton type="submit">Submit</DynamicButton>
+        <DynamicButton color="red" type="submit">
+          Submit
+        </DynamicButton>
       </form>
     </div>
   );

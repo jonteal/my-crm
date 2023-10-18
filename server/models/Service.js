@@ -17,7 +17,7 @@ const ServiceSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["On", "Off"],
+    enum: ["on", "off", "paused"],
   },
   serviceProvider: {
     type: String,
