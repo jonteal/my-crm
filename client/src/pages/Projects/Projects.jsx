@@ -18,7 +18,12 @@ export const Projects = () => {
 
   return (
     <div className="flex flex-col">
-      <DynamicButton type="link" link="/addProject" className="mx-2 mt-4">
+      <DynamicButton
+        color="red"
+        type="link"
+        link="/addProject"
+        className="mx-2 mt-4"
+      >
         Add Project
       </DynamicButton>
       <input

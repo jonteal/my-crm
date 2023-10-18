@@ -58,9 +58,11 @@ export const ProjectProfile = () => {
               Edit
             </DynamicButton>
 
-            <DynamicButton color="red" onClick={deleteProject} type="delete">
-              Delete
-            </DynamicButton>
+            <div onClick={deleteProject}>
+              <DynamicButton color="red" type="delete">
+                Delete
+              </DynamicButton>
+            </div>
           </div>
           <>
             <div className="flex flex-col ml-2 my-3">

@@ -21,7 +21,11 @@ export const ProjectsTable = ({ projects, projectContainer }) => {
         <h2 className="text-left text-slate-700 text-lg mx-3">
           Projects Table
         </h2>
-        <DynamicButton link={`/clients/${clientId}/addProject`}>
+        <DynamicButton
+          type="link"
+          color="red"
+          link={`/clients/${clientId}/addProject`}
+        >
           Add Project
         </DynamicButton>
       </div>

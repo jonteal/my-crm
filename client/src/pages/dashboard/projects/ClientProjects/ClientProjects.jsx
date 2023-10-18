@@ -27,7 +27,7 @@ export const ClientProjects = () => {
     <div className="flex flex-row flex-wrap">
       {projectsData.clientProjects.length === 0 ? (
         <div className="rounded-xl bg-slate-50 mx-2 py-3 px-4 w-full">
-          <DynamicButton link="/addProject" type="link">
+          <DynamicButton color="red" link="/addProject" type="link">
             Add Project
           </DynamicButton>
           <p className="mt-4">
