@@ -6,7 +6,7 @@ import { GET_SERVICE } from "../../../../graphql/queries/serviceQueries";
 
 // COMPONENTS
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
 
 export const ProjectService = () => {

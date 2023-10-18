@@ -7,7 +7,7 @@ import { GET_TICKETS } from "../../../../graphql/queries/ticketQueries";
 import { ADD_TICKET } from "../../../../graphql/mutations/ticketMutations";
 
 // COMPONENTS
-import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 
 export const AddKanbanTicket = () => {
   const { projectId } = useParams();

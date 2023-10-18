@@ -11,7 +11,7 @@ import { GET_CLIENTS } from "../../../../graphql/queries/clientQueries";
 
 // COMPONENTS
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 
 // DATE PICKING
 import DatePicker from "react-datepicker";

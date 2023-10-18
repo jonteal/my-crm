@@ -7,7 +7,7 @@ import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries"
 // COMPONENTS
 import { ProjectPageCard } from "../../../../components/ProjectPageCard/ProjectPageCard";
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 
 export const ClientProjects = () => {
   const { clientId } = useParams();

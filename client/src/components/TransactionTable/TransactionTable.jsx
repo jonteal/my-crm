@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { GrTransaction } from "react-icons/gr";
 
 // COMPONENTS
-import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../reusable/DynamicButton/DynamicButton";
 import { ClientTransactionItem } from "../dashboardBilling/ClientTransactionItem/ClientTransactionItem";
 
 export const TransactionTable = ({ transactions, shortList }) => {

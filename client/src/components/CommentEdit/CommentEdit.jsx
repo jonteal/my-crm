@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActivityCommentQueries";
 
-import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../reusable/DynamicButton/DynamicButton";
 
 export const CommentEdit = ({ id, comment, projectId, setIsEditing }) => {
   const [commentText, setCommentText] = useState(comment);

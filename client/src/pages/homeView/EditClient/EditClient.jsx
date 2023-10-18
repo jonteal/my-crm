@@ -8,7 +8,7 @@ import { UPDATE_CLIENT } from "../../../graphql/mutations/clientMutations";
 
 // COMPONENTS
 import { Spinner } from "../../../components/reusable/Spinner/Spinner";
-import { DynamicButton } from "../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../components/reusable/DynamicButton/DynamicButton";
 
 export const EditClient = () => {
   const { clientId } = useParams();

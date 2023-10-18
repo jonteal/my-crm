@@ -6,7 +6,7 @@ import { GET_PROJECTS } from "../../graphql/queries/projectQueries";
 
 // COMPONENTS
 import { Spinner } from "../../components/reusable/Spinner/Spinner";
-import { DynamicButton } from "../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../components/reusable/DynamicButton/DynamicButton";
 import { ProjectPageCard } from "../../components/ProjectPageCard/ProjectPageCard";
 
 export const Projects = () => {

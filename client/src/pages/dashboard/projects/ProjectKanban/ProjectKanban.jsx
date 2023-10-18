@@ -7,7 +7,7 @@ import { GET_TICKETS } from "../../../../graphql/queries/ticketQueries";
 // COMPONENTS
 import { StatusColumn } from "../../../../components/kanban/StatusColumn/StatusColumn";
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 
 export const ProjectKanban = () => {
   const { projectId } = useParams();

@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { TbFileInvoice } from "react-icons/tb";
 
 // COMPONENTS
-import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../reusable/DynamicButton/DynamicButton";
 import { InvoiceTableItem } from "../dashboardBilling/InvoiceTableItem/InvoiceTableItem";
 
 export const InvoiceTable = ({ invoices, shortList }) => {

@@ -8,7 +8,7 @@ import { ADD_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectAct
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActivityCommentQueries";
 
 // COMPONENTS
-import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../reusable/DynamicButton/DynamicButton";
 import { Comment } from "../Comment/Comment";
 
 export const ProjectCommentFeed = ({ projectId, comments }) => {

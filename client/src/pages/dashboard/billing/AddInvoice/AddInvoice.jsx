@@ -10,7 +10,7 @@ import { GET_ALL_CLIENT_INVOICES } from "../../../../graphql/queries/invoiceQuer
 import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
-import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 
 // DATE PICKING

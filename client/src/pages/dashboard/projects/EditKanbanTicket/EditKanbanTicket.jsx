@@ -10,7 +10,7 @@ import {
 import { UPDATE_TICKET } from "../../../../graphql/mutations/ticketMutations";
 
 // COMPONENTS
-import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 
 export const EditKanbanTicket = () => {

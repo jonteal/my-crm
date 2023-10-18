@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { DynamicButton } from "../../reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../reusable/DynamicButton/DynamicButton";
 
 export const DeleteModal = ({ deleteClient, subject }) => {
   const [show, setShow] = useState(false);

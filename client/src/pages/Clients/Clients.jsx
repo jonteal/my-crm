@@ -1,5 +1,5 @@
 import { ClientList } from "../homeView/ClientList/ClientList";
-import { DynamicButton } from "../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../components/reusable/DynamicButton/DynamicButton";
 
 export const Clients = () => {
   return (

@@ -8,7 +8,7 @@ import { GET_PROJECT_TRANSACTIONS } from "../../../../graphql/queries/transactio
 
 // COMPONENTS
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
 import { InvoiceTable } from "../../../../components/InvoiceTable/InvoiceTable";
 import { ProgressBarComponent } from "../../../../components/ProgressBar/ProgressBar";

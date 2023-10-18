@@ -6,7 +6,7 @@ import { AiFillHome } from "react-icons/ai";
 import { FaRegEye } from "react-icons/fa";
 
 // COMPONENTS
-import { DynamicButton } from "../../reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../reusable/DynamicButton/DynamicButton";
 import Table from "react-bootstrap/Table";
 
 export const ServicesTable = ({ services, type }) => {

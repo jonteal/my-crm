@@ -6,7 +6,7 @@ import { FaRegEye, FaRegTrashAlt } from "react-icons/fa";
 import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 
 // COMPONENTS
-import { DynamicButton } from "../../reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../reusable/DynamicButton/DynamicButton";
 import Table from "react-bootstrap/Table";
 
 export const ProjectsTable = ({ projects, projectContainer }) => {

@@ -1,14 +1,9 @@
 import { useState } from "react";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 
 // ICONS
 import { FaRegTrashAlt } from "react-icons/fa";
-
-// COMPONENTS
-import { CommentReply } from "../CommentReply/CommentReply";
-import { SubmitButton } from "../reusable/buttons/submitButton/SubmitButton";
-import { Spinner } from "../reusable/Spinner/Spinner";
 
 // GRAPHQL
 import { ADD_CLIENT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/clientActivityCommentReplyMutations";
@@ -19,8 +14,11 @@ import { ADD_PROJECT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/proj
 import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/projectActivityCommentReplyQueries";
 import { DELETE_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
 import { DELETE_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
-import { useParams } from "react-router-dom";
-import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
+
+// COMPONENTS
+import { CommentReply } from "../CommentReply/CommentReply";
+import { Spinner } from "../reusable/Spinner/Spinner";
+import { DynamicButton } from "../reusable/DynamicButton/DynamicButton";
 
 export const Comment = ({ comment, type }) => {
   const { clientId, projectId } = useParams();
@@ -200,9 +198,9 @@ export const Comment = ({ comment, type }) => {
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
             />
-            <div className="w-1/2 text-left mt-2">
-              <SubmitButton type="submit">Save</SubmitButton>
-            </div>
+            <DynamicButton type="submit" className="w-1/2 text-left mt-2">
+              Save
+            </DynamicButton>
           </form>
         </div>
       )}

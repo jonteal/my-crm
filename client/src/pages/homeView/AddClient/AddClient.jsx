@@ -8,7 +8,7 @@ import { ADD_CLIENT } from "../../../graphql/mutations/clientMutations";
 import { GET_CLIENTS } from "../../../graphql/queries/clientQueries";
 
 // COMPONENTS
-import { DynamicButton } from "../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../components/reusable/DynamicButton/DynamicButton";
 
 export const AddClient = () => {
   const [firstName, setFirstName] = useState("");

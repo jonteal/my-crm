@@ -9,7 +9,7 @@ import { GET_CLIENTS } from "../../graphql/queries/clientQueries";
 // COMPONENTS
 import { DeleteModal } from "../modals/DeleteModal/DeleteModal";
 import { NameValuePair } from "../../components/reusable/NameValuePair/NameValuePair";
-import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../reusable/DynamicButton/DynamicButton";
 
 export const ClientCard = ({ clientData }) => {
   const navigate = useNavigate();

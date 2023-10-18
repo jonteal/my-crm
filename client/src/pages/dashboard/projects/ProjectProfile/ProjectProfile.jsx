@@ -10,7 +10,7 @@ import { DELETE_PROJECT } from "../../../../graphql/mutations/projectMutations";
 
 // COMPONENTS
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
-import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 
 export const ProjectProfile = () => {
   const { projectId, clientId } = useParams();
