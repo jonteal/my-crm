@@ -11,7 +11,7 @@ import { GET_CLIENTS } from "../../../../graphql/queries/clientQueries";
 
 // COMPONENTS
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-import { SubmitButton } from "../../../../components/reusable/buttons/submitButton/SubmitButton";
+import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
 
 // DATE PICKING
 import DatePicker from "react-datepicker";
@@ -216,9 +216,7 @@ export const AddProject = () => {
               />
             </div>
 
-            <SubmitButton className="mb-10" type="submit">
-              Submit
-            </SubmitButton>
+            <DynamicButton type="submit">Submit</DynamicButton>
           </form>
         </div>
       )}

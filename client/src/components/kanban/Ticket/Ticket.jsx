@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+
+// ICONS
 import { AiOutlineStop } from "react-icons/ai";
 import { IoIosBug } from "react-icons/io";
 import { BsBookFill } from "react-icons/bs";
+import { FaRegTrashAlt } from "react-icons/fa";
+
+// GRAPHQL
 import { DELETE_TICKET } from "../../../graphql/mutations/ticketMutations";
 import { GET_TICKETS } from "../../../graphql/queries/ticketQueries";
-import { FaRegTrashAlt } from "react-icons/fa";
-import { useMutation } from "@apollo/client";
 
 export const Ticket = ({ ticket }) => {
   const { clientId, projectId } = useParams();

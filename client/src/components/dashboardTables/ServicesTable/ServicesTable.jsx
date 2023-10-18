@@ -1,10 +1,13 @@
-import Table from "react-bootstrap/Table";
-
-import { FaGasPump } from "react-icons/fa";
-import { AddButton } from "../../reusable/buttons/AddButton/AddButton";
 import { Link, useParams } from "react-router-dom";
-import { FaRegEye } from "react-icons/fa";
+
+// ICONS
+import { FaGasPump } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
+import { FaRegEye } from "react-icons/fa";
+
+// COMPONENTS
+import { DynamicButton } from "../../reusable/buttons/DynamicButton/DynamicButton";
+import Table from "react-bootstrap/Table";
 
 export const ServicesTable = ({ services, type }) => {
   const { clientId, projectId } = useParams();
@@ -24,9 +27,12 @@ export const ServicesTable = ({ services, type }) => {
             {type === "In House" ? "In House" : "Third Party Services"}
           </h2>
         </div>
-        <Link to={`/clients/${clientId}/projects/${projectId}/addService`}>
-          <AddButton>Add Service</AddButton>
-        </Link>
+        <DynamicButton
+          type="link"
+          link={`/clients/${clientId}/projects/${projectId}/addService`}
+        >
+          Add Service
+        </DynamicButton>
       </div>
       {services.length === 0 ? (
         <p className="italic text-lg py-3 px-2">

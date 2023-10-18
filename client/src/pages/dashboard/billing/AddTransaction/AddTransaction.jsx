@@ -10,7 +10,7 @@ import { GET_ALL_CLIENT_TRANSACTIONS } from "../../../../graphql/queries/transac
 import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries";
 
 // COMPONENTS
-import { SubmitButton } from "../../../../components/reusable/buttons/submitButton/SubmitButton";
+import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 
 // DATE PICKING
@@ -224,9 +224,7 @@ export const AddTransaction = () => {
           </div>
         </div>
 
-        <SubmitButton className="mb-3" type="submit">
-          Submit
-        </SubmitButton>
+        <DynamicButton type="submit">Submit</DynamicButton>
       </form>
     </div>
   );

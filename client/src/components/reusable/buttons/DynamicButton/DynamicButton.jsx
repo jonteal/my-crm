@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const Button = ({ link, type, children }) => {
+export const DynamicButton = ({ link, type, children, className }) => {
   const renderButton = (type) => {
     switch (type) {
       case "submit":
@@ -43,5 +43,5 @@ export const Button = ({ link, type, children }) => {
         break;
     }
   };
-  return <>{renderButton(type)}</>;
+  return <div className={className}>{renderButton(type)}</div>;
 };

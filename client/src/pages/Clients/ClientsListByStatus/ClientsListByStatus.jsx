@@ -1,9 +1,15 @@
+import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
-import { GET_CLIENTS_BY_STATUS } from "../../../graphql/queries/clientQueries";
-import { Spinner } from "../../../components/reusable/Spinner/Spinner";
+
+// ICONS
 import { FaChevronDown, FaChevronUp, FaRegEye } from "react-icons/fa";
-import { useState } from "react";
+
+// GRAPHQL
+import { GET_CLIENTS_BY_STATUS } from "../../../graphql/queries/clientQueries";
+
+// COMPONENTS
+import { Spinner } from "../../../components/reusable/Spinner/Spinner";
 import Table from "react-bootstrap/esm/Table";
 
 export const ClientsListByStatus = () => {

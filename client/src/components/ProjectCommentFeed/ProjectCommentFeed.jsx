@@ -8,7 +8,7 @@ import { ADD_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectAct
 import { GET_PROJECT_ACTIVITY_COMMENTS } from "../../graphql/queries/projectActivityCommentQueries";
 
 // COMPONENTS
-import { SubmitButton } from "../reusable/buttons/submitButton/SubmitButton";
+import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
 import { Comment } from "../Comment/Comment";
 
 export const ProjectCommentFeed = ({ projectId, comments }) => {
@@ -72,7 +72,7 @@ export const ProjectCommentFeed = ({ projectId, comments }) => {
           onChange={(e) => setCommentText(e.target.value)}
         />
         <div className="w-1/2 text-left mt-2">
-          <SubmitButton type="submit">Save</SubmitButton>
+          <DynamicButton type="submit">Save</DynamicButton>
         </div>
       </form>
 

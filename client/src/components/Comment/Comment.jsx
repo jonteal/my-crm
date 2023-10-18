@@ -20,6 +20,7 @@ import { GET_PROJECT_ACTIVITY_COMMENT_REPLIES } from "../../graphql/queries/proj
 import { DELETE_PROJECT_ACTIVITY_COMMENT } from "../../graphql/mutations/projectActivityCommentMutations";
 import { DELETE_CLIENT_ACTIVITY_COMMENT } from "../../graphql/mutations/clientActivityCommentMutations";
 import { useParams } from "react-router-dom";
+import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
 
 export const Comment = ({ comment, type }) => {
   const { clientId, projectId } = useParams();

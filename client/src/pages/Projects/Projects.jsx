@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
+
+// GRAPHQL
 import { GET_PROJECTS } from "../../graphql/queries/projectQueries";
-import { ProjectPageCard } from "../../components/ProjectPageCard/ProjectPageCard";
+
+// COMPONENTS
 import { Spinner } from "../../components/reusable/Spinner/Spinner";
-import { AddButton } from "../../components/reusable/buttons/AddButton/AddButton";
+import { DynamicButton } from "../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { ProjectPageCard } from "../../components/ProjectPageCard/ProjectPageCard";
 
 export const Projects = () => {
   const { loading, error, data } = useQuery(GET_PROJECTS);
@@ -15,9 +18,9 @@ export const Projects = () => {
 
   return (
     <div className="flex flex-col">
-      <Link to="/addProject" className="mx-2 mt-4">
-        <AddButton>Add Project</AddButton>
-      </Link>
+      <DynamicButton type="link" link="/addProject" className="mx-2 mt-4">
+        Add Project
+      </DynamicButton>
       <input
         type="text"
         placeholder="Search..."

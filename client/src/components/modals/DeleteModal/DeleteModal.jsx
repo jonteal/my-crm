@@ -1,9 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { DeleteButton } from "../../reusable/buttons/DeleteButton/DeleteButton";
-import { EditButton } from "../../reusable/buttons/EditButton/EditButton";
-import { Button as MyButton } from "../../reusable/buttons/Button/Button";
+import { DynamicButton } from "../../reusable/buttons/DynamicButton/DynamicButton";
 
 export const DeleteModal = ({ deleteClient, subject }) => {
   const [show, setShow] = useState(false);
@@ -14,7 +12,7 @@ export const DeleteModal = ({ deleteClient, subject }) => {
   return (
     <>
       <div onClick={handleShow}>
-        <MyButton type="delete">Delete</MyButton>
+        <DynamicButton type="delete">Delete</DynamicButton>
       </div>
 
       <Modal
@@ -39,7 +37,7 @@ export const DeleteModal = ({ deleteClient, subject }) => {
             Close
           </Button>
           <div onClick={deleteClient}>
-            <DeleteButton>Delete</DeleteButton>
+            <DynamicButton type="delete">Delete</DynamicButton>
           </div>
         </Modal.Footer>
       </Modal>

@@ -1,8 +1,12 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
+
+// GRAPHQL
 import { GET_SERVICE } from "../../../../graphql/queries/serviceQueries";
+
+// COMPONENTS
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-import { EditButton } from "../../../../components/reusable/buttons/EditButton/EditButton";
+import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
 
 export const ProjectService = () => {
@@ -24,16 +28,15 @@ export const ProjectService = () => {
     startDate,
     endDate,
     notes,
+    project,
     createdAt,
   } = data.service;
 
-  const projectTitle = data.service.project.title;
-
   return (
     <div className="rounded-xl bg-slate-50 mx-2 mt-3 p-2 w-full">
-      <EditButton>Edit</EditButton>
+      <DynamicButton type="link">Edit</DynamicButton>
       <NameValuePair type="header" name="Service" value={service} />
-      <NameValuePair name="Project" value={projectTitle} />
+      <NameValuePair name="Project" value={project.title} />
       <NameValuePair name="Cost" value={`$ ${cost}`} />
       <NameValuePair name="Payment Schedule" value={paymentSchedule} />
       <NameValuePair name="Provider" value={serviceProvider} />

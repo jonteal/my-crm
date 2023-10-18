@@ -8,7 +8,7 @@ import { UPDATE_CLIENT } from "../../../graphql/mutations/clientMutations";
 
 // COMPONENTS
 import { Spinner } from "../../../components/reusable/Spinner/Spinner";
-import { SubmitButton } from "../../../components/reusable/buttons/submitButton/SubmitButton";
+import { DynamicButton } from "../../../components/reusable/buttons/DynamicButton/DynamicButton";
 
 export const EditClient = () => {
   const { clientId } = useParams();
@@ -162,10 +162,9 @@ export const EditClient = () => {
                 </select>
               </div>
             </div>
-
-            <SubmitButton onClick={onSubmit} type="submit">
-              Submit
-            </SubmitButton>
+            <div onClick={onSubmit}>
+              <DynamicButton type="submit">Submit</DynamicButton>
+            </div>
           </form>
         </div>
       )}

@@ -1,12 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
-import { EditButton } from "../reusable/buttons/EditButton/EditButton";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 import { formatPhoneNumber } from "../../utils/format";
+
+// GRAPHQL
 import { DELETE_CLIENT } from "../../graphql/mutations/clientMutations";
 import { GET_CLIENTS } from "../../graphql/queries/clientQueries";
-import { useMutation } from "@apollo/client";
+
+// COMPONENTS
 import { DeleteModal } from "../modals/DeleteModal/DeleteModal";
 import { NameValuePair } from "../../components/reusable/NameValuePair/NameValuePair";
-import { Button } from "../reusable/buttons/Button/Button";
+import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
 
 export const ClientCard = ({ clientData }) => {
   const navigate = useNavigate();
@@ -30,9 +33,13 @@ export const ClientCard = ({ clientData }) => {
     <div className="mt-1 bg-slate-50 w-full rounded-xl">
       <div className="flex flex-row justify-end">
         <div className="mt-2">
-          <Button type="link" className="mr-2" link={`/clients/${id}/edit`}>
+          <DynamicButton
+            type="link"
+            className="mr-2"
+            link={`/clients/${id}/edit`}
+          >
             Edit
-          </Button>
+          </DynamicButton>
         </div>
         <div className="mt-3 mr-2">
           <DeleteModal subject="Client" deleteClient={deleteClient} />

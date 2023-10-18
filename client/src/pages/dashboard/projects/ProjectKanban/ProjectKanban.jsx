@@ -1,9 +1,13 @@
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+
+// GRAPHQL
 import { GET_TICKETS } from "../../../../graphql/queries/ticketQueries";
+
+// COMPONENTS
 import { StatusColumn } from "../../../../components/kanban/StatusColumn/StatusColumn";
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-import { AddButton } from "../../../../components/reusable/buttons/AddButton/AddButton";
+import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
 
 export const ProjectKanban = () => {
   const { projectId } = useParams();
@@ -33,16 +37,12 @@ export const ProjectKanban = () => {
   if (ticketLoading) return <Spinner />;
   if (ticketError) return <p>Something went wrong...</p>;
 
-  console.log("ticketData: ", ticketData);
-
   return (
-    <div className="kanban-container">
-      <div className="mt-2">
-        <Link to="addTicket">
-          <AddButton>Add Ticket</AddButton>
-        </Link>
-      </div>
+    <>
+      <DynamicButton className="my-3" link="addTicket" type="link">
+        Add Ticket
+      </DynamicButton>
       <StatusColumn statusColumns={statusColumns} ticketData={ticketData} />
-    </div>
+    </>
   );
 };

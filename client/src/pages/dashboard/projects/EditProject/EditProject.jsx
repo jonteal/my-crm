@@ -1,10 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
+
+// GRAPHQL
 import { UPDATE_PROJECT } from "../../../../graphql/mutations/projectMutations";
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
+
+// COMPONENTS
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-import { SubmitButton } from "../../../../components/reusable/buttons/submitButton/SubmitButton";
+import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
 
 // DATE PICKING
 import DatePicker from "react-datepicker";
@@ -177,9 +181,7 @@ export const EditProject = () => {
           />
         </div>
 
-        <SubmitButton type="submit" className="" data-bs-dismiss="modal">
-          Submit
-        </SubmitButton>
+        <DynamicButton type="submit">Submit</DynamicButton>
       </form>
     </div>
   );

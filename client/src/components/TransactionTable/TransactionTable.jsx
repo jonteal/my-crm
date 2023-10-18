@@ -1,6 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { GrTransaction } from "react-icons/gr";
-import { AddButton } from "../reusable/buttons/AddButton/AddButton";
+
+// COMPONENTS
+import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
 import { ClientTransactionItem } from "../dashboardBilling/ClientTransactionItem/ClientTransactionItem";
 
 export const TransactionTable = ({ transactions, shortList }) => {
@@ -17,13 +19,14 @@ export const TransactionTable = ({ transactions, shortList }) => {
             Transactions
           </h2>
         </div>
-        {/* {projectId && ( */}
         <div className="flex flex-row justify-between py-2 px-2">
-          <Link to={`/clients/${clientId}/addTransaction`}>
-            <AddButton className="mx-2">Add Transaction</AddButton>
-          </Link>
+          <DynamicButton
+            type="link"
+            link={`/clients/${clientId}/addTransaction`}
+          >
+            Add Transaction
+          </DynamicButton>
         </div>
-        {/* )} */}
       </div>
 
       {filteredList.length === 0 ? (

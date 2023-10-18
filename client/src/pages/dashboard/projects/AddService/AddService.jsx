@@ -10,7 +10,7 @@ import { ADD_SERVICE } from "../../../../graphql/mutations/serviceMutations";
 import { GET_SERVICES } from "../../../../graphql/queries/serviceQueries";
 
 // COMPONENTS
-import { SubmitButton } from "../../../../components/reusable/buttons/submitButton/SubmitButton";
+import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
 
 // DATE PICKING
 import DatePicker from "react-datepicker";
@@ -293,9 +293,7 @@ export const AddService = () => {
             </div>
           </div>
 
-          <SubmitButton className="mb-3" type="submit">
-            Submit
-          </SubmitButton>
+          <DynamicButton type="submit">Submit</DynamicButton>
         </form>
       </div>
     </div>

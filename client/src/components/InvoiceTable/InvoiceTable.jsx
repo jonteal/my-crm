@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { TbFileInvoice } from "react-icons/tb";
 
 // COMPONENTS
-import { AddButton } from "../reusable/buttons/AddButton/AddButton";
+import { DynamicButton } from "../reusable/buttons/DynamicButton/DynamicButton";
 import { InvoiceTableItem } from "../dashboardBilling/InvoiceTableItem/InvoiceTableItem";
 
 export const InvoiceTable = ({ invoices, shortList }) => {
@@ -18,9 +18,9 @@ export const InvoiceTable = ({ invoices, shortList }) => {
           <h2 className="text-left text-slate-700 text-lg mx-2">Invoices</h2>
         </div>
         <div className="flex flex-row justify-between py-2 px-2">
-          <Link to={`/clients/${clientId}/addInvoice`}>
-            <AddButton className="mx-2">Add Invoice</AddButton>
-          </Link>
+          <DynamicButton type="link" link={`/clients/${clientId}/addInvoice`}>
+            Add Invoice
+          </DynamicButton>
         </div>
       </div>
 

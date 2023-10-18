@@ -8,7 +8,7 @@ import { ADD_CLIENT } from "../../../graphql/mutations/clientMutations";
 import { GET_CLIENTS } from "../../../graphql/queries/clientQueries";
 
 // COMPONENTS
-import { SubmitButton } from "../../../components/reusable/buttons/submitButton/SubmitButton";
+import { DynamicButton } from "../../../components/reusable/buttons/DynamicButton/DynamicButton";
 
 export const AddClient = () => {
   const [firstName, setFirstName] = useState("");
@@ -206,9 +206,9 @@ export const AddClient = () => {
             </div>
           </div>
         </div>
-        <SubmitButton className="my-3" type="submit">
+        <DynamicButton className="my-3" type="submit">
           Save
-        </SubmitButton>
+        </DynamicButton>
       </form>
     </div>
   );

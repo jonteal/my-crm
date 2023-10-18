@@ -1,13 +1,13 @@
-import Table from "react-bootstrap/Table";
+import { useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
 import { FaRegEye, FaRegTrashAlt } from "react-icons/fa";
-import { useQuery } from "@apollo/client";
 
 // GRAPHQL
 import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 
 // COMPONENTS
-import { AddButton } from "../../reusable/buttons/AddButton/AddButton";
+import { DynamicButton } from "../../reusable/buttons/DynamicButton/DynamicButton";
+import Table from "react-bootstrap/Table";
 
 export const ProjectsTable = ({ projects, projectContainer }) => {
   const { clientId } = useParams();
@@ -21,9 +21,9 @@ export const ProjectsTable = ({ projects, projectContainer }) => {
         <h2 className="text-left text-slate-700 text-lg mx-3">
           Projects Table
         </h2>
-        <Link to={`/clients/${clientId}/addProject`}>
-          <AddButton>Add Project</AddButton>
-        </Link>
+        <DynamicButton link={`/clients/${clientId}/addProject`}>
+          Add Project
+        </DynamicButton>
       </div>
       <Table responsive>
         <thead>

@@ -1,17 +1,17 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-
-// COMPONENTS
-import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-import { EditButton } from "../../../../components/reusable/buttons/EditButton/EditButton";
-import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
-import { InvoiceTable } from "../../../../components/InvoiceTable/InvoiceTable";
-import { ProgressBarComponent } from "../../../../components/ProgressBar/ProgressBar";
 
 // GRAPHQL
 import { GET_PROJECT_INVOICES } from "../../../../graphql/queries/invoiceQueries";
 import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 import { GET_PROJECT_TRANSACTIONS } from "../../../../graphql/queries/transactionQueries";
+
+// COMPONENTS
+import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
+import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
+import { TransactionTable } from "../../../../components/TransactionTable/TransactionTable";
+import { InvoiceTable } from "../../../../components/InvoiceTable/InvoiceTable";
+import { ProgressBarComponent } from "../../../../components/ProgressBar/ProgressBar";
 
 export const ProjectFinancials = () => {
   const { projectId } = useParams();
@@ -54,9 +54,9 @@ export const ProjectFinancials = () => {
         </div>
         <div className="flex flex-row w-full">
           <div className="flex flex-col w-full items-start mr-2">
-            <Link to="invoices" className="mx-2 my-2">
-              <EditButton className="mx-2">View All Invoices</EditButton>
-            </Link>
+            <DynamicButton className="mx-2 mb-3" link="invoices" type="link">
+              View All Invoices
+            </DynamicButton>
 
             <InvoiceTable
               shortList={true}
@@ -64,9 +64,13 @@ export const ProjectFinancials = () => {
             />
           </div>
           <div className="flex flex-col w-full items-start ml-2">
-            <Link to="transactions" className="mx-2 my-2">
-              <EditButton className="mx-2">View All Transactions</EditButton>
-            </Link>
+            <DynamicButton
+              link="transactions"
+              type="link"
+              className="mx-2 mb-3"
+            >
+              View All Transactions
+            </DynamicButton>
             <TransactionTable
               shortList={true}
               transactions={transactionsData.projectTransactions}

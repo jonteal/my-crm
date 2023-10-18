@@ -1,8 +1,3 @@
-import { useState } from "react";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 
 export const DotDropdown = () => {

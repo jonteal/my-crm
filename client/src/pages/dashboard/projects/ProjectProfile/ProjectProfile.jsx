@@ -1,13 +1,16 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
+
+// GRAPHQL
 import {
   GET_PROJECT,
   GET_PROJECTS,
 } from "../../../../graphql/queries/projectQueries";
 import { DELETE_PROJECT } from "../../../../graphql/mutations/projectMutations";
+
+// COMPONENTS
 import { NameValuePair } from "../../../../components/reusable/NameValuePair/NameValuePair";
-import { EditButton } from "../../../../components/reusable/buttons/EditButton/EditButton";
-import { DeleteButton } from "../../../../components/reusable/buttons/DeleteButton/DeleteButton";
+import { DynamicButton } from "../../../../components/reusable/buttons/DynamicButton/DynamicButton";
 
 export const ProjectProfile = () => {
   const { projectId, clientId } = useParams();
@@ -46,14 +49,16 @@ export const ProjectProfile = () => {
       <div className="flex flex-row">
         <div className="rounded-xl bg-slate-50 mx-2 mt-3 p-2 w-full">
           <div className="w-full flex flex-row justify-end">
-            <Link
-              to={`/clients/${clientId}/projects/${projectId}/edit`}
+            <DynamicButton
+              type="link"
               className="mr-2"
+              link={`/clients/${clientId}/projects/${projectId}/edit`}
             >
-              <EditButton>Edit</EditButton>
-            </Link>
+              Edit
+            </DynamicButton>
+
             <div onClick={deleteProject}>
-              <DeleteButton>Delete</DeleteButton>
+              <DynamicButton type="delete">Delete</DynamicButton>
             </div>
           </div>
           <>
