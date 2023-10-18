@@ -4,7 +4,7 @@ import { DynamicButton } from "../../components/reusable/DynamicButton/DynamicBu
 export const Clients = () => {
   return (
     <div className="px-10 py-5">
-      <DynamicButton type="link" link="/addClient">
+      <DynamicButton color="red" type="link" link="/addClient">
         Add Client
       </DynamicButton>
       <ClientList />

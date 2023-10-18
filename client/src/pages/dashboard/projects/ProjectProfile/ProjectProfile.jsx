@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 
 // GRAPHQL
@@ -48,18 +48,18 @@ export const ProjectProfile = () => {
     <div className="px-0 flex flex-col w-full">
       <div className="flex flex-row">
         <div className="rounded-xl bg-slate-50 mx-2 mt-3 p-2 w-full">
-          <div className="w-full flex flex-row justify-end">
+          <div className="w-full flex flex-row items-center justify-end">
             <DynamicButton
               type="link"
-              className="mr-2"
+              color="lightBlue"
               link={`/clients/${clientId}/projects/${projectId}/edit`}
             >
               Edit
             </DynamicButton>
 
-            <div onClick={deleteProject}>
-              <DynamicButton type="delete">Delete</DynamicButton>
-            </div>
+            <DynamicButton color="red" onClick={deleteProject} type="delete">
+              Delete
+            </DynamicButton>
           </div>
           <>
             <div className="flex flex-col ml-2 my-3">

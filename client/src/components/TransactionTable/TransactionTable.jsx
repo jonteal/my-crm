@@ -21,6 +21,7 @@ export const TransactionTable = ({ transactions, shortList }) => {
         </div>
         <div className="flex flex-row justify-between py-2 px-2">
           <DynamicButton
+            color="red"
             type="link"
             link={`/clients/${clientId}/addTransaction`}
           >

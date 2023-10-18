@@ -163,7 +163,9 @@ export const EditClient = () => {
               </div>
             </div>
             <div onClick={onSubmit}>
-              <DynamicButton type="submit">Submit</DynamicButton>
+              <DynamicButton color="red" type="submit">
+                Submit
+              </DynamicButton>
             </div>
           </form>
         </div>

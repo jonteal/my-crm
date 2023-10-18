@@ -198,7 +198,11 @@ export const Comment = ({ comment, type }) => {
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
             />
-            <DynamicButton type="submit" className="w-1/2 text-left mt-2">
+            <DynamicButton
+              color="red"
+              type="submit"
+              className="w-1/2 text-left mt-2"
+            >
               Save
             </DynamicButton>
           </form>

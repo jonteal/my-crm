@@ -39,7 +39,7 @@ export const ProjectKanban = () => {
 
   return (
     <>
-      <DynamicButton className="my-3" link="addTicket" type="link">
+      <DynamicButton color="red" className="my-3" link="addTicket" type="link">
         Add Ticket
       </DynamicButton>
       <StatusColumn statusColumns={statusColumns} ticketData={ticketData} />

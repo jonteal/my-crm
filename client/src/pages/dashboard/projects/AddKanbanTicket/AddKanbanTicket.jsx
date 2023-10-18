@@ -158,7 +158,9 @@ export const AddKanbanTicket = () => {
             </div>
           </div>
 
-          <DynamicButton type="submit">Submit</DynamicButton>
+          <DynamicButton color="red" type="submit">
+            Submit
+          </DynamicButton>
         </form>
       </div>
     </div>

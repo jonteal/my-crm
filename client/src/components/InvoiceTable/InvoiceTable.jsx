@@ -18,7 +18,11 @@ export const InvoiceTable = ({ invoices, shortList }) => {
           <h2 className="text-left text-slate-700 text-lg mx-2">Invoices</h2>
         </div>
         <div className="flex flex-row justify-between py-2 px-2">
-          <DynamicButton type="link" link={`/clients/${clientId}/addInvoice`}>
+          <DynamicButton
+            color="red"
+            type="link"
+            link={`/clients/${clientId}/addInvoice`}
+          >
             Add Invoice
           </DynamicButton>
         </div>

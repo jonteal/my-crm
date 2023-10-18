@@ -29,6 +29,7 @@ export const ServicesTable = ({ services, type }) => {
         </div>
         <DynamicButton
           type="link"
+          color="red"
           link={`/clients/${clientId}/projects/${projectId}/addService`}
         >
           Add Service

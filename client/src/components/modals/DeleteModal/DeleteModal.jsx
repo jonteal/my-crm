@@ -12,7 +12,9 @@ export const DeleteModal = ({ deleteClient, subject }) => {
   return (
     <>
       <div onClick={handleShow}>
-        <DynamicButton type="delete">Delete</DynamicButton>
+        <DynamicButton color="red" type="delete">
+          Delete
+        </DynamicButton>
       </div>
 
       <Modal
@@ -37,7 +39,9 @@ export const DeleteModal = ({ deleteClient, subject }) => {
             Close
           </Button>
           <div onClick={deleteClient}>
-            <DynamicButton type="delete">Delete</DynamicButton>
+            <DynamicButton color="red" type="delete">
+              Delete
+            </DynamicButton>
           </div>
         </Modal.Footer>
       </Modal>

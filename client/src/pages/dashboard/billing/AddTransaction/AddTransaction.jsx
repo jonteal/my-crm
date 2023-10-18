@@ -224,7 +224,9 @@ export const AddTransaction = () => {
           </div>
         </div>
 
-        <DynamicButton type="submit">Submit</DynamicButton>
+        <DynamicButton color="red" type="submit">
+          Submit
+        </DynamicButton>
       </form>
     </div>
   );

@@ -35,6 +35,7 @@ export const ClientCard = ({ clientData }) => {
         <div className="mt-2">
           <DynamicButton
             type="link"
+            color="lightBlue"
             className="mr-2"
             link={`/clients/${id}/edit`}
           >

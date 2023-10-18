@@ -206,7 +206,7 @@ export const AddClient = () => {
             </div>
           </div>
         </div>
-        <DynamicButton className="my-3" type="submit">
+        <DynamicButton color="red" className="my-3" type="submit">
           Save
         </DynamicButton>
       </form>
