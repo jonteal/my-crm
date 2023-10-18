@@ -1,6 +1,13 @@
+import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const DynamicButton = ({ link, type, children, className, color }) => {
+  const navigate = useNavigate();
+  const handleBackNavigate = () => {
+    navigate(-1);
+  };
+
   switch (color) {
     case "red":
       color = "bg-red-500 hover:bg-red-400 text-white hover:text-slate-50";
@@ -53,6 +60,18 @@ export const DynamicButton = ({ link, type, children, className, color }) => {
             className={`px-4 py-2 font-medium ${color} rounded-lg text-sm`}
           >
             {children}
+          </button>
+        );
+      case "back":
+        return (
+          <button
+            onClick={handleBackNavigate}
+            className={`px-4 py-2 font-medium ${color} rounded-lg text-sm`}
+          >
+            <div className="flex flex-row items-center">
+              <FaRegArrowAltCircleLeft className="mr-2" />
+              {children}
+            </div>
           </button>
         );
 

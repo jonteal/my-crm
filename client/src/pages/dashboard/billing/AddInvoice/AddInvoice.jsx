@@ -12,12 +12,7 @@ import { GET_CLIENT_PROJECTS } from "../../../../graphql/queries/projectQueries"
 // COMPONENTS
 import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
-
-// DATE PICKING
-import DatePicker from "react-datepicker";
-
-// CSS
-import "react-datepicker/dist/react-datepicker.css";
+import { DateSelector } from "../../../../components/reusable/DateSelector/DateSelector";
 
 export const AddInvoice = () => {
   const { clientId } = useParams();
@@ -89,23 +84,6 @@ export const AddInvoice = () => {
     <div className="bg-slate-50 flex flex-col items-center rounded-xl mx-2 mt-2">
       <h3 className="font-semibold text-lg mt-2">Add Invoice</h3>
       <div className="flex flex-row justify-between my-3 w-full px-4">
-        {/* <div className="flex flex-row items-center w-full mr-2 mb-5">
-          <input
-            id="default-checkbox"
-            type="checkbox"
-            value={isProjectInvoice}
-            onChange={() => setIsProjectInvoice(!isProjectInvoice)}
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-          />
-          <label
-            htmlFor="default-checkbox"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Is this an invoice for a project?
-          </label>
-        </div> */}
-
-        {/* {isProjectInvoice === true && ( */}
         <div className="flex flex-col w-full ml-2">
           <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Project Name
@@ -125,22 +103,17 @@ export const AddInvoice = () => {
             ))}
           </select>
         </div>
-        {/* )} */}
       </div>
 
       <form className="w-full max-w-lg mb-3" onSubmit={onSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <div className="mb-3">
-              <label className="form-label block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Date
-              </label>
-              <DatePicker
-                className="border py-2 px-2 rounded"
-                selected={date}
-                onChange={handleDateChange}
-              />
-            </div>
+            <DateSelector
+              className="mb-3"
+              label="Date"
+              date={date}
+              dateChangeHandler={handleDateChange}
+            />
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label

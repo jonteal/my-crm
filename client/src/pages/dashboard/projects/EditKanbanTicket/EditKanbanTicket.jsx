@@ -12,6 +12,7 @@ import { UPDATE_TICKET } from "../../../../graphql/mutations/ticketMutations";
 // COMPONENTS
 import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
+import { Checkbox } from "../../../../components/reusable/Checkbox/Checkbox";
 
 export const EditKanbanTicket = () => {
   const { projectId, ticketId } = useParams();
@@ -123,21 +124,12 @@ export const EditKanbanTicket = () => {
             </select>
 
             <div className="flex mb-4 flex-col items-start w-full">
-              <div className="flex flex-row items-center">
-                <input
-                  id="default-checkbox"
-                  type="checkbox"
-                  value={blocked}
-                  onChange={() => setBlocked(!blocked)}
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-xl focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  htmlFor="default-checkbox"
-                  className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                  Is this story blocked?
-                </label>
-              </div>
+              <Checkbox
+                label="Is this story blocked?"
+                value={blocked}
+                setChangeHandler={() => setBlocked(!blocked)}
+              />
+
               {blocked && (
                 <div className="w-full">
                   <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-4">

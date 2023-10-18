@@ -9,10 +9,7 @@ import { GET_PROJECT } from "../../../../graphql/queries/projectQueries";
 // COMPONENTS
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
-
-// DATE PICKING
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { DateSelector } from "../../../../components/reusable/DateSelector/DateSelector";
 
 export const EditProject = () => {
   const { projectId } = useParams();
@@ -35,8 +32,6 @@ export const EditProject = () => {
   const [projectEstimate, setProjectEstimate] = useState(
     project?.projectEstimate
   );
-
-  console.log("project: ", project);
 
   const [updateProject] = useMutation(UPDATE_PROJECT, {
     variables: {
@@ -64,7 +59,7 @@ export const EditProject = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (title === "" || clientBudget === "") {
+    if (title === "") {
       return alert("Please fill out a project title and client budget");
     }
 
@@ -87,21 +82,6 @@ export const EditProject = () => {
   return (
     <div className="w-2/3 mx-auto mt-5">
       <form onSubmit={onSubmit}>
-        {/* <label className="form-label client-select">Client Name</label>
-        <select
-          className="form-select"
-          aria-label="Default select example"
-          id="clientId"
-          value={clientId}
-          onChange={(e) => setClientId(e.target.value)}
-        >
-          <option value="">Select Client</option>
-          {clientsData.clients.map((client) => (
-            <option key={client.id} value={client.id}>
-              {client.firstName + " " + client.lastName}
-            </option>
-          ))}
-        </select> */}
         <div className="mb-3">
           <label className="form-label">Title</label>
           <input
@@ -138,15 +118,19 @@ export const EditProject = () => {
           <option value="needsAttention">Needs Attention</option>
         </select>
 
-        <div className="">
-          <label className="form-label">Start Date</label>
-          <DatePicker selected={startDate} onChange={handleStartDateChange} />
-        </div>
+        <DateSelector
+          className="mb-3"
+          label="Start Date"
+          date={startDate}
+          dateChangeHandler={handleStartDateChange}
+        />
 
-        <div className="mb-3">
-          <label className="form-label">Deadline</label>
-          <DatePicker selected={deadline} onChange={handleDeadlineChange} />
-        </div>
+        <DateSelector
+          className="mb-3"
+          label="Deadline"
+          date={deadline}
+          dateChangeHandler={handleDeadlineChange}
+        />
 
         <div className="mb-3">
           <label className="form-label">Notes</label>

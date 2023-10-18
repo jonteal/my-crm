@@ -12,10 +12,7 @@ import { GET_CLIENTS } from "../../../../graphql/queries/clientQueries";
 // COMPONENTS
 import { Spinner } from "../../../../components/reusable/Spinner/Spinner";
 import { DynamicButton } from "../../../../components/reusable/DynamicButton/DynamicButton";
-
-// DATE PICKING
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { DateSelector } from "../../../../components/reusable/DateSelector/DateSelector";
 
 export const AddProject = () => {
   const [title, setTitle] = useState("");
@@ -168,18 +165,19 @@ export const AddProject = () => {
               </select>
             </div>
 
-            <div className="mb-3">
-              <label className="form-label">Start Date</label>
-              <DatePicker
-                selected={startDate}
-                onChange={handleStartDateChange}
-              />
-            </div>
+            <DateSelector
+              className="mb-3"
+              label="Start Date"
+              date={startDate}
+              dateChangeHandler={handleStartDateChange}
+            />
 
-            <div className="mb-3">
-              <label className="form-label">Deadline</label>
-              <DatePicker selected={deadline} onChange={handleDeadlineChange} />
-            </div>
+            <DateSelector
+              className="mb-3"
+              label="Deadline"
+              date={deadline}
+              dateChangeHandler={handleDeadlineChange}
+            />
 
             <div className="mb-3">
               <label className="form-label">Notes</label>
@@ -216,7 +214,9 @@ export const AddProject = () => {
               />
             </div>
 
-            <DynamicButton type="submit">Submit</DynamicButton>
+            <DynamicButton color="red" type="submit">
+              Submit
+            </DynamicButton>
           </form>
         </div>
       )}

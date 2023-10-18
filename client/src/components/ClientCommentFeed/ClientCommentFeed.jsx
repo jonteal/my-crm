@@ -69,7 +69,9 @@ export const ClientCommentFeed = ({ clientId, comments }) => {
           onChange={(e) => setCommentText(e.target.value)}
         />
         <div className="w-1/2 text-left mt-2">
-          <DynamicButton type="submit">Submit</DynamicButton>
+          <DynamicButton color="red" type="submit">
+            Submit
+          </DynamicButton>
         </div>
       </form>
 

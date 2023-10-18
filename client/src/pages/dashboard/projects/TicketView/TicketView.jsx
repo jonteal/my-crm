@@ -38,12 +38,9 @@ export const TicketView = () => {
         <div className="h-screen bg-slate-50 mx-2 mt-2 rounded-xl">
           <div className="mx-auto w-100 p-5">
             <div className="flex flex-row justify-start">
-              <button
-                onClick={handleBackNavigate}
-                className="flex flex-row items-center hover:bg-slate-200 py-2 px-3 border rounded-xl mr-2"
-              >
-                <FaRegArrowAltCircleLeft className="mr-2" /> <span>Back</span>
-              </button>
+              <DynamicButton type="back" color="lightBlue">
+                Back
+              </DynamicButton>
               <DynamicButton
                 className="ml-5"
                 type="link"

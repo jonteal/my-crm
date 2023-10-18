@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 
 // ICONS
 import { FaRegTrashAlt } from "react-icons/fa";
-import { FiEdit2 } from "react-icons/fi";
+// import { FiEdit2 } from "react-icons/fi";
 
 // GRAPHQL
 import { DELETE_CLIENT_ACTIVITY_COMMENT_REPLY } from "../../graphql/mutations/clientActivityCommentReplyMutations";
@@ -53,9 +53,9 @@ export const CommentReply = ({ reply, formattedDate, type, commentId }) => {
       >
         <p>{reply.commentText}</p>
         <div className="flex justify-end">
-          <button className="mr-2">
+          {/* <button className="mr-2">
             <FiEdit2 />
-          </button>
+          </button> */}
           <button onClick={handleCommentDelete}>
             <FaRegTrashAlt className="text-red-500" />
           </button>

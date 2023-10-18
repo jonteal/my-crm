@@ -42,6 +42,7 @@ import { EditKanbanTicket } from "./pages/dashboard/projects/EditKanbanTicket/Ed
 import { ClientsListByStatus } from "./pages/Clients/ClientsListByStatus/ClientsListByStatus";
 
 import "./App.css";
+import { EditService } from "./pages/dashboard/projects/EditService/EditService";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -164,6 +165,10 @@ function App() {
                   <Route
                     element={<ProjectService />}
                     path="/clients/:clientId/projects/:projectId/services/:serviceId"
+                  />
+                  <Route
+                    element={<EditService />}
+                    path="/clients/:clientId/projects/:projectId/services/:serviceId/edit"
                   />
                   <Route
                     element={<ProjectActivity />}
