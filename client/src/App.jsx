@@ -4,10 +4,8 @@ import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { useContext } from "react";
 import { ThemeContext } from "./context";
 
-// Pages
-import { Home } from "./pages/homeView/Home/Home";
-
 // Components
+import { Home } from "./pages/homeView/Home/Home";
 import { ClientView } from "./pages/dashboard/ClientView/ClientView";
 import { ProjectView } from "./pages/dashboard/projects/ProjectView/ProjectView";
 import { NotFound } from "./pages/NotFound/NotFound";
@@ -42,9 +40,9 @@ import { ClientProjects } from "./pages/dashboard/projects/ClientProjects/Client
 import { TicketView } from "./pages/dashboard/projects/TicketView/TicketView";
 import { EditKanbanTicket } from "./pages/dashboard/projects/EditKanbanTicket/EditKanbanTicket";
 import { ClientsListByStatus } from "./pages/Clients/ClientsListByStatus/ClientsListByStatus";
+import { EditService } from "./pages/dashboard/projects/EditService/EditService";
 
 import "./App.css";
-import { EditService } from "./pages/dashboard/projects/EditService/EditService";
 
 if (process.env.NODE_ENV === "development") {
   // Adds messages only in a dev environment
@@ -121,7 +119,7 @@ function App() {
   const darkMode = theme.state.darkMode;
   return (
     <div
-      className={`App max-h-max ${darkMode ? "bg-sky-950" : "white"} ${
+      className={`App max-screen ${darkMode ? "bg-sky-950" : "white"} ${
         darkMode ? "text-sky-50" : "text-slate-900"
       }`}
     >
