@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MenuDrawer } from "../nav/MenuDrawer/MenuDrawer";
+import { Toggle } from "../reusable/Toggle/Toggle";
 
 export const Navigation = () => {
   return (
@@ -12,6 +13,7 @@ export const Navigation = () => {
           FlowSwift
         </Link>
       </div>
+      <Toggle />
 
       <MenuDrawer placement="end" />
     </div>

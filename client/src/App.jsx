@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+import { useContext } from "react";
+import { ThemeContext } from "./context";
 
 // Pages
 import { Home } from "./pages/homeView/Home/Home";
@@ -115,8 +117,14 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const theme = useContext(ThemeContext);
+  const darkMode = theme.state.darkMode;
   return (
-    <div className="App">
+    <div
+      className={`App max-h-max ${darkMode ? "bg-sky-950" : "white"} ${
+        darkMode ? "text-sky-50" : "text-slate-900"
+      }`}
+    >
       <ApolloProvider client={client}>
         <Router>
           <Navigation />
