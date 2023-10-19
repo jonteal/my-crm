@@ -119,9 +119,9 @@ function App() {
   const darkMode = theme.state.darkMode;
   return (
     <div
-      className={`App ${darkMode ? "bg-sky-950 h-screen" : "white"} ${
-        darkMode ? "text-sky-50" : "text-slate-900"
-      }`}
+      className={`App transform xl:translate-x-0 ease-in-out transition duration-500 ${
+        darkMode ? "bg-sky-950 h-screen" : "white"
+      } ${darkMode ? "text-sky-50" : "text-slate-900"}`}
     >
       <ApolloProvider client={client}>
         <Router>

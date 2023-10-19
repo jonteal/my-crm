@@ -9,7 +9,13 @@ import { Spinner } from "../../components/reusable/Spinner/Spinner";
 import { DynamicButton } from "../../components/reusable/DynamicButton/DynamicButton";
 import { ProjectPageCard } from "../../components/ProjectPageCard/ProjectPageCard";
 
+// STATE
+import { useContext } from "react";
+import { ThemeContext } from "../../context";
+
 export const Projects = () => {
+  const theme = useContext(ThemeContext);
+  const darkMode = theme.state.darkMode;
   const { loading, error, data } = useQuery(GET_PROJECTS);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -33,7 +39,11 @@ export const Projects = () => {
         className="searchBar w-40 border rounded-xl pl-3 py-1 ml-5"
       />
 
-      <p className="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2">
+      <p
+        className={`block uppercase tracking-wide ${
+          darkMode ? "text-sky-100" : "text-slate-700"
+        }  text-base font-bold mb-2`}
+      >
         Total Projects: {data.projects.length}
       </p>
 

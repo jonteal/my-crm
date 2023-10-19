@@ -11,6 +11,7 @@ import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../graphql/queries/clientActivi
 import { DynamicButton } from "../reusable/DynamicButton/DynamicButton";
 import { Comment } from "../Comment/Comment";
 
+// STATE
 import { useContext } from "react";
 import { ThemeContext } from "../../context";
 

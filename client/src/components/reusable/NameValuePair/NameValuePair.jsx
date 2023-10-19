@@ -9,7 +9,7 @@ export const NameValuePair = ({ name, value, type, children }) => {
       <p
         className={`${
           darkMode ? "text-slate-100" : "text-slate-600"
-        }font-light text-left text-sm`}
+        } font-light text-left text-sm`}
       >
         {name}
       </p>
@@ -17,7 +17,7 @@ export const NameValuePair = ({ name, value, type, children }) => {
         className={`${
           darkMode ? "text-slate-50" : "text-slate-800"
         } font-normal text-left ${
-          type === "header" ? "text-lg font-bold" : "text-base"
+          type === "header" ? "text-xl font-bold" : "text-base"
         }`}
       >
         {value && <>{value}</>}

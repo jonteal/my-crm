@@ -17,7 +17,7 @@ export const ClientViewNav = () => {
   return (
     <div
       id="Main"
-      className={`flex justify-start items-start h-screen border w-full ${
+      className={`transform xl:translate-x-0 ease-in-out transition duration-500 flex justify-start items-start h-screen border w-full ${
         darkMode ? "bg-sky-800" : "bg-slate-50"
       }  flex-col ml-2 rounded-xl ${!isOpen ? "sm:w-10" : "sm:w-64"}`}
     >

@@ -33,7 +33,7 @@ export const ClientView = () => {
     <div>
       {!clientLoading && !clientError && (
         <div
-          className={`flex flex-col ${
+          className={`flex flex-col transform xl:translate-x-0 ease-in-out transition duration-500  ${
             darkMode ? "bg-sky-950" : "bg-slate-200"
           }`}
         >
