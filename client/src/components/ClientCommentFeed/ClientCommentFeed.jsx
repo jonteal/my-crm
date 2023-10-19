@@ -11,7 +11,12 @@ import { GET_CLIENT_ACTIVITY_COMMENTS } from "../../graphql/queries/clientActivi
 import { DynamicButton } from "../reusable/DynamicButton/DynamicButton";
 import { Comment } from "../Comment/Comment";
 
+import { useContext } from "react";
+import { ThemeContext } from "../../context";
+
 export const ClientCommentFeed = ({ clientId, comments }) => {
+  const theme = useContext(ThemeContext);
+  const darkMode = theme.state.darkMode;
   const [commentText, setCommentText] = useState("");
 
   const [addClientActivityComment] = useMutation(ADD_CLIENT_ACTIVITY_COMMENT, {
@@ -50,10 +55,16 @@ export const ClientCommentFeed = ({ clientId, comments }) => {
   };
 
   return (
-    <div className="rounded-xl bg-slate-50 mx-2 px-3 mt-1 w-full">
+    <div
+      className={`rounded-xl ${
+        darkMode ? "bg-sky-800" : "bg-slate-50"
+      }  mx-2 px-3 mt-1 w-full`}
+    >
       <form onSubmit={onSubmit}>
         <label
-          className="block uppercase tracking-wide text-gray-700 text-xs font-bold py-3"
+          className={`block uppercase tracking-wide ${
+            darkMode ? "text-slate-50" : "text-gray-700"
+          }  text-xs font-bold py-3`}
           htmlFor="grid-client-comment"
         >
           Client Activity Feed

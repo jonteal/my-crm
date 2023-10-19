@@ -11,7 +11,12 @@ import { DeleteModal } from "../modals/DeleteModal/DeleteModal";
 import { NameValuePair } from "../../components/reusable/NameValuePair/NameValuePair";
 import { DynamicButton } from "../reusable/DynamicButton/DynamicButton";
 
+import { useContext } from "react";
+import { ThemeContext } from "../../context";
+
 export const ClientCard = ({ clientData }) => {
+  const theme = useContext(ThemeContext);
+  const darkMode = theme.state.darkMode;
   const navigate = useNavigate();
   const {
     id,
@@ -30,21 +35,21 @@ export const ClientCard = ({ clientData }) => {
   });
 
   return (
-    <div className="mt-1 bg-slate-50 w-full rounded-xl">
-      <div className="flex flex-row justify-end">
-        <div className="mt-2">
-          <DynamicButton
-            type="link"
-            color="lightBlue"
-            className="mr-2"
-            link={`/clients/${id}/edit`}
-          >
-            Edit
-          </DynamicButton>
-        </div>
-        <div className="mt-3 mr-2">
-          <DeleteModal subject="Client" deleteClient={deleteClient} />
-        </div>
+    <div
+      className={`mt-1  ${
+        darkMode ? "bg-sky-800" : "bg-slate-50"
+      } w-full rounded-xl`}
+    >
+      <div className="flex flex-row items-center justify-end pt-3 pr-2">
+        <DynamicButton
+          type="link"
+          color="lightBlue"
+          className="mr-2"
+          link={`/clients/${id}/edit`}
+        >
+          Edit
+        </DynamicButton>
+        <DeleteModal subject="Client" deleteClient={deleteClient} />
       </div>
       <div className="h-screen px-3">
         <NameValuePair type="header" name="Company" value={companyName} />

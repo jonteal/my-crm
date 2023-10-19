@@ -11,15 +11,22 @@ export const Toggle = () => {
   };
 
   return (
-    <div className="toggle w-12 h-6 rounded-2xl border-slate-300 bg-slate-50 fixed top-3 left-4 z-10 flex items-center justify-around">
+    <div className="w-12 h-6 rounded-2xl border-slate-300 bg-slate-50 fixed top-10 left-3 z-10 flex items-center justify-around">
+      <BsFillSunFill
+        className={`w-4 h-4 ${
+          theme.state.darkMode ? "hidden" : "z-10 text-sky-950 mr-6"
+        }`}
+      />
+      <BsMoonFill
+        className={`w-4 h-4 ${
+          theme.state.darkMode ? "z-10 text-sky-950 ml-6" : "hidden"
+        }`}
+      />
       <div
-        className="toggle-button w-6 h-6 rounded-full bg-sky-800 absolute cursor-pointer flex flex-row items-center"
+        className="w-6 h-6 rounded-full bg-sky-800 absolute cursor-pointer flex flex-row items-center justify-between"
         onClick={handleClick}
         style={{ left: theme.state.darkMode ? 0 : 25 }}
-      >
-        <BsFillSunFill className="w-4 h-4" />
-        <BsMoonFill className="w-4 h-4" />
-      </div>
+      ></div>
     </div>
   );
 };

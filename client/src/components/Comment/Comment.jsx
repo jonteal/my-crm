@@ -20,7 +20,13 @@ import { CommentReply } from "../CommentReply/CommentReply";
 import { Spinner } from "../reusable/Spinner/Spinner";
 import { DynamicButton } from "../reusable/DynamicButton/DynamicButton";
 
+// STATE
+import { useContext } from "react";
+import { ThemeContext } from "../../context";
+
 export const Comment = ({ comment, type }) => {
+  const theme = useContext(ThemeContext);
+  const darkMode = theme.state.darkMode;
   const { clientId, projectId } = useParams();
 
   const [addReply, setAddReply] = useState(false);
@@ -152,13 +158,25 @@ export const Comment = ({ comment, type }) => {
   };
 
   return (
-    <div className="my-4 bg-slate-200 p-2 rounded-xl">
+    <div
+      className={`my-4 ${
+        darkMode ? "bg-sky-950" : "bg-slate-200"
+      }  p-2 rounded-xl`}
+    >
       <>
         <div
-          className="border px-3 py-2 bg-slate-100 rounded-xl flex flex-row justify-between items-center"
+          className={`border px-3 py-2 ${
+            darkMode ? "bg-sky-700" : "bg-slate-100"
+          }  rounded-xl flex flex-row justify-between items-center`}
           key={comment.id}
         >
-          <p className="text-start w-5/6">{comment.commentText}</p>
+          <p
+            className={`${
+              darkMode ? "text-slate-100" : "text-slate-700"
+            } text-start w-5/6`}
+          >
+            {comment.commentText}
+          </p>
 
           <div className="flex justify-end">
             <button onClick={handleCommentDelete}>
@@ -167,11 +185,17 @@ export const Comment = ({ comment, type }) => {
           </div>
         </div>
         <div className="flex flex-row items-center">
-          <p className="text-slate-600 text-start text-xs mt-2 ml-2 mr-3">
+          <p
+            className={`${
+              darkMode ? "text-sky-100" : "text-slate-600"
+            } text-start text-xs mt-2 ml-2 mr-3`}
+          >
             {formattedDate}
           </p>
           <button
-            className="text-sm mt-2 text-slate-600"
+            className={`text-sm mt-2 ${
+              darkMode ? "text-sky-100" : "text-slate-600"
+            } `}
             onClick={() => setAddReply(!addReply)}
           >
             {addReply ? "Close" : "Reply"}
@@ -180,10 +204,12 @@ export const Comment = ({ comment, type }) => {
       </>
 
       {addReply && (
-        <div>
+        <>
           <form onSubmit={onSubmit}>
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold py-3"
+              className={`block uppercase tracking-wide ${
+                darkMode ? "text-sky-100" : "text-gray-700"
+              }  text-xs font-bold py-3`}
               htmlFor="grid-client-comment"
             >
               Add Reply
@@ -193,7 +219,7 @@ export const Comment = ({ comment, type }) => {
               type="text"
               aria-label="Comment input"
               placeholder="Write a comment"
-              className="border p-2 mb-2 rounded-md appearance-none block w-full bg-slate-50 text-gray-700 border-gray-200 py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="border p-2 mb-2 rounded-md appearance-none block w-full bg-slate-50 text-slate-700 border-gray-200 py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               rows={3}
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
@@ -206,7 +232,7 @@ export const Comment = ({ comment, type }) => {
               Save
             </DynamicButton>
           </form>
-        </div>
+        </>
       )}
 
       {type === "client"

@@ -9,7 +9,12 @@ import { GET_CLIENT } from "../../../graphql/queries/clientQueries";
 import { ClientViewNav } from "../../../components/dashboardMain/ClientViewNav/ClientViewNav";
 import { Spinner } from "../../../components/reusable/Spinner/Spinner";
 
+import { useContext } from "react";
+import { ThemeContext } from "../../../context";
+
 export const ClientView = () => {
+  const theme = useContext(ThemeContext);
+  const darkMode = theme.state.darkMode;
   const { clientId } = useParams();
 
   const {
@@ -27,7 +32,11 @@ export const ClientView = () => {
   return (
     <div>
       {!clientLoading && !clientError && (
-        <div className="flex flex-col bg-slate-200">
+        <div
+          className={`flex flex-col ${
+            darkMode ? "bg-sky-950" : "bg-slate-200"
+          }`}
+        >
           <div className="h-auto min-h-full mt-4 rounded-md flex flex-row">
             <ClientViewNav clientData={clientData} />
             <Outlet />

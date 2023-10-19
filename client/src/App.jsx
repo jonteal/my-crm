@@ -119,7 +119,7 @@ function App() {
   const darkMode = theme.state.darkMode;
   return (
     <div
-      className={`App max-screen ${darkMode ? "bg-sky-950" : "white"} ${
+      className={`App ${darkMode ? "bg-sky-950 h-screen" : "white"} ${
         darkMode ? "text-sky-50" : "text-slate-900"
       }`}
     >
