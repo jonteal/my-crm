@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const moment = require("moment");
 
-const ClientSchema = new mongoose.Schema({
+const MemberSchema = new mongoose.Schema({
   username: {
     type: String,
   },
@@ -11,6 +11,9 @@ const ClientSchema = new mongoose.Schema({
   companyName: {
     type: String,
   },
+  password: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
@@ -18,4 +21,4 @@ const ClientSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Client", ClientSchema);
+module.exports = mongoose.model("Member", MemberSchema);

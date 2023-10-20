@@ -29,6 +29,7 @@ const MemberType = new GraphQLObjectType({
     username: { type: GraphQLString },
     emailAddress: { type: GraphQLString },
     companyName: { type: GraphQLString },
+    password: { type: GraphQLString },
     createdAt: { type: GraphQLString },
   }),
 });
@@ -84,6 +85,12 @@ const ClientType = new GraphQLObjectType({
   name: "Client",
   fields: () => ({
     id: { type: GraphQLID },
+    member: {
+      type: MemberType,
+      resolve(parent, args) {
+        return Member.findById(parent.memberId);
+      },
+    },
     firstName: { type: GraphQLString },
     lastName: { type: GraphQLString },
     phoneNumber: { type: GraphQLString },
@@ -234,6 +241,13 @@ const TicketType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
+    member: {
+      type: MemberType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Member.findById(args.id);
+      },
+    },
     clients: {
       type: new GraphQLList(ClientType),
       resolve(parent, args) {
@@ -415,6 +429,68 @@ const RootQuery = new GraphQLObjectType({
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
+    // Add a Member
+    addMember: {
+      type: MemberType,
+      args: {
+        username: { type: new GraphQLNonNull(GraphQLString) },
+        emailAddress: { type: new GraphQLNonNull(GraphQLString) },
+        companyName: { type: GraphQLString },
+        password: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve(parent, args) {
+        const member = new Member({
+          username: args.username,
+          emailAddress: args.emailAddress,
+          companyName: args.companyName,
+          password: args.password,
+        });
+
+        return member.save();
+      },
+    },
+    // Delete a Member
+    deleteMember: {
+      type: MemberType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        Client.find({ memberId: args.id }).then((clients) => {
+          clients.forEach((client) => {
+            client.remove();
+          });
+        });
+
+        return Member.findByIdAndRemove(args.id);
+      },
+    },
+    // Update a Member
+    updateMember: {
+      type: MemberType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        username: { type: GraphQLString },
+        emailAddress: { type: GraphQLString },
+        companyName: { type: GraphQLString },
+        password: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return Member.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              username: args.username,
+              emailAddress: args.emailAddress,
+              companyName: args.companyName,
+              password: args.password,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
+
     // Add a Client
     addClient: {
       type: ClientType,
