@@ -8,6 +8,7 @@ const Service = require("../models/Service");
 const ClientActivityCommentReply = require("../models/ClientActivityCommentReply");
 const ProjectActivityCommentReply = require("../models/ProjectActivityCommentReply");
 const Ticket = require("../models/Ticket");
+const Member = require("../models/Member");
 
 const {
   GraphQLObjectType,
@@ -19,6 +20,18 @@ const {
   GraphQLEnumType,
   GraphQLBoolean,
 } = require("graphql");
+
+// Member Type
+const MemberType = new GraphQLObjectType({
+  name: "Member",
+  fields: () => ({
+    id: { type: GraphQLID },
+    username: { type: GraphQLString },
+    emailAddress: { type: GraphQLString },
+    companyName: { type: GraphQLString },
+    createdAt: { type: GraphQLString },
+  }),
+});
 
 // Project Type
 const ProjectType = new GraphQLObjectType({

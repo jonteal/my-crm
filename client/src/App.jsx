@@ -41,6 +41,8 @@ import { TicketView } from "./pages/dashboard/projects/TicketView/TicketView";
 import { EditKanbanTicket } from "./pages/dashboard/projects/EditKanbanTicket/EditKanbanTicket";
 import { ClientsListByStatus } from "./pages/Clients/ClientsListByStatus/ClientsListByStatus";
 import { EditService } from "./pages/dashboard/projects/EditService/EditService";
+import { Login } from "./pages/Auth/Login/Login";
+import { Signup } from "./pages/Auth/Signup/Signup";
 
 import "./App.css";
 
@@ -114,9 +116,12 @@ const client = new ApolloClient({
   cache,
 });
 
-function App() {
+export const App = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme.state.darkMode;
+
+  const isAuth = false;
+
   return (
     <div
       className={`App transform xl:translate-x-0 ease-in-out transition duration-500 ${
@@ -128,7 +133,9 @@ function App() {
           <Navigation />
           <div>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={isAuth ? <Home /> : <Login />} />
+              <Route path="/signup" element={<Signup />} />
+
               <Route path="/dashboard" element={<MainDashboard />} />
               <Route path="/addClient" element={<AddClient />} />
               <Route path="/clients/:clientId" element={<ClientView />}>
@@ -253,6 +260,4 @@ function App() {
       </ApolloProvider>
     </div>
   );
-}
-
-export default App;
+};
