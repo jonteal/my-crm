@@ -12,4 +12,16 @@ const GET_MEMBER = gql`
   }
 `;
 
-export { GET_MEMBER };
+const GET_MEMBERS = gql`
+  query getMembers {
+    members {
+      id
+      username
+      emailAddress
+      companyName
+      password
+    }
+  }
+`;
+
+export { GET_MEMBER, GET_MEMBERS };
